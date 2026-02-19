@@ -49,17 +49,17 @@ export default function Home() {
           </div>
 
           <nav className="hidden items-center gap-7 text-sm text-zinc-300 md:flex">
-            <a href="#services" className="transition-colors hover:text-white">
+            <a href="/services" className="transition-colors hover:text-white">
               Services
             </a>
-            <a href="#industries" className="transition-colors hover:text-white">
-              Industries
+            <a href="/work" className="transition-colors hover:text-white">
+              Work
             </a>
-            <a href="#founders" className="transition-colors hover:text-white">
-              Founders
+            <a href="/equipment" className="transition-colors hover:text-white">
+              Equipment
             </a>
-            <a href="#contact" className="transition-colors hover:text-white">
-              Contact
+            <a href="/about" className="transition-colors hover:text-white">
+              About
             </a>
           </nav>
 
@@ -105,17 +105,17 @@ export default function Home() {
               </button>
             </div>
             <nav className="mt-8 grid gap-2">
-              <a href="#services" onClick={closeMobileMenu} className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-zinc-100 transition-colors hover:bg-white/10">
+              <a href="/services" onClick={closeMobileMenu} className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-zinc-100 transition-colors hover:bg-white/10">
                 Services
               </a>
-              <a href="#industries" onClick={closeMobileMenu} className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-zinc-100 transition-colors hover:bg-white/10">
-                Industries
+              <a href="/work" onClick={closeMobileMenu} className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-zinc-100 transition-colors hover:bg-white/10">
+                Work
               </a>
-              <a href="#founders" onClick={closeMobileMenu} className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-zinc-100 transition-colors hover:bg-white/10">
-                Founders
+              <a href="/equipment" onClick={closeMobileMenu} className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-zinc-100 transition-colors hover:bg-white/10">
+                Equipment
               </a>
-              <a href="#contact" onClick={closeMobileMenu} className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-zinc-100 transition-colors hover:bg-white/10">
-                Contact
+              <a href="/about" onClick={closeMobileMenu} className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-zinc-100 transition-colors hover:bg-white/10">
+                About
               </a>
             </nav>
             <a
