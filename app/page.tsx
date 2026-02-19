@@ -19,13 +19,13 @@ export default function Home() {
       <div className="pt-16">
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 opacity-70">
+        <div className="pointer-events-none absolute inset-0 opacity-70">
           <div className="absolute -top-24 left-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-white/10 blur-3xl" />
           <div className="absolute -bottom-32 right-[-120px] h-[520px] w-[520px] rounded-full bg-white/5 blur-3xl" />
         </div>
 
         <div className="mx-auto grid w-full max-w-[1400px] gap-10 px-4 py-16 sm:px-6 md:grid-cols-12 md:py-24 lg:px-8">
-          <div className="relative md:col-span-7">
+          <div className="relative z-10 md:col-span-7">
             <p className="mb-3 text-sm text-zinc-300">
               Based in Tbilisi · Working worldwide · English-speaking crew
             </p>
@@ -73,7 +73,7 @@ export default function Home() {
           </div>
 
           {/* Showreel */}
-          <div id="showreel" className="relative md:col-span-5">
+          <div id="showreel" className="relative z-10 md:col-span-5">
             <div className="aspect-video overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/10 to-white/5">
               <div className="flex h-full w-full items-center justify-center">
                 <div className="text-center">
