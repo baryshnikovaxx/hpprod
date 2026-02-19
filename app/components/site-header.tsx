@@ -3,7 +3,9 @@
 import { useEffect, useState } from "react";
 import { useLanguage } from "./language-provider";
 
-const navItems = [
+type NavKey = "services" | "work" | "equipment" | "about" | "contact";
+
+const navItems: ReadonlyArray<{ key: NavKey; href: string }> = [
   { key: "services", href: "/services" },
   { key: "work", href: "/work" },
   { key: "equipment", href: "/equipment" },
@@ -16,7 +18,7 @@ export default function SiteHeader() {
   const { lang, setLang } = useLanguage();
   const isRu = lang === "ru";
 
-  const labels = {
+  const labels: Record<NavKey | "startProject" | "menu", string> = {
     services: isRu ? "Услуги" : "Services",
     work: isRu ? "Кейсы" : "Work",
     equipment: isRu ? "Оборудование" : "Equipment",
