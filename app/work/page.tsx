@@ -81,11 +81,11 @@ export default function WorkPage() {
             : isRu && project.title === "International Leadership Summit"
               ? "Международный лидерский саммит"
               : isRu && project.title === "Open-Air Music Festival"
-                ? "Open-air музыкальный фестиваль"
+                ? "Музыкальный open-air фестиваль"
                 : isRu && project.title === "Global Brand Townhall"
-                  ? "Глобальный корпоративный townhall"
+                  ? "Глобальный корпоративный townhall-эфир"
                   : isRu && project.title === "Live Concert Capture"
-                    ? "Съемка live-концерта"
+                    ? "Съёмка live-концерта"
                     : project.title,
         location:
           isRu && project.location === "Europe"
@@ -97,15 +97,15 @@ export default function WorkPage() {
                 : project.location,
         desc:
           isRu && project.desc === "Fast switching, live overlays, commentator setup, multi-platform output, and clean highlight exports."
-            ? "Быстрый switching, live-оверлеи, комментаторская зона, мультиплатформенная выдача и чистые хайлайты."
+            ? "Быстрая режиссура, live-оверлеи, комментаторская зона, мультиплатформенная выдача и чистые хайлайты."
             : isRu && project.desc === "Hybrid production with remote speakers, translation routing, and full recording package."
-              ? "Гибридный продакшн с удаленными спикерами, маршрутизацией переводов и полным пакетом записи."
+              ? "Гибридный продакшн с удалёнными спикерами, маршрутизацией переводов и полным пакетом записи."
               : isRu && project.desc === "Large stage coverage, multi-camera directing, LED coordination, and resilient onsite communications."
-                ? "Покрытие большой сцены, мультикамерная режиссура, координация LED и надежная onsite-связь."
+                ? "Покрытие большой сцены, мультикамерная режиссура, координация LED и надёжная onsite-связь."
                 : isRu && project.desc === "Corporate live stream with graphics package, CEO keynote support, and distributed viewing workflow."
                   ? "Корпоративный стрим с графическим пакетом, поддержкой keynote и распределенным просмотром."
                   : isRu && project.desc === "4K concert production with audience and stage camera blend, backup recording, and post-event delivery."
-                    ? "4K-продакшн концерта с миксом сценических и зрительских камер, резервной записью и пост-выдачей."
+                    ? "4K-продакшн концерта с миксом сценических и зрительских камер, резервной записью и пост-продакшном."
                     : project.desc,
       })),
     [isRu],
@@ -122,13 +122,13 @@ export default function WorkPage() {
 
       <div className="pt-16">
       <section className="mx-auto w-full max-w-[1400px] px-4 py-16 sm:px-6 md:py-20 lg:px-8">
-        <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">{isRu ? "Кейсы / Проекты" : "Projects / Work"}</p>
+        <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">{isRu ? "Кейсы и проекты" : "Projects / Work"}</p>
         <h1 className="mt-3 bg-gradient-to-r from-white via-cyan-100 to-violet-200 bg-clip-text text-4xl font-semibold tracking-tight text-transparent md:text-6xl">
           {isRu ? "Библиотека кейсов" : "Case studies library"}
         </h1>
         <p className="mt-5 max-w-3xl text-zinc-300">
           {isRu
-            ? "Отдельная страница со всеми кейсами и практическими деталями: сетап, условия реализации и результаты."
+            ? "Отдельная страница со всеми кейсами: сетап, условия реализации и результат."
             : "Separate page for all cases with practical details on setup, delivery conditions, and outcomes."}
         </p>
       </section>

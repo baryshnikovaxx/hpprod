@@ -34,19 +34,19 @@ export default function Home() {
           <div className="relative z-10 md:col-span-7">
             <p className="mb-3 text-sm text-zinc-300">
               {isRu
-                ? "Базируемся в Тбилиси · Работаем по всему миру · Англоязычная команда"
+                ? "Тбилиси · Работаем по всему миру · Англоязычная команда"
                 : "Based in Tbilisi · Working worldwide · English-speaking crew"}
             </p>
 
             <h1 className="bg-gradient-to-r from-white via-cyan-100 to-violet-200 bg-clip-text text-4xl font-semibold tracking-tight text-transparent md:text-6xl">
               {isRu
-                ? "Премиальный live и broadcast-продакшн, который выглядит безупречно легко."
+                ? "Продакшн живых событий и трансляций без сбоев"
                 : "High-end live event & broadcast production that feels effortless."}
             </h1>
 
             <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-300 md:text-lg">
               {isRu
-                ? "Конференции, концерты и фестивали, киберспорт и масштабные события. Полный цикл реализации — от технического дизайна до финального сигнала. До 16 камер, 4K workflow, более 100 проектов."
+                ? "Конференции, концерты, фестивали, киберспорт и крупные события. Полный цикл — от технического дизайна до финального сигнала. До 16 камер, 4K workflow, более 100 реализованных проектов."
                 : "Conferences, concerts & festivals, esports and large-scale events. Full-cycle delivery — from technical design to the final signal. Up to 16 cameras, 4K workflow, 100+ events delivered."}
             </p>
 
@@ -55,7 +55,7 @@ export default function Home() {
                 href="#contact"
                 className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-cyan-300 to-violet-300 px-5 py-3 text-sm font-semibold text-zinc-950 transition-colors hover:from-cyan-200 hover:to-violet-200"
               >
-                {isRu ? "Обсудить событие" : "Discuss your event"}
+                {isRu ? "Обсудить проект" : "Discuss your event"}
               </a>
               <a
                 href="#showreel"
@@ -68,8 +68,8 @@ export default function Home() {
             <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
               {[
                 { k: "8", v: isRu ? "лет опыта" : "years experience" },
-                { k: "100+", v: isRu ? "проектов реализовано" : "events delivered" },
-                { k: "16", v: isRu ? "камер максимум" : "cameras max" },
+                { k: "100+", v: isRu ? "реализованных проектов" : "events delivered" },
+                { k: "16", v: isRu ? "камер в сетапе" : "cameras max" },
                 { k: "4K", v: "workflow" },
               ].map((item) => (
                 <div
@@ -92,7 +92,7 @@ export default function Home() {
                   <p className="text-sm font-semibold">{isRu ? "Шоурил" : "Showreel"}</p>
                   <p className="mt-1 text-xs text-zinc-300">
                     {isRu
-                      ? "Недавние проекты, бэкстейдж и ключевые моменты."
+                      ? "Ключевые проекты, бэкстейдж и рабочие моменты."
                       : "Recent productions, behind-the-scenes, and key moments."}
                   </p>
                 </div>
@@ -101,7 +101,7 @@ export default function Home() {
 
             <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 p-4 text-sm text-zinc-300">
               {isRu
-                ? "Недавние локации: Дубай · Белград · Турция · Бали · Китай · США · Европа"
+                ? "География: Дубай · Белград · Турция · Бали · Китай · США · Европа"
                 : "Recent locations: Dubai · Belgrade · Turkey · Bali · China · USA · Europe"}
             </div>
           </div>
@@ -115,7 +115,7 @@ export default function Home() {
             <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">{isRu ? "Клиенты" : "Selected clients"}</p>
             <h2 className="mt-3 text-xl font-semibold tracking-tight text-zinc-100 md:text-2xl">
               {isRu
-                ? "Нам доверяют live-шоу, где нет права на ошибку."
+                ? "Нам доверяют проекты, где ошибка недопустима"
                 : "Trusted for live shows where failure isn't an option."}
             </h2>
           </div>
@@ -168,10 +168,10 @@ export default function Home() {
       <section className="mx-auto w-full max-w-[1400px] px-4 py-14 sm:px-6 md:py-20 lg:px-8">
         <div className="grid gap-10 md:grid-cols-12">
           <div className="md:col-span-5">
-            <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">{isRu ? "Чем мы занимаемся" : "What we do"}</h2>
+            <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">{isRu ? "Что делаем" : "What we do"}</h2>
             <p className="mt-3 text-sm leading-relaxed text-zinc-300">
               {isRu
-                ? "Head Production — компания по live event и broadcast-продакшну. Мы берем на себя техническую сложность, чтобы ваша команда фокусировалась на событии, а аудитория получала стабильный и качественный эфир."
+                ? "Head Production — команда live- и broadcast-продакшна. Берём на себя техническую часть, чтобы вы занимались содержанием события, а аудитория получала стабильный и качественный эфир."
                 : "Head Production is a live event and broadcast production company. We handle the technical complexity so your team can focus on the event itself — and your audience gets a smooth, high-quality live experience."}
             </p>
           </div>
@@ -179,14 +179,14 @@ export default function Home() {
             <div className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6 md:p-7">
               <p className="text-sm leading-relaxed text-zinc-200">
                 {isRu
-                  ? "От планирования площадки и маршрутизации сигнала до live-режиссуры, графики и мультиплатформенного стриминга — мы реализуем продакшн под ключ с прозрачной коммуникацией и предсказуемым результатом."
+                  ? "От планирования площадки и маршрутизации сигнала до live-режиссуры, графики и мультиплатформенного стриминга — реализуем проект под ключ с прозрачной коммуникацией и предсказуемым результатом."
                   : "From venue planning and signal routing to live directing, graphics, and multi-platform streaming — we deliver end-to-end production with clear communication and predictable results."}
               </p>
               <div className="mt-5 grid gap-3 sm:grid-cols-2">
                 {[
                   isRu ? "Пре-продакшн и технический дизайн" : "Pre-production & technical design",
                   isRu ? "Мультикамерная live-режиссура" : "Multi-camera live directing",
-                  isRu ? "Broadcast-графика и интеграция партнеров" : "Broadcast graphics & sponsor integration",
+                  isRu ? "Broadcast-графика и интеграция партнёров" : "Broadcast graphics & sponsor integration",
                   isRu ? "Стриминг + запись + итоговые материалы" : "Streaming + recording + deliverables",
                 ].map((t) => (
                   <div key={t} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm">
@@ -206,7 +206,7 @@ export default function Home() {
             <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">{isRu ? "Услуги" : "Services"}</h2>
             <p className="mt-2 text-sm text-zinc-300">
               {isRu
-                ? "Полный цикл live-продакшна, масштабируемый под вашу площадку и формат."
+                ? "Полный цикл live-продакшна под вашу площадку и формат."
                 : "Full-cycle live production, scaled to your venue and format."}
             </p>
           </div>
@@ -217,25 +217,25 @@ export default function Home() {
             {
               title: isRu ? "Live broadcast-продакшн" : "Live broadcast production",
               desc: isRu
-                ? "Мультикамерный сетап, режиссура, switching, мониторинг — полный workflow live control room."
+                ? "Мультикамерный сетап, режиссура, коммутация и мониторинг — полный workflow live control room."
                 : "Multi-camera setup, directing, switching, monitoring — the full live control room workflow.",
             },
             {
               title: isRu ? "Конференции и гибридные события" : "Conferences & hybrid events",
               desc: isRu
-                ? "Презентации, удаленные спикеры, каналы перевода, вовлечение аудитории и чистая выдача."
+                ? "Презентации, удалённые спикеры, каналы перевода, вовлечение аудитории и чистая выдача."
                 : "Presentations, remote speakers, translation channels, audience engagement, clean delivery.",
             },
             {
               title: isRu ? "Концерты, фестивали, киберспорт" : "Concerts, festivals, esports",
               desc: isRu
-                ? "Динамичное live-покрытие для работы под давлением, в сложной среде и для большой аудитории."
+                ? "Динамичное live-покрытие для работы под давлением, в сложной среде и с большой аудиторией."
                 : "Fast-paced live coverage built for pressure, dynamic environments, and large audiences.",
             },
             {
               title: isRu ? "Broadcast-графика" : "Broadcast graphics",
               desc: isRu
-                ? "Lower thirds, оверлеи, табло, интеграции партнеров и фирменные визуальные пакеты."
+                ? "Lower thirds, оверлеи, табло, интеграции партнёров и фирменные визуальные пакеты."
                 : "Lower thirds, overlays, scoreboards, sponsor placements, branded visual packages.",
             },
             {
@@ -247,7 +247,7 @@ export default function Home() {
             {
               title: isRu ? "Запись и пост-материалы" : "Recording & post-deliverables",
               desc: isRu
-                ? "Чистые записи, хайлайт-материалы и структурированная передача вашей команде и партнерам."
+                ? "Чистые записи, хайлайты и структурированная передача материалов вашей команде и партнёрам."
                 : "Clean recordings, highlight assets, and organized delivery for your team and partners.",
             },
           ].map((s) => (
@@ -310,11 +310,11 @@ export default function Home() {
           <div>
             <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">{isRu ? "Кейсы" : "Selected projects"}</p>
             <h2 className="mt-3 text-2xl font-semibold tracking-tight md:text-3xl">
-              {isRu ? "Несколько недавних проектов." : "A few recent productions."}
+              {isRu ? "Недавние проекты" : "A few recent productions."}
             </h2>
             <p className="mt-2 max-w-2xl text-sm text-zinc-300">
               {isRu
-                ? "Выжимка из недавних реализаций. При необходимости развернем в полноценные кейсы с фото, сетапом, списком техники и результатами."
+                ? "Коротко о недавних реализациях. По запросу раскрываем каждый проект в полноценный кейс с фото, сетапом, списком техники и результатами."
                 : "Highlights from recent productions. We can expand these into full case studies with photos, setup details, gear lists, and outcomes."}
             </p>
           </div>
@@ -322,7 +322,7 @@ export default function Home() {
             href="#contact"
             className="mt-2 inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold text-white hover:bg-white/10 md:mt-0"
           >
-            {isRu ? "Получить расчет" : "Get a quote"}
+            {isRu ? "Получить смету" : "Get a quote"}
           </a>
         </div>
 
@@ -392,7 +392,7 @@ export default function Home() {
             <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">{isRu ? "Основатели" : "Founders"}</h2>
             <p className="mt-2 text-sm text-zinc-300">
               {isRu
-                ? "Два практикующих специалиста: продакшн + инженерия, работают вместе на каждом проекте."
+                ? "Два практикующих специалиста: продакшн и инженерия, вместе на каждом проекте."
                 : "Two hands-on operators: production + engineering, working side by side on every show."}
             </p>
           </div>
@@ -406,6 +406,7 @@ export default function Home() {
               role: "Co-Founder · Executive Producer",
               bio: isRu
                 ? "Планирование продакшна, шоу-флоу, координация площадки и коммуникация с клиентом. Международная реализация в разных форматах."
+                ? "Планирование продакшна, шоу-флоу, координация площадки и коммуникация с клиентом. Международные проекты в разных форматах."
                 : "Production planning, show flow, venue coordination, and client communication. International delivery across formats.",
             },
             {
@@ -414,6 +415,7 @@ export default function Home() {
               role: "Co-Founder · Technical Director",
               bio: isRu
                 ? "Broadcast-инжиниринг: маршрутизация, камерные workflow, звук, стриминг, резервирование и техническое лидерство на площадке."
+                ? "Broadcast-инжиниринг: маршрутизация, камерные workflow, звук, стриминг, резервирование и техническое руководство на площадке."
                 : "Broadcast engineering: routing, camera workflows, audio, streaming, redundancy, and on-site technical leadership.",
             },
           ].map((f, idx) => (
@@ -439,10 +441,10 @@ export default function Home() {
 
       {/* Process */}
       <section className="mx-auto w-full max-w-[1400px] px-4 py-14 sm:px-6 md:py-20 lg:px-8">
-        <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">{isRu ? "Как мы работаем" : "How it works"}</h2>
+        <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">{isRu ? "Как работаем" : "How it works"}</h2>
         <p className="mt-2 max-w-2xl text-sm text-zinc-300">
           {isRu
-            ? "Прозрачные этапы, предсказуемая реализация и никаких сюрпризов в день события."
+            ? "Прозрачные этапы, предсказуемая реализация и без сюрпризов в день события."
             : "Clear steps, predictable delivery, and no surprises on show day."}
         </p>
 
@@ -490,10 +492,10 @@ export default function Home() {
         <div className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6 md:p-10">
           <div className="grid gap-10 md:grid-cols-12">
             <div className="md:col-span-5">
-              <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">{isRu ? "Свяжемся" : "Let’s talk"}</h2>
+              <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">{isRu ? "Обсудим проект" : "Let’s talk"}</h2>
               <p className="mt-2 text-sm text-zinc-300">
                 {isRu
-                  ? "Расскажите о событии — предложим сетап, таймлайн и следующие шаги."
+                  ? "Расскажите о задаче — предложим сетап, таймлайн и следующий шаг."
                   : "Tell us about the event — we’ll suggest the setup, timeline, and next steps."}
               </p>
 
@@ -524,7 +526,7 @@ export default function Home() {
                   <div className="text-xs text-zinc-400">Company</div>
                   <input
                     className="w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none placeholder:text-zinc-600 focus:border-white/20"
-                    placeholder={isRu ? "Компания / бренд" : "Company / brand"}
+                    placeholder={isRu ? "Компания или бренд" : "Company / brand"}
                   />
                 </label>
                 <label className="space-y-2">
@@ -538,7 +540,7 @@ export default function Home() {
                   <div className="text-xs text-zinc-400">{isRu ? "Предпочтительный контакт" : "Preferred contact"}</div>
                   <input
                     className="w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none placeholder:text-zinc-600 focus:border-white/20"
-                    placeholder={isRu ? "WhatsApp / Telegram / Email + ваш контакт" : "WhatsApp / Telegram / Email + your handle"}
+                    placeholder={isRu ? "WhatsApp, Telegram или Email + ваш контакт" : "WhatsApp / Telegram / Email + your handle"}
                   />
                 </label>
                 <label className="space-y-2 sm:col-span-2">

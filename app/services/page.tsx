@@ -8,27 +8,27 @@ export default function ServicesPage() {
   const isRu = lang === "ru";
   const serviceGroups = [
     {
-      title: isRu ? "Продакшн live-событий" : "Live Event Production",
+      title: isRu ? "Продакшн живых событий" : "Live Event Production",
       desc: isRu
-        ? "Полный цикл продакшна для конференций, саммитов, церемоний и брендированных live-форматов."
+        ? "Полный цикл для конференций, саммитов, церемоний и брендовых мероприятий."
         : "End-to-end production for conferences, summits, ceremonies, and branded live formats.",
     },
     {
       title: isRu ? "Broadcast-продакшн" : "Broadcast Production",
       desc: isRu
-        ? "Мультикамерная режиссура, switching, маршрутизация сигнала, мониторинг, графика и выдача."
+        ? "Мультикамерная режиссура, коммутация, маршрутизация сигнала, мониторинг, графика и выдача."
         : "Multi-camera directing, switching, signal routing, monitoring, graphics, and delivery.",
     },
     {
-      title: isRu ? "Киберспортивный продакшн" : "Esports Production",
+      title: isRu ? "Продакшн киберспорта" : "Esports Production",
       desc: isRu
-        ? "Турнирные workflow: оверлеи, комментаторские, динамичный switching и выдача на платформы."
+        ? "Турнирный формат: оверлеи, комментаторские, динамичная режиссура и выдача на платформы."
         : "Tournament-ready workflows: overlays, commentary, dynamic switching, and platform output.",
     },
     {
-      title: isRu ? "Стриминг и гибридные ивенты" : "Streaming & Hybrid Events",
+      title: isRu ? "Стриминг и гибридные события" : "Streaming & Hybrid Events",
       desc: isRu
-        ? "Надежная гибридная архитектура с удаленными спикерами, переводом и резервированием."
+        ? "Надёжная гибридная архитектура с удалёнными спикерами, переводом и резервированием."
         : "Reliable hybrid architecture with remote speakers, translation channels, and backups.",
     },
     {
@@ -40,7 +40,7 @@ export default function ServicesPage() {
     {
       title: isRu ? "Команда и инженерия" : "Crew & Engineering",
       desc: isRu
-        ? "Опытные операторы, инженеры и техническое лидерство для проектов под высоким давлением."
+        ? "Опытные операторы, инженеры и техническое руководство для сложных проектов."
         : "Experienced operators, engineers, and technical leadership for high-pressure shows.",
     },
   ];
@@ -53,11 +53,11 @@ export default function ServicesPage() {
       <section className="mx-auto w-full max-w-[1400px] px-4 py-16 sm:px-6 md:py-20 lg:px-8">
         <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">{isRu ? "Услуги" : "Services"}</p>
         <h1 className="mt-3 bg-gradient-to-r from-white via-cyan-100 to-violet-200 bg-clip-text text-4xl font-semibold tracking-tight text-transparent md:text-6xl">
-          {isRu ? "Понятная структура. Полный цикл реализации." : "Clear structure. Full-cycle delivery."}
+          {isRu ? "Понятная структура, полный цикл" : "Clear structure. Full-cycle delivery."}
         </h1>
         <p className="mt-5 max-w-3xl text-zinc-300">
           {isRu
-            ? "Услуги сгруппированы по реальным продакшн-задачам, чтобы ваша команда быстро выбрала нужный объем работ."
+            ? "Услуги сгруппированы по практическим задачам, чтобы быстро выбрать нужный объём работ."
             : "Services are grouped by real production needs, so your team can quickly choose the right scope."}
         </p>
       </section>

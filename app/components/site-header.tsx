@@ -49,17 +49,29 @@ export default function SiteHeader() {
     <>
       <header className="fixed inset-x-0 top-0 z-50 isolate border-b border-white/10 bg-zinc-950">
         <div className="mx-auto flex h-16 w-full max-w-[1400px] items-center justify-between px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-3">
-            <a href="/" className="flex items-center gap-3">
-              <div className="h-9 w-9 rounded-xl bg-white/10 ring-1 ring-white/15" />
-              <div className="leading-tight">
-                <div className="text-sm font-semibold tracking-wide text-zinc-100">Head Production</div>
-                <div className="text-xs text-zinc-400">
-                  {isRu ? "Лайв-ивенты и трансляции" : "Live Event & Broadcast"}
-                </div>
+          <a href="/" className="flex items-center gap-3">
+            <div className="h-9 w-9 rounded-xl bg-white/10 ring-1 ring-white/15" />
+            <div className="leading-tight">
+              <div className="text-sm font-semibold tracking-wide text-zinc-100">Head Production</div>
+              <div className="text-xs text-zinc-400">
+                {isRu ? "Лайв-события и трансляции" : "Live Event & Broadcast"}
               </div>
-            </a>
+            </div>
+          </a>
 
+          <nav className="hidden items-center gap-7 text-sm text-zinc-300 md:flex">
+            {navItems.map((item) => (
+              <a
+                key={item.key}
+                href={item.href}
+                className="whitespace-nowrap transition-colors duration-200 hover:text-cyan-200"
+              >
+                {labels[item.key]}
+              </a>
+            ))}
+          </nav>
+
+          <div className="flex items-center gap-2">
             <div className="flex shrink-0 items-center gap-1 rounded-lg border border-white/10 bg-white/5 p-1">
               <button
                 type="button"
@@ -80,39 +92,25 @@ export default function SiteHeader() {
                 RU
               </button>
             </div>
-          </div>
-
-          <div className="hidden items-center gap-3 md:flex">
-            <nav className="items-center gap-7 text-sm text-zinc-300 md:flex">
-              {navItems.map((item) => (
-                <a
-                  key={item.key}
-                  href={item.href}
-                  className="whitespace-nowrap transition-colors duration-200 hover:text-cyan-200"
-                >
-                  {labels[item.key]}
-                </a>
-              ))}
-            </nav>
 
             <a
               href="/#contact"
-              className="inline-flex h-10 shrink-0 items-center justify-center whitespace-nowrap rounded-xl bg-gradient-to-r from-cyan-300 to-violet-300 px-4 text-sm font-semibold text-zinc-950 transition-colors duration-200 hover:from-cyan-200 hover:to-violet-200"
+              className="hidden h-10 shrink-0 items-center justify-center whitespace-nowrap rounded-xl bg-gradient-to-r from-cyan-300 to-violet-300 px-4 text-sm font-semibold text-zinc-950 transition-colors duration-200 hover:from-cyan-200 hover:to-violet-200 md:inline-flex"
             >
               {labels.startProject}
             </a>
-          </div>
 
-          <button
-            type="button"
-            aria-label="Open menu"
+            <button
+              type="button"
+              aria-label="Open menu"
               className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/15 bg-white/5 text-zinc-200 transition-colors duration-200 hover:border-white/30 hover:text-cyan-200 md:hidden"
-            onClick={() => setMobileMenuOpen(true)}
-          >
-            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M4 7h16M4 12h16M4 17h16" strokeLinecap="round" />
-            </svg>
-          </button>
+              onClick={() => setMobileMenuOpen(true)}
+            >
+              <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M4 7h16M4 12h16M4 17h16" strokeLinecap="round" />
+              </svg>
+            </button>
+          </div>
         </div>
       </header>
 

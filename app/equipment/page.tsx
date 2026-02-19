@@ -10,13 +10,13 @@ export default function EquipmentPage() {
     {
       title: isRu ? "Камеры и оптика" : "Cameras & Optics",
       items: isRu
-        ? ["Кино- и broadcast-камеры", "Комплекты объективов", "Беспроводные видеопередатчики"]
+        ? ["Кино- и вещательные камеры", "Комплекты объективов", "Беспроводные видеопередатчики"]
         : ["Cinema and broadcast camera systems", "Lens kits", "Wireless video transmitters"],
     },
     {
       title: isRu ? "Switching и видео" : "Switching & Vision",
       items: isRu
-        ? ["Видеомикшеры (switchers)", "Multiview-мониторинг", "Конвертеры и роутеры сигнала"]
+        ? ["Видеомикшеры", "Multiview-мониторинг", "Конвертеры и роутеры сигнала"]
         : ["Live switchers", "Multiview monitoring", "Signal converters and routers"],
     },
     {
@@ -28,13 +28,13 @@ export default function EquipmentPage() {
     {
       title: isRu ? "Стриминг-стек" : "Streaming Stack",
       items: isRu
-        ? ["Энкодеры (RTMP/SRT)", "Устройства записи", "Резервные uplink-схемы"]
+        ? ["Энкодеры RTMP/SRT", "Устройства записи", "Резервные uplink-схемы"]
         : ["Encoders (RTMP/SRT)", "Recording units", "Redundant uplink setups"],
     },
     {
       title: isRu ? "Связь (Comms)" : "Comms",
       items: isRu
-        ? ["Интерком-системы", "Связь продюсера и сцены", "Маршрутизация talkback"]
+        ? ["Интерком-системы", "Связь продюсера и сцены", "Маршрутизация talkback-каналов"]
         : ["Intercom systems", "Producer and stage comms", "Talkback routing"],
     },
     {
@@ -57,7 +57,7 @@ export default function EquipmentPage() {
         </h1>
         <p className="mt-5 max-w-3xl text-zinc-300">
           {isRu
-            ? "Ключевые категории продакшн-оборудования для конференций, киберспорта, концертов и гибридных событий."
+            ? "Ключевые категории оборудования для конференций, киберспорта, концертов и гибридных событий."
             : "Core categories of production equipment used across conferences, esports, concerts, and hybrid events."}
         </p>
       </section>
