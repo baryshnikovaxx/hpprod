@@ -1,6 +1,30 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMobileMenuOpen(false);
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [mobileMenuOpen]);
+
+  const closeMobileMenu = () => setMobileMenuOpen(false);
+
   return (
     <main className="relative min-h-screen overflow-x-clip bg-zinc-950 text-zinc-50 selection:bg-cyan-300/30 selection:text-white">
       <div className="pointer-events-none absolute inset-0 opacity-[0.06] mix-blend-overlay"
@@ -14,8 +38,8 @@ export default function Home() {
         <div className="absolute bottom-20 right-[-100px] h-[300px] w-[300px] rounded-full bg-violet-500/10 blur-3xl" />
       </div>
       {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-white/15 bg-zinc-950/60 backdrop-blur-xl">
-        <div className="mx-auto flex w-full max-w-[1400px] items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-zinc-950">
+        <div className="mx-auto flex h-16 w-full max-w-[1400px] items-center justify-between px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-3">
             <div className="h-9 w-9 rounded-xl bg-white/10 ring-1 ring-white/15" />
             <div className="leading-tight">
@@ -25,32 +49,87 @@ export default function Home() {
           </div>
 
           <nav className="hidden items-center gap-7 text-sm text-zinc-300 md:flex">
-            <a href="/services" className="interactive-link hover:text-white">
+            <a href="#services" className="transition-colors hover:text-white">
               Services
             </a>
-            <a href="/work" className="interactive-link hover:text-white">
-              Work
+            <a href="#industries" className="transition-colors hover:text-white">
+              Industries
             </a>
-            <a href="/equipment" className="interactive-link hover:text-white">
-              Equipment
+            <a href="#founders" className="transition-colors hover:text-white">
+              Founders
             </a>
-            <a href="/about" className="interactive-link hover:text-white">
-              About
-            </a>
-            <a href="#contact" className="interactive-link hover:text-white">
+            <a href="#contact" className="transition-colors hover:text-white">
               Contact
             </a>
           </nav>
 
           <a
             href="#contact"
-            className="interactive-gradient rounded-xl bg-gradient-to-r from-cyan-300 to-violet-300 px-4 py-2 text-sm font-semibold text-zinc-950 hover:from-cyan-200 hover:to-violet-200"
+            className="hidden rounded-xl bg-gradient-to-r from-cyan-300 to-violet-300 px-4 py-2 text-sm font-semibold text-zinc-950 transition-colors hover:from-cyan-200 hover:to-violet-200 md:inline-flex"
           >
             Start a Project
           </a>
+
+          <button
+            type="button"
+            aria-label="Open menu"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/15 bg-white/5 text-zinc-200 transition-colors hover:border-white/30 hover:text-white md:hidden"
+            onClick={() => setMobileMenuOpen(true)}
+          >
+            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M4 7h16M4 12h16M4 17h16" strokeLinecap="round" />
+            </svg>
+          </button>
         </div>
       </header>
 
+      {mobileMenuOpen && (
+        <div
+          className="fixed inset-0 z-[60] bg-black/60 md:hidden"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) closeMobileMenu();
+          }}
+        >
+          <div className="ml-auto h-full w-[86%] max-w-sm border-l border-white/10 bg-zinc-950 p-5">
+            <div className="flex items-center justify-between">
+              <p className="text-sm font-semibold text-zinc-100">Menu</p>
+              <button
+                type="button"
+                aria-label="Close menu"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/15 bg-white/5 text-zinc-300 transition-colors hover:text-white"
+                onClick={closeMobileMenu}
+              >
+                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M6 6l12 12M18 6L6 18" strokeLinecap="round" />
+                </svg>
+              </button>
+            </div>
+            <nav className="mt-8 grid gap-2">
+              <a href="#services" onClick={closeMobileMenu} className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-zinc-100 transition-colors hover:bg-white/10">
+                Services
+              </a>
+              <a href="#industries" onClick={closeMobileMenu} className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-zinc-100 transition-colors hover:bg-white/10">
+                Industries
+              </a>
+              <a href="#founders" onClick={closeMobileMenu} className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-zinc-100 transition-colors hover:bg-white/10">
+                Founders
+              </a>
+              <a href="#contact" onClick={closeMobileMenu} className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-zinc-100 transition-colors hover:bg-white/10">
+                Contact
+              </a>
+            </nav>
+            <a
+              href="#contact"
+              onClick={closeMobileMenu}
+              className="mt-6 inline-flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-cyan-300 to-violet-300 px-4 py-3 text-sm font-semibold text-zinc-950 transition-colors hover:from-cyan-200 hover:to-violet-200"
+            >
+              Start a Project
+            </a>
+          </div>
+        </div>
+      )}
+
+      <div className="pt-16">
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 opacity-70">
@@ -76,13 +155,13 @@ export default function Home() {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
               <a
                 href="#contact"
-                className="interactive-gradient inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-cyan-300 to-violet-300 px-5 py-3 text-sm font-semibold text-zinc-950 hover:from-cyan-200 hover:to-violet-200"
+                className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-cyan-300 to-violet-300 px-5 py-3 text-sm font-semibold text-zinc-950 transition-colors hover:from-cyan-200 hover:to-violet-200"
               >
                 Discuss your event
               </a>
               <a
                 href="#showreel"
-                className="interactive-gradient inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 px-5 py-3 text-sm font-semibold text-white hover:border-cyan-200/50 hover:bg-white/10"
+                className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition-colors hover:border-cyan-200/50 hover:bg-white/10"
               >
                 Watch showreel
               </a>
@@ -97,7 +176,7 @@ export default function Home() {
               ].map((item) => (
                 <div
                   key={item.v}
-                  className="interactive-gradient rounded-2xl border border-white/10 bg-white/5 px-4 py-4"
+                  className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4"
                 >
                   <div className="text-2xl font-semibold">{item.k}</div>
                   <div className="mt-1 text-xs text-zinc-300">{item.v}</div>
@@ -108,7 +187,7 @@ export default function Home() {
 
           {/* Showreel */}
           <div id="showreel" className="relative md:col-span-5">
-            <div className="interactive-gradient aspect-video overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/10 to-white/5">
+            <div className="aspect-video overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/10 to-white/5">
               <div className="flex h-full w-full items-center justify-center">
                 <div className="text-center">
                   <div className="mx-auto mb-3 h-12 w-12 rounded-2xl bg-white/10 ring-1 ring-white/15" />
@@ -118,7 +197,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="interactive-gradient mt-4 rounded-2xl border border-white/10 bg-white/5 p-4 text-sm text-zinc-300">
+            <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 p-4 text-sm text-zinc-300">
               Recent locations: Dubai · Belgrade · Turkey · Bali · China · USA · Europe
             </div>
           </div>
@@ -190,7 +269,7 @@ export default function Home() {
             </p>
           </div>
           <div className="md:col-span-7">
-            <div className="accent-border interactive-gradient rounded-3xl border border-white/10 bg-white/5 p-6 md:p-7">
+            <div className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6 md:p-7">
               <p className="text-sm leading-relaxed text-zinc-200">
                 From venue planning and signal routing to live directing, graphics, and multi-platform streaming —
                 we deliver end-to-end production with clear communication and predictable results.
@@ -250,7 +329,7 @@ export default function Home() {
               desc: "Clean recordings, highlight assets, and organized delivery for your team and partners.",
             },
           ].map((s) => (
-            <div key={s.title} className="accent-border interactive-gradient rounded-3xl border border-white/10 bg-white/5 p-6">
+            <div key={s.title} className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6">
               <h3 className="text-base font-semibold">{s.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-zinc-300">{s.desc}</p>
             </div>
@@ -280,7 +359,7 @@ export default function Home() {
               points: ["Stage coordination", "Multi-camera live coverage", "LED & on-site integration"],
             },
           ].map((c) => (
-            <div key={c.title} className="accent-border interactive-gradient rounded-3xl border border-white/10 bg-white/5 p-6">
+            <div key={c.title} className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6">
               <h3 className="text-base font-semibold">{c.title}</h3>
               <ul className="mt-3 space-y-2 text-sm text-zinc-300">
                 {c.points.map((p) => (
@@ -338,12 +417,8 @@ export default function Home() {
           ].map((p) => (
             <div
               key={p.title}
-              className="accent-border interactive-gradient group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6"
+              className="accent-border relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6"
             >
-              <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                <div className="absolute -top-24 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-white/10 blur-3xl" />
-              </div>
-
               <div className="relative">
                 <div className="flex items-center justify-between gap-3">
                   <p className="text-xs text-zinc-400">{p.meta}</p>
@@ -404,7 +479,7 @@ export default function Home() {
               bio: "Broadcast engineering: routing, camera workflows, audio, streaming, redundancy, and on-site technical leadership.",
             },
           ].map((f, idx) => (
-            <div key={idx} className="accent-border interactive-gradient rounded-3xl border border-white/15 bg-white/5 p-6 backdrop-blur-xl">
+            <div key={idx} className="accent-border rounded-3xl border border-white/15 bg-white/5 p-6 backdrop-blur-xl">
               <div className="flex flex-col items-center text-center">
                 <div className="h-28 w-28 overflow-hidden rounded-full border border-white/20 bg-zinc-900/70 p-1 ring-1 ring-white/15">
                   <Image
@@ -439,7 +514,7 @@ export default function Home() {
             { n: "04", t: "Live", d: "Directing, monitoring, backups, comms." },
             { n: "05", t: "Deliver", d: "Recordings, highlights, assets, handover." },
           ].map((p) => (
-            <div key={p.n} className="accent-border interactive-gradient rounded-3xl border border-white/10 bg-white/5 p-5">
+            <div key={p.n} className="accent-border rounded-3xl border border-white/10 bg-white/5 p-5">
               <div className="text-xs text-zinc-400">{p.n}</div>
               <div className="mt-2 text-sm font-semibold">{p.t}</div>
               <div className="mt-2 text-sm text-zinc-300">{p.d}</div>
@@ -450,7 +525,7 @@ export default function Home() {
 
       {/* Contact */}
       <section id="contact" className="mx-auto w-full max-w-[1400px] px-4 py-14 sm:px-6 md:py-20 lg:px-8">
-        <div className="accent-border interactive-gradient rounded-3xl border border-white/10 bg-white/5 p-6 md:p-10">
+        <div className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6 md:p-10">
           <div className="grid gap-10 md:grid-cols-12">
             <div className="md:col-span-5">
               <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">Let’s talk</h2>
@@ -460,10 +535,10 @@ export default function Home() {
 
               <div className="mt-6 space-y-2 text-sm text-zinc-300">
                 <div>
-                  <span className="text-zinc-400">Email:</span> hello@headproduction.com
+                  <span className="text-zinc-400">Email:</span> hello@headprod.com
                 </div>
                 <div>
-                  <span className="text-zinc-400">Telegram:</span> @headproduction
+                  <span className="text-zinc-400">Telegram:</span> @hp_prod
                 </div>
                 <div>
                   <span className="text-zinc-400">Based in:</span> Tbilisi · Worldwide production
@@ -503,14 +578,21 @@ export default function Home() {
                 </label>
                 <label className="space-y-2 sm:col-span-2">
                   <div className="text-xs text-zinc-400">Estimated budget</div>
-                  <select className="w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none focus:border-white/20">
-                    <option value="">Select a range</option>
-                    <option>Under $2k</option>
-                    <option>$2k–$5k</option>
-                    <option>$5k–$10k</option>
-                    <option>$10k–$25k</option>
-                    <option>$25k+</option>
-                  </select>
+                  <div className="relative">
+                    <select className="w-full appearance-none rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm text-zinc-200 outline-none focus:border-white/20">
+                      <option value="">Select a range</option>
+                      <option>Under $2k</option>
+                      <option>$2k-$5k</option>
+                      <option>$5k-$10k</option>
+                      <option>$10k-$25k</option>
+                      <option>$25k+</option>
+                    </select>
+                    <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-zinc-400">
+                      <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8">
+                        <path d="M5 7.5l5 5 5-5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </span>
+                  </div>
                 </label>
                 <label className="space-y-2 sm:col-span-2">
                   <div className="text-xs text-zinc-400">Message</div>
@@ -524,7 +606,7 @@ export default function Home() {
               <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <button
                   type="button"
-                  className="interactive-gradient inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-cyan-300 to-violet-300 px-5 py-3 text-sm font-semibold text-zinc-950 hover:from-cyan-200 hover:to-violet-200"
+                  className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-cyan-300 to-violet-300 px-5 py-3 text-sm font-semibold text-zinc-950 transition-colors hover:from-cyan-200 hover:to-violet-200"
                 >
                   Send request
                 </button>
@@ -540,18 +622,19 @@ export default function Home() {
         <div className="mx-auto flex w-full max-w-[1400px] flex-col gap-3 px-4 py-10 text-sm text-zinc-400 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
           <div>© {new Date().getFullYear()} Head Production</div>
           <div className="flex gap-6">
-            <a className="interactive-link hover:text-white" href="/services">
+            <a className="transition-colors hover:text-white" href="/services">
               Services
             </a>
-            <a className="interactive-link hover:text-white" href="/work">
+            <a className="transition-colors hover:text-white" href="/work">
               Work
             </a>
-            <a className="interactive-link hover:text-white" href="/about">
+            <a className="transition-colors hover:text-white" href="/about">
               About
             </a>
           </div>
         </div>
       </footer>
+      </div>
     </main>
   );
 }
