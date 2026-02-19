@@ -405,7 +405,6 @@ export default function Home() {
               photo: "/founders/peter-babitsky.jpg",
               role: "Co-Founder · Executive Producer",
               bio: isRu
-                ? "Планирование продакшна, шоу-флоу, координация площадки и коммуникация с клиентом. Международная реализация в разных форматах."
                 ? "Планирование продакшна, шоу-флоу, координация площадки и коммуникация с клиентом. Международные проекты в разных форматах."
                 : "Production planning, show flow, venue coordination, and client communication. International delivery across formats.",
             },
@@ -414,7 +413,6 @@ export default function Home() {
               photo: "/founders/nikita-priimak.jpg",
               role: "Co-Founder · Technical Director",
               bio: isRu
-                ? "Broadcast-инжиниринг: маршрутизация, камерные workflow, звук, стриминг, резервирование и техническое лидерство на площадке."
                 ? "Broadcast-инжиниринг: маршрутизация, камерные workflow, звук, стриминг, резервирование и техническое руководство на площадке."
                 : "Broadcast engineering: routing, camera workflows, audio, streaming, redundancy, and on-site technical leadership.",
             },
