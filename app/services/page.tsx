@@ -1,45 +1,64 @@
-import SiteHeader from "../components/site-header";
+"use client";
 
-const serviceGroups = [
-  {
-    title: "Live Event Production",
-    desc: "End-to-end production for conferences, summits, ceremonies, and branded live formats.",
-  },
-  {
-    title: "Broadcast Production",
-    desc: "Multi-camera directing, switching, signal routing, monitoring, graphics, and delivery.",
-  },
-  {
-    title: "Esports Production",
-    desc: "Tournament-ready workflows: overlays, commentary, dynamic switching, and platform output.",
-  },
-  {
-    title: "Streaming & Hybrid Events",
-    desc: "Reliable hybrid architecture with remote speakers, translation channels, and backups.",
-  },
-  {
-    title: "Full Technical Setup",
-    desc: "Camera plan, comms, audio, vision, routing, and onsite operational control.",
-  },
-  {
-    title: "Crew & Engineering",
-    desc: "Experienced operators, engineers, and technical leadership for high-pressure shows.",
-  },
-];
+import SiteHeader from "../components/site-header";
+import { useLanguage } from "../components/language-provider";
 
 export default function ServicesPage() {
+  const { lang } = useLanguage();
+  const isRu = lang === "ru";
+  const serviceGroups = [
+    {
+      title: isRu ? "Продакшн live-событий" : "Live Event Production",
+      desc: isRu
+        ? "Полный цикл продакшна для конференций, саммитов, церемоний и брендированных live-форматов."
+        : "End-to-end production for conferences, summits, ceremonies, and branded live formats.",
+    },
+    {
+      title: isRu ? "Broadcast Production" : "Broadcast Production",
+      desc: isRu
+        ? "Мультикамерная режиссура, switching, маршрутизация сигнала, мониторинг, графика и выдача."
+        : "Multi-camera directing, switching, signal routing, monitoring, graphics, and delivery.",
+    },
+    {
+      title: isRu ? "Киберспортивный продакшн" : "Esports Production",
+      desc: isRu
+        ? "Турнирные workflow: оверлеи, комментаторские, динамичный switching и выдача на платформы."
+        : "Tournament-ready workflows: overlays, commentary, dynamic switching, and platform output.",
+    },
+    {
+      title: isRu ? "Стриминг и гибридные ивенты" : "Streaming & Hybrid Events",
+      desc: isRu
+        ? "Надежная гибридная архитектура с удаленными спикерами, переводом и резервированием."
+        : "Reliable hybrid architecture with remote speakers, translation channels, and backups.",
+    },
+    {
+      title: isRu ? "Полный технический сетап" : "Full Technical Setup",
+      desc: isRu
+        ? "План камер, связь, звук, видео, маршрутизация и операционный контроль на площадке."
+        : "Camera plan, comms, audio, vision, routing, and onsite operational control.",
+    },
+    {
+      title: isRu ? "Команда и инженерия" : "Crew & Engineering",
+      desc: isRu
+        ? "Опытные операторы, инженеры и техническое лидерство для проектов под высоким давлением."
+        : "Experienced operators, engineers, and technical leadership for high-pressure shows.",
+    },
+  ];
+
   return (
     <main className="relative min-h-screen overflow-x-clip bg-zinc-950 text-zinc-50">
       <SiteHeader />
 
       <div className="pt-16">
       <section className="mx-auto w-full max-w-[1400px] px-4 py-16 sm:px-6 md:py-20 lg:px-8">
-        <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">Services</p>
+        <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">{isRu ? "Услуги" : "Services"}</p>
         <h1 className="mt-3 bg-gradient-to-r from-white via-cyan-100 to-violet-200 bg-clip-text text-4xl font-semibold tracking-tight text-transparent md:text-6xl">
-          Clear structure. Full-cycle delivery.
+          {isRu ? "Понятная структура. Полный цикл реализации." : "Clear structure. Full-cycle delivery."}
         </h1>
         <p className="mt-5 max-w-3xl text-zinc-300">
-          Services are grouped by real production needs, so your team can quickly choose the right scope.
+          {isRu
+            ? "Услуги сгруппированы по реальным продакшн-задачам, чтобы ваша команда быстро выбрала нужный объем работ."
+            : "Services are grouped by real production needs, so your team can quickly choose the right scope."}
         </p>
       </section>
 

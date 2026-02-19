@@ -1,7 +1,13 @@
+"use client";
+
 import Image from "next/image";
 import SiteHeader from "./components/site-header";
+import { useLanguage } from "./components/language-provider";
 
 export default function Home() {
+  const { lang } = useLanguage();
+  const isRu = lang === "ru";
+
   return (
     <main className="relative min-h-screen overflow-x-clip bg-zinc-950 text-zinc-50 selection:bg-cyan-300/30 selection:text-white">
       <div className="pointer-events-none absolute inset-0 opacity-[0.06] mix-blend-overlay"
@@ -27,16 +33,21 @@ export default function Home() {
         <div className="mx-auto grid w-full max-w-[1400px] gap-10 px-4 py-16 sm:px-6 md:grid-cols-12 md:py-24 lg:px-8">
           <div className="relative z-10 md:col-span-7">
             <p className="mb-3 text-sm text-zinc-300">
-              Based in Tbilisi · Working worldwide · English-speaking crew
+              {isRu
+                ? "Базируемся в Тбилиси · Работаем по всему миру · Англоязычная команда"
+                : "Based in Tbilisi · Working worldwide · English-speaking crew"}
             </p>
 
             <h1 className="bg-gradient-to-r from-white via-cyan-100 to-violet-200 bg-clip-text text-4xl font-semibold tracking-tight text-transparent md:text-6xl">
-              High-end live event & broadcast production that feels effortless.
+              {isRu
+                ? "Премиальный live и broadcast-продакшн, который выглядит безупречно легко."
+                : "High-end live event & broadcast production that feels effortless."}
             </h1>
 
             <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-300 md:text-lg">
-              Conferences, concerts & festivals, esports and large-scale events. Full-cycle delivery —
-              from technical design to the final signal. Up to 16 cameras, 4K workflow, 100+ events delivered.
+              {isRu
+                ? "Конференции, концерты и фестивали, киберспорт и масштабные события. Полный цикл реализации — от технического дизайна до финального сигнала. До 16 камер, 4K workflow, более 100 проектов."
+                : "Conferences, concerts & festivals, esports and large-scale events. Full-cycle delivery — from technical design to the final signal. Up to 16 cameras, 4K workflow, 100+ events delivered."}
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -44,21 +55,21 @@ export default function Home() {
                 href="#contact"
                 className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-cyan-300 to-violet-300 px-5 py-3 text-sm font-semibold text-zinc-950 transition-colors hover:from-cyan-200 hover:to-violet-200"
               >
-                Discuss your event
+                {isRu ? "Обсудить событие" : "Discuss your event"}
               </a>
               <a
                 href="#showreel"
                 className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition-colors hover:border-cyan-200/50 hover:bg-white/10"
               >
-                Watch showreel
+                {isRu ? "Смотреть шоурил" : "Watch showreel"}
               </a>
             </div>
 
             <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
               {[
-                { k: "8", v: "years experience" },
-                { k: "100+", v: "events delivered" },
-                { k: "16", v: "cameras max" },
+                { k: "8", v: isRu ? "лет опыта" : "years experience" },
+                { k: "100+", v: isRu ? "проектов реализовано" : "events delivered" },
+                { k: "16", v: isRu ? "камер максимум" : "cameras max" },
                 { k: "4K", v: "workflow" },
               ].map((item) => (
                 <div
@@ -78,14 +89,20 @@ export default function Home() {
               <div className="flex h-full w-full items-center justify-center">
                 <div className="text-center">
                   <div className="mx-auto mb-3 h-12 w-12 rounded-2xl bg-white/10 ring-1 ring-white/15" />
-                  <p className="text-sm font-semibold">Showreel</p>
-                  <p className="mt-1 text-xs text-zinc-300">Recent productions, behind-the-scenes, and key moments.</p>
+                  <p className="text-sm font-semibold">{isRu ? "Шоурил" : "Showreel"}</p>
+                  <p className="mt-1 text-xs text-zinc-300">
+                    {isRu
+                      ? "Недавние проекты, бэкстейдж и ключевые моменты."
+                      : "Recent productions, behind-the-scenes, and key moments."}
+                  </p>
                 </div>
               </div>
             </div>
 
             <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 p-4 text-sm text-zinc-300">
-              Recent locations: Dubai · Belgrade · Turkey · Bali · China · USA · Europe
+              {isRu
+                ? "Недавние локации: Дубай · Белград · Турция · Бали · Китай · США · Европа"
+                : "Recent locations: Dubai · Belgrade · Turkey · Bali · China · USA · Europe"}
             </div>
           </div>
         </div>
@@ -95,9 +112,11 @@ export default function Home() {
       <section className="mx-auto w-full max-w-[1400px] px-4 pb-10 sm:px-6 md:pb-16 lg:px-8">
         <div className="flex items-end justify-between gap-6">
           <div>
-            <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">Selected clients</p>
+            <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">{isRu ? "Клиенты" : "Selected clients"}</p>
             <h2 className="mt-3 text-xl font-semibold tracking-tight text-zinc-100 md:text-2xl">
-              Trusted for live shows where failure isn't an option.
+              {isRu
+                ? "Нам доверяют live-шоу, где нет права на ошибку."
+                : "Trusted for live shows where failure isn't an option."}
             </h2>
           </div>
         </div>
@@ -149,24 +168,26 @@ export default function Home() {
       <section className="mx-auto w-full max-w-[1400px] px-4 py-14 sm:px-6 md:py-20 lg:px-8">
         <div className="grid gap-10 md:grid-cols-12">
           <div className="md:col-span-5">
-            <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">What we do</h2>
+            <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">{isRu ? "Чем мы занимаемся" : "What we do"}</h2>
             <p className="mt-3 text-sm leading-relaxed text-zinc-300">
-              Head Production is a live event and broadcast production company. We handle the technical complexity
-              so your team can focus on the event itself — and your audience gets a smooth, high-quality live experience.
+              {isRu
+                ? "Head Production — компания по live event и broadcast-продакшну. Мы берем на себя техническую сложность, чтобы ваша команда фокусировалась на событии, а аудитория получала стабильный и качественный эфир."
+                : "Head Production is a live event and broadcast production company. We handle the technical complexity so your team can focus on the event itself — and your audience gets a smooth, high-quality live experience."}
             </p>
           </div>
           <div className="md:col-span-7">
             <div className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6 md:p-7">
               <p className="text-sm leading-relaxed text-zinc-200">
-                From venue planning and signal routing to live directing, graphics, and multi-platform streaming —
-                we deliver end-to-end production with clear communication and predictable results.
+                {isRu
+                  ? "От планирования площадки и маршрутизации сигнала до live-режиссуры, графики и мультиплатформенного стриминга — мы реализуем продакшн под ключ с прозрачной коммуникацией и предсказуемым результатом."
+                  : "From venue planning and signal routing to live directing, graphics, and multi-platform streaming — we deliver end-to-end production with clear communication and predictable results."}
               </p>
               <div className="mt-5 grid gap-3 sm:grid-cols-2">
                 {[
-                  "Pre-production & technical design",
-                  "Multi-camera live directing",
-                  "Broadcast graphics & sponsor integration",
-                  "Streaming + recording + deliverables",
+                  isRu ? "Пре-продакшн и технический дизайн" : "Pre-production & technical design",
+                  isRu ? "Мультикамерная live-режиссура" : "Multi-camera live directing",
+                  isRu ? "Broadcast-графика и интеграция партнеров" : "Broadcast graphics & sponsor integration",
+                  isRu ? "Стриминг + запись + итоговые материалы" : "Streaming + recording + deliverables",
                 ].map((t) => (
                   <div key={t} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm">
                     {t}
@@ -182,9 +203,11 @@ export default function Home() {
       <section id="services" className="mx-auto w-full max-w-[1400px] px-4 py-14 sm:px-6 md:py-20 lg:px-8">
         <div className="flex items-end justify-between gap-6">
           <div>
-            <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">Services</h2>
+            <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">{isRu ? "Услуги" : "Services"}</h2>
             <p className="mt-2 text-sm text-zinc-300">
-              Full-cycle live production, scaled to your venue and format.
+              {isRu
+                ? "Полный цикл live-продакшна, масштабируемый под вашу площадку и формат."
+                : "Full-cycle live production, scaled to your venue and format."}
             </p>
           </div>
         </div>
@@ -192,28 +215,40 @@ export default function Home() {
         <div className="mt-8 grid gap-4 md:grid-cols-3">
           {[
             {
-              title: "Live broadcast production",
-              desc: "Multi-camera setup, directing, switching, monitoring — the full live control room workflow.",
+              title: isRu ? "Live broadcast-продакшн" : "Live broadcast production",
+              desc: isRu
+                ? "Мультикамерный сетап, режиссура, switching, мониторинг — полный workflow live control room."
+                : "Multi-camera setup, directing, switching, monitoring — the full live control room workflow.",
             },
             {
-              title: "Conferences & hybrid events",
-              desc: "Presentations, remote speakers, translation channels, audience engagement, clean delivery.",
+              title: isRu ? "Конференции и гибридные события" : "Conferences & hybrid events",
+              desc: isRu
+                ? "Презентации, удаленные спикеры, каналы перевода, вовлечение аудитории и чистая выдача."
+                : "Presentations, remote speakers, translation channels, audience engagement, clean delivery.",
             },
             {
-              title: "Concerts, festivals, esports",
-              desc: "Fast-paced live coverage built for pressure, dynamic environments, and large audiences.",
+              title: isRu ? "Концерты, фестивали, киберспорт" : "Concerts, festivals, esports",
+              desc: isRu
+                ? "Динамичное live-покрытие для работы под давлением, в сложной среде и для большой аудитории."
+                : "Fast-paced live coverage built for pressure, dynamic environments, and large audiences.",
             },
             {
-              title: "Broadcast graphics",
-              desc: "Lower thirds, overlays, scoreboards, sponsor placements, branded visual packages.",
+              title: isRu ? "Broadcast-графика" : "Broadcast graphics",
+              desc: isRu
+                ? "Lower thirds, оверлеи, табло, интеграции партнеров и фирменные визуальные пакеты."
+                : "Lower thirds, overlays, scoreboards, sponsor placements, branded visual packages.",
             },
             {
-              title: "Streaming to any platform",
-              desc: "YouTube, Twitch, corporate platforms — RTMP/SRT workflows, redundancy where needed.",
+              title: isRu ? "Стриминг на любые платформы" : "Streaming to any platform",
+              desc: isRu
+                ? "YouTube, Twitch, корпоративные платформы — RTMP/SRT workflow и резервирование при необходимости."
+                : "YouTube, Twitch, corporate platforms — RTMP/SRT workflows, redundancy where needed.",
             },
             {
-              title: "Recording & post-deliverables",
-              desc: "Clean recordings, highlight assets, and organized delivery for your team and partners.",
+              title: isRu ? "Запись и пост-материалы" : "Recording & post-deliverables",
+              desc: isRu
+                ? "Чистые записи, хайлайт-материалы и структурированная передача вашей команде и партнерам."
+                : "Clean recordings, highlight assets, and organized delivery for your team and partners.",
             },
           ].map((s) => (
             <div key={s.title} className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6">
@@ -226,24 +261,32 @@ export default function Home() {
 
       {/* Industries */}
       <section id="industries" className="mx-auto w-full max-w-[1400px] px-4 py-14 sm:px-6 md:py-20 lg:px-8">
-        <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">Where we work</h2>
+        <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">{isRu ? "Где мы работаем" : "Where we work"}</h2>
         <p className="mt-2 max-w-2xl text-sm text-zinc-300">
-          Same standards, different formats. We adapt the workflow to the event, not the other way around.
+          {isRu
+            ? "Одинаково высокий стандарт для разных форматов. Мы адаптируем workflow под событие, а не наоборот."
+            : "Same standards, different formats. We adapt the workflow to the event, not the other way around."}
         </p>
 
         <div className="mt-8 grid gap-4 md:grid-cols-3">
           {[
             {
               title: "Esports",
-              points: ["Tournament-ready live switching", "Live score/overlay graphics", "Commentator studio setups"],
+              points: isRu
+                ? ["Турнирный live-switching", "Live-табло и оверлей-графика", "Сетап комментаторской студии"]
+                : ["Tournament-ready live switching", "Live score/overlay graphics", "Commentator studio setups"],
             },
             {
-              title: "Conferences",
-              points: ["Speaker & slide feeds", "Hybrid + remote guests", "Translation & clean audio"],
+              title: isRu ? "Конференции" : "Conferences",
+              points: isRu
+                ? ["Потоки спикеров и слайдов", "Гибрид + удаленные участники", "Перевод и чистый звук"]
+                : ["Speaker & slide feeds", "Hybrid + remote guests", "Translation & clean audio"],
             },
             {
-              title: "Concerts & Festivals",
-              points: ["Stage coordination", "Multi-camera live coverage", "LED & on-site integration"],
+              title: isRu ? "Концерты и фестивали" : "Concerts & Festivals",
+              points: isRu
+                ? ["Координация сцены", "Мультикамерное live-покрытие", "LED и onsite-интеграция"]
+                : ["Stage coordination", "Multi-camera live coverage", "LED & on-site integration"],
             },
           ].map((c) => (
             <div key={c.title} className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6">
@@ -265,19 +308,21 @@ export default function Home() {
       <section className="mx-auto w-full max-w-[1400px] px-4 py-14 sm:px-6 md:py-20 lg:px-8">
         <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">Selected projects</p>
+            <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">{isRu ? "Кейсы" : "Selected projects"}</p>
             <h2 className="mt-3 text-2xl font-semibold tracking-tight md:text-3xl">
-              A few recent productions.
+              {isRu ? "Несколько недавних проектов." : "A few recent productions."}
             </h2>
             <p className="mt-2 max-w-2xl text-sm text-zinc-300">
-              Highlights from recent productions. We can expand these into full case studies with photos, setup details, gear lists, and outcomes.
+              {isRu
+                ? "Выжимка из недавних реализаций. При необходимости развернем в полноценные кейсы с фото, сетапом, списком техники и результатами."
+                : "Highlights from recent productions. We can expand these into full case studies with photos, setup details, gear lists, and outcomes."}
             </p>
           </div>
           <a
             href="#contact"
             className="mt-2 inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold text-white hover:bg-white/10 md:mt-0"
           >
-            Get a quote
+            {isRu ? "Получить расчет" : "Get a quote"}
           </a>
         </div>
 
@@ -332,7 +377,7 @@ export default function Home() {
                   type="button"
                   className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-zinc-100 hover:text-white"
                 >
-                  View details <span className="text-zinc-400">→</span>
+                  {isRu ? "Подробнее" : "View details"} <span className="text-zinc-400">→</span>
                 </button>
               </div>
             </div>
@@ -344,9 +389,11 @@ export default function Home() {
       <section id="founders" className="mx-auto w-full max-w-[1400px] px-4 py-14 sm:px-6 md:py-20 lg:px-8">
         <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
           <div>
-            <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">Founders</h2>
+            <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">{isRu ? "Основатели" : "Founders"}</h2>
             <p className="mt-2 text-sm text-zinc-300">
-              Two hands-on operators: production + engineering, working side by side on every show.
+              {isRu
+                ? "Два практикующих специалиста: продакшн + инженерия, работают вместе на каждом проекте."
+                : "Two hands-on operators: production + engineering, working side by side on every show."}
             </p>
           </div>
         </div>
@@ -357,13 +404,17 @@ export default function Home() {
               name: "Peter Babitsky",
               photo: "/founders/peter-babitsky.jpg",
               role: "Co-Founder · Executive Producer",
-              bio: "Production planning, show flow, venue coordination, and client communication. International delivery across formats.",
+              bio: isRu
+                ? "Планирование продакшна, шоу-флоу, координация площадки и коммуникация с клиентом. Международная реализация в разных форматах."
+                : "Production planning, show flow, venue coordination, and client communication. International delivery across formats.",
             },
             {
               name: "Nikita Priimak",
               photo: "/founders/nikita-priimak.jpg",
               role: "Co-Founder · Technical Director",
-              bio: "Broadcast engineering: routing, camera workflows, audio, streaming, redundancy, and on-site technical leadership.",
+              bio: isRu
+                ? "Broadcast-инжиниринг: маршрутизация, камерные workflow, звук, стриминг, резервирование и техническое лидерство на площадке."
+                : "Broadcast engineering: routing, camera workflows, audio, streaming, redundancy, and on-site technical leadership.",
             },
           ].map((f, idx) => (
             <div key={idx} className="accent-border rounded-3xl border border-white/15 bg-white/5 p-6 backdrop-blur-xl">
@@ -388,18 +439,42 @@ export default function Home() {
 
       {/* Process */}
       <section className="mx-auto w-full max-w-[1400px] px-4 py-14 sm:px-6 md:py-20 lg:px-8">
-        <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">How it works</h2>
+        <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">{isRu ? "Как мы работаем" : "How it works"}</h2>
         <p className="mt-2 max-w-2xl text-sm text-zinc-300">
-          Clear steps, predictable delivery, and no surprises on show day.
+          {isRu
+            ? "Прозрачные этапы, предсказуемая реализация и никаких сюрпризов в день события."
+            : "Clear steps, predictable delivery, and no surprises on show day."}
         </p>
 
         <div className="mt-8 grid gap-4 md:grid-cols-5">
           {[
-            { n: "01", t: "Brief", d: "Format, venue, date, platforms, requirements." },
-            { n: "02", t: "Design", d: "Technical plan: cameras, audio, graphics, streaming." },
-            { n: "03", t: "Setup", d: "On-site build, routing, tests, rehearsals." },
-            { n: "04", t: "Live", d: "Directing, monitoring, backups, comms." },
-            { n: "05", t: "Deliver", d: "Recordings, highlights, assets, handover." },
+            {
+              n: "01",
+              t: isRu ? "Бриф" : "Brief",
+              d: isRu ? "Формат, площадка, дата, платформы, требования." : "Format, venue, date, platforms, requirements.",
+            },
+            {
+              n: "02",
+              t: isRu ? "Дизайн" : "Design",
+              d: isRu
+                ? "Технический план: камеры, звук, графика, стриминг."
+                : "Technical plan: cameras, audio, graphics, streaming.",
+            },
+            {
+              n: "03",
+              t: isRu ? "Сетап" : "Setup",
+              d: isRu ? "Монтаж на площадке, маршрутизация, тесты, репетиции." : "On-site build, routing, tests, rehearsals.",
+            },
+            {
+              n: "04",
+              t: "Live",
+              d: isRu ? "Режиссура, мониторинг, резервы, связь." : "Directing, monitoring, backups, comms.",
+            },
+            {
+              n: "05",
+              t: isRu ? "Передача" : "Deliver",
+              d: isRu ? "Записи, хайлайты, материалы, передача." : "Recordings, highlights, assets, handover.",
+            },
           ].map((p) => (
             <div key={p.n} className="accent-border rounded-3xl border border-white/10 bg-white/5 p-5">
               <div className="text-xs text-zinc-400">{p.n}</div>
@@ -415,9 +490,11 @@ export default function Home() {
         <div className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6 md:p-10">
           <div className="grid gap-10 md:grid-cols-12">
             <div className="md:col-span-5">
-              <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">Let’s talk</h2>
+              <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">{isRu ? "Свяжемся" : "Let’s talk"}</h2>
               <p className="mt-2 text-sm text-zinc-300">
-                Tell us about the event — we’ll suggest the setup, timeline, and next steps.
+                {isRu
+                  ? "Расскажите о событии — предложим сетап, таймлайн и следующие шаги."
+                  : "Tell us about the event — we’ll suggest the setup, timeline, and next steps."}
               </p>
 
               <div className="mt-6 space-y-2 text-sm text-zinc-300">
@@ -428,7 +505,8 @@ export default function Home() {
                   <span className="text-zinc-400">Telegram:</span> @hp_prod
                 </div>
                 <div>
-                  <span className="text-zinc-400">Based in:</span> Tbilisi · Worldwide production
+                  <span className="text-zinc-400">{isRu ? "Базируемся:" : "Based in:"}</span>{" "}
+                  {isRu ? "Тбилиси · Работаем по всему миру" : "Tbilisi · Worldwide production"}
                 </div>
               </div>
             </div>
@@ -439,36 +517,36 @@ export default function Home() {
                   <div className="text-xs text-zinc-400">Name</div>
                   <input
                     className="w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none ring-0 placeholder:text-zinc-600 focus:border-white/20"
-                    placeholder="Your name"
+                    placeholder={isRu ? "Ваше имя" : "Your name"}
                   />
                 </label>
                 <label className="space-y-2">
                   <div className="text-xs text-zinc-400">Company</div>
                   <input
                     className="w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none placeholder:text-zinc-600 focus:border-white/20"
-                    placeholder="Company / brand"
+                    placeholder={isRu ? "Компания / бренд" : "Company / brand"}
                   />
                 </label>
                 <label className="space-y-2">
-                  <div className="text-xs text-zinc-400">Event date</div>
+                  <div className="text-xs text-zinc-400">{isRu ? "Дата события" : "Event date"}</div>
                   <input
                     className="w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none placeholder:text-zinc-600 focus:border-white/20"
-                    placeholder="DD/MM/YYYY"
+                    placeholder={isRu ? "ДД/ММ/ГГГГ" : "DD/MM/YYYY"}
                   />
                 </label>
                 <label className="space-y-2">
-                  <div className="text-xs text-zinc-400">Preferred contact</div>
+                  <div className="text-xs text-zinc-400">{isRu ? "Предпочтительный контакт" : "Preferred contact"}</div>
                   <input
                     className="w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none placeholder:text-zinc-600 focus:border-white/20"
-                    placeholder="WhatsApp / Telegram / Email + your handle"
+                    placeholder={isRu ? "WhatsApp / Telegram / Email + ваш контакт" : "WhatsApp / Telegram / Email + your handle"}
                   />
                 </label>
                 <label className="space-y-2 sm:col-span-2">
-                  <div className="text-xs text-zinc-400">Estimated budget</div>
+                  <div className="text-xs text-zinc-400">{isRu ? "Ориентировочный бюджет" : "Estimated budget"}</div>
                   <div className="relative">
                     <select className="w-full appearance-none rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm text-zinc-200 outline-none focus:border-white/20">
-                      <option value="">Select a range</option>
-                      <option>Under $2k</option>
+                      <option value="">{isRu ? "Выберите диапазон" : "Select a range"}</option>
+                      <option>{isRu ? "До $2k" : "Under $2k"}</option>
                       <option>$2k-$5k</option>
                       <option>$5k-$10k</option>
                       <option>$10k-$25k</option>
@@ -482,10 +560,14 @@ export default function Home() {
                   </div>
                 </label>
                 <label className="space-y-2 sm:col-span-2">
-                  <div className="text-xs text-zinc-400">Message</div>
+                  <div className="text-xs text-zinc-400">{isRu ? "Сообщение" : "Message"}</div>
                   <textarea
                     className="min-h-[120px] w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none placeholder:text-zinc-600 focus:border-white/20"
-                    placeholder="Format, platforms, venue, number of speakers, anything important…"
+                    placeholder={
+                      isRu
+                        ? "Формат, платформы, площадка, количество спикеров, любые важные детали..."
+                        : "Format, platforms, venue, number of speakers, anything important…"
+                    }
                   />
                 </label>
               </div>
@@ -495,9 +577,11 @@ export default function Home() {
                   type="button"
                   className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-cyan-300 to-violet-300 px-5 py-3 text-sm font-semibold text-zinc-950 transition-colors hover:from-cyan-200 hover:to-violet-200"
                 >
-                  Send request
+                  {isRu ? "Отправить заявку" : "Send request"}
                 </button>
-                <p className="text-xs text-zinc-400">We usually reply within 24 hours.</p>
+                <p className="text-xs text-zinc-400">
+                  {isRu ? "Обычно отвечаем в течение 24 часов." : "We usually reply within 24 hours."}
+                </p>
               </div>
             </form>
           </div>
@@ -510,13 +594,13 @@ export default function Home() {
           <div>© {new Date().getFullYear()} Head Production</div>
           <div className="flex gap-6">
             <a className="transition-colors hover:text-white" href="/services">
-              Services
+              {isRu ? "Услуги" : "Services"}
             </a>
             <a className="transition-colors hover:text-white" href="/work">
-              Work
+              {isRu ? "Кейсы" : "Work"}
             </a>
             <a className="transition-colors hover:text-white" href="/about">
-              About
+              {isRu ? "О нас" : "About"}
             </a>
           </div>
         </div>
