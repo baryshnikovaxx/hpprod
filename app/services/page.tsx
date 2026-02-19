@@ -1,3 +1,5 @@
+import SiteHeader from "../components/site-header";
+
 const serviceGroups = [
   {
     title: "Live Event Production",
@@ -28,20 +30,9 @@ const serviceGroups = [
 export default function ServicesPage() {
   return (
     <main className="relative min-h-screen overflow-x-clip bg-zinc-950 text-zinc-50">
-      <header className="sticky top-0 z-50 border-b border-white/15 bg-zinc-950/60 backdrop-blur-xl">
-        <div className="mx-auto flex w-full max-w-[1400px] items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-          <a href="/" className="interactive-link text-sm font-semibold tracking-wide text-zinc-100">
-            Head Production
-          </a>
-          <nav className="flex items-center gap-6 text-sm text-zinc-300">
-            <a href="/about" className="interactive-link">About</a>
-            <a href="/work" className="interactive-link">Work</a>
-            <a href="/equipment" className="interactive-link">Equipment</a>
-            <a href="/#contact" className="interactive-link">Contact</a>
-          </nav>
-        </div>
-      </header>
+      <SiteHeader />
 
+      <div className="pt-16">
       <section className="mx-auto w-full max-w-[1400px] px-4 py-16 sm:px-6 md:py-20 lg:px-8">
         <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">Services</p>
         <h1 className="mt-3 bg-gradient-to-r from-white via-cyan-100 to-violet-200 bg-clip-text text-4xl font-semibold tracking-tight text-transparent md:text-6xl">
@@ -62,6 +53,7 @@ export default function ServicesPage() {
           ))}
         </div>
       </section>
+      </div>
     </main>
   );
 }
