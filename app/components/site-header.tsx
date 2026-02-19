@@ -49,30 +49,18 @@ export default function SiteHeader() {
     <>
       <header className="fixed inset-x-0 top-0 z-50 isolate border-b border-white/10 bg-zinc-950">
         <div className="mx-auto flex h-16 w-full max-w-[1400px] items-center justify-between px-4 sm:px-6 lg:px-8">
-          <a href="/" className="flex items-center gap-3">
-            <div className="h-9 w-9 rounded-xl bg-white/10 ring-1 ring-white/15" />
-            <div className="leading-tight">
-              <div className="text-sm font-semibold tracking-wide text-zinc-100">Head Production</div>
-              <div className="text-xs text-zinc-400">
-                {isRu ? "Лайв-ивенты и трансляции" : "Live Event & Broadcast"}
+          <div className="flex items-center gap-3">
+            <a href="/" className="flex items-center gap-3">
+              <div className="h-9 w-9 rounded-xl bg-white/10 ring-1 ring-white/15" />
+              <div className="leading-tight">
+                <div className="text-sm font-semibold tracking-wide text-zinc-100">Head Production</div>
+                <div className="text-xs text-zinc-400">
+                  {isRu ? "Лайв-ивенты и трансляции" : "Live Event & Broadcast"}
+                </div>
               </div>
-            </div>
-          </a>
+            </a>
 
-          <div className="hidden items-center gap-3 md:flex">
-            <nav className="items-center gap-7 text-sm text-zinc-300 md:flex">
-              {navItems.map((item) => (
-                <a
-                  key={item.key}
-                  href={item.href}
-                  className="whitespace-nowrap transition-colors duration-200 hover:text-cyan-200"
-                >
-                  {labels[item.key]}
-                </a>
-              ))}
-            </nav>
-
-            <div className="flex items-center gap-1 rounded-lg border border-white/10 bg-white/5 p-1">
+            <div className="flex shrink-0 items-center gap-1 rounded-lg border border-white/10 bg-white/5 p-1">
               <button
                 type="button"
                 onClick={() => setLang("en")}
@@ -92,6 +80,20 @@ export default function SiteHeader() {
                 RU
               </button>
             </div>
+          </div>
+
+          <div className="hidden items-center gap-3 md:flex">
+            <nav className="items-center gap-7 text-sm text-zinc-300 md:flex">
+              {navItems.map((item) => (
+                <a
+                  key={item.key}
+                  href={item.href}
+                  className="whitespace-nowrap transition-colors duration-200 hover:text-cyan-200"
+                >
+                  {labels[item.key]}
+                </a>
+              ))}
+            </nav>
 
             <a
               href="/#contact"
@@ -147,26 +149,6 @@ export default function SiteHeader() {
                 </a>
               ))}
             </nav>
-            <div className="mt-4 flex items-center gap-1 rounded-lg border border-white/10 bg-white/5 p-1">
-              <button
-                type="button"
-                onClick={() => setLang("en")}
-                className={`rounded px-2 py-1 text-xs transition-colors ${
-                  !isRu ? "bg-white/15 text-white" : "text-zinc-300 hover:text-white"
-                }`}
-              >
-                EN
-              </button>
-              <button
-                type="button"
-                onClick={() => setLang("ru")}
-                className={`rounded px-2 py-1 text-xs transition-colors ${
-                  isRu ? "bg-white/15 text-white" : "text-zinc-300 hover:text-white"
-                }`}
-              >
-                RU
-              </button>
-            </div>
             <a
               href="/#contact"
               onClick={closeMobileMenu}

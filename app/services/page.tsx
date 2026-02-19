@@ -14,7 +14,7 @@ export default function ServicesPage() {
         : "End-to-end production for conferences, summits, ceremonies, and branded live formats.",
     },
     {
-      title: isRu ? "Broadcast Production" : "Broadcast Production",
+      title: isRu ? "Broadcast-продакшн" : "Broadcast Production",
       desc: isRu
         ? "Мультикамерная режиссура, switching, маршрутизация сигнала, мониторинг, графика и выдача."
         : "Multi-camera directing, switching, signal routing, monitoring, graphics, and delivery.",

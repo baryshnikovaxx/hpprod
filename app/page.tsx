@@ -547,10 +547,10 @@ export default function Home() {
                     <select className="w-full appearance-none rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm text-zinc-200 outline-none focus:border-white/20">
                       <option value="">{isRu ? "Выберите диапазон" : "Select a range"}</option>
                       <option>{isRu ? "До $2k" : "Under $2k"}</option>
-                      <option>$2k-$5k</option>
-                      <option>$5k-$10k</option>
-                      <option>$10k-$25k</option>
-                      <option>$25k+</option>
+                      <option>{isRu ? "От $2k до $5k" : "$2k-$5k"}</option>
+                      <option>{isRu ? "От $5k до $10k" : "$5k-$10k"}</option>
+                      <option>{isRu ? "От $10k до $25k" : "$10k-$25k"}</option>
+                      <option>{isRu ? "От $25k" : "$25k+"}</option>
                     </select>
                     <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-zinc-400">
                       <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8">

@@ -16,7 +16,7 @@ export default function EquipmentPage() {
     {
       title: isRu ? "Switching и видео" : "Switching & Vision",
       items: isRu
-        ? ["Live switchers", "Multiview мониторинг", "Конвертеры и роутеры сигнала"]
+        ? ["Видеомикшеры (switchers)", "Multiview-мониторинг", "Конвертеры и роутеры сигнала"]
         : ["Live switchers", "Multiview monitoring", "Signal converters and routers"],
     },
     {

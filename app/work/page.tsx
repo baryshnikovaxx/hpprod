@@ -71,41 +71,45 @@ export default function WorkPage() {
   const { lang } = useLanguage();
   const isRu = lang === "ru";
 
-  const projects = PROJECTS.map((project) => ({
-    ...project,
-    title:
-      isRu && project.title === "Major Tournament Broadcast"
-        ? "Трансляция крупного турнира"
-        : isRu && project.title === "International Leadership Summit"
-          ? "Международный лидерский саммит"
-          : isRu && project.title === "Open-Air Music Festival"
-            ? "Open-air музыкальный фестиваль"
-            : isRu && project.title === "Global Brand Townhall"
-              ? "Глобальный корпоративный townhall"
-              : isRu && project.title === "Live Concert Capture"
-                ? "Съемка live-концерта"
-                : project.title,
-    location:
-      isRu && project.location === "Europe"
-        ? "Европа"
-        : isRu && project.location === "Turkey"
-          ? "Турция"
-          : isRu && project.location === "Belgrade"
-            ? "Белград"
-            : project.location,
-    desc:
-      isRu && project.desc === "Fast switching, live overlays, commentator setup, multi-platform output, and clean highlight exports."
-        ? "Быстрый switching, live-оверлеи, комментаторская зона, мультиплатформенная выдача и чистые хайлайты."
-        : isRu && project.desc === "Hybrid production with remote speakers, translation routing, and full recording package."
-          ? "Гибридный продакшн с удаленными спикерами, маршрутизацией переводов и полным пакетом записи."
-          : isRu && project.desc === "Large stage coverage, multi-camera directing, LED coordination, and resilient onsite communications."
-            ? "Покрытие большой сцены, мультикамерная режиссура, координация LED и надежная onsite-связь."
-            : isRu && project.desc === "Corporate live stream with graphics package, CEO keynote support, and distributed viewing workflow."
-              ? "Корпоративный стрим с графическим пакетом, поддержкой keynote и распределенным просмотром."
-              : isRu && project.desc === "4K concert production with audience and stage camera blend, backup recording, and post-event delivery."
-                ? "4K-продакшн концерта с миксом сценических и зрительских камер, резервной записью и пост-выдачей."
-                : project.desc,
-  }));
+  const projects = useMemo(
+    () =>
+      PROJECTS.map((project) => ({
+        ...project,
+        title:
+          isRu && project.title === "Major Tournament Broadcast"
+            ? "Трансляция крупного турнира"
+            : isRu && project.title === "International Leadership Summit"
+              ? "Международный лидерский саммит"
+              : isRu && project.title === "Open-Air Music Festival"
+                ? "Open-air музыкальный фестиваль"
+                : isRu && project.title === "Global Brand Townhall"
+                  ? "Глобальный корпоративный townhall"
+                  : isRu && project.title === "Live Concert Capture"
+                    ? "Съемка live-концерта"
+                    : project.title,
+        location:
+          isRu && project.location === "Europe"
+            ? "Европа"
+            : isRu && project.location === "Turkey"
+              ? "Турция"
+              : isRu && project.location === "Belgrade"
+                ? "Белград"
+                : project.location,
+        desc:
+          isRu && project.desc === "Fast switching, live overlays, commentator setup, multi-platform output, and clean highlight exports."
+            ? "Быстрый switching, live-оверлеи, комментаторская зона, мультиплатформенная выдача и чистые хайлайты."
+            : isRu && project.desc === "Hybrid production with remote speakers, translation routing, and full recording package."
+              ? "Гибридный продакшн с удаленными спикерами, маршрутизацией переводов и полным пакетом записи."
+              : isRu && project.desc === "Large stage coverage, multi-camera directing, LED coordination, and resilient onsite communications."
+                ? "Покрытие большой сцены, мультикамерная режиссура, координация LED и надежная onsite-связь."
+                : isRu && project.desc === "Corporate live stream with graphics package, CEO keynote support, and distributed viewing workflow."
+                  ? "Корпоративный стрим с графическим пакетом, поддержкой keynote и распределенным просмотром."
+                  : isRu && project.desc === "4K concert production with audience and stage camera blend, backup recording, and post-event delivery."
+                    ? "4K-продакшн концерта с миксом сценических и зрительских камер, резервной записью и пост-выдачей."
+                    : project.desc,
+      })),
+    [isRu],
+  );
 
   const filteredProjects = useMemo(() => {
     if (activeFilter === "All") return projects;

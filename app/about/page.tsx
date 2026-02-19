@@ -58,7 +58,10 @@ export default function AboutPage() {
           <form className="mt-4 grid gap-3">
             <input className="w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none focus:border-white/20" placeholder={isRu ? "Имя" : "Name"} />
             <input className="w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none focus:border-white/20" placeholder={isRu ? "Компания" : "Company"} />
-            <input className="w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none focus:border-white/20" placeholder={isRu ? "WhatsApp / Telegram / Email" : "WhatsApp / Telegram / Email"} />
+            <input
+              className="w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none focus:border-white/20"
+              placeholder={isRu ? "WhatsApp / Telegram / Email для связи" : "WhatsApp / Telegram / Email"}
+            />
             <textarea className="min-h-[110px] w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none focus:border-white/20" placeholder={isRu ? "Коротко о вашем событии" : "Brief about your event"} />
             <button type="button" className="interactive-gradient inline-flex justify-center rounded-xl bg-gradient-to-r from-cyan-300 to-violet-300 px-5 py-3 text-sm font-semibold text-zinc-950">
               {isRu ? "Отправить заявку" : "Send request"}

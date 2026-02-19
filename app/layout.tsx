@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
 import { Geist, Geist_Mono, Sora } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "./components/language-provider";
@@ -29,12 +30,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = cookies();
+  const cookieLang = cookieStore.get("site-lang")?.value;
+  const initialLang = cookieLang === "en" || cookieLang === "ru" ? cookieLang : "ru";
+
   return (
-    <html lang="en">
+    <html lang={initialLang}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${sora.variable} antialiased`}
       >
-        <LanguageProvider>{children}</LanguageProvider>
+        <LanguageProvider initialLang={initialLang}>{children}</LanguageProvider>
       </body>
     </html>
   );

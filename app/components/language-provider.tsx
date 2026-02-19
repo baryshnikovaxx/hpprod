@@ -11,8 +11,14 @@ type LanguageContextValue = {
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLang] = useState<Language>("ru");
+export function LanguageProvider({
+  children,
+  initialLang = "ru",
+}: {
+  children: React.ReactNode;
+  initialLang?: Language;
+}) {
+  const [lang, setLang] = useState<Language>(initialLang);
 
   useEffect(() => {
     const saved = window.localStorage.getItem("site-lang");
@@ -23,6 +29,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     window.localStorage.setItem("site-lang", lang);
+    document.cookie = `site-lang=${lang}; path=/; max-age=31536000; SameSite=Lax`;
     document.documentElement.lang = lang;
   }, [lang]);
 
