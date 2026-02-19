@@ -97,7 +97,7 @@ export default function SiteHeader() {
 
             <a
               href="/#contact"
-              className="rounded-xl bg-gradient-to-r from-cyan-300 to-violet-300 px-4 py-2 text-sm font-semibold text-zinc-950 transition-colors duration-200 hover:from-cyan-200 hover:to-violet-200"
+              className="inline-flex h-10 shrink-0 items-center justify-center whitespace-nowrap rounded-xl bg-gradient-to-r from-cyan-300 to-violet-300 px-4 text-sm font-semibold text-zinc-950 transition-colors duration-200 hover:from-cyan-200 hover:to-violet-200"
             >
               {labels.startProject}
             </a>
@@ -106,7 +106,7 @@ export default function SiteHeader() {
           <button
             type="button"
             aria-label="Open menu"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/15 bg-white/5 text-zinc-200 transition-colors duration-200 hover:border-white/30 hover:text-cyan-200 md:hidden"
+              className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/15 bg-white/5 text-zinc-200 transition-colors duration-200 hover:border-white/30 hover:text-cyan-200 md:hidden"
             onClick={() => setMobileMenuOpen(true)}
           >
             <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
@@ -152,7 +152,7 @@ export default function SiteHeader() {
             <a
               href="/#contact"
               onClick={closeMobileMenu}
-              className="mt-6 inline-flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-cyan-300 to-violet-300 px-4 py-3 text-sm font-semibold text-zinc-950 transition-colors duration-200 hover:from-cyan-200 hover:to-violet-200"
+              className="mt-6 inline-flex h-11 w-full items-center justify-center rounded-xl bg-gradient-to-r from-cyan-300 to-violet-300 px-4 text-sm font-semibold text-zinc-950 transition-colors duration-200 hover:from-cyan-200 hover:to-violet-200"
             >
               {labels.startProject}
             </a>
