@@ -1,21 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
 
 const navItems = [
-  { label: "Services", hash: "#services" },
-  { label: "Industries", hash: "#industries" },
-  { label: "Founders", hash: "#founders" },
-  { label: "Contact", hash: "#contact" },
+  { label: "Services", href: "/services" },
+  { label: "Work", href: "/work" },
+  { label: "Equipment", href: "/equipment" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export default function SiteHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const pathname = usePathname();
-  const isHomePage = pathname === "/";
-
-  const toSection = (hash: string) => (isHomePage ? hash : `/${hash}`);
 
   useEffect(() => {
     if (!mobileMenuOpen) return;
@@ -52,7 +48,7 @@ export default function SiteHeader() {
             {navItems.map((item) => (
               <a
                 key={item.label}
-                href={toSection(item.hash)}
+                href={item.href}
                 className="transition-colors duration-200 hover:text-cyan-200"
               >
                 {item.label}
@@ -61,7 +57,7 @@ export default function SiteHeader() {
           </nav>
 
           <a
-            href={toSection("#contact")}
+            href="/#contact"
             className="hidden rounded-xl bg-gradient-to-r from-cyan-300 to-violet-300 px-4 py-2 text-sm font-semibold text-zinc-950 transition-colors duration-200 hover:from-cyan-200 hover:to-violet-200 md:inline-flex"
           >
             Start a Project
@@ -105,7 +101,7 @@ export default function SiteHeader() {
               {navItems.map((item) => (
                 <a
                   key={item.label}
-                  href={toSection(item.hash)}
+                  href={item.href}
                   onClick={closeMobileMenu}
                   className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-zinc-100 transition-colors duration-200 hover:bg-white/10 hover:text-cyan-200"
                 >
@@ -114,7 +110,7 @@ export default function SiteHeader() {
               ))}
             </nav>
             <a
-              href={toSection("#contact")}
+              href="/#contact"
               onClick={closeMobileMenu}
               className="mt-6 inline-flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-cyan-300 to-violet-300 px-4 py-3 text-sm font-semibold text-zinc-950 transition-colors duration-200 hover:from-cyan-200 hover:to-violet-200"
             >
