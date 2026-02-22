@@ -257,7 +257,6 @@ export default function EquipmentPage() {
               </details>
             ))}
           </div>
-        </div>
         </section>
       </div>
     </main>
