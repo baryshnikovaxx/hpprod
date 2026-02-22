@@ -335,6 +335,28 @@ export default function ServicesPage() {
             </div>
           </aside>
         </section>
+
+        <section className="mx-auto w-full max-w-[1400px] px-4 pb-16 sm:px-6 lg:px-8">
+          <div className="rounded-3xl border border-cyan-300/30 bg-gradient-to-r from-cyan-300/15 to-violet-300/15 p-6 md:p-8">
+            <p className="text-xs uppercase tracking-[0.2em] text-cyan-100/90">
+              {isRu ? "Crew Solutions" : "Crew Solutions"}
+            </p>
+            <h2 className="mt-3 text-2xl font-semibold tracking-tight text-white md:text-3xl">
+              {isRu ? "Нужна команда под проект" : "Need a crew tailored to your project"}
+            </h2>
+            <p className="mt-3 max-w-3xl text-sm leading-relaxed text-zinc-100/90 md:text-base">
+              {isRu
+                ? "Если вам нужен полный состав или точечное усиление, посмотрите страницу Crew Solutions с ролями, форматами подключения и подходом к интеграции."
+                : "If you need a full team or targeted specialists, visit our Crew Solutions page with role coverage, integration formats, and delivery approach."}
+            </p>
+            <a
+              href="/crew-solutions"
+              className="mt-5 inline-flex items-center gap-2 rounded-xl border border-white/25 bg-white/10 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-white/20"
+            >
+              {isRu ? "Открыть Crew Solutions" : "Open Crew Solutions"} <span>→</span>
+            </a>
+          </div>
+        </section>
       </div>
     </main>
   );

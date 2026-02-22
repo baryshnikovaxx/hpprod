@@ -4,11 +4,12 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useLanguage } from "./language-provider";
 
-type NavKey = "services" | "work" | "equipment" | "about" | "contact";
+type NavKey = "services" | "work" | "crew" | "equipment" | "about" | "contact";
 
 const navItems: ReadonlyArray<{ key: NavKey; href: string }> = [
   { key: "services", href: "/services" },
   { key: "work", href: "/work" },
+  { key: "crew", href: "/crew-solutions" },
   { key: "equipment", href: "/equipment" },
   { key: "about", href: "/about" },
   { key: "contact", href: "/#contact" },
@@ -22,6 +23,7 @@ export default function SiteHeader() {
   const labels: Record<NavKey | "startProject" | "menu", string> = {
     services: isRu ? "Услуги" : "Services",
     work: isRu ? "Кейсы" : "Work",
+    crew: isRu ? "Команда" : "Crew Solutions",
     equipment: isRu ? "Оборудование" : "Equipment",
     about: isRu ? "О нас" : "About",
     contact: isRu ? "Контакты" : "Contact",
