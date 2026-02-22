@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
-import { Geist, Geist_Mono, Sora } from "next/font/google";
+import { Geist, Geist_Mono, Manrope, Sora } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "./components/language-provider";
 
@@ -17,6 +17,12 @@ const geistMono = Geist_Mono({
 const sora = Sora({
   variable: "--font-sora",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const manrope = Manrope({
+  variable: "--font-ru-sans",
+  subsets: ["latin", "cyrillic"],
   weight: ["400", "500", "600", "700"],
 });
 
@@ -37,7 +43,7 @@ export default async function RootLayout({
   return (
     <html lang={initialLang}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${sora.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${sora.variable} ${manrope.variable} antialiased`}
       >
         <LanguageProvider initialLang={initialLang}>{children}</LanguageProvider>
       </body>
