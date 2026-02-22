@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import SiteHeader from "./components/site-header";
 import { useLanguage } from "./components/language-provider";
 import { formatRuTypography } from "./lib/typography";
@@ -10,7 +10,39 @@ export default function Home() {
   const { lang } = useLanguage();
   const isRu = lang === "ru";
   const [showShowreelPopup, setShowShowreelPopup] = useState(false);
+  const [formState, setFormState] = useState<"idle" | "loading" | "success" | "error">("idle");
   const ru = (text: string) => formatRuTypography(text);
+
+  const submitContactForm = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setFormState("loading");
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const payload = {
+      source: "home",
+      lang,
+      name: String(formData.get("name") ?? ""),
+      contact: String(formData.get("contact") ?? ""),
+      message: String(formData.get("message") ?? ""),
+      website: String(formData.get("website") ?? ""),
+    };
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) throw new Error("submit failed");
+
+      form.reset();
+      setFormState("success");
+    } catch {
+      setFormState("error");
+    }
+  };
 
   return (
     <main className="relative min-h-screen overflow-x-clip bg-zinc-950 text-zinc-50 selection:bg-cyan-300/30 selection:text-white">
@@ -42,7 +74,7 @@ export default function Home() {
                 : "Based in Tbilisi · Working worldwide · English-speaking crew"}
             </p>
 
-            <h1 className="bg-gradient-to-r from-white via-cyan-100 to-violet-200 bg-clip-text text-4xl font-semibold tracking-tight text-transparent md:text-6xl">
+            <h1 className="bg-gradient-to-r from-white via-cyan-100 to-violet-200 bg-clip-text text-5xl font-semibold tracking-tight text-transparent md:text-7xl">
               {isRu
                 ? ru("Продакшн мероприятий и трансляций без сбоев")
                 : "High-end live event & broadcast production that feels effortless."}
@@ -537,57 +569,31 @@ export default function Home() {
               </div>
             </div>
 
-            <form className="md:col-span-7">
+            <form onSubmit={submitContactForm} className="md:col-span-7">
               <div className="grid gap-4 sm:grid-cols-2">
                 <label className="space-y-2">
                   <div className="text-xs text-zinc-400">Name</div>
                   <input
+                    name="name"
+                    required
                     className="w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none ring-0 placeholder:text-zinc-600 focus:border-white/20"
                     placeholder={isRu ? "Ваше имя" : "Your name"}
                   />
                 </label>
                 <label className="space-y-2">
-                  <div className="text-xs text-zinc-400">Company</div>
-                  <input
-                    className="w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none placeholder:text-zinc-600 focus:border-white/20"
-                    placeholder={isRu ? "Компания или бренд" : "Company / brand"}
-                  />
-                </label>
-                <label className="space-y-2">
-                  <div className="text-xs text-zinc-400">{isRu ? "Дата события" : "Event date"}</div>
-                  <input
-                    className="w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none placeholder:text-zinc-600 focus:border-white/20"
-                    placeholder={isRu ? "ДД/ММ/ГГГГ" : "DD/MM/YYYY"}
-                  />
-                </label>
-                <label className="space-y-2">
                   <div className="text-xs text-zinc-400">{isRu ? "Предпочтительный контакт" : "Preferred contact"}</div>
                   <input
+                    name="contact"
+                    required
                     className="w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none placeholder:text-zinc-600 focus:border-white/20"
                     placeholder={isRu ? "WhatsApp, Telegram или Email + ваш контакт" : "WhatsApp / Telegram / Email + your handle"}
                   />
                 </label>
                 <label className="space-y-2 sm:col-span-2">
-                  <div className="text-xs text-zinc-400">{isRu ? "Ориентировочный бюджет" : "Estimated budget"}</div>
-                  <div className="relative">
-                    <select className="w-full appearance-none rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm text-zinc-200 outline-none focus:border-white/20">
-                      <option value="">{isRu ? "Выберите диапазон" : "Select a range"}</option>
-                      <option>{isRu ? "До $2k" : "Under $2k"}</option>
-                      <option>{isRu ? "От $2k до $5k" : "$2k-$5k"}</option>
-                      <option>{isRu ? "От $5k до $10k" : "$5k-$10k"}</option>
-                      <option>{isRu ? "От $10k до $25k" : "$10k-$25k"}</option>
-                      <option>{isRu ? "От $25k" : "$25k+"}</option>
-                    </select>
-                    <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-zinc-400">
-                      <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8">
-                        <path d="M5 7.5l5 5 5-5" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    </span>
-                  </div>
-                </label>
-                <label className="space-y-2 sm:col-span-2">
                   <div className="text-xs text-zinc-400">{isRu ? "Сообщение" : "Message"}</div>
                   <textarea
+                    name="message"
+                    required
                     className="min-h-[120px] w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none placeholder:text-zinc-600 focus:border-white/20"
                     placeholder={
                       isRu
@@ -596,17 +602,29 @@ export default function Home() {
                     }
                   />
                 </label>
+                <input name="website" tabIndex={-1} autoComplete="off" className="hidden" />
               </div>
 
               <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <button
-                  type="button"
-                  className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-cyan-300 to-violet-300 px-5 py-3 text-sm font-semibold text-zinc-950 transition-colors hover:from-cyan-200 hover:to-violet-200"
+                  type="submit"
+                  disabled={formState === "loading"}
+                  className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-cyan-300 to-violet-300 px-5 py-3 text-sm font-semibold text-zinc-950 transition-colors hover:from-cyan-200 hover:to-violet-200 disabled:cursor-not-allowed disabled:opacity-70"
                 >
                   {isRu ? "Отправить заявку" : "Send request"}
                 </button>
                 <p className="text-xs text-zinc-400">
-                  {isRu ? "Обычно отвечаем в течение 24 часов." : "We usually reply within 24 hours."}
+                  {formState === "success"
+                    ? isRu
+                      ? "Спасибо! Мы получили заявку и скоро свяжемся с вами."
+                      : "Thank you! We received your request and will contact you soon."
+                    : formState === "error"
+                      ? isRu
+                        ? "Не удалось отправить форму. Попробуйте ещё раз."
+                        : "Failed to submit the form. Please try again."
+                      : isRu
+                        ? "Обычно отвечаем в течение 24 часов."
+                        : "We usually reply within 24 hours."}
                 </p>
               </div>
             </form>

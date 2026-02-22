@@ -1,5 +1,8 @@
  "use client";
 
+import Image from "next/image";
+import Link from "next/link";
+import { FormEvent, useState } from "react";
 import SiteHeader from "../components/site-header";
 import { useLanguage } from "../components/language-provider";
 import { formatRuTypography } from "../lib/typography";
@@ -8,12 +11,44 @@ export default function AboutPage() {
   const { lang } = useLanguage();
   const isRu = lang === "ru";
   const ru = (text: string) => formatRuTypography(text);
+  const [formState, setFormState] = useState<"idle" | "loading" | "success" | "error">("idle");
   const metrics = [
     { k: isRu ? "8 лет" : "8 years", v: isRu ? ru("в продакшне мероприятий") : "experience in live production" },
     { k: "100+", v: isRu ? "реализованных проектов" : "events delivered" },
     { k: "20+", v: isRu ? "стран в портфолио" : "countries worked in" },
     { k: "EN", v: isRu ? "англоязычная команда" : "English-speaking crew" },
   ];
+
+  const submitContactForm = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setFormState("loading");
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const payload = {
+      source: "about",
+      lang,
+      name: String(formData.get("name") ?? ""),
+      contact: String(formData.get("contact") ?? ""),
+      message: String(formData.get("message") ?? ""),
+      website: String(formData.get("website") ?? ""),
+    };
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) throw new Error("submit failed");
+
+      form.reset();
+      setFormState("success");
+    } catch {
+      setFormState("error");
+    }
+  };
 
   return (
     <main className="relative min-h-screen overflow-x-clip bg-zinc-950 text-zinc-50">
@@ -23,13 +58,13 @@ export default function AboutPage() {
       <div className="pt-16">
       <section className="mx-auto w-full max-w-[1400px] px-4 py-16 sm:px-6 md:py-20 lg:px-8">
         <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">{isRu ? "О нас" : "About"}</p>
-        <h1 className="mt-3 bg-gradient-to-r from-white via-cyan-100 to-violet-200 bg-clip-text text-4xl font-semibold tracking-tight text-transparent md:text-6xl">
+        <h1 className="mt-3 bg-gradient-to-r from-white via-cyan-100 to-violet-200 bg-clip-text text-5xl font-semibold tracking-tight text-transparent md:text-7xl">
           {isRu ? "История, команда, результат" : "History. Team. Execution."}
         </h1>
         <p className="reading-copy mt-5 max-w-3xl">
           {isRu
-            ? ru("Мы делаем надёжный продакшн для конференций, киберспорта, фестивалей и крупных трансляций. Работаем прозрачно, держим высокий инженерный стандарт и спокойно ведём проекты под нагрузкой.")
-            : "We build reliable live productions for conferences, esports, festivals, and large-scale broadcasts. The focus is simple: clean communication, strong engineering, and stable delivery under pressure."}
+            ? ru("Мы команда энтузиастов, для которых кино и видео — не просто профессия, а дело жизни. Делаем надёжный продакшн для конференций, киберспорта, фестивалей и крупных трансляций. Уже реализовывали проекты в Европе, США, Грузии, Казахстане, ОАЭ, Сербии, Кыргызстане, Армении, России, Турции, Китае и Индонезии. Мы уверенно работаем со сложными задачами, постоянно учимся и развиваемся, потому что любим масштаб, темп и ответственность живого эфира.")
+            : "We are a team of enthusiasts for whom cinema and video are not just a profession, but a lifelong craft. We deliver reliable production for conferences, esports, festivals, and large-scale broadcasts. Our projects have run across Europe, the US, Georgia, Kazakhstan, UAE, Serbia, Kyrgyzstan, Armenia, Russia, Turkey, China, and Indonesia. We are comfortable with complex delivery, and we keep learning continuously because we genuinely enjoy the pace and responsibility of live production."}
         </p>
       </section>
 
@@ -57,18 +92,89 @@ export default function AboutPage() {
 
         <div className="accent-border interactive-gradient rounded-3xl border border-white/10 bg-white/5 p-6">
           <h2 className="text-2xl font-semibold tracking-tight">{isRu ? "Форма заявки" : "Request Form"}</h2>
-          <form className="mt-4 grid gap-3">
-            <input className="w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none focus:border-white/20" placeholder={isRu ? "Имя" : "Name"} />
-            <input className="w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none focus:border-white/20" placeholder={isRu ? "Компания или бренд" : "Company"} />
+          <form onSubmit={submitContactForm} className="mt-4 grid gap-3">
             <input
+              name="name"
+              required
+              className="w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none focus:border-white/20"
+              placeholder={isRu ? "Имя" : "Name"}
+            />
+            <input
+              name="contact"
+              required
               className="w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none focus:border-white/20"
               placeholder={isRu ? "WhatsApp, Telegram или Email для связи" : "WhatsApp / Telegram / Email"}
             />
-            <textarea className="min-h-[110px] w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none focus:border-white/20" placeholder={isRu ? "Коротко опишите задачу" : "Brief about your event"} />
-            <button type="button" className="interactive-gradient inline-flex justify-center rounded-xl bg-gradient-to-r from-cyan-300 to-violet-300 px-5 py-3 text-sm font-semibold text-zinc-950">
+            <textarea
+              name="message"
+              required
+              className="min-h-[110px] w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none focus:border-white/20"
+              placeholder={isRu ? "Коротко опишите задачу" : "Brief about your event"}
+            />
+            <input name="website" tabIndex={-1} autoComplete="off" className="hidden" />
+            <button
+              type="submit"
+              disabled={formState === "loading"}
+              className="interactive-gradient inline-flex justify-center rounded-xl bg-gradient-to-r from-cyan-300 to-violet-300 px-5 py-3 text-sm font-semibold text-zinc-950 disabled:cursor-not-allowed disabled:opacity-70"
+            >
               {isRu ? "Отправить заявку" : "Send request"}
             </button>
+            <p className="text-xs text-zinc-400">
+              {formState === "success"
+                ? isRu
+                  ? "Спасибо! Мы получили заявку и скоро свяжемся с вами."
+                  : "Thank you! We received your request and will contact you soon."
+                : formState === "error"
+                  ? isRu
+                    ? "Не удалось отправить форму. Попробуйте ещё раз."
+                    : "Failed to submit the form. Please try again."
+                  : isRu
+                    ? "Обычно отвечаем в течение 24 часов."
+                    : "We usually reply within 24 hours."}
+            </p>
           </form>
+        </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-[1400px] px-4 pb-16 sm:px-6 lg:px-8">
+        <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">{isRu ? "Основатели" : "Founders"}</h2>
+        <p className="mt-3 text-sm text-zinc-300">
+          {isRu
+            ? ru("Практикующие продюсер и технический директор в индустрии с 2017 года. Одинаково уверенно работают в концертных, broadcast и турнирных форматах.")
+            : "Hands-on producer and technical director in the industry since 2017, with strong delivery across concert, broadcast, and tournament formats."}
+        </p>
+        <div className="mt-6 grid gap-4 md:grid-cols-2">
+          {[
+            {
+              name: "Peter Babitsky",
+              photo: "/founders/peter-babitsky.jpg",
+              role: isRu ? "Co-Founder · Executive Producer" : "Co-Founder · Executive Producer",
+              bio: isRu
+                ? ru("В индустрии с 2017 года. Отвечает за продакшн-архитектуру, коммуникацию с клиентом и ритм проекта. Любит документальное кино, живую музыку и сложные площадки.")
+                : "In the industry since 2017. Leads production architecture, client communication, and project rhythm. Passionate about documentary cinema, live music, and complex venues.",
+            },
+            {
+              name: "Nikita Priimak",
+              photo: "/founders/nikita-priimak.jpg",
+              role: isRu ? "Co-Founder · Technical Director" : "Co-Founder · Technical Director",
+              bio: isRu
+                ? ru("В индустрии с 2017 года. Ведёт инженерную часть: маршрутизацию, контроль сигнала, резервирование и стабильную работу в эфире. Не представляет жизнь без технологий, музыки и live-режиссуры.")
+                : "In the industry since 2017. Leads engineering delivery: routing, signal quality, redundancy, and live reliability. Cannot imagine life without technology, music, and live directing.",
+            },
+          ].map((f) => (
+            <article key={f.name} className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6">
+              <div className="flex items-center gap-4">
+                <div className="h-20 w-20 overflow-hidden rounded-full border border-white/20 bg-zinc-900/70 p-1">
+                  <Image src={f.photo} alt={f.name} width={80} height={80} className="h-full w-full rounded-full object-cover" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-zinc-100">{f.name}</h3>
+                  <p className="text-sm text-zinc-300">{f.role}</p>
+                </div>
+              </div>
+              <p className="mt-4 text-sm leading-relaxed text-zinc-300">{f.bio}</p>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -93,6 +199,15 @@ export default function AboutPage() {
           </a>
         </div>
       </section>
+
+      <footer className="border-t border-white/10">
+        <div className="mx-auto flex w-full max-w-[1400px] flex-col gap-3 px-4 py-10 text-sm text-zinc-400 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
+          <div>Head Production 2026 · Georgia · Tbilisi</div>
+          <Link href="/privacy" className="transition-colors hover:text-white">
+            {isRu ? "Политика конфиденциальности" : "Privacy Policy"}
+          </Link>
+        </div>
+      </footer>
       </div>
     </main>
   );

@@ -264,7 +264,7 @@ export default function ServicesPage() {
       <div className="pt-16">
         <section className="mx-auto w-full max-w-[1400px] px-4 py-16 sm:px-6 md:py-20 lg:px-8">
           <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">{content.eyebrow}</p>
-          <h1 className="mt-3 max-w-4xl bg-gradient-to-r from-white via-cyan-100 to-violet-200 bg-clip-text text-4xl font-semibold tracking-tight text-transparent md:text-6xl">
+          <h1 className="mt-3 max-w-4xl bg-gradient-to-r from-white via-cyan-100 to-violet-200 bg-clip-text text-5xl font-semibold tracking-tight text-transparent md:text-7xl">
             {content.title}
           </h1>
           <p className="reading-copy mt-5 max-w-4xl text-base md:text-lg">{content.subtitle}</p>
