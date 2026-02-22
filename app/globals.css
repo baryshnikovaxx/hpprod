@@ -8,10 +8,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-golos);
   --font-mono: var(--font-geist-mono);
-  --font-accent: var(--font-sora);
-  --font-ru: var(--font-ru-sans);
+  --font-accent: var(--font-golos);
 
   --animate-marquee: marquee 32s linear infinite;
   --animate-marquee-slow: marquee 48s linear infinite;
@@ -47,7 +46,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-golos), Arial, Helvetica, sans-serif;
 }
 
 html,
@@ -74,19 +73,8 @@ section[id] {
 h1,
 h2,
 h3 {
-  font-family: var(--font-sora), var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-golos), Arial, Helvetica, sans-serif;
   letter-spacing: -0.015em;
-}
-
-html[lang="ru"] body {
-  font-family: var(--font-ru-sans), var(--font-geist-sans), Arial, Helvetica, sans-serif;
-}
-
-html[lang="ru"] h1,
-html[lang="ru"] h2,
-html[lang="ru"] h3 {
-  font-family: var(--font-ru-sans), var(--font-geist-sans), Arial, Helvetica, sans-serif;
-  letter-spacing: -0.01em;
 }
 
 .accent-border {
