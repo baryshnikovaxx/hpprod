@@ -87,89 +87,8 @@ export default function Home() {
               ))}
             </div>
 
-            <div className="mt-5 flex flex-wrap gap-2">
-              {[
-                { href: "/services", label: isRu ? "Услуги" : "Services" },
-                { href: "/work", label: isRu ? "Кейсы" : "Case studies" },
-                { href: "/crew-solutions", label: isRu ? "Команда на проект" : "Crew solutions" },
-              ].map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs text-zinc-200 transition-colors hover:border-cyan-200/60 hover:text-white"
-                >
-                  {item.label}
-                </a>
-              ))}
-            </div>
-
-            <div className="mt-6 rounded-3xl border border-white/10 bg-white/5 p-5">
-              <div className="flex items-center justify-between gap-3">
-                <p className="text-xs uppercase tracking-[0.16em] text-zinc-400">
-                  {isRu ? "Live production map" : "Live production map"}
-                </p>
-                <span className="rounded-full border border-emerald-300/40 bg-emerald-300/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-emerald-200">
-                  {isRu ? "система активна" : "system active"}
-                </span>
-              </div>
-              <div className="mt-3 rounded-2xl border border-white/10 bg-zinc-950/40 p-4">
-                <svg viewBox="0 0 420 120" className="h-24 w-full">
-                  <path d="M10 80 C 80 20, 150 20, 220 80" stroke="url(#lineA)" strokeWidth="2.5" fill="none" />
-                  <path d="M110 100 C 170 30, 250 30, 320 100" stroke="url(#lineB)" strokeWidth="2.5" fill="none" />
-                  <path d="M210 85 C 270 25, 340 25, 410 85" stroke="url(#lineC)" strokeWidth="2.5" fill="none" />
-                  <circle cx="10" cy="80" r="5" fill="#22d3ee" className="animate-pulse" />
-                  <circle cx="220" cy="80" r="5" fill="#a78bfa" className="animate-pulse" />
-                  <circle cx="410" cy="85" r="5" fill="#22d3ee" className="animate-pulse" />
-                  <defs>
-                    <linearGradient id="lineA" x1="0" y1="0" x2="1" y2="0">
-                      <stop offset="0%" stopColor="#22d3ee" stopOpacity="0.9" />
-                      <stop offset="100%" stopColor="#a78bfa" stopOpacity="0.65" />
-                    </linearGradient>
-                    <linearGradient id="lineB" x1="0" y1="0" x2="1" y2="0">
-                      <stop offset="0%" stopColor="#a78bfa" stopOpacity="0.9" />
-                      <stop offset="100%" stopColor="#22d3ee" stopOpacity="0.65" />
-                    </linearGradient>
-                    <linearGradient id="lineC" x1="0" y1="0" x2="1" y2="0">
-                      <stop offset="0%" stopColor="#22d3ee" stopOpacity="0.9" />
-                      <stop offset="100%" stopColor="#a78bfa" stopOpacity="0.65" />
-                    </linearGradient>
-                  </defs>
-                </svg>
-              </div>
-            </div>
           </div>
 
-        </div>
-      </section>
-
-      <section className="mx-auto w-full max-w-[1400px] px-4 pb-10 sm:px-6 lg:px-8">
-        <div className="grid gap-3 md:grid-cols-3">
-          {[
-            {
-              href: "/services",
-              t: isRu ? "Нужна полная услуга" : "Need full-cycle services",
-              d: isRu ? "Выберите формат и состав работ" : "Select scope and delivery format",
-            },
-            {
-              href: "/work",
-              t: isRu ? "Хотите кейсы и примеры" : "Want real case studies",
-              d: isRu ? "Посмотрите реализованные проекты" : "Review recently delivered projects",
-            },
-            {
-              href: "/crew-solutions",
-              t: isRu ? "Нужно усилить команду" : "Need extra crew support",
-              d: isRu ? "Подключим роли под ваш проект" : "Add specialist roles to your production",
-            },
-          ].map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="accent-border rounded-2xl border border-white/10 bg-white/5 p-4 transition-colors hover:border-cyan-200/60"
-            >
-              <div className="text-sm font-semibold text-zinc-100">{item.t}</div>
-              <div className="mt-1 text-xs text-zinc-300">{item.d}</div>
-            </a>
-          ))}
         </div>
       </section>
 
