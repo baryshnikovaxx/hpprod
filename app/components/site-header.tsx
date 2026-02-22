@@ -3,8 +3,9 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useLanguage } from "./language-provider";
+import { formatRuTypography } from "../lib/typography";
 
-type NavKey = "services" | "work" | "crew" | "equipment" | "about" | "contact";
+type NavKey = "services" | "work" | "crew" | "equipment" | "about" | "contact" | "scandi";
 
 const navItems: ReadonlyArray<{ key: NavKey; href: string }> = [
   { key: "services", href: "/services" },
@@ -12,6 +13,7 @@ const navItems: ReadonlyArray<{ key: NavKey; href: string }> = [
   { key: "crew", href: "/crew-solutions" },
   { key: "equipment", href: "/equipment" },
   { key: "about", href: "/about" },
+  { key: "scandi", href: "/scandi" },
   { key: "contact", href: "/#contact" },
 ];
 
@@ -26,6 +28,7 @@ export default function SiteHeader() {
     crew: isRu ? "Команда" : "Crew Solutions",
     equipment: isRu ? "Оборудование" : "Equipment",
     about: isRu ? "О нас" : "About",
+    scandi: "Scandi Beta",
     contact: isRu ? "Контакты" : "Contact",
     startProject: isRu ? "Старт проекта" : "Start a Project",
     menu: isRu ? "Меню" : "Menu",
@@ -65,7 +68,7 @@ export default function SiteHeader() {
             <div className="leading-tight">
               <div className="text-sm font-semibold tracking-wide text-zinc-100">Head Production</div>
               <div className="text-xs text-zinc-400">
-                {isRu ? "Мероприятия и трансляции" : "Live Event & Broadcast"}
+                {isRu ? formatRuTypography("Мероприятия и трансляции") : "Live Event & Broadcast"}
               </div>
             </div>
           </a>
