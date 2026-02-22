@@ -31,6 +31,7 @@ export default function AboutPage() {
       name: String(formData.get("name") ?? ""),
       contact: String(formData.get("contact") ?? ""),
       message: String(formData.get("message") ?? ""),
+      consent: String(formData.get("consent") ?? "") === "on",
       website: String(formData.get("website") ?? ""),
     };
 
@@ -58,7 +59,7 @@ export default function AboutPage() {
       <div className="pt-16">
       <section className="mx-auto w-full max-w-[1400px] px-4 py-16 sm:px-6 md:py-20 lg:px-8">
         <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">{isRu ? "О нас" : "About"}</p>
-        <h1 className="mt-3 bg-gradient-to-r from-white via-cyan-100 to-violet-200 bg-clip-text text-5xl font-semibold tracking-tight text-transparent md:text-7xl">
+        <h1 className="title-hero mt-3">
           {isRu ? "История, команда, результат" : "History. Team. Execution."}
         </h1>
         <p className="reading-copy mt-5 max-w-3xl">
@@ -81,41 +82,55 @@ export default function AboutPage() {
 
       <section className="mx-auto grid w-full max-w-[1400px] gap-6 px-4 py-10 sm:px-6 md:grid-cols-2 lg:px-8">
         <div className="accent-border interactive-gradient rounded-3xl border border-white/10 bg-white/5 p-6">
-          <h2 className="text-2xl font-semibold tracking-tight">{isRu ? "Контакты" : "Contact"}</h2>
+          <h2 className="title-section">{isRu ? "Контакты" : "Contact"}</h2>
           <div className="mt-4 space-y-2 text-sm text-zinc-300">
-            <p><span className="text-zinc-400">Email:</span> hello@headprod.com</p>
-            <p><span className="text-zinc-400">{isRu ? "Телефон:" : "Phone:"}</span> +995 000 00 00 00</p>
-            <p><span className="text-zinc-400">{isRu ? "Базируемся:" : "Based in:"}</span> Тбилиси</p>
-            <p><span className="text-zinc-400">{isRu ? "География:" : "Coverage:"}</span> {isRu ? "По всему миру" : "Worldwide"}</p>
+            <p><span className="text-zinc-400">Email:</span> hello@headprod.live</p>
+            <p><span className="text-zinc-400">Telegram:</span> @Hipete_HP</p>
+            <p>{isRu ? "Тбилиси, Грузия" : "Tbilisi, Georgia"}</p>
           </div>
         </div>
 
         <div className="accent-border interactive-gradient rounded-3xl border border-white/10 bg-white/5 p-6">
-          <h2 className="text-2xl font-semibold tracking-tight">{isRu ? "Форма заявки" : "Request Form"}</h2>
+          <h2 className="title-section">{isRu ? "Форма заявки" : "Request Form"}</h2>
           <form onSubmit={submitContactForm} className="mt-4 grid gap-3">
             <input
               name="name"
               required
-              className="w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none focus:border-white/20"
+              className="w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none focus:border-indigo-400/40"
               placeholder={isRu ? "Имя" : "Name"}
             />
             <input
               name="contact"
               required
-              className="w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none focus:border-white/20"
+              className="w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none focus:border-indigo-400/40"
               placeholder={isRu ? "WhatsApp, Telegram или Email для связи" : "WhatsApp / Telegram / Email"}
             />
             <textarea
               name="message"
               required
-              className="min-h-[110px] w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none focus:border-white/20"
+              className="min-h-[110px] w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none focus:border-indigo-400/40"
               placeholder={isRu ? "Коротко опишите задачу" : "Brief about your event"}
             />
             <input name="website" tabIndex={-1} autoComplete="off" className="hidden" />
+            <label className="mt-1 flex items-start gap-2">
+              <input
+                name="consent"
+                type="checkbox"
+                required
+                className="mt-1 h-4 w-4 rounded border-white/30 bg-zinc-900 accent-indigo-400"
+              />
+              <span className="text-xs text-zinc-400">
+                {isRu ? "Я согласен(а) на обработку персональных данных в соответствии с " : "I agree to the processing of personal data according to the "}
+                <a href="/privacy" className="underline decoration-zinc-500/70 underline-offset-2 hover:text-zinc-200">
+                  {isRu ? "политикой конфиденциальности" : "privacy policy"}
+                </a>
+                .
+              </span>
+            </label>
             <button
               type="submit"
               disabled={formState === "loading"}
-              className="interactive-gradient inline-flex justify-center rounded-xl bg-gradient-to-r from-cyan-300 to-violet-300 px-5 py-3 text-sm font-semibold text-zinc-950 disabled:cursor-not-allowed disabled:opacity-70"
+              className="interactive-gradient inline-flex justify-center rounded-xl bg-gradient-to-r from-indigo-400 to-violet-400 px-5 py-3 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-70"
             >
               {isRu ? "Отправить заявку" : "Send request"}
             </button>
@@ -137,7 +152,7 @@ export default function AboutPage() {
       </section>
 
       <section className="mx-auto w-full max-w-[1400px] px-4 pb-16 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">{isRu ? "Основатели" : "Founders"}</h2>
+        <h2 className="title-section">{isRu ? "Основатели" : "Founders"}</h2>
         <p className="mt-3 text-sm text-zinc-300">
           {isRu
             ? ru("Практикующие продюсер и технический директор в индустрии с 2017 года. Одинаково уверенно работают в концертных, broadcast и турнирных форматах.")
@@ -168,7 +183,7 @@ export default function AboutPage() {
                   <Image src={f.photo} alt={f.name} width={80} height={80} className="h-full w-full rounded-full object-cover" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-zinc-100">{f.name}</h3>
+                  <h3 className="title-card text-zinc-100">{f.name}</h3>
                   <p className="text-sm text-zinc-300">{f.role}</p>
                 </div>
               </div>
@@ -179,11 +194,11 @@ export default function AboutPage() {
       </section>
 
       <section className="mx-auto w-full max-w-[1400px] px-4 pb-16 sm:px-6 lg:px-8">
-        <div className="rounded-3xl border border-cyan-300/30 bg-gradient-to-r from-cyan-300/15 to-violet-300/15 p-6 md:p-8">
-          <p className="text-xs uppercase tracking-[0.2em] text-cyan-100/90">
+        <div className="rounded-3xl border border-indigo-300/30 bg-gradient-to-r from-indigo-400/15 to-violet-400/15 p-6 md:p-8">
+          <p className="text-xs uppercase tracking-[0.2em] text-indigo-100/90">
             {isRu ? "Crew Solutions" : "Crew Solutions"}
           </p>
-          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-white md:text-3xl">
+          <h2 className="title-section-inverse mt-3">
             {isRu ? "Команда под любой формат" : "Crew support for any production format"}
           </h2>
           <p className="reading-copy mt-3 max-w-3xl text-sm text-zinc-100/90 md:text-base">

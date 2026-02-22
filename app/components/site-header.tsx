@@ -76,7 +76,7 @@ export default function SiteHeader() {
               <a
                 key={item.key}
                 href={item.href}
-                className="whitespace-nowrap transition-colors duration-200 hover:text-cyan-200"
+                className="whitespace-nowrap transition-colors duration-200 hover:text-indigo-200"
               >
                 {labels[item.key]}
               </a>
@@ -107,7 +107,7 @@ export default function SiteHeader() {
 
             <a
               href="/#contact"
-              className="hidden h-10 shrink-0 items-center justify-center whitespace-nowrap rounded-xl bg-gradient-to-r from-cyan-300 to-violet-300 px-4 text-sm font-semibold text-zinc-950 transition-colors duration-200 hover:from-cyan-200 hover:to-violet-200 md:inline-flex"
+              className="hidden h-10 shrink-0 items-center justify-center whitespace-nowrap rounded-xl bg-gradient-to-r from-indigo-400 to-violet-400 px-4 text-sm font-semibold text-white transition-colors duration-200 hover:from-indigo-300 hover:to-violet-300 md:inline-flex"
             >
               {labels.startProject}
             </a>
@@ -115,7 +115,7 @@ export default function SiteHeader() {
             <button
               type="button"
               aria-label="Open menu"
-              className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/15 bg-white/5 text-zinc-200 transition-colors duration-200 hover:border-white/30 hover:text-cyan-200 md:hidden"
+              className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/15 bg-white/5 text-zinc-200 transition-colors duration-200 hover:border-white/30 hover:text-indigo-200 md:hidden"
               onClick={() => setMobileMenuOpen(true)}
             >
               <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
@@ -139,7 +139,7 @@ export default function SiteHeader() {
               <button
                 type="button"
                 aria-label="Close menu"
-                className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/15 bg-white/5 text-zinc-300 transition-colors duration-200 hover:text-cyan-200"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/15 bg-white/5 text-zinc-300 transition-colors duration-200 hover:text-indigo-200"
                 onClick={closeMobileMenu}
               >
                 <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
@@ -153,7 +153,7 @@ export default function SiteHeader() {
                   key={item.key}
                   href={item.href}
                   onClick={closeMobileMenu}
-                  className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-zinc-100 transition-colors duration-200 hover:bg-white/10 hover:text-cyan-200"
+                  className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-zinc-100 transition-colors duration-200 hover:bg-white/10 hover:text-indigo-200"
                 >
                   {labels[item.key]}
                 </a>
@@ -162,7 +162,7 @@ export default function SiteHeader() {
             <a
               href="/#contact"
               onClick={closeMobileMenu}
-              className="mt-6 inline-flex h-11 w-full items-center justify-center rounded-xl bg-gradient-to-r from-cyan-300 to-violet-300 px-4 text-sm font-semibold text-zinc-950 transition-colors duration-200 hover:from-cyan-200 hover:to-violet-200"
+              className="mt-6 inline-flex h-11 w-full items-center justify-center rounded-xl bg-gradient-to-r from-indigo-400 to-violet-400 px-4 text-sm font-semibold text-white transition-colors duration-200 hover:from-indigo-300 hover:to-violet-300"
             >
               {labels.startProject}
             </a>

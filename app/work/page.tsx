@@ -6,6 +6,7 @@ import { useLanguage } from "../components/language-provider";
 import { formatRuTypography } from "../lib/typography";
 
 type CaseStudy = {
+  id: string;
   title: string;
   locationYear: string;
   format: string;
@@ -25,6 +26,7 @@ export default function WorkPage() {
   const cases: CaseStudy[] = isRu
     ? [
         {
+          id: "zemfira-concert-series",
           title: "ZEMFIRA — Concert Series",
           locationYear: "Тбилиси · Ереван · Батуми · 2024–2025",
           format: "Крупномасштабные концертные шоу",
@@ -41,6 +43,7 @@ export default function WorkPage() {
           coverSrc: "/cases/zemfira-cover.jpg",
         },
         {
+          id: "esports-tournaments-nda",
           title: "Esports Tournaments (NDA)",
           locationYear: "International · 2024–2025",
           format: "Студийные и аренные турниры",
@@ -58,6 +61,7 @@ export default function WorkPage() {
           coverSrc: "/cases/esports-cover.jpg",
         },
         {
+          id: "deep-purple-live-tbilisi",
           title: "Deep Purple — Live in Tbilisi",
           locationYear: "Tbilisi · 2025",
           format: "Международный концертный продакшн",
@@ -72,6 +76,7 @@ export default function WorkPage() {
           result: "Надёжная прямая видеовыдача для международного артиста без сбоев в эфирной цепочке.",
         },
         {
+          id: "poshaya-molly-live-tbilisi",
           title: "Poshaya Molly — Live in Tbilisi",
           locationYear: "Tbilisi · 2025",
           format: "Концертный live-продакшн",
@@ -87,6 +92,7 @@ export default function WorkPage() {
       ]
     : [
         {
+          id: "zemfira-concert-series",
           title: "ZEMFIRA — Concert Series",
           locationYear: "Tbilisi · Yerevan · Batumi · 2024–2025",
           format: "Large-scale live concerts",
@@ -103,6 +109,7 @@ export default function WorkPage() {
           coverSrc: "/cases/zemfira-cover.jpg",
         },
         {
+          id: "esports-tournaments-nda",
           title: "Esports Tournaments (NDA)",
           locationYear: "International · 2024–2025",
           format: "Studio and arena tournaments",
@@ -120,6 +127,7 @@ export default function WorkPage() {
           coverSrc: "/cases/esports-cover.jpg",
         },
         {
+          id: "deep-purple-live-tbilisi",
           title: "Deep Purple — Live in Tbilisi",
           locationYear: "Tbilisi · 2025",
           format: "International concert production",
@@ -134,6 +142,7 @@ export default function WorkPage() {
           result: "Reliable live production with clean and stable broadcast output for an international touring artist.",
         },
         {
+          id: "poshaya-molly-live-tbilisi",
           title: "Poshaya Molly — Live in Tbilisi",
           locationYear: "Tbilisi · 2025",
           format: "Live concert production",
@@ -155,7 +164,7 @@ export default function WorkPage() {
       <div className="pt-16">
         <section className="mx-auto w-full max-w-[1400px] px-4 py-16 sm:px-6 md:py-20 lg:px-8">
           <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">{isRu ? "Кейсы" : "Projects / Work"}</p>
-          <h1 className="mt-3 bg-gradient-to-r from-white via-cyan-100 to-violet-200 bg-clip-text text-5xl font-semibold tracking-tight text-transparent md:text-7xl">
+          <h1 className="title-hero mt-3">
             {isRu ? "Избранные проекты" : "Selected case studies"}
           </h1>
           <p className="reading-copy-muted mt-5 text-sm md:text-base">
@@ -168,14 +177,14 @@ export default function WorkPage() {
         <section className="mx-auto w-full max-w-[1400px] px-4 pb-16 sm:px-6 lg:px-8">
           <div className="grid gap-6 md:grid-cols-2">
             {cases.map((item) => (
-              <article key={item.title} className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6 md:p-8">
+              <article id={item.id} key={item.id} className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6 md:p-8">
                 {item.coverSrc ? (
                   <div className="relative mb-6 aspect-[16/7] overflow-hidden rounded-2xl border border-white/15 bg-zinc-900/30">
                     <Image src={item.coverSrc} alt={`${item.title} cover`} fill className="object-cover object-center" />
                   </div>
                 ) : null}
 
-                <h2 className="text-xl font-semibold tracking-tight text-zinc-100 md:text-2xl">{item.title}</h2>
+                <h2 className="title-card text-zinc-100">{item.title}</h2>
                 <p className="mt-1 text-xs uppercase tracking-[0.14em] text-zinc-400">{item.locationYear}</p>
 
                 <div className="mt-5 grid gap-3 md:grid-cols-2">
@@ -201,15 +210,15 @@ export default function WorkPage() {
                   <ul className="mt-2 grid gap-2 text-sm text-zinc-200">
                     {item.responsibilities.map((point) => (
                       <li key={point} className="flex gap-2">
-                        <span className="mt-1.5 inline-block h-1.5 w-1.5 rounded-full bg-cyan-300/80" />
+                        <span className="mt-1.5 inline-block h-1.5 w-1.5 rounded-full bg-indigo-300/80" />
                         <span>{point}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="mt-6 rounded-2xl border border-cyan-300/25 bg-cyan-300/10 p-4">
-                  <p className="text-xs uppercase tracking-[0.14em] text-cyan-200/90">{isRu ? "Результат" : "Result"}</p>
+                <div className="mt-6 rounded-2xl border border-indigo-300/25 bg-indigo-300/10 p-4">
+                  <p className="text-xs uppercase tracking-[0.14em] text-indigo-200/90">{isRu ? "Результат" : "Result"}</p>
                   <p className="mt-2 text-sm text-zinc-100">{item.result}</p>
                 </div>
 
@@ -222,8 +231,8 @@ export default function WorkPage() {
         </section>
 
         <section className="mx-auto w-full max-w-[1400px] px-4 pb-16 sm:px-6 lg:px-8">
-          <div className="rounded-3xl border border-cyan-300/25 bg-gradient-to-r from-cyan-300/15 to-violet-300/15 p-6 md:p-8">
-            <h2 className="text-2xl font-semibold tracking-tight text-white md:text-3xl">
+          <div className="rounded-3xl border border-indigo-300/25 bg-gradient-to-r from-indigo-400/15 to-violet-400/15 p-6 md:p-8">
+            <h2 className="title-section-inverse">
               {isRu ? "Обсудить проект" : "Discuss a Project"}
             </h2>
             <p className="reading-copy-muted mt-3 text-sm md:text-base">

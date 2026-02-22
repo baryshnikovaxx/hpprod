@@ -17,7 +17,7 @@ export default function PrivacyPage() {
           <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">
             {isRu ? "Документы" : "Documents"}
           </p>
-          <h1 className="mt-3 bg-gradient-to-r from-white via-cyan-100 to-violet-200 bg-clip-text text-5xl font-semibold tracking-tight text-transparent md:text-7xl">
+          <h1 className="title-hero mt-3">
             {isRu ? "Политика конфиденциальности" : "Privacy Policy"}
           </h1>
           <p className="reading-copy mt-6 text-sm md:text-base">
@@ -27,8 +27,8 @@ export default function PrivacyPage() {
           </p>
           <p className="mt-4 text-sm text-zinc-300">
             {isRu
-              ? ru("Если вы хотите уточнить, обновить или удалить ваши данные, напишите нам на hello@headprod.com.")
-              : "If you would like to review, update, or delete your data, contact us at hello@headprod.com."}
+              ? ru("Если вы хотите уточнить, обновить или удалить ваши данные, напишите нам на hello@headprod.live.")
+              : "If you would like to review, update, or delete your data, contact us at hello@headprod.live."}
           </p>
         </section>
       </div>

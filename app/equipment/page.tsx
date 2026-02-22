@@ -145,7 +145,7 @@ export default function EquipmentPage() {
       <div className="pt-16">
         <section className="mx-auto w-full max-w-[1400px] px-4 py-16 sm:px-6 md:py-20 lg:px-8">
           <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">{isRu ? "Оборудование" : "Equipment"}</p>
-          <h1 className="mt-3 bg-gradient-to-r from-white via-cyan-100 to-violet-200 bg-clip-text text-5xl font-semibold tracking-tight text-transparent md:text-7xl">
+          <h1 className="title-hero mt-3">
             {isRu ? "Технические возможности" : "Technical Capabilities"}
           </h1>
           <p className="reading-copy mt-5 text-sm md:text-base">
@@ -160,11 +160,11 @@ export default function EquipmentPage() {
           <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             {stackCategories.map((category) => (
               <article key={category.title} className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6">
-                <h3 className="text-xl font-semibold text-zinc-100">{category.title}</h3>
+                <h3 className="title-card text-zinc-100">{category.title}</h3>
                 <ul className="mt-3 space-y-2 text-sm text-zinc-300">
                   {category.items.map((item) => (
                     <li key={item} className="flex gap-2">
-                      <span className="mt-1.5 inline-block h-1.5 w-1.5 rounded-full bg-cyan-300/80" />
+                      <span className="mt-1.5 inline-block h-1.5 w-1.5 rounded-full bg-indigo-300/80" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -177,7 +177,7 @@ export default function EquipmentPage() {
         <section className="mx-auto w-full max-w-[1400px] px-4 pb-16 sm:px-6 lg:px-8">
           <div className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6 md:p-8">
             <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">{isRu ? "Рентал" : "Rental"}</p>
-            <h2 className="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">{isRu ? "Рентал оборудования" : "Equipment Rental"}</h2>
+            <h2 className="title-section mt-2">{isRu ? "Рентал оборудования" : "Equipment Rental"}</h2>
             <p className="reading-copy mt-4 text-sm md:text-base">
               {isRu
                 ? ru("Если вам нужно оборудование без полной продакшн-команды или нужно усилить текущий сетап, можно взять технику напрямую через наш рентал.")
@@ -199,8 +199,8 @@ export default function EquipmentPage() {
         </section>
 
         <section className="mx-auto w-full max-w-[1400px] px-4 pb-16 sm:px-6 lg:px-8">
-          <div className="rounded-3xl border border-cyan-300/30 bg-gradient-to-r from-cyan-300/15 to-violet-300/15 p-6 md:p-8">
-            <h2 className="text-3xl font-semibold tracking-tight text-white md:text-4xl">
+          <div className="rounded-3xl border border-indigo-300/30 bg-gradient-to-r from-indigo-400/15 to-violet-400/15 p-6 md:p-8">
+            <h2 className="title-section-inverse">
               {isRu ? "Открыть полный каталог аренды" : "Explore Full Rental Catalog"}
             </h2>
             <p className="reading-copy-muted mt-3 text-sm md:text-base">
@@ -220,7 +220,7 @@ export default function EquipmentPage() {
         </section>
 
         <section className="mx-auto w-full max-w-[1400px] px-4 pb-16 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">{isRu ? "Вопросы и ответы" : "FAQ"}</h2>
+          <h2 className="title-section">{isRu ? "Вопросы и ответы" : "FAQ"}</h2>
           {isRu ? (
             <p className="mt-3 text-sm text-zinc-300">
               Самовывоз доступен в Тбилиси. Для других стран можем организовать выдачу через партнёров или доставку под ваш график.
@@ -235,7 +235,7 @@ export default function EquipmentPage() {
               <details key={item.q} className="group rounded-2xl border border-white/10 bg-white/5 p-4">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-base font-semibold text-zinc-100 md:text-lg">
                   <span>{item.q}</span>
-                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-zinc-900/40 text-xl leading-none text-zinc-300 transition-colors group-open:border-cyan-300/40 group-open:text-cyan-200">
+                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-zinc-900/40 text-xl leading-none text-zinc-300 transition-colors group-open:border-indigo-300/40 group-open:text-indigo-200">
                     <span className="group-open:hidden">+</span>
                     <span className="hidden group-open:inline">−</span>
                   </span>

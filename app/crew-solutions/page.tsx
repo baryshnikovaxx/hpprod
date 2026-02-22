@@ -191,7 +191,7 @@ export default function CrewSolutionsPage() {
       <div className="pt-16">
         <section className="mx-auto w-full max-w-[1400px] px-4 py-16 sm:px-6 md:py-20 lg:px-8">
           <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">{content.eyebrow}</p>
-          <h1 className="mt-3 max-w-4xl bg-gradient-to-r from-white via-cyan-100 to-violet-200 bg-clip-text text-5xl font-semibold tracking-tight text-transparent md:text-7xl">
+          <h1 className="title-hero mt-3 max-w-4xl">
             {content.title}
           </h1>
           <p className="mt-5 max-w-4xl text-base leading-relaxed text-zinc-300 md:text-lg">{content.subtitle}</p>
@@ -204,7 +204,7 @@ export default function CrewSolutionsPage() {
                 <a
                   key={group.id}
                   href={`#${group.id}`}
-                  className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs text-zinc-200 transition-colors hover:border-cyan-200/60 hover:text-white"
+                  className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs text-zinc-200 transition-colors hover:border-indigo-300/60 hover:text-white"
                 >
                   {group.title}
                 </a>
@@ -216,7 +216,7 @@ export default function CrewSolutionsPage() {
         <section className="mx-auto grid w-full max-w-[1400px] gap-6 px-4 pb-16 sm:px-6 lg:grid-cols-12 lg:px-8">
           <div className="space-y-4 lg:col-span-8">
             <article className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6 md:p-7">
-              <h2 className="text-xl font-semibold tracking-tight text-zinc-100 md:text-2xl">{content.keyRolesTitle}</h2>
+              <h2 className="title-section">{content.keyRolesTitle}</h2>
               <p className="mt-2 text-sm text-zinc-300">{content.keyRolesLead}</p>
 
               <div className="mt-5 flex flex-wrap gap-2">
@@ -228,7 +228,7 @@ export default function CrewSolutionsPage() {
                     onClick={() => setActiveGroupId(group.id)}
                     className={`rounded-full border px-4 py-2 text-sm transition-colors ${
                       activeGroup.id === group.id
-                        ? "border-cyan-300/60 bg-cyan-300/20 text-cyan-100"
+                        ? "border-indigo-300/60 bg-indigo-300/20 text-indigo-100"
                         : "border-white/15 bg-white/5 text-zinc-200 hover:border-white/30 hover:text-white"
                     }`}
                   >
@@ -238,12 +238,12 @@ export default function CrewSolutionsPage() {
               </div>
 
               <div className="mt-6 rounded-2xl border border-white/10 bg-zinc-950/30 p-5">
-                <h3 className="text-lg font-semibold text-zinc-100">{activeGroup.title}</h3>
+                <h3 className="title-card text-zinc-100">{activeGroup.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-zinc-300">{activeGroup.lead}</p>
                 <ul className="mt-4 grid gap-2 text-sm text-zinc-200 md:grid-cols-2">
                   {activeGroup.roles.map((role) => (
                     <li key={role} className="flex gap-2">
-                      <span className="mt-2 inline-block h-1.5 w-1.5 rounded-full bg-cyan-300/80" />
+                      <span className="mt-2 inline-block h-1.5 w-1.5 rounded-full bg-indigo-300/80" />
                       <span>{role}</span>
                     </li>
                   ))}
@@ -253,7 +253,7 @@ export default function CrewSolutionsPage() {
             </article>
 
             <article className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6 md:p-7">
-              <h2 className="text-xl font-semibold tracking-tight text-zinc-100 md:text-2xl">{content.formatsTitle}</h2>
+              <h2 className="title-section">{content.formatsTitle}</h2>
               <ul className="mt-4 grid gap-2 text-sm text-zinc-200 md:grid-cols-2">
                 {content.formats.map((format) => (
                   <li key={format} className="flex gap-2">
@@ -265,7 +265,7 @@ export default function CrewSolutionsPage() {
             </article>
 
             <article className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6 md:p-7">
-              <h2 className="text-xl font-semibold tracking-tight text-zinc-100 md:text-2xl">{content.approachTitle}</h2>
+              <h2 className="title-section">{content.approachTitle}</h2>
               <p className="mt-3 text-sm leading-relaxed text-zinc-300 md:text-base">{content.approachText}</p>
             </article>
           </div>
@@ -273,26 +273,26 @@ export default function CrewSolutionsPage() {
           <aside className="lg:col-span-4">
             <div className="lg:sticky lg:top-24">
               <div className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6">
-                <h3 className="text-lg font-semibold text-zinc-100">{content.stickyTitle}</h3>
+                <h3 className="title-card text-zinc-100">{content.stickyTitle}</h3>
                 <ul className="mt-4 space-y-2 text-sm text-zinc-300">
                   {content.stickyPoints.map((point) => (
                     <li key={point} className="flex gap-2">
-                      <span className="mt-1.5 inline-block h-1.5 w-1.5 rounded-full bg-cyan-300/80" />
+                      <span className="mt-1.5 inline-block h-1.5 w-1.5 rounded-full bg-indigo-300/80" />
                       <span>{point}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="mt-4 rounded-3xl border border-cyan-300/30 bg-gradient-to-r from-cyan-300/15 to-violet-300/15 p-6">
-                <h3 className="text-lg font-semibold text-white">{content.contactTitle}</h3>
+              <div className="mt-4 rounded-3xl border border-indigo-300/30 bg-gradient-to-r from-indigo-400/15 to-violet-400/15 p-6">
+                <h3 className="title-card text-white">{content.contactTitle}</h3>
                 <p className="mt-2 text-sm text-zinc-200">{content.contactLead}</p>
                 <div className="mt-4 space-y-1 text-sm text-zinc-100">
-                  <a href="mailto:hello@headprod.com" className="block transition-colors hover:text-cyan-200">
-                    hello@headprod.com
+                  <a href="mailto:hello@headprod.live" className="block transition-colors hover:text-indigo-200">
+                    hello@headprod.live
                   </a>
-                  <a href="https://t.me/hp_prod" className="block transition-colors hover:text-cyan-200">
-                    Telegram: @hp_prod
+                  <a href="https://t.me/Hipete_HP" className="block transition-colors hover:text-indigo-200">
+                    Telegram: @Hipete_HP
                   </a>
                 </div>
                 <a

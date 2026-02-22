@@ -9,11 +9,16 @@ type ContactPayload = {
   eventDate?: string;
   budget?: string;
   message?: string;
+  consent?: boolean | string;
   website?: string; // honeypot
 };
 
 function clean(value: unknown): string {
   return typeof value === "string" ? value.trim() : "";
+}
+
+function resolveConsent(value: unknown): boolean {
+  return value === true || value === "true" || value === "on" || value === "1";
 }
 
 function formatText(data: Required<Omit<ContactPayload, "website">>): string {
@@ -25,6 +30,7 @@ function formatText(data: Required<Omit<ContactPayload, "website">>): string {
     `Name: ${data.name}`,
     `Company: ${data.company || "-"}`,
     `Contact: ${data.contact}`,
+    `Consent: ${data.consent ? "yes" : "no"}`,
     `Event date: ${data.eventDate || "-"}`,
     `Budget: ${data.budget || "-"}`,
     `Message:`,
@@ -76,12 +82,20 @@ export async function POST(req: Request) {
       name: clean(body.name),
       company: clean(body.company),
       contact: clean(body.contact),
+      consent: resolveConsent(body.consent),
       eventDate: clean(body.eventDate),
       budget: clean(body.budget),
       message: clean(body.message),
     };
 
-    if (payload.name.length < 2 || payload.contact.length < 3 || payload.message.length < 8) {
+    if (!payload.consent) {
+      return NextResponse.json(
+        { ok: false, error: "Consent is required." },
+        { status: 400 },
+      );
+    }
+
+    if (payload.name.length < 2 || payload.contact.length < 3 || payload.message.length < 3) {
       return NextResponse.json(
         { ok: false, error: "Please fill in name, contact and a brief message." },
         { status: 400 },

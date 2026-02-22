@@ -264,7 +264,7 @@ export default function ServicesPage() {
       <div className="pt-16">
         <section className="mx-auto w-full max-w-[1400px] px-4 py-16 sm:px-6 md:py-20 lg:px-8">
           <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">{content.eyebrow}</p>
-          <h1 className="mt-3 max-w-4xl bg-gradient-to-r from-white via-cyan-100 to-violet-200 bg-clip-text text-5xl font-semibold tracking-tight text-transparent md:text-7xl">
+          <h1 className="title-hero mt-3 max-w-4xl">
             {content.title}
           </h1>
           <p className="reading-copy mt-5 max-w-4xl text-base md:text-lg">{content.subtitle}</p>
@@ -275,7 +275,7 @@ export default function ServicesPage() {
                 <a
                   key={service.id}
                   href={`#${service.id}`}
-                  className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs text-zinc-200 transition-colors hover:border-cyan-200/60 hover:text-white"
+                  className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs text-zinc-200 transition-colors hover:border-indigo-300/60 hover:text-white"
                 >
                   {service.title.replace(/^\d+\.\s*/, "")}
                 </a>
@@ -292,13 +292,13 @@ export default function ServicesPage() {
                 key={service.id}
                 className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6 md:p-7"
               >
-                <h2 className="text-xl font-semibold tracking-tight text-zinc-100 md:text-2xl">{service.title}</h2>
+                <h2 className="title-card text-zinc-100">{service.title}</h2>
                 <p className="reading-copy mt-3 text-sm md:text-base">{service.lead}</p>
                 <p className="mt-5 text-xs uppercase tracking-[0.16em] text-zinc-400">{service.includedTitle}</p>
                 <ul className="mt-3 grid gap-2 text-sm text-zinc-200 md:grid-cols-2">
                   {service.included.map((point) => (
                     <li key={point} className="flex gap-2">
-                      <span className="mt-2 inline-block h-1.5 w-1.5 rounded-full bg-cyan-300/80" />
+                      <span className="mt-2 inline-block h-1.5 w-1.5 rounded-full bg-indigo-300/80" />
                       <span>{point}</span>
                     </li>
                   ))}
@@ -313,7 +313,7 @@ export default function ServicesPage() {
           <aside className="lg:col-span-4">
             <div className="lg:sticky lg:top-24">
               <div className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6">
-                <h3 className="text-lg font-semibold text-zinc-100">{content.asideTitle}</h3>
+                <h3 className="title-card text-zinc-100">{content.asideTitle}</h3>
                 <ul className="mt-4 space-y-2 text-sm text-zinc-300">
                   {content.asidePoints.map((point) => (
                     <li key={point} className="flex gap-2">
@@ -324,8 +324,8 @@ export default function ServicesPage() {
                 </ul>
               </div>
 
-              <div className="mt-4 rounded-3xl border border-cyan-300/30 bg-gradient-to-r from-cyan-300/15 to-violet-300/15 p-6">
-                <h3 className="text-lg font-semibold text-white">{content.ctaTitle}</h3>
+              <div className="mt-4 rounded-3xl border border-indigo-300/30 bg-gradient-to-r from-indigo-400/15 to-violet-400/15 p-6">
+                <h3 className="title-card text-white">{content.ctaTitle}</h3>
                 <p className="mt-2 text-sm text-zinc-200">{content.ctaText}</p>
                 <a
                   href="/#contact"
@@ -339,11 +339,11 @@ export default function ServicesPage() {
         </section>
 
         <section className="mx-auto w-full max-w-[1400px] px-4 pb-16 sm:px-6 lg:px-8">
-          <div className="rounded-3xl border border-cyan-300/30 bg-gradient-to-r from-cyan-300/15 to-violet-300/15 p-6 md:p-8">
-            <p className="text-xs uppercase tracking-[0.2em] text-cyan-100/90">
+          <div className="rounded-3xl border border-indigo-300/30 bg-gradient-to-r from-indigo-400/15 to-violet-400/15 p-6 md:p-8">
+            <p className="text-xs uppercase tracking-[0.2em] text-indigo-100/90">
               {isRu ? "Crew Solutions" : "Crew Solutions"}
             </p>
-            <h2 className="mt-3 text-2xl font-semibold tracking-tight text-white md:text-3xl">
+            <h2 className="title-section-inverse mt-3">
               {isRu ? "Нужна команда под проект" : "Need a crew tailored to your project"}
             </h2>
             <p className="reading-copy mt-3 max-w-3xl text-sm text-zinc-100/90 md:text-base">

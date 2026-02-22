@@ -12,6 +12,53 @@ export default function Home() {
   const [showShowreelPopup, setShowShowreelPopup] = useState(false);
   const [formState, setFormState] = useState<"idle" | "loading" | "success" | "error">("idle");
   const ru = (text: string) => formatRuTypography(text);
+  const featuredCases = isRu
+    ? [
+        {
+          id: "zemfira-concert-series",
+          title: "ZEMFIRA — Concert Series",
+          meta: "Тбилиси · Ереван · Батуми · 2024–2025",
+          tags: ["Concert", "Multi-camera", "4K", "Aerial"],
+          desc: "Многокамерный концертный продакшн в трёх городах с единым качеством выдачи.",
+        },
+        {
+          id: "esports-tournaments-nda",
+          title: "Esports Tournaments (NDA)",
+          meta: "International · 2024–2025",
+          tags: ["Esports", "Live graphics", "Streaming", "Redundancy"],
+          desc: "Стабильные турнирные трансляции под высокой нагрузкой и жёстким матчевым таймингом.",
+        },
+        {
+          id: "deep-purple-live-tbilisi",
+          title: "Deep Purple — Live in Tbilisi",
+          meta: "Tbilisi · 2025",
+          tags: ["Concert", "Broadcast", "Signal control", "On-site"],
+          desc: "Надёжная прямая видеовыдача для международного артиста без сбоев в эфирной цепочке.",
+        },
+      ]
+    : [
+        {
+          id: "zemfira-concert-series",
+          title: "ZEMFIRA — Concert Series",
+          meta: "Tbilisi · Yerevan · Batumi · 2024–2025",
+          tags: ["Concert", "Multi-camera", "4K", "Aerial"],
+          desc: "Multi-camera concert production across three cities with consistent output quality.",
+        },
+        {
+          id: "esports-tournaments-nda",
+          title: "Esports Tournaments (NDA)",
+          meta: "International · 2024–2025",
+          tags: ["Esports", "Live graphics", "Streaming", "Redundancy"],
+          desc: "Stable tournament broadcasts under high pressure and strict match timing.",
+        },
+        {
+          id: "deep-purple-live-tbilisi",
+          title: "Deep Purple — Live in Tbilisi",
+          meta: "Tbilisi · 2025",
+          tags: ["Concert", "Broadcast", "Signal control", "On-site"],
+          desc: "Reliable live output for an international touring artist.",
+        },
+      ];
 
   const submitContactForm = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -25,6 +72,7 @@ export default function Home() {
       name: String(formData.get("name") ?? ""),
       contact: String(formData.get("contact") ?? ""),
       message: String(formData.get("message") ?? ""),
+      consent: String(formData.get("consent") ?? "") === "on",
       website: String(formData.get("website") ?? ""),
     };
 
@@ -45,7 +93,7 @@ export default function Home() {
   };
 
   return (
-    <main className="relative min-h-screen overflow-x-clip bg-zinc-950 text-zinc-50 selection:bg-cyan-300/30 selection:text-white">
+    <main className="relative min-h-screen overflow-x-clip bg-zinc-950 text-zinc-50 selection:bg-indigo-300/30 selection:text-white">
       <div className="pointer-events-none absolute inset-0 opacity-[0.06] mix-blend-overlay"
            style={{
              backgroundImage:
@@ -53,7 +101,7 @@ export default function Home() {
            }}
       />
       <div className="pointer-events-none absolute inset-0 opacity-60">
-        <div className="absolute left-[-120px] top-40 h-[320px] w-[320px] rounded-full bg-cyan-500/10 blur-3xl" />
+        <div className="absolute left-[-120px] top-40 h-[320px] w-[320px] rounded-full bg-indigo-500/10 blur-3xl" />
         <div className="absolute bottom-20 right-[-100px] h-[300px] w-[300px] rounded-full bg-violet-500/10 blur-3xl" />
             </div>
       <SiteHeader />
@@ -70,7 +118,7 @@ export default function Home() {
           <div className="relative z-10 md:col-span-12">
             {!isRu ? <p className="mb-3 text-sm text-zinc-300">Based in Tbilisi · Working worldwide · English-speaking crew</p> : null}
 
-            <h1 className="bg-gradient-to-r from-white via-cyan-100 to-violet-200 bg-clip-text text-5xl font-semibold tracking-tight text-transparent md:text-7xl">
+            <h1 className="title-hero">
               {isRu
                 ? ru("Продакшн мероприятий и трансляций без сбоев")
                 : "High-end live event & broadcast production that feels effortless."}
@@ -85,14 +133,14 @@ export default function Home() {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
               <a
                 href="#contact"
-                className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-cyan-300 to-violet-300 px-5 py-3 text-sm font-semibold text-zinc-950 transition-colors hover:from-cyan-200 hover:to-violet-200"
+                className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-indigo-400 to-violet-400 px-5 py-3 text-sm font-semibold text-white transition-colors hover:from-indigo-300 hover:to-violet-300"
               >
                 {isRu ? "Обсудить проект" : "Discuss your event"}
               </a>
               <button
                 type="button"
                 onClick={() => setShowShowreelPopup(true)}
-                className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition-colors hover:border-cyan-200/50 hover:bg-white/10"
+                className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition-colors hover:border-indigo-300/50 hover:bg-white/10"
               >
                 {isRu ? "Смотреть шоурил" : "Watch showreel"}
               </button>
@@ -145,7 +193,7 @@ export default function Home() {
             </div>
             <a
               href="/work"
-              className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-zinc-200 underline decoration-zinc-500/60 underline-offset-4 transition-colors hover:text-cyan-200 hover:decoration-cyan-200"
+              className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-zinc-200 underline decoration-zinc-500/60 underline-offset-4 transition-colors hover:text-indigo-200 hover:decoration-indigo-200"
             >
               {isRu ? "Перейти к кейсам" : "Go to case studies"} <span>→</span>
             </a>
@@ -158,7 +206,7 @@ export default function Home() {
         <div className="flex items-end justify-between gap-6">
           <div>
             <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">{isRu ? "Клиенты" : "Selected clients"}</p>
-            <h2 className="mt-3 text-xl font-semibold tracking-tight text-zinc-100 md:text-2xl">
+            <h2 className="title-section mt-3">
               {isRu
                 ? "Нам доверяют проекты, где ошибка недопустима"
                 : "Trusted for live shows where failure isn't an option."}
@@ -169,7 +217,7 @@ export default function Home() {
         <div className="mt-8 overflow-hidden">
           <div className="relative">
             {/* subtle shine */}
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-cyan-200/10 to-transparent" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-indigo-200/10 to-transparent" />
             <div className="flex w-[200%] animate-marquee-slow items-center gap-4 py-6">
               {[
                 "NOVA STAGE",
@@ -213,7 +261,7 @@ export default function Home() {
       <section className="mx-auto w-full max-w-[1400px] px-4 py-14 sm:px-6 md:py-20 lg:px-8">
         <div className="grid gap-10 md:grid-cols-12">
           <div className="md:col-span-5">
-            <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">{isRu ? "Что делаем" : "What we do"}</h2>
+            <h2 className="title-section">{isRu ? "Что делаем" : "What we do"}</h2>
             <p className="reading-copy mt-3 text-sm">
               {isRu
                 ? ru("Head Production — команда видеопродакшена и трансляций. Берём на себя техническую часть, чтобы вы занимались содержанием события, а аудитория получала стабильную и качественную трансляцию бесшовно и спокойно.")
@@ -248,7 +296,7 @@ export default function Home() {
       <section id="services" className="mx-auto w-full max-w-[1400px] px-4 py-14 sm:px-6 md:py-20 lg:px-8">
         <div className="flex items-end justify-between gap-6">
           <div>
-            <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">{isRu ? "Услуги" : "Services"}</h2>
+            <h2 className="title-section">{isRu ? "Услуги" : "Services"}</h2>
             <p className="reading-copy-muted mt-2 text-sm">
               {isRu
                 ? ru("Полный цикл live-продакшна под вашу площадку и формат.")
@@ -297,7 +345,7 @@ export default function Home() {
             },
           ].map((s) => (
             <div key={s.title} className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6">
-              <h3 className="text-base font-semibold">{s.title}</h3>
+              <h3 className="title-card">{s.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-zinc-300">{s.desc}</p>
             </div>
           ))}
@@ -306,8 +354,8 @@ export default function Home() {
 
       {/* Industries */}
       <section id="industries" className="mx-auto w-full max-w-[1400px] px-4 py-14 sm:px-6 md:py-20 lg:px-8">
-        <div className="accent-border rounded-3xl border border-cyan-300/25 bg-gradient-to-r from-cyan-300/15 to-violet-300/15 p-6 md:p-10">
-          <p className="text-2xl font-semibold tracking-tight text-white md:text-4xl">
+        <div className="accent-border rounded-3xl border border-indigo-300/25 bg-gradient-to-r from-indigo-400/15 to-violet-400/15 p-6 md:p-10">
+          <p className="title-section text-white">
             {isRu
               ? ru("Одинаково высокий стандарт для разных форматов. Мы адаптируем рабочий процесс под событие, а не наоборот.")
               : "Same standards, different formats. We adapt the workflow to the event, not the other way around."}
@@ -320,7 +368,7 @@ export default function Home() {
         <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">{isRu ? "Кейсы" : "Selected projects"}</p>
-            <h2 className="mt-3 text-2xl font-semibold tracking-tight md:text-3xl">
+            <h2 className="title-section mt-3">
               {isRu ? "Недавние проекты" : "A few recent productions."}
             </h2>
             <p className="reading-copy-muted mt-2 text-sm">
@@ -330,34 +378,15 @@ export default function Home() {
             </p>
           </div>
           <a
-            href="#contact"
+            href="/work"
             className="mt-2 inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold text-white hover:bg-white/10 md:mt-0"
           >
-            {isRu ? "Получить смету" : "Get a quote"}
+            {isRu ? "Смотреть все кейсы" : "View all case studies"}
           </a>
         </div>
 
         <div className="mt-8 grid gap-4 md:grid-cols-3">
-          {[
-            {
-              title: "International Business Conference (Hybrid)",
-              meta: "Europe · 2025",
-              tags: ["Hybrid", "Multi-cam", "Translation", "Slides"],
-              desc: "Multi-camera live production with speaker feeds, slide routing, and translation channels. Stable streaming + clean recordings.",
-            },
-            {
-              title: "Esports Tournament Broadcast",
-              meta: "Dubai · 2024",
-              tags: ["Esports", "Overlays", "Commentary", "Fast switching"],
-              desc: "Tournament-ready switching, live score/overlay package, commentator studio workflow, platform streaming + highlight outputs.",
-            },
-            {
-              title: "Concert / Festival Live Coverage",
-              meta: "Turkey · 2024",
-              tags: ["Live show", "Stage", "LED", "4K"],
-              desc: "High-pressure live environment with stage coordination and multi-camera directing. Optimized routing and on-site comms.",
-            },
-          ].map((p) => (
+          {featuredCases.map((p) => (
             <div
               key={p.title}
               className="accent-border relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6"
@@ -370,7 +399,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <h3 className="mt-4 text-lg font-semibold leading-snug">{p.title}</h3>
+                <h3 className="title-card mt-4">{p.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-zinc-300">{p.desc}</p>
 
                 <div className="mt-4 flex flex-wrap gap-2">
@@ -384,12 +413,12 @@ export default function Home() {
                   ))}
                 </div>
 
-                <button
-                  type="button"
+                <a
+                  href={`/work#${p.id}`}
                   className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-zinc-100 hover:text-white"
                 >
                   {isRu ? "Подробнее" : "View details"} <span className="text-zinc-400">→</span>
-                </button>
+                </a>
               </div>
             </div>
           ))}
@@ -400,7 +429,7 @@ export default function Home() {
       <section id="founders" className="mx-auto w-full max-w-[1400px] px-4 py-14 sm:px-6 md:py-20 lg:px-8">
         <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
           <div>
-            <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">{isRu ? "Основатели" : "Founders"}</h2>
+            <h2 className="title-section">{isRu ? "Основатели" : "Founders"}</h2>
             <p className="mt-2 text-sm text-zinc-300">
               {isRu
                 ? ru("Два практикующих специалиста: продакшн и инженерия, вместе на каждом проекте.")
@@ -446,7 +475,7 @@ export default function Home() {
               <div className="mt-4 flex justify-center">
                 <button
                   type="button"
-                  className="group inline-flex items-center gap-2 text-sm font-medium text-zinc-300 underline decoration-zinc-500/60 underline-offset-4 transition-colors hover:bg-gradient-to-r hover:from-cyan-200 hover:to-violet-200 hover:bg-clip-text hover:text-transparent hover:decoration-cyan-200/80"
+                  className="group inline-flex items-center gap-2 text-sm font-medium text-zinc-300 underline decoration-zinc-500/60 underline-offset-4 transition-colors hover:bg-gradient-to-r hover:from-indigo-200 hover:to-violet-200 hover:bg-clip-text hover:text-transparent hover:decoration-indigo-200/80"
                 >
                   {isRu ? "Посмотреть CV" : "Download CV"}{" "}
                   <span className="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
@@ -459,7 +488,7 @@ export default function Home() {
 
       {/* Process */}
       <section className="mx-auto w-full max-w-[1400px] px-4 py-14 sm:px-6 md:py-20 lg:px-8">
-        <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">{isRu ? "Как работаем" : "How it works"}</h2>
+        <h2 className="title-section">{isRu ? "Как работаем" : "How it works"}</h2>
         <p className="reading-copy-muted mt-2 text-sm">
           {isRu
             ? ru("Прозрачные этапы, предсказуемая реализация и без сюрпризов в день события.")
@@ -510,7 +539,7 @@ export default function Home() {
         <div className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6 md:p-10">
           <div className="grid gap-10 md:grid-cols-12">
             <div className="md:col-span-5">
-              <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">{isRu ? "Обсудим проект" : "Let’s talk"}</h2>
+              <h2 className="title-section">{isRu ? "Обсудим проект" : "Let's talk"}</h2>
               <p className="reading-copy-muted mt-2 text-sm">
                 {isRu
                   ? ru("Расскажите о задаче — предложим сетап, таймлайн и следующий шаг.")
@@ -519,14 +548,13 @@ export default function Home() {
 
               <div className="mt-6 space-y-2 text-sm text-zinc-300">
                 <div>
-                  <span className="text-zinc-400">Email:</span> hello@headprod.com
+                  <span className="text-zinc-400">Email:</span> hello@headprod.live
                 </div>
                 <div>
-                  <span className="text-zinc-400">Telegram:</span> @hp_prod
+                  <span className="text-zinc-400">Telegram:</span> @Hipete_HP
                 </div>
                 <div>
-                  <span className="text-zinc-400">{isRu ? "Базируемся:" : "Based in:"}</span>{" "}
-                  {isRu ? "Тбилиси · Работаем по всему миру" : "Tbilisi · Worldwide production"}
+                  {isRu ? "Тбилиси, Грузия" : "Tbilisi, Georgia"}
                 </div>
               </div>
             </div>
@@ -534,11 +562,11 @@ export default function Home() {
             <form onSubmit={submitContactForm} className="md:col-span-7">
               <div className="grid gap-4 sm:grid-cols-2">
                 <label className="space-y-2">
-                  <div className="text-xs text-zinc-400">Name</div>
+                  <div className="text-xs text-zinc-400">{isRu ? "Имя" : "Name"}</div>
                   <input
                     name="name"
                     required
-                    className="w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none ring-0 placeholder:text-zinc-600 focus:border-white/20"
+                    className="w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none ring-0 placeholder:text-zinc-600 focus:border-indigo-400/40"
                     placeholder={isRu ? "Ваше имя" : "Your name"}
                   />
                 </label>
@@ -547,7 +575,7 @@ export default function Home() {
                   <input
                     name="contact"
                     required
-                    className="w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none placeholder:text-zinc-600 focus:border-white/20"
+                    className="w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none placeholder:text-zinc-600 focus:border-indigo-400/40"
                     placeholder={isRu ? "WhatsApp, Telegram или Email + ваш контакт" : "WhatsApp / Telegram / Email + your handle"}
                   />
                 </label>
@@ -556,7 +584,7 @@ export default function Home() {
                   <textarea
                     name="message"
                     required
-                    className="min-h-[120px] w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none placeholder:text-zinc-600 focus:border-white/20"
+                    className="min-h-[120px] w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none placeholder:text-zinc-600 focus:border-indigo-400/40"
                     placeholder={
                       isRu
                         ? "Формат, платформы, площадка, количество спикеров, любые важные детали..."
@@ -565,13 +593,28 @@ export default function Home() {
                   />
                 </label>
                 <input name="website" tabIndex={-1} autoComplete="off" className="hidden" />
+                <label className="flex items-start gap-2 sm:col-span-2">
+                  <input
+                    name="consent"
+                    type="checkbox"
+                    required
+                    className="mt-1 h-4 w-4 rounded border-white/30 bg-zinc-900 accent-indigo-400"
+                  />
+                  <span className="text-xs text-zinc-400">
+                    {isRu ? "Я согласен(а) на обработку персональных данных в соответствии с " : "I agree to the processing of personal data according to the "}
+                    <a href="/privacy" className="underline decoration-zinc-500/70 underline-offset-2 hover:text-zinc-200">
+                      {isRu ? "политикой конфиденциальности" : "privacy policy"}
+                    </a>
+                    .
+                  </span>
+                </label>
               </div>
 
               <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <button
                   type="submit"
                   disabled={formState === "loading"}
-                  className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-cyan-300 to-violet-300 px-5 py-3 text-sm font-semibold text-zinc-950 transition-colors hover:from-cyan-200 hover:to-violet-200 disabled:cursor-not-allowed disabled:opacity-70"
+                  className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-indigo-400 to-violet-400 px-5 py-3 text-sm font-semibold text-white transition-colors hover:from-indigo-300 hover:to-violet-300 disabled:cursor-not-allowed disabled:opacity-70"
                 >
                   {isRu ? "Отправить заявку" : "Send request"}
                 </button>
