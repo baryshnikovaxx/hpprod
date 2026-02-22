@@ -68,9 +68,11 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: true });
     }
 
-    const payload = {
+    const resolvedLang: "en" | "ru" = clean(body.lang) === "en" ? "en" : "ru";
+
+    const payload: Required<Omit<ContactPayload, "website">> = {
       source: clean(body.source) || "website",
-      lang: clean(body.lang) === "en" ? "en" : "ru",
+      lang: resolvedLang,
       name: clean(body.name),
       company: clean(body.company),
       contact: clean(body.contact),
