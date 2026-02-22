@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import SiteHeader from "../components/site-header";
 import { useLanguage } from "../components/language-provider";
 import { formatRuTypography } from "../lib/typography";
@@ -13,6 +14,7 @@ type CaseStudy = {
   responsibilities: string[];
   result: string;
   coverHint: string;
+  coverSrc?: string;
   note?: string;
 };
 
@@ -40,6 +42,7 @@ export default function WorkPage() {
           result:
             "Стабильный и качественный многокамерный концертный продакшн в нескольких международных локациях.",
           coverHint: "Обложка кейса ZEMFIRA (добавить фото)",
+          coverSrc: "/cases/zemfira-cover.jpg",
         },
         {
           title: "Esports Tournaments (NDA)",
@@ -60,6 +63,7 @@ export default function WorkPage() {
             "Технически стабильные турнирные трансляции в условиях высокой нагрузки и прямого эфира.",
           note: "Selected projects under NDA. Full details available upon request.",
           coverHint: "Обложка кейса Esports NDA (добавить фото)",
+          coverSrc: "/cases/esports-cover.jpg",
         },
         {
           title: "Deep Purple — Live in Tbilisi",
@@ -109,6 +113,7 @@ export default function WorkPage() {
           result:
             "Stable, high-quality multi-camera concert production across multiple international locations.",
           coverHint: "ZEMFIRA case cover (add image)",
+          coverSrc: "/cases/zemfira-cover.jpg",
         },
         {
           title: "Esports Tournaments (NDA)",
@@ -129,6 +134,7 @@ export default function WorkPage() {
             "Technically stable tournament broadcasts delivered under high-pressure live conditions.",
           note: "Selected projects under NDA. Full details available upon request.",
           coverHint: "Esports NDA case cover (add image)",
+          coverSrc: "/cases/esports-cover.jpg",
         },
         {
           title: "Deep Purple — Live in Tbilisi",
@@ -182,9 +188,15 @@ export default function WorkPage() {
           <div className="space-y-6">
             {cases.map((item) => (
               <article key={item.title} className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6 md:p-8">
-                <div className="mb-6 flex aspect-[16/7] items-center justify-center rounded-2xl border border-dashed border-white/20 bg-zinc-900/40 px-4 text-center text-xs uppercase tracking-[0.16em] text-zinc-400 md:text-sm">
-                  {item.coverHint}
-                </div>
+                {item.coverSrc ? (
+                  <div className="relative mb-6 aspect-[16/7] overflow-hidden rounded-2xl border border-white/15 bg-zinc-900/30">
+                    <Image src={item.coverSrc} alt={`${item.title} cover`} fill className="object-cover object-center" />
+                  </div>
+                ) : (
+                  <div className="mb-6 flex aspect-[16/7] items-center justify-center rounded-2xl border border-dashed border-white/20 bg-zinc-900/40 px-4 text-center text-xs uppercase tracking-[0.16em] text-zinc-400 md:text-sm">
+                    {item.coverHint}
+                  </div>
+                )}
 
                 <h2 className="text-2xl font-semibold tracking-tight text-zinc-100 md:text-3xl">{item.title}</h2>
                 <p className="mt-2 text-sm text-zinc-400">{item.locationYear}</p>

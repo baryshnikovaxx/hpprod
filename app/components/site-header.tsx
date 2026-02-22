@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useLanguage } from "./language-provider";
 import { formatRuTypography } from "../lib/typography";
 
-type NavKey = "services" | "work" | "crew" | "equipment" | "about" | "contact" | "scandi";
+type NavKey = "services" | "work" | "crew" | "equipment" | "about" | "contact";
 
 const navItems: ReadonlyArray<{ key: NavKey; href: string }> = [
   { key: "services", href: "/services" },
@@ -13,7 +13,6 @@ const navItems: ReadonlyArray<{ key: NavKey; href: string }> = [
   { key: "crew", href: "/crew-solutions" },
   { key: "equipment", href: "/equipment" },
   { key: "about", href: "/about" },
-  { key: "scandi", href: "/scandi" },
   { key: "contact", href: "/#contact" },
 ];
 
@@ -28,7 +27,6 @@ export default function SiteHeader() {
     crew: isRu ? "Команда" : "Crew Solutions",
     equipment: isRu ? "Оборудование" : "Equipment",
     about: isRu ? "О нас" : "About",
-    scandi: "Scandi Beta",
     contact: isRu ? "Контакты" : "Contact",
     startProject: isRu ? "Старт проекта" : "Start a Project",
     menu: isRu ? "Меню" : "Menu",
