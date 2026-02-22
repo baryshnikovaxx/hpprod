@@ -432,12 +432,15 @@ export default function Home() {
                 <div className="mt-1 text-sm text-zinc-300">{f.role}</div>
               </div>
               <p className="mt-4 text-center text-sm leading-relaxed text-zinc-300">{f.bio}</p>
-              <button
-                type="button"
-                className="group mx-auto mt-4 inline-flex items-center gap-2 text-sm font-medium text-zinc-300 underline decoration-zinc-500/60 underline-offset-4 transition-colors hover:bg-gradient-to-r hover:from-cyan-200 hover:to-violet-200 hover:bg-clip-text hover:text-transparent hover:decoration-cyan-200/80"
-              >
-                Download CV <span className="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
-              </button>
+              <div className="mt-4 flex justify-center">
+                <button
+                  type="button"
+                  className="group inline-flex items-center gap-2 text-sm font-medium text-zinc-300 underline decoration-zinc-500/60 underline-offset-4 transition-colors hover:bg-gradient-to-r hover:from-cyan-200 hover:to-violet-200 hover:bg-clip-text hover:text-transparent hover:decoration-cyan-200/80"
+                >
+                  {isRu ? "Посмотреть CV" : "Download CV"}{" "}
+                  <span className="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
+                </button>
+              </div>
             </div>
           ))}
         </div>
