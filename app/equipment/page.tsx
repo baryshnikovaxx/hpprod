@@ -145,7 +145,7 @@ export default function EquipmentPage() {
       <div className="pt-16">
         <section className="mx-auto w-full max-w-[1400px] px-4 py-16 sm:px-6 md:py-20 lg:px-8">
           <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">{isRu ? "Оборудование" : "Equipment"}</p>
-          <h1 className="mt-3 bg-gradient-to-r from-white via-cyan-100 to-violet-200 bg-clip-text text-4xl font-semibold tracking-tight text-transparent md:text-6xl">
+          <h1 className="mt-3 bg-gradient-to-r from-white via-cyan-100 to-violet-200 bg-clip-text text-5xl font-semibold tracking-tight text-transparent md:text-7xl">
             Technical Capabilities
           </h1>
           <p className="reading-copy mt-5 text-sm md:text-base">
@@ -159,7 +159,7 @@ export default function EquipmentPage() {
               "4K workflow standard",
               "8K available for selected setups",
               "Extensive camera fleet",
-              isRu ? ru("Equipment catalog доступен через отдельный rental-website") : "Equipment catalog available via separate rental website",
+              isRu ? ru("Каталог оборудования доступен на отдельном rental-сайте") : "Equipment catalog available via separate rental website",
             ].map((item) => (
               <div key={item} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-zinc-200">
                 {item}
@@ -170,12 +170,12 @@ export default function EquipmentPage() {
 
         <section className="mx-auto w-full max-w-[1400px] px-4 pb-16 sm:px-6 lg:px-8">
           <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">{isRu ? "Production capability" : "Production capability"}</p>
-          <h2 className="mt-2 text-2xl font-semibold tracking-tight md:text-3xl">Core Technical Stack</h2>
+          <h2 className="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">Core Technical Stack</h2>
 
           <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             {stackCategories.map((category) => (
               <article key={category.title} className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6">
-                <h3 className="text-lg font-semibold text-zinc-100">{category.title}</h3>
+                <h3 className="text-xl font-semibold text-zinc-100">{category.title}</h3>
                 <ul className="mt-3 space-y-2 text-sm text-zinc-300">
                   {category.items.map((item) => (
                     <li key={item} className="flex gap-2">
@@ -192,7 +192,7 @@ export default function EquipmentPage() {
         <section className="mx-auto w-full max-w-[1400px] px-4 pb-16 sm:px-6 lg:px-8">
           <div className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6 md:p-8">
             <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">Rental</p>
-            <h2 className="mt-2 text-2xl font-semibold tracking-tight md:text-3xl">Equipment Rental</h2>
+            <h2 className="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">Equipment Rental</h2>
             <p className="reading-copy mt-4 text-sm md:text-base">
               {isRu
                 ? ru("Если вам нужно оборудование без полной продакшн-команды или вы хотите расширить свой сетап, можно арендовать технику напрямую в нашем in-house rental-направлении.")
@@ -228,7 +228,7 @@ export default function EquipmentPage() {
 
         <section className="mx-auto w-full max-w-[1400px] px-4 pb-16 sm:px-6 lg:px-8">
           <div className="rounded-3xl border border-cyan-300/30 bg-gradient-to-r from-cyan-300/15 to-violet-300/15 p-6 md:p-8">
-            <h2 className="text-2xl font-semibold tracking-tight text-white md:text-3xl">Explore Full Rental Catalog</h2>
+            <h2 className="text-3xl font-semibold tracking-tight text-white md:text-4xl">Explore Full Rental Catalog</h2>
             <p className="reading-copy-muted mt-3 text-sm md:text-base">
               {isRu
                 ? ru("Полный список оборудования и актуальную доступность смотрите в выделенном rental-каталоге.")
@@ -246,12 +246,16 @@ export default function EquipmentPage() {
         </section>
 
         <section className="mx-auto w-full max-w-[1400px] px-4 pb-16 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">FAQ</h2>
+          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">FAQ</h2>
           <div className="mt-6 space-y-3">
             {faq.map((item) => (
-              <details key={item.q} className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                <summary className="cursor-pointer list-none text-sm font-medium text-zinc-100">
+              <details key={item.q} className="group rounded-2xl border border-white/10 bg-white/5 p-4">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-sm font-medium text-zinc-100">
                   <span>{item.q}</span>
+                  <span className="text-base text-zinc-400 transition-colors group-open:text-cyan-200">
+                    <span className="group-open:hidden">+</span>
+                    <span className="hidden group-open:inline">−</span>
+                  </span>
                 </summary>
                 <p className="mt-3 text-sm text-zinc-300">{item.a}</p>
               </details>
