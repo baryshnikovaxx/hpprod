@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useLanguage } from "./language-provider";
 
@@ -52,7 +53,13 @@ export default function SiteHeader() {
       <header className="fixed inset-x-0 top-0 z-50 isolate border-b border-white/10 bg-zinc-950">
         <div className="mx-auto flex h-16 w-full max-w-[1400px] items-center justify-between px-4 sm:px-6 lg:px-8">
           <a href="/" className="flex items-center gap-3">
-            <div className="h-9 w-9 rounded-xl bg-white/10 ring-1 ring-white/15" />
+            <Image
+              src="/logo.png"
+              alt="Head Production logo"
+              width={36}
+              height={36}
+              className="h-9 w-9 rounded-xl object-cover ring-1 ring-white/15"
+            />
             <div className="leading-tight">
               <div className="text-sm font-semibold tracking-wide text-zinc-100">Head Production</div>
               <div className="text-xs text-zinc-400">
