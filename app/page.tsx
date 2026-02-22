@@ -55,7 +55,7 @@ export default function Home() {
       <div className="pointer-events-none absolute inset-0 opacity-60">
         <div className="absolute left-[-120px] top-40 h-[320px] w-[320px] rounded-full bg-cyan-500/10 blur-3xl" />
         <div className="absolute bottom-20 right-[-100px] h-[300px] w-[300px] rounded-full bg-violet-500/10 blur-3xl" />
-      </div>
+            </div>
       <SiteHeader />
 
       <div className="pt-16">
@@ -68,11 +68,7 @@ export default function Home() {
 
         <div className="mx-auto grid w-full max-w-[1400px] gap-10 px-4 py-16 sm:px-6 md:grid-cols-12 md:py-24 lg:px-8">
           <div className="relative z-10 md:col-span-12">
-            <p className="mb-3 text-sm text-zinc-300">
-              {isRu
-                ? ru("Тбилиси · Работаем по всему миру · Англоязычная команда")
-                : "Based in Tbilisi · Working worldwide · English-speaking crew"}
-            </p>
+            {!isRu ? <p className="mb-3 text-sm text-zinc-300">Based in Tbilisi · Working worldwide · English-speaking crew</p> : null}
 
             <h1 className="bg-gradient-to-r from-white via-cyan-100 to-violet-200 bg-clip-text text-5xl font-semibold tracking-tight text-transparent md:text-7xl">
               {isRu
@@ -82,7 +78,7 @@ export default function Home() {
 
             <p className="reading-copy mt-5">
               {isRu
-                ? ru("Конференции, концерты, фестивали, киберспорт и крупные события. Полный цикл — от технического дизайна до финального сигнала. Масштабируемая многокамерная архитектура, производство в 4K и более 100 реализованных проектов.")
+                ? ru("Конференции, концерты, фестивали, киберспорт, спортивные события и любые другие ивенты. Полный цикл — от технического дизайна до идеального эфира. Масштабируемая многокамерная архитектура, производство в 4K и более 100 реализованных проектов.")
                 : "Conferences, concerts & festivals, esports and large-scale events. Full-cycle delivery from technical design to final output. Scalable multi-camera architecture, 4K workflow, and 100+ events delivered."}
             </p>
 
@@ -153,7 +149,7 @@ export default function Home() {
             >
               {isRu ? "Перейти к кейсам" : "Go to case studies"} <span>→</span>
             </a>
-          </div>
+                </div>
         </div>
       )}
 
@@ -167,8 +163,8 @@ export default function Home() {
                 ? "Нам доверяют проекты, где ошибка недопустима"
                 : "Trusted for live shows where failure isn't an option."}
             </h2>
-          </div>
-        </div>
+              </div>
+            </div>
 
         <div className="mt-8 overflow-hidden">
           <div className="relative">
@@ -220,7 +216,7 @@ export default function Home() {
             <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">{isRu ? "Что делаем" : "What we do"}</h2>
             <p className="reading-copy mt-3 text-sm">
               {isRu
-                ? ru("Head Production — команда по продакшну событий и прямых эфиров. Берём на себя техническую часть, чтобы вы занимались содержанием события, а аудитория получала стабильную и качественную трансляцию.")
+                ? ru("Head Production — команда видеопродакшена и трансляций. Берём на себя техническую часть, чтобы вы занимались содержанием события, а аудитория получала стабильную и качественную трансляцию бесшовно и спокойно.")
                 : "Head Production is a live event and broadcast production company. We handle the technical complexity so your team can focus on the event itself — and your audience gets a smooth, high-quality live experience."}
             </p>
           </div>
@@ -284,13 +280,13 @@ export default function Home() {
             {
               title: isRu ? "Broadcast-графика" : "Broadcast graphics",
               desc: isRu
-                ? "Lower thirds, оверлеи, табло, интеграции партнёров и фирменные визуальные пакеты."
+                ? "Оверлеи, табло, интеграции партнёров и фирменные визуальные пакеты — вовремя и чётко."
                 : "Lower thirds, overlays, scoreboards, sponsor placements, branded visual packages.",
             },
             {
               title: isRu ? "Стриминг на любые платформы" : "Streaming to any platform",
               desc: isRu
-                ? "YouTube, Twitch и корпоративные платформы — процессы RTMP/SRT и резервирование при необходимости."
+                ? "YouTube, Twitch и любые корпоративные платформы — резервирование при необходимости."
                 : "YouTube, Twitch, corporate platforms — RTMP/SRT workflows, redundancy where needed.",
             },
             {
@@ -310,46 +306,12 @@ export default function Home() {
 
       {/* Industries */}
       <section id="industries" className="mx-auto w-full max-w-[1400px] px-4 py-14 sm:px-6 md:py-20 lg:px-8">
-        <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">{isRu ? "Где мы работаем" : "Where we work"}</h2>
-        <p className="reading-copy-muted mt-2 text-sm">
-          {isRu
-            ? ru("Одинаково высокий стандарт для разных форматов. Мы адаптируем рабочий процесс под событие, а не наоборот.")
-            : "Same standards, different formats. We adapt the workflow to the event, not the other way around."}
-        </p>
-
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
-          {[
-            {
-              title: "Esports",
-              points: isRu
-                ? ["Турнирная режиссура в реальном времени", "Табло и оверлей-графика", "Настройка комментаторской студии"]
-                : ["Tournament-ready live switching", "Live score/overlay graphics", "Commentator studio setups"],
-            },
-            {
-              title: isRu ? "Конференции" : "Conferences",
-              points: isRu
-                ? ["Потоки спикеров и слайдов", "Гибрид + удаленные участники", "Перевод и чистый звук"]
-                : ["Speaker & slide feeds", "Hybrid + remote guests", "Translation & clean audio"],
-            },
-            {
-              title: isRu ? "Концерты и фестивали" : "Concerts & Festivals",
-              points: isRu
-                ? ["Координация сцены", "Мультикамерное live-покрытие", "LED и onsite-интеграция"]
-                : ["Stage coordination", "Multi-camera live coverage", "LED & on-site integration"],
-            },
-          ].map((c) => (
-            <div key={c.title} className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6">
-              <h3 className="text-base font-semibold">{c.title}</h3>
-              <ul className="mt-3 space-y-2 text-sm text-zinc-300">
-                {c.points.map((p) => (
-                  <li key={p} className="flex gap-2">
-                    <span className="mt-1 inline-block h-1.5 w-1.5 rounded-full bg-white/60" />
-                    <span>{p}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+        <div className="accent-border rounded-3xl border border-cyan-300/25 bg-gradient-to-r from-cyan-300/15 to-violet-300/15 p-6 md:p-10">
+          <p className="text-2xl font-semibold tracking-tight text-white md:text-4xl">
+            {isRu
+              ? ru("Одинаково высокий стандарт для разных форматов. Мы адаптируем рабочий процесс под событие, а не наоборот.")
+              : "Same standards, different formats. We adapt the workflow to the event, not the other way around."}
+          </p>
         </div>
       </section>
 
