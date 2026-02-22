@@ -7,7 +7,7 @@ export default function AboutPage() {
   const { lang } = useLanguage();
   const isRu = lang === "ru";
   const metrics = [
-    { k: isRu ? "8 лет" : "8 years", v: isRu ? "в продакшне живых событий" : "experience in live production" },
+    { k: isRu ? "8 лет" : "8 years", v: isRu ? "в продакшне мероприятий" : "experience in live production" },
     { k: "100+", v: isRu ? "реализованных проектов" : "events delivered" },
     { k: "20+", v: isRu ? "стран в портфолио" : "countries worked in" },
     { k: "EN", v: isRu ? "англоязычная команда" : "English-speaking crew" },
@@ -24,7 +24,7 @@ export default function AboutPage() {
         <h1 className="mt-3 bg-gradient-to-r from-white via-cyan-100 to-violet-200 bg-clip-text text-4xl font-semibold tracking-tight text-transparent md:text-6xl">
           {isRu ? "История, команда, результат" : "History. Team. Execution."}
         </h1>
-        <p className="mt-5 max-w-3xl text-zinc-300">
+        <p className="reading-copy mt-5 max-w-3xl">
           {isRu
             ? "Мы делаем надёжный продакшн для конференций, киберспорта, фестивалей и крупных трансляций. Работаем прозрачно, держим высокий инженерный стандарт и спокойно ведём проекты под нагрузкой."
             : "We build reliable live productions for conferences, esports, festivals, and large-scale broadcasts. The focus is simple: clean communication, strong engineering, and stable delivery under pressure."}
@@ -78,7 +78,7 @@ export default function AboutPage() {
           <h2 className="mt-3 text-2xl font-semibold tracking-tight text-white md:text-3xl">
             {isRu ? "Команда под любой формат" : "Crew support for any production format"}
           </h2>
-          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-zinc-100/90 md:text-base">
+          <p className="reading-copy mt-3 max-w-3xl text-sm text-zinc-100/90 md:text-base">
             {isRu
               ? "На отдельной странице Crew Solutions собрали роли, форматы подключения и наш подход к работе в составе международных продакшен-команд."
               : "Our Crew Solutions page outlines key roles, onboarding formats, and how we integrate into international production teams."}

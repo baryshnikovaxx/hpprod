@@ -65,7 +65,7 @@ export default function SiteHeader() {
             <div className="leading-tight">
               <div className="text-sm font-semibold tracking-wide text-zinc-100">Head Production</div>
               <div className="text-xs text-zinc-400">
-                {isRu ? "Лайв-события и трансляции" : "Live Event & Broadcast"}
+                {isRu ? "Мероприятия и трансляции" : "Live Event & Broadcast"}
               </div>
             </div>
           </a>

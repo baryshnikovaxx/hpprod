@@ -25,7 +25,7 @@ export default function ServicesPage() {
         asideTitle: "Почему с нами спокойно",
         asidePoints: [
           "Масштабируемый многокамерный сетап",
-          "4K workflow и резервирование сигнала",
+          "производство в 4K и резервирование сигнала",
           "Собственный парк техники и команда",
           "Подключаемся на любом этапе проекта",
         ],
@@ -35,13 +35,13 @@ export default function ServicesPage() {
         services: [
           {
             id: "live-event-production",
-            title: "1. Продакшн живых событий",
+            title: "1. Продакшн мероприятий",
             lead: "Полный цикл для конференций, форумов, церемоний, концертов и фестивалей.",
             includedTitle: "Что входит",
             included: [
               "режиссура и техническое продюсирование",
               "многокамерная съёмка под масштаб проекта",
-              "4K workflow",
+              "производство в 4K",
               "свет и звук",
               "графика и титры",
               "запись и архивирование материала",
@@ -265,7 +265,7 @@ export default function ServicesPage() {
           <h1 className="mt-3 max-w-4xl bg-gradient-to-r from-white via-cyan-100 to-violet-200 bg-clip-text text-4xl font-semibold tracking-tight text-transparent md:text-6xl">
             {content.title}
           </h1>
-          <p className="mt-5 max-w-4xl text-base leading-relaxed text-zinc-300 md:text-lg">{content.subtitle}</p>
+          <p className="reading-copy mt-5 max-w-4xl text-base md:text-lg">{content.subtitle}</p>
           <div className="mt-7">
             <p className="mb-3 text-xs uppercase tracking-[0.2em] text-zinc-500">{content.quickNav}</p>
             <div className="flex flex-wrap gap-2">
@@ -291,7 +291,7 @@ export default function ServicesPage() {
                 className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6 md:p-7"
               >
                 <h2 className="text-xl font-semibold tracking-tight text-zinc-100 md:text-2xl">{service.title}</h2>
-                <p className="mt-3 text-sm leading-relaxed text-zinc-300 md:text-base">{service.lead}</p>
+                <p className="reading-copy mt-3 text-sm md:text-base">{service.lead}</p>
                 <p className="mt-5 text-xs uppercase tracking-[0.16em] text-zinc-400">{service.includedTitle}</p>
                 <ul className="mt-3 grid gap-2 text-sm text-zinc-200 md:grid-cols-2">
                   {service.included.map((point) => (
@@ -301,7 +301,7 @@ export default function ServicesPage() {
                     </li>
                   ))}
                 </ul>
-                <p className="mt-5 rounded-2xl border border-white/10 bg-zinc-950/35 px-4 py-3 text-sm leading-relaxed text-zinc-300">
+                <p className="reading-copy-muted mt-5 rounded-2xl border border-white/10 bg-zinc-950/35 px-4 py-3 text-sm">
                   {service.note}
                 </p>
               </article>
@@ -344,7 +344,7 @@ export default function ServicesPage() {
             <h2 className="mt-3 text-2xl font-semibold tracking-tight text-white md:text-3xl">
               {isRu ? "Нужна команда под проект" : "Need a crew tailored to your project"}
             </h2>
-            <p className="mt-3 max-w-3xl text-sm leading-relaxed text-zinc-100/90 md:text-base">
+            <p className="reading-copy mt-3 max-w-3xl text-sm text-zinc-100/90 md:text-base">
               {isRu
                 ? "Если вам нужен полный состав или точечное усиление, посмотрите страницу Crew Solutions с ролями, форматами подключения и подходом к интеграции."
                 : "If you need a full team or targeted specialists, visit our Crew Solutions page with role coverage, integration formats, and delivery approach."}
