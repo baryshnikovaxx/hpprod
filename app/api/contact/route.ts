@@ -4,10 +4,7 @@ type ContactPayload = {
   source?: string;
   lang?: "ru" | "en";
   name?: string;
-  company?: string;
   contact?: string;
-  eventDate?: string;
-  budget?: string;
   message?: string;
   consent?: boolean | string;
   website?: string; // honeypot
@@ -28,11 +25,8 @@ function formatText(data: Required<Omit<ContactPayload, "website">>): string {
     `Source: ${data.source}`,
     `Lang: ${data.lang}`,
     `Name: ${data.name}`,
-    `Company: ${data.company || "-"}`,
     `Contact: ${data.contact}`,
     `Consent: ${data.consent ? "yes" : "no"}`,
-    `Event date: ${data.eventDate || "-"}`,
-    `Budget: ${data.budget || "-"}`,
     `Message:`,
     data.message,
   ].join("\n");
@@ -75,29 +69,44 @@ export async function POST(req: Request) {
     }
 
     const resolvedLang: "en" | "ru" = clean(body.lang) === "en" ? "en" : "ru";
+    const t = {
+      consentRequired:
+        resolvedLang === "ru"
+          ? "Нужно согласие с политикой конфиденциальности."
+          : "Please agree to the privacy policy.",
+      missingFields:
+        resolvedLang === "ru"
+          ? "Пожалуйста, заполните имя, контакт и короткое сообщение."
+          : "Please fill in name, contact and a brief message.",
+      success:
+        resolvedLang === "ru"
+          ? "Заявка отправлена. Мы ответим в течение 24 часов."
+          : "Sent. We’ll reply within 24 hours.",
+      failed:
+        resolvedLang === "ru"
+          ? "Не удалось отправить заявку. Попробуйте ещё раз."
+          : "Failed to submit request. Please try again.",
+    };
 
     const payload: Required<Omit<ContactPayload, "website">> = {
       source: clean(body.source) || "website",
       lang: resolvedLang,
       name: clean(body.name),
-      company: clean(body.company),
       contact: clean(body.contact),
       consent: resolveConsent(body.consent),
-      eventDate: clean(body.eventDate),
-      budget: clean(body.budget),
       message: clean(body.message),
     };
 
     if (!payload.consent) {
       return NextResponse.json(
-        { ok: false, error: "Consent is required." },
+        { ok: false, error: t.consentRequired },
         { status: 400 },
       );
     }
 
     if (payload.name.length < 2 || payload.contact.length < 3 || payload.message.length < 3) {
       return NextResponse.json(
-        { ok: false, error: "Please fill in name, contact and a brief message." },
+        { ok: false, error: t.missingFields },
         { status: 400 },
       );
     }
@@ -114,8 +123,9 @@ export async function POST(req: Request) {
       }),
     ]);
 
-    return NextResponse.json({ ok: true });
-  } catch {
+    return NextResponse.json({ ok: true, message: t.success });
+  } catch (error) {
+    console.error("[contact] submission error:", error);
     return NextResponse.json({ ok: false, error: "Failed to submit request." }, { status: 500 });
   }
 }

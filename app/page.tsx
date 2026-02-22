@@ -11,6 +11,7 @@ export default function Home() {
   const isRu = lang === "ru";
   const [showShowreelPopup, setShowShowreelPopup] = useState(false);
   const [formState, setFormState] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [formMessage, setFormMessage] = useState("");
   const ru = (text: string) => formatRuTypography(text);
   const featuredCases = isRu
     ? [
@@ -63,6 +64,7 @@ export default function Home() {
   const submitContactForm = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setFormState("loading");
+    setFormMessage("");
 
     const form = event.currentTarget;
     const formData = new FormData(form);
@@ -83,12 +85,26 @@ export default function Home() {
         body: JSON.stringify(payload),
       });
 
-      if (!res.ok) throw new Error("submit failed");
+      const data = (await res.json().catch(() => null)) as null | { ok?: boolean; error?: string; message?: string };
+      if (!res.ok) {
+        throw new Error(
+          data?.error ||
+            (isRu ? "Не удалось отправить заявку. Попробуйте ещё раз." : "Failed to submit request. Please try again."),
+        );
+      }
 
       form.reset();
       setFormState("success");
-    } catch {
+      setFormMessage(data?.message || (isRu ? "Заявка отправлена. Мы ответим в течение 24 часов." : "Sent. We’ll reply within 24 hours."));
+    } catch (e) {
       setFormState("error");
+      setFormMessage(
+        e instanceof Error
+          ? e.message
+          : isRu
+            ? "Не удалось отправить заявку. Попробуйте ещё раз."
+            : "Failed to submit request. Please try again.",
+      );
     }
   };
 
@@ -616,21 +632,24 @@ export default function Home() {
                   disabled={formState === "loading"}
                   className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-indigo-400 to-violet-400 px-5 py-3 text-sm font-semibold text-white transition-colors hover:from-indigo-300 hover:to-violet-300 disabled:cursor-not-allowed disabled:opacity-70"
                 >
-                  {isRu ? "Отправить заявку" : "Send request"}
+                  {formState === "loading" ? (isRu ? "Отправка..." : "Sending...") : isRu ? "Отправить заявку" : "Send request"}
                 </button>
-                <p className="text-xs text-zinc-400">
-                  {formState === "success"
-                    ? isRu
-                      ? "Спасибо! Мы получили заявку и скоро свяжемся с вами."
-                      : "Thank you! We received your request and will contact you soon."
-                    : formState === "error"
-                      ? isRu
-                        ? "Не удалось отправить форму. Попробуйте ещё раз."
-                        : "Failed to submit the form. Please try again."
-                      : isRu
-                        ? "Обычно отвечаем в течение 24 часов."
-                        : "We usually reply within 24 hours."}
-                </p>
+              </div>
+
+              <div aria-live="polite" className="mt-4">
+                {formState === "success" ? (
+                  <div className="rounded-2xl border border-indigo-300/25 bg-indigo-300/10 px-4 py-3 text-sm text-zinc-100">
+                    <div className="font-semibold">{isRu ? "Заявка отправлена" : "Request sent"}</div>
+                    <div className="mt-1 text-sm text-zinc-200">{formMessage}</div>
+                  </div>
+                ) : formState === "error" ? (
+                  <div className="rounded-2xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-zinc-100">
+                    <div className="font-semibold">{isRu ? "Не отправилось" : "Submission failed"}</div>
+                    <div className="mt-1 text-sm text-zinc-200">{formMessage}</div>
+                  </div>
+                ) : (
+                  <p className="text-xs text-zinc-400">{isRu ? "Обычно отвечаем в течение 24 часов." : "We usually reply within 24 hours."}</p>
+                )}
               </div>
             </form>
           </div>
