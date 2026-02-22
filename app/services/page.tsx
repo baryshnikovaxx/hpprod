@@ -24,7 +24,7 @@ export default function ServicesPage() {
         quickNav: "Быстрый переход",
         asideTitle: "Почему с нами спокойно",
         asidePoints: [
-          "До 16 камер в одном сетапе",
+          "Масштабируемый многокамерный сетап",
           "4K workflow и резервирование сигнала",
           "Собственный парк техники и команда",
           "Подключаемся на любом этапе проекта",
@@ -40,7 +40,7 @@ export default function ServicesPage() {
             includedTitle: "Что входит",
             included: [
               "режиссура и техническое продюсирование",
-              "многокамерная съёмка до 16 камер",
+              "многокамерная съёмка под масштаб проекта",
               "4K workflow",
               "свет и звук",
               "графика и титры",
@@ -98,7 +98,7 @@ export default function ServicesPage() {
             lead: "Собственный парк техники позволяет не зависеть от сторонних подрядчиков.",
             includedTitle: "Что входит",
             included: [
-              "до 16 камер",
+              "масштабируемое количество камер",
               "4K оборудование",
               "режиссёрские станции",
               "стриминг-серверы",
@@ -143,7 +143,7 @@ export default function ServicesPage() {
         quickNav: "Quick navigation",
         asideTitle: "Why teams trust us",
         asidePoints: [
-          "Up to 16 cameras in one setup",
+          "Scalable multi-camera setup",
           "4K workflow with signal redundancy",
           "In-house equipment and core crew",
           "Flexible involvement at any project stage",
@@ -159,7 +159,7 @@ export default function ServicesPage() {
             includedTitle: "Included",
             included: [
               "directing and technical producing",
-              "multi-camera production up to 16 cameras",
+              "multi-camera production scaled to project size",
               "4K workflow",
               "lighting and sound",
               "graphics and titles",
@@ -217,7 +217,7 @@ export default function ServicesPage() {
             lead: "Our own equipment park allows independent delivery without third-party dependencies.",
             includedTitle: "Included",
             included: [
-              "up to 16 cameras",
+              "scalable camera quantity",
               "4K equipment",
               "director workstations",
               "streaming servers",
