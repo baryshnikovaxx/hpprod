@@ -104,37 +104,37 @@ export default function EquipmentPage() {
     ? [
         {
           q: ru("Можно арендовать оборудование без команды?"),
-          a: ru("Да, большинство позиций доступно в dry hire."),
+          a: ru("Да. Большинство позиций доступно в формате dry hire — подскажем совместимость, поможем собрать комплект под ваш сетап и дадим понятный список по подключению."),
         },
         {
           q: ru("Вы можете собрать кастомный сетап?"),
-          a: ru("Да. Мы собираем комплекты оборудования под требования проекта."),
+          a: ru("Да, конечно. Собираем набор под задачу: формат площадки, количество камер, стриминг, запись, резервирование и рабочий тайминг команды."),
         },
         {
           q: ru("Вы поддерживаете международные проекты?"),
-          a: ru("Да. При необходимости берём на себя доставку, логистику и таможню."),
+          a: ru("Да. Для международных проектов помогаем с логистикой, документами и таможенным оформлением, чтобы техника приехала вовремя и в рабочем состоянии."),
         },
         {
           q: ru("Когда лучше бронировать?"),
-          a: ru("Рекомендуем бронировать заранее, но short-notice запросы тоже возможны при доступности."),
+          a: ru("Лучше бронировать заранее, особенно в высокий сезон. Но если запрос срочный — напишите: проверим доступность и предложим рабочий вариант."),
         },
       ]
     : [
         {
           q: "Can we rent equipment without a crew?",
-          a: "Yes, most units are available for dry hire.",
+          a: "Yes. Most units are available for dry hire. We can also help verify compatibility and assemble a practical package for your setup.",
         },
         {
           q: "Can you build a custom setup?",
-          a: "Yes. We assemble equipment packages based on project requirements.",
+          a: "Yes. We build equipment packages around your format, camera plan, streaming needs, recording scope, and backup requirements.",
         },
         {
           q: "Do you support international projects?",
-          a: "Yes. We manage delivery, logistics and customs when needed.",
+          a: "Yes. We support international projects and can help with delivery planning, logistics coordination, and customs paperwork when required.",
         },
         {
           q: "When should we book?",
-          a: "We recommend booking in advance, but short-notice requests may be possible depending on availability.",
+          a: "We recommend booking in advance, especially during peak periods. Short-notice requests may still be possible depending on availability.",
         },
       ];
 
@@ -154,24 +154,9 @@ export default function EquipmentPage() {
               : "We operate on our own equipment fleet and provide rental solutions for production teams and independent projects."}
           </p>
 
-          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              isRu ? "4K workflow — стандарт" : "4K workflow standard",
-              isRu ? "8K доступно для отдельных сетапов" : "8K available for selected setups",
-              isRu ? "Обширный парк камер" : "Extensive camera fleet",
-              isRu ? "Каталог оборудования доступен на отдельном сайте аренды" : "Equipment catalog available via separate rental website",
-            ].map((item) => (
-              <div key={item} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-zinc-200">
-                {item}
-              </div>
-            ))}
-          </div>
         </section>
 
         <section className="mx-auto w-full max-w-[1400px] px-4 pb-16 sm:px-6 lg:px-8">
-          <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">{isRu ? "Технический стек" : "Production capability"}</p>
-          <h2 className="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">{isRu ? "Ключевая техническая база" : "Core Technical Stack"}</h2>
-
           <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             {stackCategories.map((category) => (
               <article key={category.title} className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6">
@@ -191,32 +176,19 @@ export default function EquipmentPage() {
 
         <section className="mx-auto w-full max-w-[1400px] px-4 pb-16 sm:px-6 lg:px-8">
           <div className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6 md:p-8">
-            <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">{isRu ? "Аренда" : "Rental"}</p>
-            <h2 className="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">{isRu ? "Аренда оборудования" : "Equipment Rental"}</h2>
+            <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">{isRu ? "Рентал" : "Rental"}</p>
+            <h2 className="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">{isRu ? "Рентал оборудования" : "Equipment Rental"}</h2>
             <p className="reading-copy mt-4 text-sm md:text-base">
               {isRu
-                ? ru("Если вам нужно оборудование без полной продакшн-команды или вы хотите расширить свой сетап, можно арендовать технику напрямую в нашем собственном арендном направлении.")
+                ? ru("Если вам нужно оборудование без полной продакшн-команды или нужно усилить текущий сетап, можно взять технику напрямую через наш рентал.")
                 : "If you need equipment without a full production team or want to expand your setup, you can rent gear directly from our in-house rental division."}
-            </p>
-            <p className="mt-3 text-sm text-zinc-300">
-              {isRu
-                ? ru("Этот арендный парк принадлежит тем же фаундерам, что и Head Production — это не сторонний партнёр.")
-                : "This rental is owned by the same founders as Head Production. It is our in-house rental, not a third-party partner."}
             </p>
 
             <div className="mt-6 grid gap-3 md:grid-cols-2">
               {[
-                isRu ? ru("Большинство позиций доступно для сухой аренды (dry hire)") : "Most equipment is available for dry hire",
-                isRu
-                  ? ru("Некоторые позиции (например DJI Inspire) доступны только с сертифицированным оператором")
-                  : "Some units (e.g. DJI Inspire drone) are available only with certified operator",
-                isRu ? ru("Доступны кастомные комплекты оборудования") : "Custom equipment packages available",
-                isRu ? ru("Доступна доставка") : "Delivery available",
-                isRu ? ru("Доступен самовывоз") : "Pickup available",
-                isRu
-                  ? ru("Поддерживаем международные проекты (логистика и таможенное оформление при необходимости)")
-                  : "International projects supported (we handle logistics and customs if required)",
-                isRu ? ru("Рекомендуем раннее бронирование") : "Early booking recommended",
+                isRu ? ru("Соберём нужные комплекты оборудования под ваш проект") : "We assemble the right equipment packages for your project",
+                isRu ? ru("Доставим или подготовим к самовывозу") : "We deliver or prepare for pickup",
+                isRu ? ru("Продумaем логистику и поможем с таможенным оформлением") : "We plan logistics and support customs handling",
               ].map((item) => (
                 <div key={item} className="rounded-2xl border border-white/10 bg-zinc-950/35 px-4 py-3 text-sm text-zinc-200">
                   {item}
@@ -249,6 +221,15 @@ export default function EquipmentPage() {
 
         <section className="mx-auto w-full max-w-[1400px] px-4 pb-16 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">{isRu ? "Вопросы и ответы" : "FAQ"}</h2>
+          {isRu ? (
+            <p className="mt-3 text-sm text-zinc-300">
+              Самовывоз доступен в Тбилиси. Для других стран можем организовать выдачу через партнёров или доставку под ваш график.
+            </p>
+          ) : (
+            <p className="mt-3 text-sm text-zinc-300">
+              Pickup is available in Tbilisi. For other countries, we can arrange partner handoff points or scheduled delivery.
+            </p>
+          )}
           <div className="mt-6 space-y-3">
             {faq.map((item) => (
               <details key={item.q} className="group rounded-2xl border border-white/10 bg-white/5 p-4">
