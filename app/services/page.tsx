@@ -334,7 +334,6 @@ export default function ServicesPage() {
               </div>
             </div>
           </aside>
-        </div>
         </section>
       </div>
     </main>
