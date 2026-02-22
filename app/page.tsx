@@ -1,12 +1,14 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
 import SiteHeader from "./components/site-header";
 import { useLanguage } from "./components/language-provider";
 
 export default function Home() {
   const { lang } = useLanguage();
   const isRu = lang === "ru";
+  const [showShowreelPopup, setShowShowreelPopup] = useState(false);
 
   return (
     <main className="relative min-h-screen overflow-x-clip bg-zinc-950 text-zinc-50 selection:bg-cyan-300/30 selection:text-white">
@@ -31,7 +33,7 @@ export default function Home() {
         </div>
 
         <div className="mx-auto grid w-full max-w-[1400px] gap-10 px-4 py-16 sm:px-6 md:grid-cols-12 md:py-24 lg:px-8">
-          <div className="relative z-10 md:col-span-7">
+          <div className="relative z-10 md:col-span-12">
             <p className="mb-3 text-sm text-zinc-300">
               {isRu
                 ? "Тбилиси · Работаем по всему миру · Англоязычная команда"
@@ -57,12 +59,13 @@ export default function Home() {
               >
                 {isRu ? "Обсудить проект" : "Discuss your event"}
               </a>
-              <a
-                href="#showreel"
+              <button
+                type="button"
+                onClick={() => setShowShowreelPopup(true)}
                 className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition-colors hover:border-cyan-200/50 hover:bg-white/10"
               >
                 {isRu ? "Смотреть шоурил" : "Watch showreel"}
-              </a>
+              </button>
             </div>
 
             <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
@@ -83,30 +86,41 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Showreel */}
-          <div id="showreel" className="relative z-10 md:col-span-5">
-            <div className="aspect-video overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/10 to-white/5">
-              <div className="flex h-full w-full items-center justify-center">
-                <div className="text-center">
-                  <div className="mx-auto mb-3 h-12 w-12 rounded-2xl bg-white/10 ring-1 ring-white/15" />
-                  <p className="text-sm font-semibold">{isRu ? "Шоурил" : "Showreel"}</p>
-                  <p className="mt-1 text-xs text-zinc-300">
-                    {isRu
-                      ? "Ключевые проекты, бэкстейдж и рабочие моменты."
-                      : "Recent productions, behind-the-scenes, and key moments."}
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 p-4 text-sm text-zinc-300">
-              {isRu
-                ? "География: Дубай · Белград · Турция · Бали · Китай · США · Европа"
-                : "Recent locations: Dubai · Belgrade · Turkey · Bali · China · USA · Europe"}
-            </div>
-          </div>
         </div>
       </section>
+
+      {showShowreelPopup && (
+        <div
+          className="fixed inset-0 z-[90] flex items-center justify-center bg-black/70 px-4"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) setShowShowreelPopup(false);
+          }}
+        >
+          <div className="w-full max-w-lg rounded-3xl border border-white/10 bg-zinc-950 p-6">
+            <div className="flex items-start justify-between gap-4">
+              <p className="text-base font-semibold text-zinc-100 md:text-lg">
+                {isRu
+                  ? "Упс, шоурил готовится. Хотите посмотреть кейсы?"
+                  : "Oops, showreel is cooking. Wanna see some case studies?"}
+              </p>
+              <button
+                type="button"
+                onClick={() => setShowShowreelPopup(false)}
+                className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-white/15 text-zinc-300 transition-colors hover:text-white"
+                aria-label="Close popup"
+              >
+                ×
+              </button>
+            </div>
+            <a
+              href="/work"
+              className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-zinc-200 underline decoration-zinc-500/60 underline-offset-4 transition-colors hover:text-cyan-200 hover:decoration-cyan-200"
+            >
+              {isRu ? "Перейти к кейсам" : "Go to case studies"} <span>→</span>
+            </a>
+          </div>
+        </div>
+      )}
 
       {/* Selected Clients */}
       <section className="mx-auto w-full max-w-[1400px] px-4 pb-10 sm:px-6 md:pb-16 lg:px-8">
