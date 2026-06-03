@@ -26,6 +26,26 @@
   }
 }
 
+@keyframes logo-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-25%);
+  }
+}
+
+.animate-logo-marquee {
+  animation: logo-marquee 12s linear infinite;
+  will-change: transform;
+}
+
+@media (min-width: 768px) {
+  .animate-logo-marquee {
+    animation-duration: 36s;
+  }
+}
+
 @keyframes floaty {
   0%,
   100% {

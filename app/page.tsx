@@ -277,8 +277,8 @@ export default function Home() {
             </div>
 
           <div className="relative left-1/2 mt-7 w-screen -translate-x-1/2 overflow-hidden py-5">
-            <div className="flex w-max animate-marquee-slow items-center">
-              {[...clientLogos, ...clientLogos].map((logo, index) => (
+            <div className="flex w-max animate-logo-marquee items-center">
+              {[...clientLogos, ...clientLogos, ...clientLogos, ...clientLogos].map((logo, index) => (
                 <ClientLogoTile key={`${logo.name}-${index}`} logo={logo} />
               ))}
             </div>
