@@ -1,65 +1,127 @@
 "use client";
 
 import Image from "next/image";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import SiteHeader from "./components/site-header";
 import { useLanguage } from "./components/language-provider";
 import { formatRuTypography } from "./lib/typography";
 
+type ClientLogo = {
+  name: string;
+  src: string;
+};
+
+function ClientLogoTile({ logo }: { logo: ClientLogo }) {
+  return (
+    <Image
+      src={logo.src}
+      alt={`${logo.name} logo`}
+      width={240}
+      height={110}
+      className="mx-5 max-h-16 w-auto shrink-0 object-contain opacity-90 md:mx-7 md:max-h-20"
+    />
+  );
+}
+
+function resolveViewerLocation() {
+  const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const city = timeZone?.split("/").pop()?.replace(/_/g, " ");
+  return city ? city.toUpperCase() : "TBILISI";
+}
+
+function formatViewerTime() {
+  return new Intl.DateTimeFormat(undefined, {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false,
+  }).format(new Date());
+}
+
 export default function Home() {
   const { lang } = useLanguage();
   const isRu = lang === "ru";
-  const [showShowreelPopup, setShowShowreelPopup] = useState(false);
   const [formState, setFormState] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [formMessage, setFormMessage] = useState("");
+  const [viewerSignal, setViewerSignal] = useState(() => ({
+    location: resolveViewerLocation(),
+    time: formatViewerTime(),
+  }));
   const ru = (text: string) => formatRuTypography(text);
   const featuredCases = isRu
     ? [
         {
-          id: "zemfira-concert-series",
-          title: "ZEMFIRA — Concert Series",
-          meta: "Тбилиси · Ереван · Батуми · 2024–2025",
-          tags: ["Concert", "Multi-camera", "4K", "Aerial"],
-          desc: "Многокамерный концертный продакшн в трёх городах с единым качеством выдачи.",
+          id: "zemfira",
+          title: "ZEMFIRA",
+          meta: "Тбилиси · Батуми · Ереван",
+          tags: ["40 000 человек", "Sold out", "Годовое партнёрство"],
+          desc: "Full-cycle video production для серии концертов в трёх городах.",
+          visualLabel: "Concert Series",
         },
         {
-          id: "esports-tournaments-nda",
-          title: "Esports Tournaments (NDA)",
-          meta: "International · 2024–2025",
-          tags: ["Esports", "Live graphics", "Streaming", "Redundancy"],
-          desc: "Стабильные турнирные трансляции под высокой нагрузкой и жёстким матчевым таймингом.",
+          id: "eapt",
+          title: "EAPT",
+          meta: "World Poker Tour · 2 страны",
+          tags: ["Top 3 WPT", "3 года", "POVProduction"],
+          desc: "Долгосрочный покерный broadcast-проект в партнёрстве с POVProduction.",
+          imageSrc: "/clients/eapt.png",
         },
         {
-          id: "deep-purple-live-tbilisi",
-          title: "Deep Purple — Live in Tbilisi",
-          meta: "Tbilisi · 2025",
-          tags: ["Concert", "Broadcast", "Signal control", "On-site"],
-          desc: "Надёжная прямая видеовыдача для международного артиста без сбоев в эфирной цепочке.",
+          id: "adam-port",
+          title: "Adam Port",
+          meta: "6500 гостей · 12 часов",
+          tags: ["PTZ workflow", "Live broadcast", "Large audience"],
+          desc: "Длительная трансляция с PTZ-пайплайном для масштабного live-события.",
+          visualLabel: "PTZ Workflow",
         },
       ]
     : [
         {
-          id: "zemfira-concert-series",
-          title: "ZEMFIRA — Concert Series",
-          meta: "Tbilisi · Yerevan · Batumi · 2024–2025",
-          tags: ["Concert", "Multi-camera", "4K", "Aerial"],
-          desc: "Multi-camera concert production across three cities with consistent output quality.",
+          id: "zemfira",
+          title: "ZEMFIRA",
+          meta: "Tbilisi · Batumi · Yerevan",
+          tags: ["40,000 people", "Sold out", "Year-long partnership"],
+          desc: "Full-cycle video production for a three-city concert series.",
+          visualLabel: "Concert Series",
         },
         {
-          id: "esports-tournaments-nda",
-          title: "Esports Tournaments (NDA)",
-          meta: "International · 2024–2025",
-          tags: ["Esports", "Live graphics", "Streaming", "Redundancy"],
-          desc: "Stable tournament broadcasts under high pressure and strict match timing.",
+          id: "eapt",
+          title: "EAPT",
+          meta: "World Poker Tour · 2 countries",
+          tags: ["Top 3 WPT", "3 years", "POVProduction"],
+          desc: "Long-term poker broadcast project developed with POVProduction.",
+          imageSrc: "/clients/eapt.png",
         },
         {
-          id: "deep-purple-live-tbilisi",
-          title: "Deep Purple — Live in Tbilisi",
-          meta: "Tbilisi · 2025",
-          tags: ["Concert", "Broadcast", "Signal control", "On-site"],
-          desc: "Reliable live output for an international touring artist.",
+          id: "adam-port",
+          title: "Adam Port",
+          meta: "6500 guests · 12 hours",
+          tags: ["PTZ workflow", "Live broadcast", "Large audience"],
+          desc: "Long-form broadcast with a PTZ workflow for a large-scale live event.",
+          visualLabel: "PTZ Workflow",
         },
       ];
+  const clientLogos: ClientLogo[] = [
+    { name: "GGATE", src: "/clients/ggate.png" },
+    { name: "GAMA", src: "/clients/gama.png" },
+    { name: "Poshlaya Molly", src: "/clients/poshlaya-molly.png" },
+    { name: "EAPT", src: "/clients/eapt.png" },
+    { name: "SEPULTURA", src: "/clients/sepultura.png" },
+    { name: "1WIN", src: "/clients/1win.png" },
+  ];
+
+  useEffect(() => {
+    const updateSignal = () => {
+      setViewerSignal({
+        location: resolveViewerLocation(),
+        time: formatViewerTime(),
+      });
+    };
+
+    updateSignal();
+    const timer = window.setInterval(updateSignal, 1000);
+    return () => window.clearInterval(timer);
+  }, []);
 
   const submitContactForm = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -132,18 +194,18 @@ export default function Home() {
 
         <div className="mx-auto grid w-full max-w-[1400px] gap-10 px-4 py-16 sm:px-6 md:grid-cols-12 md:py-24 lg:px-8">
           <div className="relative z-10 md:col-span-12">
-            {!isRu ? <p className="mb-3 text-sm text-zinc-300">Based in Tbilisi · Working worldwide · English-speaking crew</p> : null}
+            {!isRu ? <p className="mb-3 text-sm text-zinc-300">Based in Tbilisi · Working worldwide</p> : null}
 
             <h1 className="title-hero">
               {isRu
-                ? ru("Продакшн мероприятий и трансляций без сбоев")
+                ? ru("Продакшн мероприятий и трансляций")
                 : "High-end live event & broadcast production that feels effortless."}
             </h1>
 
             <p className="reading-copy mt-5">
               {isRu
-                ? ru("Конференции, концерты, фестивали, киберспорт, спортивные события и любые другие ивенты. Полный цикл — от технического дизайна до идеального эфира. Масштабируемая многокамерная архитектура, производство в 4K и более 100 реализованных проектов.")
-                : "Conferences, concerts & festivals, esports and large-scale events. Full-cycle delivery from technical design to final output. Scalable multi-camera architecture, 4K workflow, and 100+ events delivered."}
+                ? ru("Конференции, концерты, фестивали, киберспорт, спортивные события и другие ивенты. Полный цикл — от технического планирования до идеального эфира в странах ЕС, СНГ и по всему миру.")
+                : "Conferences, concerts & festivals, esports and large-scale events. Full-cycle delivery from technical design to final output across the EU, CIS, and worldwide."}
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -153,26 +215,25 @@ export default function Home() {
               >
                 {isRu ? "Обсудить проект" : "Discuss your event"}
               </a>
-              <button
-                type="button"
-                onClick={() => setShowShowreelPopup(true)}
+              <a
+                href="/work"
                 className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition-colors hover:border-indigo-300/50 hover:bg-white/10"
               >
-                {isRu ? "Смотреть шоурил" : "Watch showreel"}
-              </button>
+                {isRu ? "Смотреть кейсы" : "View case studies"}
+              </a>
             </div>
 
-            <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
+            <div className="mt-10 grid gap-4 sm:grid-cols-3">
               {[
+                { k: "250+", v: isRu ? "реализованных проектов" : "projects delivered" },
                 { k: "8", v: isRu ? "лет опыта" : "years experience" },
-                { k: "100+", v: isRu ? "реализованных проектов" : "events delivered" },
-                { k: "∞", v: isRu ? "масштабируемый сетап камер" : "scalable camera setup" },
-                { k: "4K", v: isRu ? "производство" : "workflow" },
+                { k: "600+", v: isRu ? "часов прямого эфира за последние 3 года" : "hours live over the last 3 years" },
               ].map((item) => (
                 <div
                   key={item.v}
-                  className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4"
+                  className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 px-4 py-4"
                 >
+                  <div className="absolute right-3 top-3 h-1.5 w-1.5 rounded-full bg-red-400/80 shadow-[0_0_14px_rgba(248,113,113,0.8)]" />
                   <div className="text-2xl font-semibold">{item.k}</div>
                   <div className="mt-1 text-xs text-zinc-300">{item.v}</div>
                 </div>
@@ -184,89 +245,42 @@ export default function Home() {
         </div>
       </section>
 
-      {showShowreelPopup && (
-        <div
-          className="fixed inset-0 z-[90] flex items-center justify-center bg-black/70 px-4"
-          onMouseDown={(event) => {
-            if (event.target === event.currentTarget) setShowShowreelPopup(false);
-          }}
-        >
-          <div className="w-full max-w-lg rounded-3xl border border-white/10 bg-zinc-950 p-6">
-            <div className="flex items-start justify-between gap-4">
-              <p className="text-base font-semibold text-zinc-100 md:text-lg">
-                {isRu
-                  ? "Упс, шоурил готовится. Хотите посмотреть кейсы?"
-                  : "Oops, showreel is cooking. Wanna see some case studies?"}
-              </p>
-              <button
-                type="button"
-                onClick={() => setShowShowreelPopup(false)}
-                className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-white/15 text-zinc-300 transition-colors hover:text-white"
-                aria-label="Close popup"
-              >
-                ×
-              </button>
-            </div>
-            <a
-              href="/work"
-              className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-zinc-200 underline decoration-zinc-500/60 underline-offset-4 transition-colors hover:text-indigo-200 hover:decoration-indigo-200"
-            >
-              {isRu ? "Перейти к кейсам" : "Go to case studies"} <span>→</span>
-            </a>
-                </div>
-        </div>
-      )}
-
-      {/* Selected Clients */}
+      {/* Proof points */}
       <section className="mx-auto w-full max-w-[1400px] px-4 pb-10 sm:px-6 md:pb-16 lg:px-8">
-        <div className="flex items-end justify-between gap-6">
-          <div>
-            <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">{isRu ? "Клиенты" : "Selected clients"}</p>
-            <h2 className="title-section mt-3">
+        <div className="accent-border relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.035] py-7">
+          <div className="pointer-events-none absolute inset-0 opacity-[0.08]"
+               style={{
+                 backgroundImage:
+                   "linear-gradient(rgba(255,255,255,.55) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.4) 1px, transparent 1px)",
+                 backgroundSize: "42px 42px",
+               }}
+          />
+          <div className="relative flex flex-col gap-5 px-5 sm:px-7 md:flex-row md:items-end md:justify-between">
+            <h2 className="title-section max-w-3xl">
               {isRu
-                ? "Нам доверяют проекты, где ошибка недопустима"
-                : "Trusted for live shows where failure isn't an option."}
+                ? "Нам доверяют проекты и форматы, где нельзя ошибаться"
+                : "Trusted by projects and formats where mistakes are not an option."}
             </h2>
-              </div>
+            <div className="grid grid-cols-2 gap-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-zinc-300 sm:flex sm:flex-wrap sm:justify-end">
+              <span className="inline-flex items-center gap-2 rounded-full border border-red-300/30 bg-red-400/10 px-3 py-2 text-red-100">
+                <span className="h-2 w-2 animate-pulse rounded-full bg-red-400 shadow-[0_0_16px_rgba(248,113,113,0.95)]" />
+                REC
+              </span>
+              <span className="rounded-full border border-white/10 bg-white/5 px-3 py-2">LIVE</span>
+              <span className="rounded-full border border-white/10 bg-white/5 px-3 py-2">CAM 03</span>
+              <span className="rounded-full border border-emerald-300/25 bg-emerald-300/10 px-3 py-2 text-emerald-100">SIGNAL OK</span>
+              <span className="rounded-full border border-emerald-300/25 bg-emerald-300/10 px-3 py-2 text-emerald-100">SIGNAL LOCKED</span>
+              <span className="rounded-full border border-white/10 bg-white/5 px-3 py-2">{viewerSignal.location}</span>
+              <span className="rounded-full border border-white/10 bg-white/5 px-3 py-2">{viewerSignal.time}</span>
+              <span className="col-span-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 sm:col-span-1">LATENCY 0.2s</span>
+            </div>
             </div>
 
-        <div className="mt-8 overflow-hidden">
-          <div className="relative">
-            {/* subtle shine */}
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-indigo-200/10 to-transparent" />
-            <div className="flex w-[200%] animate-marquee-slow items-center gap-4 py-6">
-              {[
-                "NOVA STAGE",
-                "ATLAS SUMMIT",
-                "VERTEX ESPORTS",
-                "LUMEN FEST",
-                "ORBIT MEDIA",
-                "PULSE CONFERENCE",
-                "AURORA EVENTS",
-                "NEXUS LIVE",
-                "HORIZON FORUM",
-                "SPECTRA GROUP",
-              ]
-                .concat([
-                  "NOVA STAGE",
-                  "ATLAS SUMMIT",
-                  "VERTEX ESPORTS",
-                  "LUMEN FEST",
-                  "ORBIT MEDIA",
-                  "PULSE CONFERENCE",
-                  "AURORA EVENTS",
-                  "NEXUS LIVE",
-                  "HORIZON FORUM",
-                  "SPECTRA GROUP",
-                ])
-                .map((name, i) => (
-                  <div
-                    key={`${name}-${i}`}
-                    className="mx-1.5 flex h-14 items-center rounded-2xl bg-white/[0.07] px-7 text-sm font-semibold tracking-[0.18em] text-zinc-100 md:h-16 md:text-base"
-                  >
-                    {name}
-                  </div>
-                ))}
+          <div className="relative left-1/2 mt-7 w-screen -translate-x-1/2 overflow-hidden py-5">
+            <div className="flex w-max animate-marquee-slow items-center">
+              {[...clientLogos, ...clientLogos].map((logo, index) => (
+                <ClientLogoTile key={`${logo.name}-${index}`} logo={logo} />
+              ))}
             </div>
           </div>
         </div>
@@ -280,8 +294,8 @@ export default function Home() {
             <h2 className="title-section">{isRu ? "Что делаем" : "What we do"}</h2>
             <p className="reading-copy mt-3 text-sm">
               {isRu
-                ? ru("Head Production — команда видеопродакшена и трансляций. Берём на себя техническую часть, чтобы вы занимались содержанием события, а аудитория получала стабильную и качественную трансляцию бесшовно и спокойно.")
-                : "Head Production is a live event and broadcast production company. We handle the technical complexity so your team can focus on the event itself — and your audience gets a smooth, high-quality live experience."}
+                ? ru("Head Production — студия видеопродакшена и трансляций. Берём на себя техническую часть, чтобы организаторы занимались содержанием события, а аудитория получала стабильную и качественную трансляцию.")
+                : "Head Production is a live event and broadcast production company. We handle the technical complexity so organizers can focus on the event itself — and the audience gets a smooth, high-quality live experience."}
             </p>
           </div>
           <div className="md:col-span-7">
@@ -356,8 +370,8 @@ export default function Home() {
             {
               title: isRu ? "Запись и пост-материалы" : "Recording & post-deliverables",
               desc: isRu
-                ? "Чистые записи, хайлайты и структурированная передача материалов вашей команде и партнёрам."
-                : "Clean recordings, highlight assets, and organized delivery for your team and partners.",
+                ? "Чистые записи, хайлайты и структурированная передача материалов организаторам и партнёрам."
+                : "Clean recordings, highlight assets, and organized delivery for organizers and partners.",
             },
           ].map((s) => (
             <div key={s.title} className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6">
@@ -383,7 +397,6 @@ export default function Home() {
       <section className="mx-auto w-full max-w-[1400px] px-4 py-14 sm:px-6 md:py-20 lg:px-8">
         <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">{isRu ? "Кейсы" : "Selected projects"}</p>
             <h2 className="title-section mt-3">
               {isRu ? "Недавние проекты" : "A few recent productions."}
             </h2>
@@ -408,11 +421,18 @@ export default function Home() {
               className="accent-border relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6"
             >
               <div className="relative">
+                {"imageSrc" in p && p.imageSrc ? (
+                  <div className="mb-5 flex aspect-[16/8] items-center justify-center rounded-2xl border border-white/10 bg-zinc-950/40 px-6">
+                    <Image src={p.imageSrc} alt={`${p.title} visual`} width={220} height={96} className="max-h-16 w-auto object-contain" />
+                  </div>
+                ) : "visualLabel" in p && p.visualLabel ? (
+                  <div className="mb-5 flex aspect-[16/8] items-center justify-center rounded-2xl border border-white/10 bg-gradient-to-br from-indigo-400/15 via-zinc-900/70 to-violet-400/15 px-6 text-center">
+                    <p className="text-sm font-semibold uppercase tracking-[0.22em] text-indigo-100/90">{p.visualLabel}</p>
+                  </div>
+                ) : null}
+
                 <div className="flex items-center justify-between gap-3">
                   <p className="text-xs text-zinc-400">{p.meta}</p>
-                  <div className="rounded-full border border-white/10 bg-zinc-950/30 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-zinc-300">
-                    4K / scalable multicam
-                  </div>
                 </div>
 
                 <h3 className="title-card mt-4">{p.title}</h3>
@@ -441,61 +461,54 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Founders */}
+      {/* Core team */}
       <section id="founders" className="mx-auto w-full max-w-[1400px] px-4 py-14 sm:px-6 md:py-20 lg:px-8">
-        <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
-          <div>
-            <h2 className="title-section">{isRu ? "Основатели" : "Founders"}</h2>
-            <p className="mt-2 text-sm text-zinc-300">
-              {isRu
-                ? ru("Два практикующих специалиста: продакшн и инженерия, вместе на каждом проекте.")
-                : "Two hands-on operators: production + engineering, working side by side on every show."}
-            </p>
-          </div>
-        </div>
+        <h2 className="title-section text-center">{isRu ? "Команда" : "Core team"}</h2>
 
-        <div className="mt-8 grid gap-4 md:grid-cols-2">
+        <div className="mt-8 grid gap-4 md:grid-cols-3">
           {[
             {
-              name: "Peter Babitsky",
+              name: isRu ? "Петр Бабицкий" : "Peter Babitsky",
               photo: "/founders/peter-babitsky.jpg",
-              role: "Co-Founder · Executive Producer",
-              bio: isRu
-                ? ru("Планирование продакшна, шоу-флоу, координация площадки и коммуникация с клиентом. Международные проекты в разных форматах.")
-                : "Production planning, show flow, venue coordination, and client communication. International delivery across formats.",
+              role: isRu ? "Продюсер · Режиссёр трансляций" : "Producer · Broadcast Director",
+              since: isRu ? "В сфере с 2019 года" : "In the field since 2019",
             },
             {
-              name: "Nikita Priimak",
+              name: isRu ? "Никита Приймак" : "Nikita Priimak",
               photo: "/founders/nikita-priimak.jpg",
-              role: "Co-Founder · Technical Director",
-              bio: isRu
-                ? ru("Broadcast-инжиниринг: маршрутизация, камера-пайплайн, звук, стриминг, резервирование и техническое руководство на площадке.")
-                : "Broadcast engineering: routing, camera workflows, audio, streaming, redundancy, and on-site technical leadership.",
+              role: isRu ? "Продюсер · Технический директор" : "Producer · Technical Director",
+              since: isRu ? "В сфере с 2019 года" : "In the field since 2019",
             },
-          ].map((f, idx) => (
-            <div key={idx} className="accent-border rounded-3xl border border-white/15 bg-white/5 p-6 backdrop-blur-xl">
+            {
+              name: isRu ? "Максим Буторин" : "Maxim Butorin",
+              photo: "/founders/maxim-butorin.jpg",
+              role: isRu ? "Технический директор · Оператор-постановщик" : "Technical Director · DOP",
+              since: isRu ? "В сфере с 2016 года" : "In the field since 2016",
+            },
+          ].map((f) => (
+            <div key={f.name} className="accent-border rounded-3xl border border-white/15 bg-white/5 p-6 text-center backdrop-blur-xl">
               <div className="flex flex-col items-center text-center">
-                <div className="h-28 w-28 overflow-hidden rounded-full border border-white/20 bg-zinc-900/70 p-1 ring-1 ring-white/15">
-                  <Image
-                    src={f.photo}
-                    alt={f.name}
-                    width={112}
-                    height={112}
-                    className="h-full w-full rounded-full object-cover object-center"
-                  />
+                <div className="flex h-48 w-48 items-center justify-center overflow-hidden rounded-full border border-white/20 bg-zinc-900/70 p-1 ring-1 ring-white/15">
+                  {f.photo ? (
+                    <Image
+                      src={f.photo}
+                      alt={f.name}
+                      width={192}
+                      height={192}
+                      className="h-full w-full rounded-full object-cover object-center"
+                    />
+                  ) : (
+                    <span className="text-3xl font-semibold text-zinc-500">MB</span>
+                  )}
                 </div>
                 <div className="mt-4 text-base font-semibold">{f.name}</div>
                 <div className="mt-1 text-sm text-zinc-300">{f.role}</div>
-              </div>
-              <p className="mt-4 text-center text-sm leading-relaxed text-zinc-300">{f.bio}</p>
-              <div className="mt-4 flex justify-center">
-                <button
-                  type="button"
-                  className="group inline-flex items-center gap-2 text-sm font-medium text-zinc-300 underline decoration-zinc-500/60 underline-offset-4 transition-colors hover:bg-gradient-to-r hover:from-indigo-200 hover:to-violet-200 hover:bg-clip-text hover:text-transparent hover:decoration-indigo-200/80"
+                <a
+                  href="#contact"
+                  className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-zinc-300 underline decoration-zinc-500/60 underline-offset-4 transition-colors hover:text-indigo-200 hover:decoration-indigo-200/80"
                 >
-                  {isRu ? "Посмотреть CV" : "Download CV"}{" "}
-                  <span className="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
-                </button>
+                  {isRu ? "Посмотреть CV" : "View CV"} <span>→</span>
+                </a>
               </div>
             </div>
           ))}
@@ -568,9 +581,6 @@ export default function Home() {
                 </div>
                 <div>
                   <span className="text-zinc-400">Telegram:</span> @Hipete_HP
-                </div>
-                <div>
-                  {isRu ? "Тбилиси, Грузия" : "Tbilisi, Georgia"}
                 </div>
               </div>
             </div>
@@ -648,7 +658,7 @@ export default function Home() {
                     <div className="mt-1 text-sm text-zinc-200">{formMessage}</div>
                   </div>
                 ) : (
-                  <p className="text-xs text-zinc-400">{isRu ? "Обычно отвечаем в течение 24 часов." : "We usually reply within 24 hours."}</p>
+                  <p className="text-xs text-zinc-400">{isRu ? "Ответим быстро!" : "We’ll reply quickly!"}</p>
                 )}
               </div>
             </form>

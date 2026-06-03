@@ -15,6 +15,8 @@ type CaseStudy = {
   responsibilities: string[];
   result: string;
   coverSrc?: string;
+  mediaFit?: "cover" | "contain";
+  visualLabel?: string;
   note?: string;
 };
 
@@ -26,134 +28,236 @@ export default function WorkPage() {
   const cases: CaseStudy[] = isRu
     ? [
         {
-          id: "zemfira-concert-series",
-          title: "ZEMFIRA — Concert Series",
-          locationYear: "Тбилиси · Ереван · Батуми · 2024–2025",
-          format: "Крупномасштабные концертные шоу",
-          scale: "Три города, арены и площадки на многотысячную аудиторию.",
-          role: "Полноценный видеопродакшн-партнёр.",
-          responsibilities: [
-            "Многокамерное производство",
-            "4K-пайплайн съёмки и записи",
-            "Live-switching и маршрутизация сигнала",
-            "Координация видео и аэросъёмки на площадке",
-          ],
-          result:
-            "Стабильная многокамерная выдача и одинаковый визуальный стандарт во всех локациях.",
+          id: "eapt",
+          title: "EAPT",
+          locationYear: "World Poker Tour · 2 страны",
+          format: "Покерная broadcast-серия",
+          scale: "Top 3 World Poker Tour и 3 года партнёрства.",
+          role: "Broadcast production в коллаборации с POVProduction.",
+          responsibilities: ["Многодневная трансляция", "Игровая зона и столы", "Графика и эфирный workflow", "2 страны"],
+          result: "Долгосрочная broadcast-система для международной покерной серии.",
+          coverSrc: "/clients/eapt.png",
+          mediaFit: "contain",
+        },
+        {
+          id: "adam-port",
+          title: "Adam Port",
+          locationYear: "6500 гостей · 12 часов",
+          format: "Музыкальное live-событие",
+          scale: "6500 зрителей и 12-часовая трансляция.",
+          role: "Live broadcast production.",
+          responsibilities: ["PTZ workflow", "Длительная эфирная смена", "Мониторинг сигнала"],
+          result: "Стабильный 12-часовой live broadcast для большой площадки.",
+          visualLabel: "PTZ Workflow",
+        },
+        {
+          id: "godovaya-petr-osipov",
+          title: "GODOVAYA Petr Osipov",
+          locationYear: "2 года · 550 студентов",
+          format: "Образовательное событие",
+          scale: "550 студентов и 360 м² total blackout.",
+          role: "Видео и технический продакшн.",
+          responsibilities: ["Blackout-пространство", "Съёмка и вывод", "Техническая координация"],
+          result: "Предсказуемый production setup для повторяющегося образовательного формата.",
+          visualLabel: "Total Blackout",
+        },
+        {
+          id: "g-gate",
+          title: "G Gate",
+          locationYear: "7000 участников · 150 компаний",
+          format: "Форум и live-шоу",
+          scale: "7000 участников, 150 компаний, Ivan Dorn, Big Baby Tape, T-Fest.",
+          role: "Live event production.",
+          responsibilities: ["Сцена и эфирная логика", "Контент для большой аудитории", "Артистические блоки"],
+          result: "Единый production workflow для деловой и концертной частей события.",
+          coverSrc: "/clients/ggate.png",
+          mediaFit: "contain",
+        },
+        {
+          id: "gama",
+          title: "GAMA",
+          locationYear: "Батуми · Тбилиси",
+          format: "Full-cycle production",
+          scale: "Два города и полный цикл подготовки.",
+          role: "Продакшн под ключ.",
+          responsibilities: ["Планирование", "Съёмка", "Трансляция", "Финальная выдача"],
+          result: "Полный production pipeline для проектов в Батуми и Тбилиси.",
+          coverSrc: "/clients/gama.png",
+          mediaFit: "contain",
+        },
+        {
+          id: "ifc",
+          title: "IFC",
+          locationYear: "Tbilisi Sport Palace · Sold out",
+          format: "Крупная аренная трансляция",
+          scale: "Sold out Tbilisi Sport Palace.",
+          role: "Full-cycle production.",
+          responsibilities: ["Аренная инфраструктура", "Многокамерная выдача", "Эфирная координация"],
+          result: "Полный production setup для sold-out события во Дворце спорта.",
+          visualLabel: "Arena Production",
+        },
+        {
+          id: "sepultura",
+          title: "Sepultura",
+          locationYear: "1000 зрителей",
+          format: "Концертный live-продакшн",
+          scale: "1000 зрителей на площадке.",
+          role: "Видео production.",
+          responsibilities: ["Live coverage", "Сценическая динамика", "Запись материала"],
+          result: "Надёжное концертное покрытие для международного артиста.",
+          coverSrc: "/clients/sepultura.png",
+          mediaFit: "contain",
+        },
+        {
+          id: "poshlaya-molly",
+          title: "Poshlaya Molly",
+          locationYear: "3000 зрителей",
+          format: "Концертный live-продакшн",
+          scale: "3000 зрителей, real-time visuals и большой LED-экран.",
+          role: "Видеопродакшн и live-покрытие.",
+          responsibilities: ["Real-time visuals", "Massive LED wall", "Live video workflow"],
+          result: "Энергичное визуальное шоу с синхронной работой экрана и live-видео.",
+          coverSrc: "/clients/poshlaya-molly.png",
+          mediaFit: "contain",
+        },
+        {
+          id: "zemfira",
+          title: "ZEMFIRA",
+          locationYear: "Тбилиси · Батуми · Ереван",
+          format: "Серия sold-out концертов",
+          scale: "Все концерты sold out, до 40 000 человек за раз.",
+          role: "Full-cycle video production и годовое партнёрство.",
+          responsibilities: ["Многокамерное производство", "Видео и аэросъёмка", "Три города"],
+          result: "Единый визуальный стандарт и стабильная выдача на всей серии концертов.",
           coverSrc: "/cases/zemfira-cover.jpg",
         },
         {
-          id: "esports-tournaments-nda",
-          title: "Esports Tournaments (NDA)",
-          locationYear: "International · 2024–2025",
-          format: "Студийные и аренные турниры",
-          scale: "Высоконагруженные эфиры с игровыми фидами и параллельными выходами.",
-          role: "Broadcast production и техническая координация.",
-          responsibilities: [
-            "Многокамерный live-продакшн",
-            "Интеграция игровых фидов в эфирный контур",
-            "Live-графика и оверлеи",
-            "Мониторинг сигнала и системы резервирования",
-          ],
-          result:
-            "Стабильные турнирные трансляции под высокой нагрузкой и жёстким таймингом матчей.",
-          note: "Selected projects under NDA. Full details available upon request.",
+          id: "1winmediapoker",
+          title: "1winmediapoker",
+          locationYear: "Caster zone",
+          format: "Poker media broadcast",
+          scale: "Полная разработка broadcast-зоны для комментаторов.",
+          role: "Broadcast development.",
+          responsibilities: ["Caster zone", "Эфирный workflow", "Техническая логика"],
+          result: "Готовая broadcast-среда для покерного медиапроекта.",
           coverSrc: "/cases/esports-cover.jpg",
-        },
-        {
-          id: "deep-purple-live-tbilisi",
-          title: "Deep Purple — Live in Tbilisi",
-          locationYear: "Tbilisi · 2025",
-          format: "Международный концертный продакшн",
-          scale: "Крупная площадка с плотным шоу-флоу и высокими требованиями к надёжности.",
-          role: "Многокамерный live-продакшн.",
-          responsibilities: [
-            "Видеокоординация broadcast-уровня",
-            "Многокамерная режиссура",
-            "Маршрутизация и мониторинг сигнала",
-            "Технический супервизинг на площадке",
-          ],
-          result: "Надёжная прямая видеовыдача для международного артиста без сбоев в эфирной цепочке.",
-        },
-        {
-          id: "poshaya-molly-live-tbilisi",
-          title: "Poshaya Molly — Live in Tbilisi",
-          locationYear: "Tbilisi · 2025",
-          format: "Концертный live-продакшн",
-          scale: "Высокоэнергичное шоу с короткими окнами на подготовку.",
-          role: "Видеопродакшн и live-покрытие.",
-          responsibilities: [
-            "Двухкамерный live-продакшн",
-            "Маршрутизация сигнала",
-            "Запись и передача контента",
-          ],
-          result: "Стабильное двухкамерное покрытие и оперативная передача материалов после события.",
         },
       ]
     : [
         {
-          id: "zemfira-concert-series",
-          title: "ZEMFIRA — Concert Series",
-          locationYear: "Tbilisi · Yerevan · Batumi · 2024–2025",
-          format: "Large-scale live concerts",
-          scale: "Three cities, arena and large-venue delivery for multi-thousand audiences.",
-          role: "Full video production partner.",
-          responsibilities: [
-            "Multi-camera concert production",
-            "4K capture-to-record workflow",
-            "Live switching and signal routing",
-            "On-site video and aerial coordination",
-          ],
-          result:
-            "Stable multi-camera delivery with consistent visual quality across all locations.",
+          id: "eapt",
+          title: "EAPT",
+          locationYear: "World Poker Tour · 2 countries",
+          format: "Poker broadcast series",
+          scale: "Top 3 World Poker Tour and a 3-year partnership.",
+          role: "Broadcast production developed with POVProduction.",
+          responsibilities: ["Multi-day broadcast", "Table and game zone workflow", "Graphics and live pipeline", "2 countries"],
+          result: "A long-term broadcast system for an international poker series.",
+          coverSrc: "/clients/eapt.png",
+          mediaFit: "contain",
+        },
+        {
+          id: "adam-port",
+          title: "Adam Port",
+          locationYear: "6500 guests · 12 hours",
+          format: "Music live event",
+          scale: "6500 attendees and a 12-hour broadcast.",
+          role: "Live broadcast production.",
+          responsibilities: ["PTZ workflow", "Long-form live shift", "Signal monitoring"],
+          result: "A stable 12-hour live broadcast for a large-scale venue.",
+          visualLabel: "PTZ Workflow",
+        },
+        {
+          id: "godovaya-petr-osipov",
+          title: "GODOVAYA Petr Osipov",
+          locationYear: "2 years · 550 students",
+          format: "Educational event",
+          scale: "550 students and 360 sq. m of total blackout.",
+          role: "Video and technical production.",
+          responsibilities: ["Blackout environment", "Capture and output", "Technical coordination"],
+          result: "A predictable production setup for a recurring educational format.",
+          visualLabel: "Total Blackout",
+        },
+        {
+          id: "g-gate",
+          title: "G Gate",
+          locationYear: "7000 participants · 150 companies",
+          format: "Forum and live show",
+          scale: "7000 participants, 150 companies, Ivan Dorn, Big Baby Tape, T-Fest.",
+          role: "Live event production.",
+          responsibilities: ["Stage and broadcast logic", "Large-audience content", "Artist blocks"],
+          result: "One production workflow for the business and concert parts of the event.",
+          coverSrc: "/clients/ggate.png",
+          mediaFit: "contain",
+        },
+        {
+          id: "gama",
+          title: "GAMA",
+          locationYear: "Batumi · Tbilisi",
+          format: "Full-cycle production",
+          scale: "Two cities and full-cycle preparation.",
+          role: "End-to-end production.",
+          responsibilities: ["Planning", "Capture", "Broadcast", "Final delivery"],
+          result: "A complete production pipeline for projects in Batumi and Tbilisi.",
+          coverSrc: "/clients/gama.png",
+          mediaFit: "contain",
+        },
+        {
+          id: "ifc",
+          title: "IFC",
+          locationYear: "Tbilisi Sport Palace · Sold out",
+          format: "Large arena broadcast",
+          scale: "Sold-out Tbilisi Sport Palace.",
+          role: "Full-cycle production.",
+          responsibilities: ["Arena infrastructure", "Multi-camera output", "Live coordination"],
+          result: "A full production setup for a sold-out Sport Palace event.",
+          visualLabel: "Arena Production",
+        },
+        {
+          id: "sepultura",
+          title: "Sepultura",
+          locationYear: "1000 attendees",
+          format: "Concert live production",
+          scale: "1000 attendees on site.",
+          role: "Video production.",
+          responsibilities: ["Live coverage", "Stage dynamics", "Recording"],
+          result: "Reliable concert coverage for an international artist.",
+          coverSrc: "/clients/sepultura.png",
+          mediaFit: "contain",
+        },
+        {
+          id: "poshlaya-molly",
+          title: "Poshlaya Molly",
+          locationYear: "3000 attendees",
+          format: "Concert live production",
+          scale: "3000 attendees, real-time visuals, and a massive LED wall.",
+          role: "Video production and live coverage.",
+          responsibilities: ["Real-time visuals", "Massive LED wall", "Live video workflow"],
+          result: "A high-energy visual show with synchronized screen and live video output.",
+          coverSrc: "/clients/poshlaya-molly.png",
+          mediaFit: "contain",
+        },
+        {
+          id: "zemfira",
+          title: "ZEMFIRA",
+          locationYear: "Tbilisi · Batumi · Yerevan",
+          format: "Sold-out concert series",
+          scale: "All shows sold out, up to 40,000 people at once.",
+          role: "Full-cycle video production and year-long partnership.",
+          responsibilities: ["Multi-camera production", "Video and aerial coverage", "Three cities"],
+          result: "Consistent visual quality and stable output across the full concert series.",
           coverSrc: "/cases/zemfira-cover.jpg",
         },
         {
-          id: "esports-tournaments-nda",
-          title: "Esports Tournaments (NDA)",
-          locationYear: "International · 2024–2025",
-          format: "Studio and arena tournaments",
-          scale: "High-load live broadcast environments with game feeds and parallel output chains.",
-          role: "Broadcast production and technical coordination.",
-          responsibilities: [
-            "Multi-camera live production",
-            "Integration of game feeds into broadcast workflow",
-            "Live graphics and overlays",
-            "Signal monitoring and redundancy systems",
-          ],
-          result:
-            "Technically stable tournament broadcasts under high pressure and strict match timing.",
-          note: "Selected projects under NDA. Full details available upon request.",
+          id: "1winmediapoker",
+          title: "1winmediapoker",
+          locationYear: "Caster zone",
+          format: "Poker media broadcast",
+          scale: "Full broadcast development for the caster zone.",
+          role: "Broadcast development.",
+          responsibilities: ["Caster zone", "Live workflow", "Technical logic"],
+          result: "A ready-to-run broadcast environment for a poker media project.",
           coverSrc: "/cases/esports-cover.jpg",
-        },
-        {
-          id: "deep-purple-live-tbilisi",
-          title: "Deep Purple — Live in Tbilisi",
-          locationYear: "Tbilisi · 2025",
-          format: "International concert production",
-          scale: "Large venue setup with strict reliability requirements and tightly scheduled show flow.",
-          role: "Multi-camera live production.",
-          responsibilities: [
-            "Broadcast-grade video coordination",
-            "Multi-camera directing",
-            "Signal routing and monitoring",
-            "On-site technical supervision",
-          ],
-          result: "Reliable live production with clean and stable broadcast output for an international touring artist.",
-        },
-        {
-          id: "poshaya-molly-live-tbilisi",
-          title: "Poshaya Molly — Live in Tbilisi",
-          locationYear: "Tbilisi · 2025",
-          format: "Live concert production",
-          scale: "High-energy concert environment with short setup windows.",
-          role: "Video production and live coverage.",
-          responsibilities: [
-            "Two-camera live production",
-            "Signal routing",
-            "Recording and content delivery",
-          ],
-          result: "Efficient two-camera coverage with stable recording and fast post-event handover.",
         },
       ];
 
@@ -163,14 +267,13 @@ export default function WorkPage() {
 
       <div className="pt-16">
         <section className="mx-auto w-full max-w-[1400px] px-4 py-16 sm:px-6 md:py-20 lg:px-8">
-          <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">{isRu ? "Кейсы" : "Projects / Work"}</p>
           <h1 className="title-hero mt-3">
-            {isRu ? "Избранные проекты" : "Selected case studies"}
+            {isRu ? "Кейсы" : "Case studies"}
           </h1>
           <p className="reading-copy-muted mt-5 text-sm md:text-base">
             {isRu
-              ? ru("Ключевые кейсы с высоким уровнем ответственности, сложной координацией и предсказуемым техническим результатом.")
-              : "A focused selection of high-responsibility projects with complex coordination and reliable technical delivery."}
+              ? ru("О масштабе, формате, зоне ответственности и результате. По запросу раскрываем проекты подробнее.")
+              : "About scale, format, responsibility, and result. Full project details are available on request."}
           </p>
         </section>
 
@@ -180,7 +283,19 @@ export default function WorkPage() {
               <article id={item.id} key={item.id} className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6 md:p-8">
                 {item.coverSrc ? (
                   <div className="relative mb-6 aspect-[16/7] overflow-hidden rounded-2xl border border-white/15 bg-zinc-900/30">
-                    <Image src={item.coverSrc} alt={`${item.title} cover`} fill className="object-cover object-center" />
+                    <Image
+                      src={item.coverSrc}
+                      alt={`${item.title} cover`}
+                      fill
+                      className={item.mediaFit === "contain" ? "object-contain object-center p-8" : "object-cover object-center"}
+                    />
+                  </div>
+                ) : item.visualLabel ? (
+                  <div className="mb-6 flex aspect-[16/7] items-center justify-center rounded-2xl border border-white/15 bg-gradient-to-br from-indigo-400/15 via-zinc-900/70 to-violet-400/15 px-6 text-center">
+                    <div>
+                      <p className="text-xs uppercase tracking-[0.24em] text-indigo-200/80">{isRu ? "Кейс" : "Case"}</p>
+                      <p className="mt-2 text-base font-semibold text-zinc-100">{item.visualLabel}</p>
+                    </div>
                   </div>
                 ) : null}
 

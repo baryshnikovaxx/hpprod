@@ -22,13 +22,13 @@ export default function ServicesPage() {
         eyebrow: "Услуги",
         title: "Продакшн без лишней сложности",
         subtitle:
-          ru("Полный цикл, собственная техника и команда. Подключаемся на любом этапе — от идеи до финального эфира. Работаем с живыми площадками, студиями и гибридными форматами."),
+          ru("Полный цикл от идеи до финального эфира. Работаем с живыми площадками, студиями и гибридными форматами."),
         quickNav: "Быстрый переход",
         asideTitle: "Почему с нами спокойно",
         asidePoints: [
-          "Масштабируемый многокамерный сетап",
-          "производство в 4K и резервирование сигнала",
-          "Собственный парк техники и команда",
+          "Проверенная продакшн-команда",
+          "резервирование сигнала",
+          "Понятная техническая схема",
           "Подключаемся на любом этапе проекта",
         ],
         ctaTitle: "Обсудим задачу и предложим рабочую схему",
@@ -39,23 +39,22 @@ export default function ServicesPage() {
             id: "live-event-production",
             title: "1. Продакшн мероприятий",
             lead: ru("Полный цикл для конференций, форумов, церемоний, концертов и фестивалей."),
-            includedTitle: "Что входит",
+            includedTitle: "Что делаем",
             included: [
               "режиссура и техническое продюсирование",
               "многокамерная съёмка под масштаб проекта",
-              "производство в 4K",
               "свет и звук",
               "графика и титры",
               "запись и архивирование материала",
               "резервирование сигнала",
             ],
-            note: ru("Заранее проектируем архитектуру продакшна, тестируем оборудование и выстраиваем стабильную работу на площадке."),
+            note: ru("Заранее проектируем архитектуру продакшна, тестируем всю сигнальную цепочку и выстраиваем стабильную работу на площадке."),
           },
           {
             id: "broadcast-production",
             title: "2. Broadcast-продакшн",
             lead: ru("Мультикамерная режиссура и телевизионная логика эфира."),
-            includedTitle: "Что входит",
+            includedTitle: "Что делаем",
             included: [
               "коммутация и маршрутизация сигнала",
               "режиссёрский пульт",
@@ -70,7 +69,7 @@ export default function ServicesPage() {
             id: "esports-production",
             title: "3. Продакшн киберспорта",
             lead: ru("Турнирный формат с динамичной режиссурой."),
-            includedTitle: "Что входит",
+            includedTitle: "Что делаем",
             included: [
               "студийные и аренные трансляции",
               "оверлеи и игровая графика",
@@ -84,7 +83,7 @@ export default function ServicesPage() {
             id: "streaming-hybrid",
             title: "4. Стриминг и гибридные события",
             lead: ru("Онлайн и офлайн в едином опыте, без ощущения второго экрана."),
-            includedTitle: "Что входит",
+            includedTitle: "Что делаем",
             included: [
               "подключение удалённых спикеров",
               "перевод и синхрон",
@@ -97,43 +96,29 @@ export default function ServicesPage() {
           {
             id: "technical-setup",
             title: "5. Полный технический сетап",
-            lead: ru("Собственный парк техники позволяет не зависеть от сторонних подрядчиков."),
-            includedTitle: "Что входит",
+            lead: ru("Проектируем устойчивую техническую схему под площадку и формат."),
+            includedTitle: "Что делаем",
             included: [
               "масштабируемое количество камер",
-              "4K оборудование",
               "режиссёрские станции",
               "стриминг-серверы",
               "профессиональный свет и звук",
               "системы коммутации",
             ],
-            note: ru("Отвечаем за всю техническую инфраструктуру проекта от старта до финальной выдачи."),
+            note: ru("Отвечаем за техническую инфраструктуру проекта от старта до финальной выдачи."),
           },
           {
             id: "aerial-video-photo",
             title: "6. Aerial video & photo",
             lead: ru("Аэросъёмка для мероприятий, фестивалей и рекламных проектов."),
-            includedTitle: "Что входит",
+            includedTitle: "Что делаем",
             included: [
               "дроны с профессиональными камерами",
-              "съёмка в 4K",
+              "аэросъёмка",
               "согласование и подготовка",
               "безопасная работа на площадке",
             ],
             note: ru("Используем аэросъёмку как инструмент, который усиливает масштаб и визуальный язык события."),
-          },
-          {
-            id: "crew-engineering",
-            title: "7. Команда и инженерия",
-            lead: ru("Опытные операторы, режиссёры и инженеры."),
-            includedTitle: "Что входит",
-            included: [
-              "техническое руководство проекта",
-              "контроль качества сигнала",
-              "резервные решения",
-              "чёткое распределение ролей",
-            ],
-            note: ru("Работаем спокойно и системно даже в сложных условиях."),
           },
         ] as ServiceItem[],
       }
@@ -141,13 +126,13 @@ export default function ServicesPage() {
         eyebrow: "Services",
         title: "Production without unnecessary complexity",
         subtitle:
-          "Full cycle, in-house equipment, and an experienced crew. We can join at any stage, from concept to final output. We work with live venues, studios, and hybrid formats.",
+          "Full-cycle production from concept to final output. We work with live venues, studios, and hybrid formats.",
         quickNav: "Quick navigation",
-        asideTitle: "Why teams trust us",
+        asideTitle: "Why clients trust us",
         asidePoints: [
-          "Scalable multi-camera setup",
-          "4K workflow with signal redundancy",
-          "In-house equipment and core crew",
+          "Experienced production team",
+          "Signal redundancy",
+          "Clear technical planning",
           "Flexible involvement at any project stage",
         ],
         ctaTitle: "Tell us the brief and we will map the setup",
@@ -158,23 +143,22 @@ export default function ServicesPage() {
             id: "live-event-production",
             title: "1. Live event production",
             lead: "End-to-end delivery for conferences, forums, ceremonies, concerts, and festivals.",
-            includedTitle: "Included",
+            includedTitle: "What we do",
             included: [
               "directing and technical producing",
               "multi-camera production scaled to project size",
-              "4K workflow",
               "lighting and sound",
               "graphics and titles",
               "recording and archive delivery",
               "signal redundancy",
             ],
-            note: "We plan the production architecture in advance, test all equipment, and build a stable on-site workflow.",
+            note: "We plan the production architecture in advance, test the full signal path, and build a stable on-site workflow.",
           },
           {
             id: "broadcast-production",
             title: "2. Broadcast production",
             lead: "Multi-camera directing with full broadcast-grade control logic.",
-            includedTitle: "Included",
+            includedTitle: "What we do",
             included: [
               "signal switching and routing",
               "director control station",
@@ -189,7 +173,7 @@ export default function ServicesPage() {
             id: "esports-production",
             title: "3. Esports production",
             lead: "Tournament-ready format with fast and dynamic directing.",
-            includedTitle: "Included",
+            includedTitle: "What we do",
             included: [
               "studio and arena broadcasts",
               "overlays and game graphics",
@@ -203,7 +187,7 @@ export default function ServicesPage() {
             id: "streaming-hybrid",
             title: "4. Streaming and hybrid events",
             lead: "Online and offline combined into one consistent audience experience.",
-            includedTitle: "Included",
+            includedTitle: "What we do",
             included: [
               "remote speaker integration",
               "translation and simultaneous interpretation",
@@ -216,43 +200,29 @@ export default function ServicesPage() {
           {
             id: "technical-setup",
             title: "5. Full technical setup",
-            lead: "Our own equipment park allows independent delivery without third-party dependencies.",
-            includedTitle: "Included",
+            lead: "We design a stable technical setup around the venue, signal path, and output format.",
+            includedTitle: "What we do",
             included: [
-              "scalable camera quantity",
-              "4K equipment",
+              "camera setup planning",
               "director workstations",
               "streaming servers",
               "professional lighting and sound",
               "signal switching systems",
             ],
-            note: "We take full responsibility for the technical infrastructure from setup to final output.",
+            note: "We take responsibility for the technical infrastructure from setup to final output.",
           },
           {
             id: "aerial-video-photo",
             title: "6. Aerial video and photo",
             lead: "Aerial capture for events, festivals, and branded productions.",
-            includedTitle: "Included",
+            includedTitle: "What we do",
             included: [
               "drones with professional cameras",
-              "4K aerial capture",
+              "aerial capture",
               "permissions and pre-production planning",
               "safe on-site operation",
             ],
             note: "We use aerial footage to expand the visual scale and strengthen event storytelling.",
-          },
-          {
-            id: "crew-engineering",
-            title: "7. Crew and engineering",
-            lead: "Experienced camera operators, directors, and engineers.",
-            includedTitle: "Included",
-            included: [
-              "technical project leadership",
-              "signal quality supervision",
-              "backup strategies",
-              "clear role distribution",
-            ],
-            note: "Our team works calmly and systematically even under demanding conditions.",
           },
         ] as ServiceItem[],
       };
@@ -263,13 +233,11 @@ export default function ServicesPage() {
 
       <div className="pt-16">
         <section className="mx-auto w-full max-w-[1400px] px-4 py-16 sm:px-6 md:py-20 lg:px-8">
-          <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">{content.eyebrow}</p>
           <h1 className="title-hero mt-3 max-w-4xl">
             {content.title}
           </h1>
           <p className="reading-copy mt-5 max-w-4xl text-base md:text-lg">{content.subtitle}</p>
           <div className="mt-7">
-            <p className="mb-3 text-xs uppercase tracking-[0.2em] text-zinc-500">{content.quickNav}</p>
             <div className="flex flex-wrap gap-2">
               {content.services.map((service) => (
                 <a
@@ -338,27 +306,6 @@ export default function ServicesPage() {
           </aside>
         </section>
 
-        <section className="mx-auto w-full max-w-[1400px] px-4 pb-16 sm:px-6 lg:px-8">
-          <div className="rounded-3xl border border-indigo-300/30 bg-gradient-to-r from-indigo-400/15 to-violet-400/15 p-6 md:p-8">
-            <p className="text-xs uppercase tracking-[0.2em] text-indigo-100/90">
-              {isRu ? "Crew Solutions" : "Crew Solutions"}
-            </p>
-            <h2 className="title-section-inverse mt-3">
-              {isRu ? "Нужна команда под проект" : "Need a crew tailored to your project"}
-            </h2>
-            <p className="reading-copy mt-3 max-w-3xl text-sm text-zinc-100/90 md:text-base">
-              {isRu
-                ? ru("Если вам нужен полный состав или точечное усиление, посмотрите страницу Crew Solutions с ролями, форматами подключения и подходом к интеграции.")
-                : "If you need a full team or targeted specialists, visit our Crew Solutions page with role coverage, integration formats, and delivery approach."}
-            </p>
-            <a
-              href="/crew-solutions"
-              className="mt-5 inline-flex items-center gap-2 rounded-xl border border-white/25 bg-white/10 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-white/20"
-            >
-              {isRu ? "Открыть Crew Solutions" : "Open Crew Solutions"} <span>→</span>
-            </a>
-          </div>
-        </section>
       </div>
     </main>
   );

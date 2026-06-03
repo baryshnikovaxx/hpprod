@@ -98,7 +98,7 @@ export default function CrewSolutionsPage() {
               {
                 id: "aerial",
                 title: "Aerial video & photo",
-                lead: "Аэросъёмка в 4K для мероприятий, фестивалей и рекламных проектов.",
+                lead: "Аэросъёмка для мероприятий, фестивалей и рекламных проектов.",
                 roles: ["Drone operator"],
                 note: "Работаем безопасно и с учётом требований площадки, усиливая масштаб и визуальный язык проекта.",
               },
@@ -172,7 +172,7 @@ export default function CrewSolutionsPage() {
               {
                 id: "aerial",
                 title: "Aerial video and photo",
-                lead: "4K aerial capture for events, festivals, and branded productions.",
+                lead: "Aerial capture for events, festivals, and branded productions.",
                 roles: ["Drone operator"],
                 note: "We operate safely, aligned with venue requirements, and use aerial footage to enhance scale.",
               },
@@ -190,7 +190,6 @@ export default function CrewSolutionsPage() {
 
       <div className="pt-16">
         <section className="mx-auto w-full max-w-[1400px] px-4 py-16 sm:px-6 md:py-20 lg:px-8">
-          <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">{content.eyebrow}</p>
           <h1 className="title-hero mt-3 max-w-4xl">
             {content.title}
           </h1>
@@ -198,7 +197,6 @@ export default function CrewSolutionsPage() {
           <p className="mt-3 max-w-4xl text-sm leading-relaxed text-zinc-400 md:text-base">{content.intro}</p>
 
           <div className="mt-7">
-            <p className="mb-3 text-xs uppercase tracking-[0.2em] text-zinc-500">{content.quickNav}</p>
             <div className="flex flex-wrap gap-2">
               {content.roleGroups.map((group) => (
                 <a

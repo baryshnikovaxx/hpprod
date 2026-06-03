@@ -14,9 +14,6 @@ export default function PrivacyPage() {
       <SiteHeader />
       <div className="pt-16">
         <section className="mx-auto w-full max-w-[1000px] px-4 py-16 sm:px-6 md:py-20 lg:px-8">
-          <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">
-            {isRu ? "Документы" : "Documents"}
-          </p>
           <h1 className="title-hero mt-3">
             {isRu ? "Политика конфиденциальности" : "Privacy Policy"}
           </h1>

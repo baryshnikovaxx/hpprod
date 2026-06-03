@@ -22,7 +22,6 @@ export default function EquipmentPage() {
             "Sony FX3",
             "Sony FX6",
             "Дополнительные кинокамеры (доступны в каталоге)",
-            "4K как стандарт, 8K — для отдельных сетапов",
             "Большие возможности многокамерного продакшна",
           ],
         },
@@ -66,7 +65,6 @@ export default function EquipmentPage() {
             "Sony FX3",
             "Sony FX6",
             "Additional cinema cameras (available in catalog)",
-            "4K standard, 8K available",
             "Large multi-camera capabilities",
           ],
         },
@@ -144,7 +142,6 @@ export default function EquipmentPage() {
 
       <div className="pt-16">
         <section className="mx-auto w-full max-w-[1400px] px-4 py-16 sm:px-6 md:py-20 lg:px-8">
-          <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">{isRu ? "Оборудование" : "Equipment"}</p>
           <h1 className="title-hero mt-3">
             {isRu ? "Технические возможности" : "Technical Capabilities"}
           </h1>
@@ -176,7 +173,6 @@ export default function EquipmentPage() {
 
         <section className="mx-auto w-full max-w-[1400px] px-4 pb-16 sm:px-6 lg:px-8">
           <div className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6 md:p-8">
-            <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">{isRu ? "Рентал" : "Rental"}</p>
             <h2 className="title-section mt-2">{isRu ? "Рентал оборудования" : "Equipment Rental"}</h2>
             <p className="reading-copy mt-4 text-sm md:text-base">
               {isRu

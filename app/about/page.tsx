@@ -15,9 +15,8 @@ export default function AboutPage() {
   const [formMessage, setFormMessage] = useState("");
   const metrics = [
     { k: isRu ? "8 лет" : "8 years", v: isRu ? ru("в продакшне мероприятий") : "experience in live production" },
-    { k: "100+", v: isRu ? "реализованных проектов" : "events delivered" },
-    { k: "20+", v: isRu ? "стран в портфолио" : "countries worked in" },
-    { k: "EN", v: isRu ? "англоязычная команда" : "English-speaking crew" },
+    { k: "250+", v: isRu ? "реализованных проектов" : "projects delivered" },
+    { k: "12+", v: isRu ? "стран и регионов" : "countries and regions" },
   ];
 
   const submitContactForm = async (event: FormEvent<HTMLFormElement>) => {
@@ -28,7 +27,7 @@ export default function AboutPage() {
     const form = event.currentTarget;
     const formData = new FormData(form);
     const payload = {
-      source: "about",
+      source: "about-contact",
       lang,
       name: String(formData.get("name") ?? ""),
       contact: String(formData.get("contact") ?? ""),
@@ -74,19 +73,18 @@ export default function AboutPage() {
 
       <div className="pt-16">
       <section className="mx-auto w-full max-w-[1400px] px-4 py-16 sm:px-6 md:py-20 lg:px-8">
-        <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">{isRu ? "О нас" : "About"}</p>
         <h1 className="title-hero mt-3">
-          {isRu ? "История, команда, результат" : "History. Team. Execution."}
+          {isRu ? "Надёжный продакшн для live-событий" : "Reliable production for live events."}
         </h1>
         <p className="reading-copy mt-5 max-w-3xl">
           {isRu
-            ? ru("Мы команда энтузиастов, для которых кино и видео — не просто профессия, а дело жизни. Делаем надёжный продакшн для конференций, киберспорта, фестивалей и крупных трансляций. Уже реализовывали проекты в Европе, США, Грузии, Казахстане, ОАЭ, Сербии, Кыргызстане, Армении, России, Турции, Китае и Индонезии. Мы уверенно работаем со сложными задачами, постоянно учимся и развиваемся, потому что любим масштаб, темп и ответственность живого эфира.")
-            : "We are a team of enthusiasts for whom cinema and video are not just a profession, but a lifelong craft. We deliver reliable production for conferences, esports, festivals, and large-scale broadcasts. Our projects have run across Europe, the US, Georgia, Kazakhstan, UAE, Serbia, Kyrgyzstan, Armenia, Russia, Turkey, China, and Indonesia. We are comfortable with complex delivery, and we keep learning continuously because we genuinely enjoy the pace and responsibility of live production."}
+            ? ru("Делаем надёжный продакшн для конференций, киберспорта, фестивалей и крупных трансляций. Уже реализовывали проекты в Европе, США, Грузии, Казахстане, ОАЭ, Сербии, Кыргызстане, Армении, России, Турции, Китае и Индонезии. Мы уверенно работаем со сложными задачами, постоянно учимся и развиваемся, потому что любим масштаб, темп и ответственность прямого эфира.")
+            : "We build reliable production for conferences, esports, festivals, and large-scale broadcasts. We have delivered projects across Europe, the US, Georgia, Kazakhstan, the UAE, Serbia, Kyrgyzstan, Armenia, Russia, Turkey, China, and Indonesia. We are confident with complex briefs and keep learning because we love the scale, pace, and responsibility of live work."}
         </p>
       </section>
 
       <section className="mx-auto w-full max-w-[1400px] px-4 pb-8 sm:px-6 lg:px-8">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 sm:grid-cols-3">
           {metrics.map((m) => (
             <div key={m.v} className="accent-border interactive-gradient rounded-3xl border border-white/10 bg-white/5 p-5">
               <div className="text-2xl font-semibold text-white">{m.k}</div>
@@ -96,140 +94,135 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="mx-auto grid w-full max-w-[1400px] gap-6 px-4 py-10 sm:px-6 md:grid-cols-2 lg:px-8">
-        <div className="accent-border interactive-gradient rounded-3xl border border-white/10 bg-white/5 p-6">
-          <h2 className="title-section">{isRu ? "Контакты" : "Contact"}</h2>
-          <div className="mt-4 space-y-2 text-sm text-zinc-300">
-            <p><span className="text-zinc-400">Email:</span> hello@headprod.live</p>
-            <p><span className="text-zinc-400">Telegram:</span> @Hipete_HP</p>
-            <p>{isRu ? "Тбилиси, Грузия" : "Tbilisi, Georgia"}</p>
-          </div>
-        </div>
-
-        <div className="accent-border interactive-gradient rounded-3xl border border-white/10 bg-white/5 p-6">
-          <h2 className="title-section">{isRu ? "Форма заявки" : "Request Form"}</h2>
-          <form onSubmit={submitContactForm} className="mt-4 grid gap-3">
-            <input
-              name="name"
-              required
-              className="w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none focus:border-indigo-400/40"
-              placeholder={isRu ? "Имя" : "Name"}
-            />
-            <input
-              name="contact"
-              required
-              className="w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none focus:border-indigo-400/40"
-              placeholder={isRu ? "WhatsApp, Telegram или Email для связи" : "WhatsApp / Telegram / Email"}
-            />
-            <textarea
-              name="message"
-              required
-              className="min-h-[110px] w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none focus:border-indigo-400/40"
-              placeholder={isRu ? "Коротко опишите задачу" : "Brief about your event"}
-            />
-            <input name="website" tabIndex={-1} autoComplete="off" className="hidden" />
-            <label className="mt-1 flex items-start gap-2">
-              <input
-                name="consent"
-                type="checkbox"
-                required
-                className="mt-1 h-4 w-4 rounded border-white/30 bg-zinc-900 accent-indigo-400"
-              />
-              <span className="text-xs text-zinc-400">
-                {isRu ? "Я согласен(а) на обработку персональных данных в соответствии с " : "I agree to the processing of personal data according to the "}
-                <a href="/privacy" className="underline decoration-zinc-500/70 underline-offset-2 hover:text-zinc-200">
-                  {isRu ? "политикой конфиденциальности" : "privacy policy"}
-                </a>
-                .
-              </span>
-            </label>
-            <button
-              type="submit"
-              disabled={formState === "loading"}
-              className="interactive-gradient inline-flex justify-center rounded-xl bg-gradient-to-r from-indigo-400 to-violet-400 px-5 py-3 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-70"
-            >
-              {formState === "loading" ? (isRu ? "Отправка..." : "Sending...") : isRu ? "Отправить заявку" : "Send request"}
-            </button>
-
-            <div aria-live="polite" className="mt-2">
-              {formState === "success" ? (
-                <div className="rounded-2xl border border-indigo-300/25 bg-indigo-300/10 px-4 py-3 text-sm text-zinc-100">
-                  <div className="font-semibold">{isRu ? "Заявка отправлена" : "Request sent"}</div>
-                  <div className="mt-1 text-sm text-zinc-200">{formMessage}</div>
-                </div>
-              ) : formState === "error" ? (
-                <div className="rounded-2xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-zinc-100">
-                  <div className="font-semibold">{isRu ? "Не отправилось" : "Submission failed"}</div>
-                  <div className="mt-1 text-sm text-zinc-200">{formMessage}</div>
-                </div>
-              ) : (
-                <p className="text-xs text-zinc-400">{isRu ? "Обычно отвечаем в течение 24 часов." : "We usually reply within 24 hours."}</p>
-              )}
-            </div>
-          </form>
-        </div>
-      </section>
-
-      <section className="mx-auto w-full max-w-[1400px] px-4 pb-16 sm:px-6 lg:px-8">
-        <h2 className="title-section">{isRu ? "Основатели" : "Founders"}</h2>
-        <p className="mt-3 text-sm text-zinc-300">
-          {isRu
-            ? ru("Практикующие продюсер и технический директор в индустрии с 2017 года. Одинаково уверенно работают в концертных, broadcast и турнирных форматах.")
-            : "Hands-on producer and technical director in the industry since 2017, with strong delivery across concert, broadcast, and tournament formats."}
-        </p>
-        <div className="mt-6 grid gap-4 md:grid-cols-2">
+      <section className="mx-auto w-full max-w-[1400px] px-4 py-10 sm:px-6 lg:px-8">
+        <h2 className="title-section text-center">{isRu ? "Команда" : "Core team"}</h2>
+        <div className="mt-8 grid gap-4 md:grid-cols-3">
           {[
             {
-              name: "Peter Babitsky",
+              name: isRu ? "Петр Бабицкий" : "Peter Babitsky",
               photo: "/founders/peter-babitsky.jpg",
-              role: isRu ? "Co-Founder · Executive Producer" : "Co-Founder · Executive Producer",
-              bio: isRu
-                ? ru("В индустрии с 2017 года. Отвечает за продакшн-архитектуру, коммуникацию с клиентом и ритм проекта. Любит документальное кино, живую музыку и сложные площадки.")
-                : "In the industry since 2017. Leads production architecture, client communication, and project rhythm. Passionate about documentary cinema, live music, and complex venues.",
+              role: isRu ? "Продюсер · Режиссёр трансляций" : "Producer · Broadcast Director",
+              since: isRu ? "В сфере с 2019 года" : "In the field since 2019",
             },
             {
-              name: "Nikita Priimak",
+              name: isRu ? "Никита Приймак" : "Nikita Priimak",
               photo: "/founders/nikita-priimak.jpg",
-              role: isRu ? "Co-Founder · Technical Director" : "Co-Founder · Technical Director",
-              bio: isRu
-                ? ru("В индустрии с 2017 года. Ведёт инженерную часть: маршрутизацию, контроль сигнала, резервирование и стабильную работу в эфире. Не представляет жизнь без технологий, музыки и live-режиссуры.")
-                : "In the industry since 2017. Leads engineering delivery: routing, signal quality, redundancy, and live reliability. Cannot imagine life without technology, music, and live directing.",
+              role: isRu ? "Продюсер · Технический директор" : "Producer · Technical Director",
+              since: isRu ? "В сфере с 2019 года" : "In the field since 2019",
+            },
+            {
+              name: isRu ? "Максим Буторин" : "Maxim Butorin",
+              photo: "/founders/maxim-butorin.jpg",
+              role: isRu ? "Технический директор · Оператор-постановщик" : "Technical Director · DOP",
+              since: isRu ? "В сфере с 2016 года" : "In the field since 2016",
             },
           ].map((f) => (
-            <article key={f.name} className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6">
-              <div className="flex items-center gap-4">
-                <div className="h-20 w-20 overflow-hidden rounded-full border border-white/20 bg-zinc-900/70 p-1">
-                  <Image src={f.photo} alt={f.name} width={80} height={80} className="h-full w-full rounded-full object-cover" />
+            <article key={f.name} className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6 text-center">
+              <div className="flex flex-col items-center">
+                <div className="flex h-48 w-48 items-center justify-center overflow-hidden rounded-full border border-white/20 bg-zinc-900/70 p-1">
+                  <Image src={f.photo} alt={f.name} width={192} height={192} className="h-full w-full rounded-full object-cover" />
                 </div>
-                <div>
-                  <h3 className="title-card text-zinc-100">{f.name}</h3>
-                  <p className="text-sm text-zinc-300">{f.role}</p>
-                </div>
+                <h3 className="title-card mt-4 text-zinc-100">{f.name}</h3>
+                <p className="mt-1 text-sm text-zinc-300">{f.role}</p>
+                <p className="mt-1 text-xs uppercase tracking-[0.18em] text-zinc-500">{f.since}</p>
               </div>
-              <p className="mt-4 text-sm leading-relaxed text-zinc-300">{f.bio}</p>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-[1400px] px-4 pb-16 sm:px-6 lg:px-8">
-        <div className="rounded-3xl border border-indigo-300/30 bg-gradient-to-r from-indigo-400/15 to-violet-400/15 p-6 md:p-8">
-          <p className="text-xs uppercase tracking-[0.2em] text-indigo-100/90">
-            {isRu ? "Crew Solutions" : "Crew Solutions"}
-          </p>
-          <h2 className="title-section-inverse mt-3">
-            {isRu ? "Команда под любой формат" : "Crew support for any production format"}
-          </h2>
-          <p className="reading-copy mt-3 max-w-3xl text-sm text-zinc-100/90 md:text-base">
+      <section className="mx-auto grid w-full max-w-[1400px] gap-6 px-4 py-10 sm:px-6 lg:px-8">
+        <div className="accent-border interactive-gradient rounded-3xl border border-white/10 bg-white/5 p-6 md:p-8">
+          <div className="grid gap-8 md:grid-cols-12">
+            <div className="md:col-span-5">
+              <h2 className="title-section">{isRu ? "Контакты" : "Contact"}</h2>
+              <p className="mt-3 text-sm leading-relaxed text-zinc-300">
+                {isRu
+                  ? ru("Расскажите о проекте — формате, площадке, датах и задачах. Мы предложим следующий шаг.")
+                  : "Tell us about your project: format, venue, dates, and goals. We will suggest the next step."}
+              </p>
+              <div className="mt-5 space-y-2 text-sm text-zinc-300">
+                <p><span className="text-zinc-400">Email:</span> hello@headprod.live</p>
+                <p><span className="text-zinc-400">Telegram:</span> @Hipete_HP</p>
+              </div>
+            </div>
+
+            <form onSubmit={submitContactForm} className="grid gap-3 md:col-span-7">
+              <div className="grid gap-3 sm:grid-cols-2">
+                <input
+                  name="name"
+                  required
+                  className="w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none focus:border-indigo-400/40"
+                  placeholder={isRu ? "Имя" : "Name"}
+                />
+                <input
+                  name="contact"
+                  required
+                  className="w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none focus:border-indigo-400/40"
+                  placeholder={isRu ? "WhatsApp, Telegram или Email" : "WhatsApp / Telegram / Email"}
+                />
+              </div>
+              <textarea
+                name="message"
+                required
+                className="min-h-[130px] w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none focus:border-indigo-400/40"
+                placeholder={isRu ? "Формат, площадка, дата, количество гостей, что нужно снять или транслировать" : "Format, venue, date, audience size, what you need captured or streamed"}
+              />
+              <input name="website" tabIndex={-1} autoComplete="off" className="hidden" />
+              <label className="mt-1 flex items-start gap-2">
+                <input
+                  name="consent"
+                  type="checkbox"
+                  required
+                  className="mt-1 h-4 w-4 rounded border-white/30 bg-zinc-900 accent-indigo-400"
+                />
+                <span className="text-xs text-zinc-400">
+                  {isRu ? "Я согласен(а) на обработку персональных данных в соответствии с " : "I agree to the processing of personal data according to the "}
+                  <a href="/privacy" className="underline decoration-zinc-500/70 underline-offset-2 hover:text-zinc-200">
+                    {isRu ? "политикой конфиденциальности" : "privacy policy"}
+                  </a>
+                  .
+                </span>
+              </label>
+              <button
+                type="submit"
+                disabled={formState === "loading"}
+                className="interactive-gradient inline-flex justify-center rounded-xl bg-gradient-to-r from-indigo-400 to-violet-400 px-5 py-3 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-70"
+              >
+                {formState === "loading" ? (isRu ? "Отправка..." : "Sending...") : isRu ? "Отправить заявку" : "Send request"}
+              </button>
+
+              <div aria-live="polite" className="mt-1">
+                {formState === "success" ? (
+                  <div className="rounded-2xl border border-indigo-300/25 bg-indigo-300/10 px-4 py-3 text-sm text-zinc-100">
+                    <div className="font-semibold">{isRu ? "Заявка отправлена" : "Request sent"}</div>
+                    <div className="mt-1 text-sm text-zinc-200">{formMessage}</div>
+                  </div>
+                ) : formState === "error" ? (
+                  <div className="rounded-2xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-zinc-100">
+                    <div className="font-semibold">{isRu ? "Не отправилось" : "Submission failed"}</div>
+                    <div className="mt-1 text-sm text-zinc-200">{formMessage}</div>
+                  </div>
+                ) : (
+                  <p className="text-xs text-zinc-400">{isRu ? "Ответим быстро!" : "We’ll reply quickly!"}</p>
+                )}
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div className="accent-border interactive-gradient rounded-3xl border border-white/10 bg-white/5 p-6">
+          <h2 className="title-section">{isRu ? "Хотите работать с нами?" : "Want to work with us?"}</h2>
+          <p className="mt-3 text-sm leading-relaxed text-zinc-300">
             {isRu
-              ? ru("На отдельной странице Crew Solutions собрали роли, форматы подключения и наш подход к работе в составе международных продакшен-команд.")
-              : "Our Crew Solutions page outlines key roles, onboarding formats, and how we integrate into international production teams."}
+              ? ru("Мы всегда в поиске талантливых операторов, инженеров, режиссёров и специалистов по трансляциям — под отдельные проекты и на постоянное сотрудничество. Пишите на почту и приложите ссылки на работы.")
+              : "We are always looking for talented operators, engineers, directors, producers, and live production specialists for project-based work and long-term collaboration. Email us with a short intro, your experience, city, and links to your work."}
           </p>
           <a
-            href="/crew-solutions"
-            className="mt-5 inline-flex items-center gap-2 rounded-xl border border-white/25 bg-white/10 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-white/20"
+            href="mailto:hello@headprod.live?subject=Work%20with%20Head%20Production"
+            className="mt-5 inline-flex rounded-xl bg-gradient-to-r from-indigo-400 to-violet-400 px-5 py-3 text-sm font-semibold text-white transition-colors hover:from-indigo-300 hover:to-violet-300"
           >
-            {isRu ? "Перейти к Crew Solutions" : "Go to Crew Solutions"} <span>→</span>
+            hello@headprod.live
           </a>
         </div>
       </section>

@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     template: "%s | Head Production",
   },
   description:
-    "Head Production delivers live event and broadcast production: multi-camera workflows, streaming, technical setup, and in-house rental solutions.",
+    "Head Production delivers live event and broadcast production: multi-camera workflows, streaming, technical setup, and reliable live delivery.",
   applicationName: "Head Production",
   keywords: [
     "live production",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     "multi-camera",
     "streaming",
     "event production",
-    "equipment rental",
+    "technical production",
     "Head Production",
   ],
   icons: {
@@ -49,14 +49,14 @@ export const metadata: Metadata = {
     siteName: "Head Production",
     title: "Head Production",
     description:
-      "Live event and broadcast production with engineering-first workflows, reliable delivery, and in-house rental support.",
+      "Live event and broadcast production with engineering-first workflows and reliable delivery.",
     images: [{ url: "/logo.png", width: 1200, height: 1200, alt: "Head Production" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Head Production",
     description:
-      "Live event and broadcast production with engineering-first workflows and in-house rental support.",
+      "Live event and broadcast production with engineering-first workflows and reliable delivery.",
     images: ["/logo.png"],
   },
   robots: {
