@@ -18,7 +18,7 @@ const golos = Golos_Text({
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || process.env.VERCEL_PROJECT_PRODUCTION_URL || "https://head-production.vercel.app";
 
-export const metadata: Metadata = {
+const englishMetadata: Metadata = {
   metadataBase: new URL(siteUrl.startsWith("http") ? siteUrl : `https://${siteUrl}`),
   title: {
     default: "Head Production",
@@ -67,6 +67,22 @@ export const metadata: Metadata = {
     canonical: "/",
   },
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  const cookieStore = await cookies();
+  if (cookieStore.get("site-lang")?.value === "en") return englishMetadata;
+
+  const title = "Head Production — съёмка мероприятий и прямые трансляции";
+  const description = "Снимаем концерты, конференции и турниры. Готовим технику, ведём прямые трансляции и передаём записи. Работаем по всему миру.";
+  return {
+    ...englishMetadata,
+    title: { default: title, template: "%s | Head Production" },
+    description,
+    keywords: ["съёмка мероприятий", "прямые трансляции", "многокамерная съёмка", "эфирная графика", "Head Production"],
+    openGraph: { ...englishMetadata.openGraph, title, description },
+    twitter: { ...englishMetadata.twitter, title, description },
+  };
+}
 
 export const viewport: Viewport = {
   themeColor: "#0a0a0a",

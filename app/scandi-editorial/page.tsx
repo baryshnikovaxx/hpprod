@@ -10,35 +10,33 @@ export default function ScandiEditorialPage() {
 
   const copy = isRu
     ? {
-        eyebrow: "Scandi Beta ))",
-        title: "Креативный продакшн в скандинавской эстетике ))",
-        subtitle:
-          ru("Временная альтернативная версия сайта: светлая палитра, много воздуха, акцент на типографику и чистую структуру."),
+        eyebrow: "Скандинавская версия · Черновик",
+        title: "Выразительные трансляции. Сдержанная эстетика.",
+        subtitle: ru("Экспериментальная версия сайта: светлая палитра, свободное пространство и выразительная типографика."),
         ctaPrimary: "Обсудить проект",
-        ctaSecondary: "Вернуться к основной версии",
+        ctaSecondary: "Основная версия",
         manifestoTitle: "Подход",
-        manifesto:
-          ru("Мы создаём визуально смелые, но инженерно точные трансляции для мероприятий, брендов и культурных форматов."),
+        manifesto: ru("Создаём выразительные трансляции с надёжной технической основой — для мероприятий, брендов и культурных проектов."),
         blocks: [
           {
-            t: "Direction ))",
-            d: ru("Арт-направление, режиссура и визуальная драматургия в единой концепции."),
+            t: "Режиссура",
+            d: ru("Объединяем художественное решение, режиссуру и развитие действия в кадре.")
           },
           {
-            t: "Craft ))",
-            d: ru("Свет, камера, графика и звук как цельная система, а не набор подрядчиков."),
+            t: "Мастерство",
+            d: ru("Согласовываем работу света, камер, графики и звука.")
           },
           {
-            t: "Pace ))",
-            d: ru("Темп эфира, ритм монтажа и динамика кадра под аудиторию и платформу."),
-          },
+            t: "Ритм",
+            d: ru("Подбираем темп эфира и монтажа с учётом аудитории и площадки показа.")
+          }
         ],
-        projectsTitle: "Избранные форматы",
+        projectsTitle: "Форматы",
         projects: [
-          "Brand launch / immersive stage",
-          "Hybrid summit / editorial broadcast",
-          "Festival live narrative / multi-camera language",
-        ],
+          "Презентации брендов и сценические проекты с эффектом погружения",
+          "Саммиты с очным и удалённым участием, продуманной программой эфира",
+          "Фестивальные трансляции и многокамерная съёмка"
+        ]
       }
     : {
         eyebrow: "Scandi Beta ))",
@@ -101,7 +99,7 @@ export default function ScandiEditorialPage() {
             href="/scandi"
             className="inline-flex items-center gap-2 rounded-full border border-[#111]/20 bg-white/65 px-6 py-3 text-xs font-bold uppercase tracking-[0.14em] text-[#111]"
           >
-            {isRu ? "Более спокойная версия" : "Calmer version"} <span>✶</span>
+            {isRu ? "Сдержанная версия" : "Calmer version"} <span>✶</span>
           </a>
         </div>
       </section>
@@ -131,7 +129,7 @@ export default function ScandiEditorialPage() {
           </p>
 
           <div className="mt-7 inline-flex items-center gap-2 rounded-full bg-[#ff3bbf] px-4 py-2 text-[11px] font-bold uppercase tracking-[0.16em] text-white">
-            {isRu ? "Неожиданный акцент ))" : "Unexpected accent ))"} <span>✷</span>
+            {isRu ? "Яркий акцент" : "Unexpected accent ))"} <span>✷</span>
           </div>
 
           <div className="mt-10 border-t border-[#111]/15 pt-6">

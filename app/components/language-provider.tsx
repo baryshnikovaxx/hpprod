@@ -1,6 +1,8 @@
 "use client";
 
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useRef, useState } from "react";
+
+import { useRouter } from "next/navigation";
 
 type Language = "en" | "ru";
 
@@ -19,6 +21,8 @@ export function LanguageProvider({
   initialLang?: Language;
 }) {
   const [lang, setLang] = useState<Language>(initialLang);
+  const router = useRouter();
+  const previousLang = useRef(initialLang);
 
   useEffect(() => {
     const saved = window.localStorage.getItem("site-lang");
@@ -31,7 +35,11 @@ export function LanguageProvider({
     window.localStorage.setItem("site-lang", lang);
     document.cookie = `site-lang=${lang}; path=/; max-age=31536000; SameSite=Lax`;
     document.documentElement.lang = lang;
-  }, [lang]);
+    if (previousLang.current !== lang) {
+      previousLang.current = lang;
+      router.refresh();
+    }
+  }, [lang, router]);
 
   const value = useMemo(() => ({ lang, setLang }), [lang]);
 

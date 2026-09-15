@@ -21,10 +21,10 @@ export default function SiteHeader() {
 
   const labels: Record<NavKey | "startProject" | "menu", string> = {
     services: isRu ? "Услуги" : "Services",
-    work: isRu ? "Кейсы" : "Work",
+    work: isRu ? "Проекты" : "Work",
     about: isRu ? "О нас" : "About",
     contact: isRu ? "Контакты" : "Contact",
-    startProject: isRu ? "Старт проекта" : "Start a Project",
+    startProject: isRu ? "Обсудить проект" : "Start a Project",
     menu: isRu ? "Меню" : "Menu",
   };
 
@@ -54,7 +54,7 @@ export default function SiteHeader() {
           <a href="/" className="flex items-center gap-3">
             <Image
               src="/logo.png"
-              alt="Head Production logo"
+              alt={isRu ? "Логотип Head Production" : "Head Production logo"}
               width={36}
               height={36}
               className="h-9 w-9 rounded-xl object-cover ring-1 ring-white/15"
@@ -110,7 +110,7 @@ export default function SiteHeader() {
 
             <button
               type="button"
-              aria-label="Open menu"
+              aria-label={isRu ? "Открыть меню" : "Open menu"}
               className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/15 bg-white/5 text-zinc-200 transition-colors duration-200 hover:border-white/30 hover:text-indigo-200 md:hidden"
               onClick={() => setMobileMenuOpen(true)}
             >
@@ -134,7 +134,7 @@ export default function SiteHeader() {
               <p className="text-sm font-semibold text-zinc-100">{labels.menu}</p>
               <button
                 type="button"
-                aria-label="Close menu"
+                aria-label={isRu ? "Закрыть меню" : "Close menu"}
                 className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/15 bg-white/5 text-zinc-300 transition-colors duration-200 hover:text-indigo-200"
                 onClick={closeMobileMenu}
               >

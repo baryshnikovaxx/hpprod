@@ -60,6 +60,7 @@ async function sendToWebhook(payload: object) {
 }
 
 export async function POST(req: Request) {
+  let responseLang: "ru" | "en" = "en";
   try {
     const body = (await req.json()) as ContactPayload;
 
@@ -69,18 +70,19 @@ export async function POST(req: Request) {
     }
 
     const resolvedLang: "en" | "ru" = clean(body.lang) === "en" ? "en" : "ru";
+    responseLang = resolvedLang;
     const t = {
       consentRequired:
         resolvedLang === "ru"
-          ? "Нужно согласие с политикой конфиденциальности."
+          ? "Для отправки заявки нужно согласие на обработку персональных данных."
           : "Please agree to the privacy policy.",
       missingFields:
         resolvedLang === "ru"
-          ? "Пожалуйста, заполните имя, контакт и короткое сообщение."
+          ? "Укажите имя, контакт для связи и кратко опишите задачу."
           : "Please fill in name, contact and a brief message.",
       success:
         resolvedLang === "ru"
-          ? "Заявка отправлена. Мы ответим в течение 24 часов."
+          ? "Спасибо! Ответим в течение 24 часов."
           : "Sent. We’ll reply within 24 hours.",
       failed:
         resolvedLang === "ru"
@@ -126,6 +128,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true, message: t.success });
   } catch (error) {
     console.error("[contact] submission error:", error);
-    return NextResponse.json({ ok: false, error: "Failed to submit request." }, { status: 500 });
+    return NextResponse.json({ ok: false, error: responseLang === "ru" ? "Не удалось отправить заявку. Попробуйте ещё раз." : "Failed to submit request." }, { status: 500 });
   }
 }

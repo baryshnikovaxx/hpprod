@@ -19,12 +19,12 @@ export default function PrivacyPage() {
           </h1>
           <p className="reading-copy mt-6 text-sm md:text-base">
             {isRu
-              ? ru("Мы используем контактные данные только для связи по вашему запросу, подготовки предложения и коммуникации по проекту. Мы не передаём персональные данные третьим лицам без необходимости, кроме случаев, связанных с доставкой, логистикой и юридическими требованиями.")
+              ? ru("Используем ваши контактные данные, чтобы ответить на запрос, подготовить предложение и обсудить проект. Передаём персональные данные третьим лицам только при необходимости: для доставки, логистики или выполнения требований закона.")
               : "We use contact details only to respond to your request, prepare project proposals, and communicate during delivery. We do not share personal data with third parties unless required for logistics, delivery operations, or legal obligations."}
           </p>
           <p className="mt-4 text-sm text-zinc-300">
             {isRu
-              ? ru("Если вы хотите уточнить, обновить или удалить ваши данные, напишите нам на hello@headprod.live.")
+              ? ru("Чтобы уточнить, обновить или удалить свои данные, напишите на hello@headprod.live.")
               : "If you would like to review, update, or delete your data, contact us at hello@headprod.live."}
           </p>
         </section>

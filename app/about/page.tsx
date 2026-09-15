@@ -14,8 +14,8 @@ export default function AboutPage() {
   const [formState, setFormState] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [formMessage, setFormMessage] = useState("");
   const metrics = [
-    { k: isRu ? "8 лет" : "8 years", v: isRu ? ru("в продакшне мероприятий") : "experience in live production" },
-    { k: "250+", v: isRu ? "реализованных проектов" : "projects delivered" },
+    { k: isRu ? "8 лет" : "8 years", v: isRu ? ru("снимаем и транслируем события") : "experience in live production" },
+    { k: "250+", v: isRu ? "завершённых проектов" : "projects delivered" },
     { k: "12+", v: isRu ? "стран и регионов" : "countries and regions" },
   ];
 
@@ -53,7 +53,7 @@ export default function AboutPage() {
 
       form.reset();
       setFormState("success");
-      setFormMessage(data?.message || (isRu ? "Заявка отправлена. Мы ответим в течение 24 часов." : "Sent. We’ll reply within 24 hours."));
+      setFormMessage(data?.message || (isRu ? "Спасибо! Ответим в течение 24 часов." : "Sent. We’ll reply within 24 hours."));
     } catch (e) {
       setFormState("error");
       setFormMessage(
@@ -74,11 +74,11 @@ export default function AboutPage() {
       <div className="pt-16">
       <section className="mx-auto w-full max-w-[1400px] px-4 py-16 sm:px-6 md:py-20 lg:px-8">
         <h1 className="title-hero mt-3">
-          {isRu ? "Надёжный продакшн для live-событий" : "Reliable production for live events."}
+          {isRu ? "Команда, на которую можно положиться в эфире" : "Reliable production for live events."}
         </h1>
         <p className="reading-copy mt-5 max-w-3xl">
           {isRu
-            ? ru("Делаем надёжный продакшн для конференций, киберспорта, фестивалей и крупных трансляций. Уже реализовывали проекты в Европе, США, Грузии, Казахстане, ОАЭ, Сербии, Кыргызстане, Армении, России, Турции, Китае и Индонезии. Мы уверенно работаем со сложными задачами, постоянно учимся и развиваемся, потому что любим масштаб, темп и ответственность прямого эфира.")
+            ? ru("Снимаем конференции, фестивали и киберспортивные турниры, ведём крупные трансляции. Работаем со сложными задачами и любим прямой эфир — за масштаб, темп и ответственность. Наш опыт — проекты в Европе, США, Грузии, Казахстане, ОАЭ, Сербии, Кыргызстане, Армении, России, Турции, Китае и Индонезии.")
             : "We build reliable production for conferences, esports, festivals, and large-scale broadcasts. We have delivered projects across Europe, the US, Georgia, Kazakhstan, the UAE, Serbia, Kyrgyzstan, Armenia, Russia, Turkey, China, and Indonesia. We are confident with complex briefs and keep learning because we love the scale, pace, and responsibility of live work."}
         </p>
       </section>
@@ -102,19 +102,19 @@ export default function AboutPage() {
               name: isRu ? "Петр Бабицкий" : "Peter Babitsky",
               photo: "/founders/peter-babitsky.jpg",
               role: isRu ? "Продюсер · Режиссёр трансляций" : "Producer · Broadcast Director",
-              since: isRu ? "В сфере с 2019 года" : "In the field since 2019",
+              since: isRu ? "Работает с 2019 года" : "In the field since 2019",
             },
             {
               name: isRu ? "Никита Приймак" : "Nikita Priimak",
               photo: "/founders/nikita-priimak.jpg",
               role: isRu ? "Продюсер · Технический директор" : "Producer · Technical Director",
-              since: isRu ? "В сфере с 2019 года" : "In the field since 2019",
+              since: isRu ? "Работает с 2019 года" : "In the field since 2019",
             },
             {
               name: isRu ? "Максим Буторин" : "Maxim Butorin",
               photo: "/founders/maxim-butorin.jpg",
               role: isRu ? "Технический директор · Оператор-постановщик" : "Technical Director · DOP",
-              since: isRu ? "В сфере с 2016 года" : "In the field since 2016",
+              since: isRu ? "Работает с 2016 года" : "In the field since 2016",
             },
           ].map((f) => (
             <article key={f.name} className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6 text-center">
@@ -138,11 +138,11 @@ export default function AboutPage() {
               <h2 className="title-section">{isRu ? "Контакты" : "Contact"}</h2>
               <p className="mt-3 text-sm leading-relaxed text-zinc-300">
                 {isRu
-                  ? ru("Расскажите о проекте — формате, площадке, датах и задачах. Мы предложим следующий шаг.")
+                  ? ru("Расскажите о формате, площадке, датах и задачах проекта. Предложим, с чего начать.")
                   : "Tell us about your project: format, venue, dates, and goals. We will suggest the next step."}
               </p>
               <div className="mt-5 space-y-2 text-sm text-zinc-300">
-                <p><span className="text-zinc-400">Email:</span> hello@headprod.live</p>
+                <p><span className="text-zinc-400">{isRu ? "Почта:" : "Email:"}</span> hello@headprod.live</p>
                 <p><span className="text-zinc-400">Telegram:</span> @Hipete_HP</p>
               </div>
             </div>
@@ -153,20 +153,20 @@ export default function AboutPage() {
                   name="name"
                   required
                   className="w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none focus:border-indigo-400/40"
-                  placeholder={isRu ? "Имя" : "Name"}
+                  placeholder={isRu ? "Ваше имя" : "Name"}
                 />
                 <input
                   name="contact"
                   required
                   className="w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none focus:border-indigo-400/40"
-                  placeholder={isRu ? "WhatsApp, Telegram или Email" : "WhatsApp / Telegram / Email"}
+                  placeholder={isRu ? "Почта, телефон или имя в Telegram" : "WhatsApp / Telegram / Email"}
                 />
               </div>
               <textarea
                 name="message"
                 required
                 className="min-h-[130px] w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none focus:border-indigo-400/40"
-                placeholder={isRu ? "Формат, площадка, дата, количество гостей, что нужно снять или транслировать" : "Format, venue, date, audience size, what you need captured or streamed"}
+                placeholder={isRu ? "Формат, площадка, дата и что нужно снять или показать в эфире" : "Format, venue, date, audience size, what you need captured or streamed"}
               />
               <input name="website" tabIndex={-1} autoComplete="off" className="hidden" />
               <label className="mt-1 flex items-start gap-2">
@@ -177,7 +177,7 @@ export default function AboutPage() {
                   className="mt-1 h-4 w-4 rounded border-white/30 bg-zinc-900 accent-indigo-400"
                 />
                 <span className="text-xs text-zinc-400">
-                  {isRu ? "Я согласен(а) на обработку персональных данных в соответствии с " : "I agree to the processing of personal data according to the "}
+                  {isRu ? "Даю согласие на обработку персональных данных в соответствии с " : "I agree to the processing of personal data according to the "}
                   <a href="/privacy" className="underline decoration-zinc-500/70 underline-offset-2 hover:text-zinc-200">
                     {isRu ? "политикой конфиденциальности" : "privacy policy"}
                   </a>
@@ -189,7 +189,7 @@ export default function AboutPage() {
                 disabled={formState === "loading"}
                 className="interactive-gradient inline-flex justify-center rounded-xl bg-gradient-to-r from-indigo-400 to-violet-400 px-5 py-3 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-70"
               >
-                {formState === "loading" ? (isRu ? "Отправка..." : "Sending...") : isRu ? "Отправить заявку" : "Send request"}
+                {formState === "loading" ? (isRu ? "Отправляем…" : "Sending...") : isRu ? "Отправить заявку" : "Send request"}
               </button>
 
               <div aria-live="polite" className="mt-1">
@@ -200,11 +200,11 @@ export default function AboutPage() {
                   </div>
                 ) : formState === "error" ? (
                   <div className="rounded-2xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-zinc-100">
-                    <div className="font-semibold">{isRu ? "Не отправилось" : "Submission failed"}</div>
+                    <div className="font-semibold">{isRu ? "Не удалось отправить заявку" : "Submission failed"}</div>
                     <div className="mt-1 text-sm text-zinc-200">{formMessage}</div>
                   </div>
                 ) : (
-                  <p className="text-xs text-zinc-400">{isRu ? "Ответим быстро!" : "We’ll reply quickly!"}</p>
+                  <p className="text-xs text-zinc-400">{isRu ? "Ответим в течение 24 часов." : "We’ll reply quickly!"}</p>
                 )}
               </div>
             </form>
@@ -215,7 +215,7 @@ export default function AboutPage() {
           <h2 className="title-section">{isRu ? "Хотите работать с нами?" : "Want to work with us?"}</h2>
           <p className="mt-3 text-sm leading-relaxed text-zinc-300">
             {isRu
-              ? ru("Мы всегда в поиске талантливых операторов, инженеров, режиссёров и специалистов по трансляциям — под отдельные проекты и на постоянное сотрудничество. Пишите на почту и приложите ссылки на работы.")
+              ? ru("Приглашаем операторов, инженеров, режиссёров и специалистов по трансляциям — на отдельные проекты и для постоянного сотрудничества. Напишите нам и приложите ссылки на свои работы.")
               : "We are always looking for talented operators, engineers, directors, producers, and live production specialists for project-based work and long-term collaboration. Email us with a short intro, your experience, city, and links to your work."}
           </p>
           <a

@@ -21,42 +21,67 @@ export default function EquipmentPage() {
           items: [
             "Sony FX3",
             "Sony FX6",
-            "Дополнительные кинокамеры (доступны в каталоге)",
-            "Большие возможности многокамерного продакшна",
-          ],
+            "Другие кинокамеры — в каталоге",
+            "Комплекты для многокамерной съёмки"
+          ]
         },
         {
           title: "Оптика",
-          items: ["Профессиональные комплекты объективов", "Наборы prime и zoom", "Поддержка full-frame"],
+          items: [
+            "Профессиональные комплекты объективов",
+            "Объективы с постоянным и переменным фокусным расстоянием",
+            "Оптика для полнокадровых камер"
+          ]
         },
         {
-          title: "Аэросистемы",
+          title: "Аэросъёмка",
           items: [
             "Дроны DJI",
-            "DJI Inspire (только с сертифицированным оператором)",
-            "Аэросъёмка видео и фото",
-          ],
+            "DJI Inspire — только с сертифицированным оператором",
+            "Фото и видео с воздуха"
+          ]
         },
         {
-          title: "Broadcast и коммутация",
-          items: ["Системы ATEM", "Видеомикшеры", "Системы маршрутизации сигнала", "Рекордеры", "Системы мониторинга"],
+          title: "Управление эфиром",
+          items: [
+            "Системы ATEM",
+            "Видеомикшеры",
+            "Системы распределения сигнала",
+            "Рекордеры",
+            "Системы контроля изображения и звука"
+          ]
         },
         {
-          title: "Стриминг и кодирование",
-          items: ["Профессиональные энкодеры", "Системы мультиплатформенного стриминга", "Резервные схемы"],
+          title: "Передача и кодирование видео",
+          items: [
+            "Профессиональные устройства кодирования видео",
+            "Системы трансляции на несколько платформ",
+            "Резервные решения"
+          ]
         },
         {
-          title: "Аудио",
-          items: ["Профессиональные микрофоны", "Микшеры", "Системы аудиомаршрутизации"],
+          title: "Звук",
+          items: [
+            "Профессиональные микрофоны",
+            "Микшерные пульты",
+            "Системы распределения звукового сигнала"
+          ]
         },
         {
           title: "Свет",
-          items: ["Профессиональные световые комплекты", "Световые решения для площадок"],
+          items: [
+            "Профессиональные комплекты света",
+            "Освещение для мероприятий"
+          ]
         },
         {
-          title: "Связь и инфраструктура",
-          items: ["Интерком-системы", "Распределение питания", "Оборудование контроля сигнала на площадке"],
-        },
+          title: "Связь и питание",
+          items: [
+            "Системы служебной связи",
+            "Распределение электропитания",
+            "Оборудование для контроля сигнала на площадке"
+          ]
+        }
       ]
     : [
         {
@@ -101,21 +126,21 @@ export default function EquipmentPage() {
   const faq = isRu
     ? [
         {
-          q: ru("Можно арендовать оборудование без команды?"),
-          a: ru("Да. Большинство позиций доступно в формате dry hire — подскажем совместимость, поможем собрать комплект под ваш сетап и дадим понятный список по подключению."),
+          q: "Можно арендовать технику без команды?",
+          a: "Да, большую часть оборудования. Проверим совместимость, подберём комплект и объясним, как его подключить."
         },
         {
-          q: ru("Вы можете собрать кастомный сетап?"),
-          a: ru("Да, конечно. Собираем набор под задачу: формат площадки, количество камер, стриминг, запись, резервирование и рабочий тайминг команды."),
+          q: "Подберёте комплект под наш проект?",
+          a: "Да. Учтём площадку, число камер, задачи трансляции и записи, резервирование и расписание команды."
         },
         {
-          q: ru("Вы поддерживаете международные проекты?"),
-          a: ru("Да. Для международных проектов помогаем с логистикой, документами и таможенным оформлением, чтобы техника приехала вовремя и в рабочем состоянии."),
+          q: "Поможете с проектом в другой стране?",
+          a: "Да. Поможем с перевозкой, документами и таможенным оформлением."
         },
         {
-          q: ru("Когда лучше бронировать?"),
-          a: ru("Лучше бронировать заранее, особенно в высокий сезон. Но если запрос срочный — напишите: проверим доступность и предложим рабочий вариант."),
-        },
+          q: "Когда лучше бронировать?",
+          a: "Заранее, особенно в высокий сезон. Если техника нужна срочно, напишите — проверим наличие и предложим варианты."
+        }
       ]
     : [
         {
@@ -143,11 +168,11 @@ export default function EquipmentPage() {
       <div className="pt-16">
         <section className="mx-auto w-full max-w-[1400px] px-4 py-16 sm:px-6 md:py-20 lg:px-8">
           <h1 className="title-hero mt-3">
-            {isRu ? "Технические возможности" : "Technical Capabilities"}
+            {isRu ? "Оборудование для съёмки и эфира" : "Technical Capabilities"}
           </h1>
           <p className="reading-copy mt-5 text-sm md:text-base">
             {isRu
-              ? ru("Мы работаем на собственном парке техники и предоставляем решения по аренде для продакшн-команд и независимых проектов.")
+              ? ru("Работаем на собственной технике и сдаём её в аренду съёмочным командам и независимым проектам.")
               : "We operate on our own equipment fleet and provide rental solutions for production teams and independent projects."}
           </p>
 
@@ -173,18 +198,18 @@ export default function EquipmentPage() {
 
         <section className="mx-auto w-full max-w-[1400px] px-4 pb-16 sm:px-6 lg:px-8">
           <div className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6 md:p-8">
-            <h2 className="title-section mt-2">{isRu ? "Рентал оборудования" : "Equipment Rental"}</h2>
+            <h2 className="title-section mt-2">{isRu ? "Аренда оборудования" : "Equipment Rental"}</h2>
             <p className="reading-copy mt-4 text-sm md:text-base">
               {isRu
-                ? ru("Если вам нужно оборудование без полной продакшн-команды или нужно усилить текущий сетап, можно взять технику напрямую через наш рентал.")
+                ? ru("Технику можно арендовать отдельно от команды — для самостоятельной съёмки или в дополнение к вашему комплекту.")
                 : "If you need equipment without a full production team or want to expand your setup, you can rent gear directly from our in-house rental division."}
             </p>
 
             <div className="mt-6 grid gap-3 md:grid-cols-2">
               {[
-                isRu ? ru("Соберём нужные комплекты оборудования под ваш проект") : "We assemble the right equipment packages for your project",
+                isRu ? ru("Подберём оборудование под проект") : "We assemble the right equipment packages for your project",
                 isRu ? ru("Доставим или подготовим к самовывозу") : "We deliver or prepare for pickup",
-                isRu ? ru("Продумaем логистику и поможем с таможенным оформлением") : "We plan logistics and support customs handling",
+                isRu ? ru("Спланируем перевозку и поможем с таможенным оформлением") : "We plan logistics and support customs handling",
               ].map((item) => (
                 <div key={item} className="rounded-2xl border border-white/10 bg-zinc-950/35 px-4 py-3 text-sm text-zinc-200">
                   {item}
@@ -197,11 +222,11 @@ export default function EquipmentPage() {
         <section className="mx-auto w-full max-w-[1400px] px-4 pb-16 sm:px-6 lg:px-8">
           <div className="rounded-3xl border border-indigo-300/30 bg-gradient-to-r from-indigo-400/15 to-violet-400/15 p-6 md:p-8">
             <h2 className="title-section-inverse">
-              {isRu ? "Открыть полный каталог аренды" : "Explore Full Rental Catalog"}
+              {isRu ? "Каталог оборудования" : "Explore Full Rental Catalog"}
             </h2>
             <p className="reading-copy-muted mt-3 text-sm md:text-base">
               {isRu
-                ? ru("Полный список оборудования и актуальную доступность смотрите в выделенном каталоге аренды.")
+                ? ru("Полный список техники и её доступность — в каталоге аренды.")
                 : "View the complete equipment list and availability in our dedicated rental catalog."}
             </p>
             <a
@@ -210,7 +235,7 @@ export default function EquipmentPage() {
               rel="noreferrer"
               className="mt-5 inline-flex h-11 items-center justify-center rounded-xl bg-white px-5 text-sm font-semibold text-zinc-950 transition-colors hover:bg-zinc-200"
             >
-              {isRu ? "Открыть каталог аренды" : "Open Rental Catalog"}
+              {isRu ? "Открыть каталог" : "Open Rental Catalog"}
             </a>
           </div>
         </section>
@@ -219,7 +244,7 @@ export default function EquipmentPage() {
           <h2 className="title-section">{isRu ? "Вопросы и ответы" : "FAQ"}</h2>
           {isRu ? (
             <p className="mt-3 text-sm text-zinc-300">
-              Самовывоз доступен в Тбилиси. Для других стран можем организовать выдачу через партнёров или доставку под ваш график.
+              Самовывоз — в Тбилиси. В других странах организуем доставку или передачу техники через партнёров с учётом вашего графика.
             </p>
           ) : (
             <p className="mt-3 text-sm text-zinc-300">
