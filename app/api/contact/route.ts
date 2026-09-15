@@ -82,7 +82,7 @@ export async function POST(req: Request) {
           : "Please fill in name, contact and a brief message.",
       success:
         resolvedLang === "ru"
-          ? "Спасибо! Ответим в течение 24 часов."
+          ? "Спасибо! Ответим шустро."
           : "Sent. We’ll reply within 24 hours.",
       failed:
         resolvedLang === "ru"

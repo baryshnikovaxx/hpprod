@@ -170,7 +170,7 @@ export default function Home() {
 
       form.reset();
       setFormState("success");
-      setFormMessage(data?.message || (isRu ? "Спасибо! Ответим в течение 24 часов." : "Sent. We’ll reply within 24 hours."));
+      setFormMessage(data?.message || (isRu ? "Спасибо! Ответим шустро." : "Sent. We’ll reply within 24 hours."));
     } catch (e) {
       setFormState("error");
       setFormMessage(
@@ -671,7 +671,7 @@ export default function Home() {
                     <div className="mt-1 text-sm text-zinc-200">{formMessage}</div>
                   </div>
                 ) : (
-                  <p className="text-xs text-zinc-400">{isRu ? "Ответим в течение 24 часов." : "We’ll reply quickly!"}</p>
+                  <p className="text-xs text-zinc-400">{isRu ? "Ответим шустро." : "We’ll reply quickly!"}</p>
                 )}
               </div>
             </form>
