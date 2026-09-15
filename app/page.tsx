@@ -240,7 +240,7 @@ export default function Home() {
               {[
                 { k: "250+", v: isRu ? "завершённых проектов" : "projects delivered" },
                 { k: "8", v: isRu ? "лет опыта" : "years experience" },
-                { k: isRu ? "9 900+" : "600+", v: isRu ? "часов прямого эфира за последние 3 года" : "hours live over the last 3 years" },
+                { k: isRu ? "9 900+" : "9,900+", v: isRu ? "часов прямого эфира" : "hours live" },
               ].map((item) => (
                 <div
                   key={item.v}
