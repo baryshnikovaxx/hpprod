@@ -162,11 +162,12 @@ export default function EquipmentPage() {
       ];
 
   return (
-    <main className="relative min-h-screen overflow-x-clip bg-zinc-950 text-zinc-50">
+    <main className="broadcast-page page-equipment relative min-h-screen overflow-x-clip bg-zinc-950 text-zinc-50">
       <SiteHeader />
 
       <div className="pt-16">
         <section className="mx-auto w-full max-w-[1400px] px-4 py-16 sm:px-6 md:py-20 lg:px-8">
+          <p className="broadcast-meta">TECHNICAL / EQUIPMENT</p>
           <h1 className="title-hero mt-3">
             {isRu ? "Оборудование для съёмки и эфира" : "Technical Capabilities"}
           </h1>
@@ -179,7 +180,7 @@ export default function EquipmentPage() {
         </section>
 
         <section className="mx-auto w-full max-w-[1400px] px-4 pb-16 sm:px-6 lg:px-8">
-          <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          <div className="equipment-index">
             {stackCategories.map((category) => (
               <article key={category.title} className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6">
                 <h3 className="title-card text-zinc-100">{category.title}</h3>

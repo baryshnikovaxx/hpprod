@@ -10,10 +10,11 @@ export default function PrivacyPage() {
   const ru = (text: string) => formatRuTypography(text);
 
   return (
-    <main className="relative min-h-screen overflow-x-clip bg-zinc-950 text-zinc-50">
+    <main className="broadcast-page page-privacy relative min-h-screen overflow-x-clip bg-zinc-950 text-zinc-50">
       <SiteHeader />
       <div className="pt-16">
         <section className="mx-auto w-full max-w-[1000px] px-4 py-16 sm:px-6 md:py-20 lg:px-8">
+          <p className="broadcast-meta">HEAD PRODUCTION / PRIVACY</p>
           <h1 className="title-hero mt-3">
             {isRu ? "Политика конфиденциальности" : "Privacy Policy"}
           </h1>

@@ -30,10 +30,10 @@ export default function WorkPage() {
         {
           id: "eapt",
           title: "EAPT",
-          locationYear: "World Poker Tour · 2 страны",
+          locationYear: "Грузия · Армения",
           format: "Трансляции покерной серии.",
-          scale: "Три года сотрудничества, проекты в двух странах.",
-          role: "Подготовка и проведение трансляций совместно с POVProduction.",
+          scale: "Три года сотрудничества, проекты в Грузии и Армении.",
+          role: "Эксклюзивный технический партнёр турнира. Подготовка и проведение трансляций совместно с POVProduction.",
           responsibilities: [
             "Многодневные эфиры",
             "съёмка игровых столов",
@@ -76,10 +76,10 @@ export default function WorkPage() {
         },
         {
           id: "g-gate",
-          title: "G Gate",
-          locationYear: "7 000 участников · 150 компаний",
+          title: "gGATE",
+          locationYear: "2025 · 2026",
           format: "Форум и концертная программа.",
-          scale: "7 000 участников · 150 компаний. Ivan Dorn, Big Baby Tape, T-Fest.",
+          scale: "7 000 участников · 150 компаний. Ivan Dorn, Big Baby Tape, T-Fest, Валерий Меладзе, Яникс.",
           role: "Техническое обеспечение и съёмка события.",
           responsibilities: [
             "Координация сцены и эфира",
@@ -157,10 +157,10 @@ export default function WorkPage() {
         {
           id: "zemfira",
           title: "ZEMFIRA",
-          locationYear: "Тбилиси · Батуми · Ереван",
+          locationYear: "Тбилиси · Батуми · Ереван · 2024–2025",
           format: "Серия концертов с аншлагами.",
           scale: "До 40 000 зрителей на концерте. Все билеты проданы.",
-          role: "Полный цикл видеосъёмки в течение года сотрудничества.",
+          role: "Полный цикл видеосъёмки в 2024–2025 годах.",
           responsibilities: [
             "Многокамерная съёмка",
             "видео и аэросъёмка",
@@ -189,10 +189,10 @@ export default function WorkPage() {
         {
           id: "eapt",
           title: "EAPT",
-          locationYear: "World Poker Tour · 2 countries",
+          locationYear: "Georgia · Armenia",
           format: "Poker broadcast series",
-          scale: "Top 3 World Poker Tour and a 3-year partnership.",
-          role: "Broadcast production developed with POVProduction.",
+          scale: "Three years of collaboration on projects in Georgia and Armenia.",
+          role: "Exclusive technical partner of the tournament. Broadcast production in collaboration with POVProduction.",
           responsibilities: ["Multi-day broadcast", "Table and game zone workflow", "Graphics and live pipeline", "2 countries"],
           result: "A long-term broadcast system for an international poker series.",
           coverSrc: "/clients/eapt.png",
@@ -222,10 +222,10 @@ export default function WorkPage() {
         },
         {
           id: "g-gate",
-          title: "G Gate",
-          locationYear: "7000 participants · 150 companies",
+          title: "gGATE",
+          locationYear: "2025 · 2026",
           format: "Forum and live show",
-          scale: "7000 participants, 150 companies, Ivan Dorn, Big Baby Tape, T-Fest.",
+          scale: "7000 participants, 150 companies, Ivan Dorn, Big Baby Tape, T-Fest, Valery Meladze, Yanix.",
           role: "Live event production.",
           responsibilities: ["Stage and broadcast logic", "Large-audience content", "Artist blocks"],
           result: "One production workflow for the business and concert parts of the event.",
@@ -282,10 +282,10 @@ export default function WorkPage() {
         {
           id: "zemfira",
           title: "ZEMFIRA",
-          locationYear: "Tbilisi · Batumi · Yerevan",
+          locationYear: "Tbilisi · Batumi · Yerevan · 2024–2025",
           format: "Sold-out concert series",
           scale: "All shows sold out, up to 40,000 people at once.",
-          role: "Full-cycle video production and year-long partnership.",
+          role: "Full-cycle video production across 2024–2025.",
           responsibilities: ["Multi-camera production", "Video and aerial coverage", "Three cities"],
           result: "Consistent visual quality and stable output across the full concert series.",
           coverSrc: "/cases/zemfira-cover.jpg",
@@ -304,11 +304,12 @@ export default function WorkPage() {
       ];
 
   return (
-    <main className="relative min-h-screen overflow-x-clip bg-zinc-950 text-zinc-50">
+    <main className="broadcast-page page-work relative min-h-screen overflow-x-clip bg-zinc-950 text-zinc-50">
       <SiteHeader />
 
       <div className="pt-16">
         <section className="mx-auto w-full max-w-[1400px] px-4 py-16 sm:px-6 md:py-20 lg:px-8">
+          <p className="broadcast-meta">ARCHIVE / SELECTED WORK</p>
           <h1 className="title-hero mt-3">
             {isRu ? "Проекты" : "Case studies"}
           </h1>
@@ -320,68 +321,26 @@ export default function WorkPage() {
         </section>
 
         <section className="mx-auto w-full max-w-[1400px] px-4 pb-16 sm:px-6 lg:px-8">
-          <div className="grid gap-6 md:grid-cols-2">
-            {cases.map((item) => (
-              <article id={item.id} key={item.id} className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6 md:p-8">
-                {item.coverSrc ? (
-                  <div className="relative mb-6 aspect-[16/7] overflow-hidden rounded-2xl border border-white/15 bg-zinc-900/30">
-                    <Image
-                      src={item.coverSrc}
-                      alt={isRu ? item.title : `${item.title} cover`}
-                      fill
-                      className={item.mediaFit === "contain" ? "object-contain object-center p-8" : "object-cover object-center"}
-                    />
-                  </div>
-                ) : item.visualLabel ? (
-                  <div className="mb-6 flex aspect-[16/7] items-center justify-center rounded-2xl border border-white/15 bg-gradient-to-br from-indigo-400/15 via-zinc-900/70 to-violet-400/15 px-6 text-center">
-                    <div>
-                      <p className="text-xs uppercase tracking-[0.24em] text-indigo-200/80">{isRu ? "Проект" : "Case"}</p>
-                      <p className="mt-2 text-base font-semibold text-zinc-100">{item.visualLabel}</p>
-                    </div>
-                  </div>
-                ) : null}
-
-                <h2 className="title-card text-zinc-100">{item.title}</h2>
-                <p className="mt-1 text-xs uppercase tracking-[0.14em] text-zinc-400">{item.locationYear}</p>
-
-                <div className="mt-5 grid gap-3 md:grid-cols-2">
-                  <div className="rounded-2xl border border-white/10 bg-zinc-950/35 p-4">
-                    <p className="text-xs uppercase tracking-[0.14em] text-zinc-500">{isRu ? "Формат" : "Format"}</p>
-                    <p className="mt-2 text-sm text-zinc-200">{item.format}</p>
-                  </div>
-                  <div className="rounded-2xl border border-white/10 bg-zinc-950/35 p-4">
-                    <p className="text-xs uppercase tracking-[0.14em] text-zinc-500">{isRu ? "Масштаб" : "Scale"}</p>
-                    <p className="mt-2 text-sm text-zinc-200">{item.scale}</p>
-                  </div>
+          <div className="work-index">
+            {cases.map((item, index) => (
+              <article id={item.id} key={item.id} className={`work-entry ${item.coverSrc && item.mediaFit !== "contain" ? "work-photo" : "work-dossier"}`}>
+                <div className="work-media">
+                  <span className="broadcast-meta work-number">{String(index + 1).padStart(2, "0")} / {item.format}</span>
+                  {item.coverSrc ? <div className={`work-image ${item.mediaFit === "contain" ? "work-logo" : ""}`}>
+                    <Image src={item.coverSrc} alt={item.title} fill sizes="(max-width: 700px) 100vw, 90vw" className={item.mediaFit === "contain" ? "object-contain" : "object-cover"} />
+                  </div> : <p className="work-type">{item.visualLabel || item.title}</p>}
                 </div>
-
-                <div className="mt-4 rounded-2xl border border-white/10 bg-zinc-950/35 p-4">
-                  <p className="text-xs uppercase tracking-[0.14em] text-zinc-500">{isRu ? "Наша роль" : "Our role"}</p>
-                  <p className="mt-2 text-sm text-zinc-200">{item.role}</p>
+                <div className="work-copy">
+                  <div className="work-heading"><h2>{item.title}</h2><p className="broadcast-meta">{item.locationYear}</p></div>
+                  <dl className="work-facts">
+                    <div><dt>{isRu ? "Формат" : "Format"}</dt><dd>{item.format}</dd></div>
+                    <div><dt>{isRu ? "Масштаб" : "Scale"}</dt><dd>{item.scale}</dd></div>
+                    <div><dt>{isRu ? "Наша роль" : "Our role"}</dt><dd>{item.role}</dd></div>
+                  </dl>
+                  <div className="work-delivery"><p className="broadcast-meta">{isRu ? "Что сделали" : "Key responsibilities"}</p><ul>{item.responsibilities.map(point=><li key={point}>{point}</li>)}</ul></div>
+                  <div className="work-result"><p className="broadcast-meta">{isRu ? "Результат" : "Result"}</p><p>{item.result}</p></div>
+                  {item.note && <p className="work-note">{item.note}</p>}
                 </div>
-
-                <div className="mt-4">
-                  <p className="text-xs uppercase tracking-[0.14em] text-zinc-500">
-                    {isRu ? "Что сделали" : "Key responsibilities"}
-                  </p>
-                  <ul className="mt-2 grid gap-2 text-sm text-zinc-200">
-                    {item.responsibilities.map((point) => (
-                      <li key={point} className="flex gap-2">
-                        <span className="mt-1.5 inline-block h-1.5 w-1.5 rounded-full bg-indigo-300/80" />
-                        <span>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="mt-6 rounded-2xl border border-indigo-300/25 bg-indigo-300/10 p-4">
-                  <p className="text-xs uppercase tracking-[0.14em] text-indigo-200/90">{isRu ? "Результат" : "Result"}</p>
-                  <p className="mt-2 text-sm text-zinc-100">{item.result}</p>
-                </div>
-
-                {item.note ? (
-                  <p className="mt-4 text-xs text-zinc-400">{item.note}</p>
-                ) : null}
               </article>
             ))}
           </div>

@@ -185,11 +185,12 @@ export default function CrewSolutionsPage() {
     content.roleGroups.find((group) => group.id === activeGroupId) ?? content.roleGroups[0];
 
   return (
-    <main className="relative min-h-screen overflow-x-clip bg-zinc-950 text-zinc-50">
+    <main className="broadcast-page page-crew-solutions relative min-h-screen overflow-x-clip bg-zinc-950 text-zinc-50">
       <SiteHeader />
 
       <div className="pt-16">
         <section className="mx-auto w-full max-w-[1400px] px-4 py-16 sm:px-6 md:py-20 lg:px-8">
+          <p className="broadcast-meta">PRODUCTION / CREW</p>
           <h1 className="title-hero mt-3 max-w-4xl">
             {content.title}
           </h1>
