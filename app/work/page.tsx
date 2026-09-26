@@ -18,6 +18,7 @@ type CaseStudy = {
   mediaFit?: "cover" | "contain";
   visualLabel?: string;
   note?: string;
+  showreel?: string;
 };
 
 export default function WorkPage() {
@@ -76,6 +77,7 @@ export default function WorkPage() {
         },
         {
           id: "g-gate",
+          showreel: "/cases/ggate",
           title: "gGATE",
           locationYear: "2025 · 2026",
           format: "Форум и концертная программа.",
@@ -140,15 +142,17 @@ export default function WorkPage() {
         },
         {
           id: "poshlaya-molly",
+          showreel: "/cases/poshlaya-molly",
           title: "Пошлая Молли",
           locationYear: "Тбилиси · 2025 · 2026",
           format: "Концертная съёмка.",
-          scale: "3 000 зрителей. Большой LED-экран и графика в реальном времени.",
+          scale: "3 500 зрителей · Open air. Большой LED-экран и графика в реальном времени.",
           role: "Видеосъёмка и визуальное сопровождение двух концертов в Тбилиси — в 2025 и 2026 годах.",
           responsibilities: [
-            "Графика в реальном времени",
-            "работа с LED-экраном",
-            "передача видео со сцены"
+            "Съёмка с дрона",
+            "многокамерная съёмка",
+            "режиссура трансляции",
+            "работа с LED-экраном и графикой"
           ],
           result: "Выпустили два концерта в Тбилиси. На каждом согласовали работу экрана, графики и камер в едином визуальном оформлении.",
           coverSrc: "/clients/poshlaya-molly.png",
@@ -222,6 +226,7 @@ export default function WorkPage() {
         },
         {
           id: "g-gate",
+          showreel: "/cases/ggate",
           title: "gGATE",
           locationYear: "2025 · 2026",
           format: "Forum and live show",
@@ -269,12 +274,13 @@ export default function WorkPage() {
         },
         {
           id: "poshlaya-molly",
+          showreel: "/cases/poshlaya-molly",
           title: "Poshlaya Molly",
           locationYear: "Tbilisi · 2025 · 2026",
           format: "Concert live production",
-          scale: "3000 attendees, real-time visuals, and a massive LED wall.",
+          scale: "3,500 attendees · Open air. Real-time visuals and a large LED wall.",
           role: "Video production and live coverage for two concerts in Tbilisi, in 2025 and 2026.",
-          responsibilities: ["Real-time visuals", "Massive LED wall", "Live video workflow"],
+          responsibilities: ["Drone filming", "Multi-camera filming", "Live broadcast direction", "LED screen and live graphics"],
           result: "Delivered two concerts in Tbilisi with synchronized screens, graphics, and live camera output.",
           coverSrc: "/clients/poshlaya-molly.png",
           mediaFit: "contain",
@@ -323,15 +329,14 @@ export default function WorkPage() {
         <section className="mx-auto w-full max-w-[1400px] px-4 pb-16 sm:px-6 lg:px-8">
           <div className="work-index">
             {cases.map((item, index) => (
-              <article id={item.id} key={item.id} className={`work-entry ${(item.id === "poshlaya-molly" || item.coverSrc && item.mediaFit !== "contain") ? "work-photo" : "work-dossier"}`}>
+              <article id={item.id} key={item.id} className={`work-entry ${(item.showreel || item.coverSrc && item.mediaFit !== "contain") ? "work-photo" : "work-dossier"}`}>
                 <div className="work-media">
                   <span className="broadcast-meta work-number">{String(index + 1).padStart(2, "0")} / {item.format}</span>
-                  {item.id === "poshlaya-molly" ? <figure className="concert-lead">
-                    <video controls playsInline muted loop preload="none" poster="/cases/poshlaya-molly/showreel.jpg" aria-label={isRu ? "Пошлая Молли: шоурил, 14 секунд, без звука" : "Poshlaya Molly: 14-second silent showreel"}>
-                      <source src="/cases/poshlaya-molly/showreel.mp4" type="video/mp4" />
-                      <a href="https://youtu.be/AqwjORMCSj0?t=448">{isRu ? "Смотреть на YouTube" : "Watch on YouTube"}</a>
+                  {item.showreel ? <figure className="concert-lead">
+                    <video controls playsInline muted loop preload="none" poster={item.showreel + "/showreel.jpg"} aria-label={item.title + (isRu ? ": шоурил, 14 секунд, без звука" : ": 14-second silent showreel")}>
+                      <source src={item.showreel + "/showreel.mp4"} type="video/mp4" />
                     </video>
-                    <figcaption className="broadcast-meta">01 / {isRu ? "ШОУРИЛ / БЕЗ ЗВУКА" : "SHOWREEL / NO AUDIO"} · 00:14 · 25.09.2026</figcaption>
+                    <figcaption className="broadcast-meta">01 / {isRu ? "ШОУРИЛ / БЕЗ ЗВУКА" : "SHOWREEL / NO AUDIO"} · 00:14 · {item.id === "g-gate" ? "GGATE AWARDS / 2026" : "2025–2026"}</figcaption>
                   </figure> : item.coverSrc ? <div className={`work-image ${item.mediaFit === "contain" ? "work-logo" : ""}`}>
                     <Image src={item.coverSrc} alt={item.title} fill sizes="(max-width: 700px) 100vw, 90vw" className={item.mediaFit === "contain" ? "object-contain" : "object-cover"} />
                   </div> : <p className="work-type">{item.visualLabel || item.title}</p>}
@@ -347,7 +352,6 @@ export default function WorkPage() {
                   <div className="work-result"><p className="broadcast-meta">{isRu ? "Результат" : "Result"}</p><p>{item.result}</p></div>
                   {item.note && <p className="work-note">{item.note}</p>}
                 </div>
-                {item.id === "poshlaya-molly" && <a className="concert-full" href="https://youtu.be/AqwjORMCSj0" target="_blank" rel="noreferrer">{isRu ? "Полная запись концерта · 25 сентября 2026" : "Full concert recording · September 25, 2026"} ↗</a>}
               </article>
             ))}
           </div>
