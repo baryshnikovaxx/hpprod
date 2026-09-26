@@ -1,5 +1,6 @@
 "use client";
 
+import SiteHeader from "../components/site-header";
 import { useLanguage } from "../components/language-provider";
 import { formatRuTypography } from "../lib/typography";
 
@@ -11,8 +12,8 @@ export default function ScandiEditorialPage() {
   const copy = isRu
     ? {
         eyebrow: "Скандинавская версия · Черновик",
-        title: "Выразительные трансляции. Сдержанная эстетика.",
-        subtitle: ru("Экспериментальная версия сайта: светлая палитра, свободное пространство и выразительная типографика."),
+        title: "Выразительные трансляции. Сдержанная эстетика",
+        subtitle: ru("Экспериментальная версия сайта: чёрно-белая палитра, фиолетовый акцент и выразительная типографика."),
         ctaPrimary: "Обсудить проект",
         ctaSecondary: "Основная версия",
         manifestoTitle: "Подход",
@@ -42,7 +43,7 @@ export default function ScandiEditorialPage() {
         eyebrow: "Scandi Beta ))",
         title: "Creative production in a Scandinavian mood ))",
         subtitle:
-          "Temporary alternative website concept: light palette, generous whitespace, typography-first hierarchy, and clean storytelling.",
+          "Temporary alternative website concept: black and white palette, a purple accent, typography-first hierarchy, and clean storytelling.",
         ctaPrimary: "Start a project",
         ctaSecondary: "Back to main version",
         manifestoTitle: "Approach",
@@ -62,7 +63,8 @@ export default function ScandiEditorialPage() {
       };
 
   return (
-    <main className="min-h-screen overflow-x-clip bg-[#f5f5f2] text-[#141414]">
+    <main className="broadcast-page page-scandi-editorial min-h-screen overflow-x-clip bg-[#f5f5f2] text-[#141414]">
+      <SiteHeader />
       <div className="pointer-events-none fixed left-4 top-20 z-20 text-2xl text-[#ff3bbf] md:text-4xl">✶</div>
       <div className="pointer-events-none fixed right-6 top-40 z-20 text-xl text-[#111] md:text-3xl">→</div>
       <div className="pointer-events-none fixed bottom-8 right-8 z-20 text-2xl text-[#ff3bbf] md:text-4xl">✷</div>
@@ -70,7 +72,7 @@ export default function ScandiEditorialPage() {
       <section className="mx-auto w-full max-w-[1320px] px-5 py-12 md:px-8 md:py-16">
         <div className="flex items-center justify-between">
           <a href="/" className="text-xs font-semibold uppercase tracking-[0.24em] text-[#646460]">
-            Head Production ✶
+            Head Production
           </a>
           <a
             href="/"
@@ -122,7 +124,7 @@ export default function ScandiEditorialPage() {
       <section className="mx-auto w-full max-w-[1320px] px-5 pb-24 md:px-8">
         <div className="rounded-[34px] border border-[#111]/15 bg-[#e9e9e4] p-7 md:p-12">
           <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-[#6f6f6a]">
-            {copy.manifestoTitle} ✶
+            {copy.manifestoTitle}
           </p>
           <p className="mt-4 max-w-5xl text-3xl leading-[1.03] tracking-[-0.02em] text-[#161615] md:text-6xl">
             {copy.manifesto}

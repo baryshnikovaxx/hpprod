@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { cookies } from "next/headers";
 import { Geist_Mono, Golos_Text } from "next/font/google";
 import "./globals.css";
+import GoogleAnalytics from "./components/google-analytics";
+import "./broadcast.css";
 import { LanguageProvider } from "./components/language-provider";
 
 const geistMono = Geist_Mono({
@@ -103,6 +105,7 @@ export default async function RootLayout({
         className={`${golos.variable} ${geistMono.variable} antialiased`}
       >
         <LanguageProvider initialLang={initialLang}>{children}</LanguageProvider>
+        <GoogleAnalytics />
       </body>
     </html>
   );

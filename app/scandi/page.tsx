@@ -1,5 +1,6 @@
 "use client";
 
+import SiteHeader from "../components/site-header";
 import { useLanguage } from "../components/language-provider";
 import { formatRuTypography } from "../lib/typography";
 
@@ -11,8 +12,8 @@ export default function ScandiPage() {
   const copy = isRu
     ? {
         eyebrow: "Скандинавская версия · Черновик",
-        title: "Выразительные трансляции. Сдержанная эстетика.",
-        subtitle: ru("Экспериментальная версия сайта: светлая палитра, свободное пространство и выразительная типографика."),
+        title: "Выразительные трансляции. Сдержанная эстетика",
+        subtitle: ru("Экспериментальная версия сайта: чёрно-белая палитра, фиолетовый акцент и выразительная типографика."),
         ctaPrimary: "Обсудить проект",
         ctaSecondary: "Основная версия",
         manifestoTitle: "Подход",
@@ -42,7 +43,7 @@ export default function ScandiPage() {
         eyebrow: "Scandi Beta ))",
         title: "Creative production in a Scandinavian mood ))",
         subtitle:
-          "Temporary alternative website concept: light palette, generous whitespace, typography-first hierarchy, and clean storytelling.",
+          "Temporary alternative website concept: black and white palette, a purple accent, typography-first hierarchy, and clean storytelling.",
         ctaPrimary: "Start a project",
         ctaSecondary: "Back to main version",
         manifestoTitle: "Approach",
@@ -62,7 +63,8 @@ export default function ScandiPage() {
       };
 
   return (
-    <main className="min-h-screen bg-[#f6f6f3] text-[#161616]">
+    <main className="broadcast-page page-scandi min-h-screen bg-[#f6f6f3] text-[#161616]">
+      <SiteHeader />
       <div className="pointer-events-none fixed right-[-54px] top-20 z-10 -rotate-90 rounded-full bg-[#ff4fd8] px-5 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-white shadow-[0_8px_30px_rgba(255,79,216,0.35)]">
         {isRu ? "Прямой эфир" : "LIVE SIGNAL ))"}
       </div>

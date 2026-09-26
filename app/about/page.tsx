@@ -67,14 +67,15 @@ export default function AboutPage() {
   };
 
   return (
-    <main className="relative min-h-screen overflow-x-clip bg-zinc-950 text-zinc-50">
+    <main className="broadcast-page page-about relative min-h-screen overflow-x-clip bg-zinc-950 text-zinc-50">
       <div className="pointer-events-none absolute inset-0 opacity-[0.06] mix-blend-overlay" />
       <SiteHeader />
 
       <div className="pt-16">
       <section className="mx-auto w-full max-w-[1400px] px-4 py-16 sm:px-6 md:py-20 lg:px-8">
-        <h1 className="title-hero mt-3">
-          {isRu ? "Команда, на которую можно положиться в эфире" : "Reliable production for live events."}
+        <p className="broadcast-meta">STUDIO / PEOPLE</p>
+          <h1 className="title-hero mt-3">
+          {isRu ? "Команда, на которую можно положиться в эфире" : "Reliable production for live events"}
         </h1>
         <p className="reading-copy mt-5 max-w-3xl">
           {isRu
@@ -96,7 +97,7 @@ export default function AboutPage() {
 
       <section className="mx-auto w-full max-w-[1400px] px-4 py-10 sm:px-6 lg:px-8">
         <h2 className="title-section text-center">{isRu ? "Команда" : "Core team"}</h2>
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
+        <div className="documentary-team">
           {[
             {
               name: isRu ? "Петр Бабицкий" : "Peter Babitsky",
@@ -120,7 +121,7 @@ export default function AboutPage() {
             <article key={f.name} className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6 text-center">
               <div className="flex flex-col items-center">
                 <div className="flex h-48 w-48 items-center justify-center overflow-hidden rounded-full border border-white/20 bg-zinc-900/70 p-1">
-                  <Image src={f.photo} alt={f.name} width={192} height={192} className="h-full w-full rounded-full object-cover" />
+                  <Image src={f.photo} alt={f.name} width={900} height={1000} sizes="(max-width: 700px) 100vw, 50vw" className="h-full w-full rounded-full object-cover" />
                 </div>
                 <h3 className="title-card mt-4 text-zinc-100">{f.name}</h3>
                 <p className="mt-1 text-sm text-zinc-300">{f.role}</p>

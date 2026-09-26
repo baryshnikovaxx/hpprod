@@ -14,7 +14,7 @@ const navItems: ReadonlyArray<{ key: NavKey; href: string }> = [
   { key: "contact", href: "/#contact" },
 ];
 
-export default function SiteHeader() {
+export default function SiteHeader({ variant = "broadcast" }: { variant?: "default" | "broadcast" }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { lang, setLang } = useLanguage();
   const isRu = lang === "ru";
@@ -49,7 +49,7 @@ export default function SiteHeader() {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-50 isolate border-b border-white/10 bg-zinc-950">
+      <header data-broadcast={variant === "broadcast" ? "true" : undefined} className="fixed inset-x-0 top-0 z-50 isolate border-b border-white/10 bg-zinc-950">
         <div className="mx-auto flex h-16 w-full max-w-[1400px] items-center justify-between px-4 sm:px-6 lg:px-8">
           <a href="/" className="flex items-center gap-3">
             <Image
@@ -124,6 +124,7 @@ export default function SiteHeader() {
 
       {mobileMenuOpen && (
         <div
+          data-broadcast-menu={variant === "broadcast" ? "true" : undefined}
           className="fixed inset-0 z-[60] bg-black/60 md:hidden"
           onMouseDown={(event) => {
             if (event.target === event.currentTarget) closeMobileMenu();

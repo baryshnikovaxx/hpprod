@@ -227,11 +227,12 @@ export default function ServicesPage() {
       };
 
   return (
-    <main className="relative min-h-screen overflow-x-clip bg-zinc-950 text-zinc-50">
+    <main className="broadcast-page page-services relative min-h-screen overflow-x-clip bg-zinc-950 text-zinc-50">
       <SiteHeader />
 
       <div className="pt-16">
         <section className="mx-auto w-full max-w-[1400px] px-4 py-16 sm:px-6 md:py-20 lg:px-8">
+          <p className="broadcast-meta">LIVE PRODUCTION / CAPABILITIES</p>
           <h1 className="title-hero mt-3 max-w-4xl">
             {content.title}
           </h1>
@@ -252,7 +253,7 @@ export default function ServicesPage() {
         </section>
 
         <section className="mx-auto grid w-full max-w-[1400px] gap-6 px-4 pb-16 sm:px-6 lg:grid-cols-12 lg:px-8">
-          <div className="space-y-4 lg:col-span-8">
+          <div className="capability-index lg:col-span-8">
             {content.services.map((service) => (
               <article
                 id={service.id}
