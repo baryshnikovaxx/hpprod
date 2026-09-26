@@ -306,3 +306,7 @@
 @media (prefers-reduced-motion:reduce) {
   .home *, .home *::before, .home *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
 }
+
+/* Preserve every concert framing on desktop and mobile. */
+.projectPhoto.projectFilm { aspect-ratio: 16 / 9; }
+.projectFilm > video { display: block; width: 100%; height: 100%; object-fit: contain; }

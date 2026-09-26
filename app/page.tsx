@@ -290,8 +290,8 @@ export default function Home() {
         </div>
         <p className={styles.projectsLead}>{isRu ? ru("Несколько примеров нашей работы. По запросу покажем фотографии, состав оборудования и подробности съёмки.") : "Highlights from recent productions. We can expand these into full case studies with photos, setup details, gear lists, and outcomes."}</p>
         <article className={styles.mainProject}>
-          <a className={styles.projectPhoto} href="/work#zemfira" aria-label={isRu ? "Проект ZEMFIRA — подробнее" : "ZEMFIRA — view details"}>
-            <Image src="/cases/zemfira-cover.jpg" alt={isRu ? "Земфира на сцене" : "Zemfira on stage"} fill sizes="(max-width: 700px) 100vw, 92vw" />
+          <a className={`${styles.projectPhoto} ${styles.projectFilm}`} href="/work#zemfira" aria-label={isRu ? "Проект ZEMFIRA — подробнее" : "ZEMFIRA — view details"}>
+            <video autoPlay muted loop playsInline preload="metadata" poster="/cases/zemfira/showreel.jpg" aria-label={isRu ? "Земфира — чёрно-белый шоурил, 15 секунд, без звука" : "Zemfira — 15-second black-and-white silent showreel"}><source src="/cases/zemfira/showreel.mp4" type="video/mp4" /></video>
             <span className={styles.photoLabel}>01 / {isRu ? "КОНЦЕРТНАЯ СЕРИЯ" : "CONCERT SERIES"}</span>
             <span className={styles.photoArrow} aria-hidden="true">↗</span>
           </a>

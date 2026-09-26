@@ -162,6 +162,8 @@ export default function WorkPage() {
         },
         {
           id: "zemfira",
+          showreel: "/cases/zemfira",
+          showreelSeconds: 15,
           title: "ZEMFIRA",
           locationYear: "Тбилиси · Батуми · Ереван · 2024–2025",
           format: "Серия концертов с аншлагами.",
@@ -173,7 +175,7 @@ export default function WorkPage() {
             "работа в трёх городах"
           ],
           result: "Сохранили единое качество изображения и стабильную передачу видео на всей серии концертов.",
-          coverSrc: "/cases/zemfira-cover.jpg"
+          coverSrc: "/cases/zemfira/showreel.jpg"
         },
         {
           id: "1winmediapoker",
@@ -290,6 +292,8 @@ export default function WorkPage() {
         },
         {
           id: "zemfira",
+          showreel: "/cases/zemfira",
+          showreelSeconds: 15,
           title: "ZEMFIRA",
           locationYear: "Tbilisi · Batumi · Yerevan · 2024–2025",
           format: "Sold-out concert series",
@@ -297,7 +301,7 @@ export default function WorkPage() {
           role: "Full-cycle video production across 2024–2025.",
           responsibilities: ["Multi-camera production", "Video and aerial coverage", "Three cities"],
           result: "Consistent visual quality and stable output across the full concert series.",
-          coverSrc: "/cases/zemfira-cover.jpg",
+          coverSrc: "/cases/zemfira/showreel.jpg",
         },
         {
           id: "1winmediapoker",
@@ -339,7 +343,7 @@ export default function WorkPage() {
                     <video controls playsInline muted loop preload="none" poster={item.showreel + "/showreel.jpg"} aria-label={item.title + (isRu ? ": шоурил без звука, " + (item.showreelSeconds ?? 14) + " с" : ": " + (item.showreelSeconds ?? 14) + "-second silent showreel")}>
                       <source src={item.showreel + "/showreel.mp4"} type="video/mp4" />
                     </video>
-                    <figcaption className="broadcast-meta">01 / {isRu ? "ШОУРИЛ / БЕЗ ЗВУКА" : "SHOWREEL / NO AUDIO"} · 00:{item.showreelSeconds ?? 14} · {item.id === "g-gate" ? "GGATE AWARDS / 2026" : "2025–2026"}</figcaption>
+                    <figcaption className="broadcast-meta">01 / {isRu ? "ШОУРИЛ / БЕЗ ЗВУКА" : "SHOWREEL / NO AUDIO"} · 00:{item.showreelSeconds ?? 14} · {item.id === "g-gate" ? "GGATE AWARDS / 2026" : item.id === "zemfira" ? "BATUMI / 2025" : "2025–2026"}</figcaption>
                   </figure> : item.coverSrc ? <div className={`work-image ${item.mediaFit === "contain" ? "work-logo" : ""}`}>
                     <Image src={item.coverSrc} alt={item.title} fill sizes="(max-width: 700px) 100vw, 90vw" className={item.mediaFit === "contain" ? "object-contain" : "object-cover"} />
                   </div> : <p className="work-type">{item.visualLabel || item.title}</p>}
