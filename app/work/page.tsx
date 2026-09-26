@@ -19,6 +19,7 @@ type CaseStudy = {
   visualLabel?: string;
   note?: string;
   showreel?: string;
+  showreelSeconds?: number;
 };
 
 export default function WorkPage() {
@@ -78,6 +79,7 @@ export default function WorkPage() {
         {
           id: "g-gate",
           showreel: "/cases/ggate",
+          showreelSeconds: 15,
           title: "gGATE",
           locationYear: "2025 · 2026",
           format: "Форум и концертная программа.",
@@ -227,6 +229,7 @@ export default function WorkPage() {
         {
           id: "g-gate",
           showreel: "/cases/ggate",
+          showreelSeconds: 15,
           title: "gGATE",
           locationYear: "2025 · 2026",
           format: "Forum and live show",
@@ -333,10 +336,10 @@ export default function WorkPage() {
                 <div className="work-media">
                   <span className="broadcast-meta work-number">{String(index + 1).padStart(2, "0")} / {item.format}</span>
                   {item.showreel ? <figure className="concert-lead">
-                    <video controls playsInline muted loop preload="none" poster={item.showreel + "/showreel.jpg"} aria-label={item.title + (isRu ? ": шоурил, 14 секунд, без звука" : ": 14-second silent showreel")}>
+                    <video controls playsInline muted loop preload="none" poster={item.showreel + "/showreel.jpg"} aria-label={item.title + (isRu ? ": шоурил без звука, " + (item.showreelSeconds ?? 14) + " с" : ": " + (item.showreelSeconds ?? 14) + "-second silent showreel")}>
                       <source src={item.showreel + "/showreel.mp4"} type="video/mp4" />
                     </video>
-                    <figcaption className="broadcast-meta">01 / {isRu ? "ШОУРИЛ / БЕЗ ЗВУКА" : "SHOWREEL / NO AUDIO"} · 00:14 · {item.id === "g-gate" ? "GGATE AWARDS / 2026" : "2025–2026"}</figcaption>
+                    <figcaption className="broadcast-meta">01 / {isRu ? "ШОУРИЛ / БЕЗ ЗВУКА" : "SHOWREEL / NO AUDIO"} · 00:{item.showreelSeconds ?? 14} · {item.id === "g-gate" ? "GGATE AWARDS / 2026" : "2025–2026"}</figcaption>
                   </figure> : item.coverSrc ? <div className={`work-image ${item.mediaFit === "contain" ? "work-logo" : ""}`}>
                     <Image src={item.coverSrc} alt={item.title} fill sizes="(max-width: 700px) 100vw, 90vw" className={item.mediaFit === "contain" ? "object-contain" : "object-cover"} />
                   </div> : <p className="work-type">{item.visualLabel || item.title}</p>}
