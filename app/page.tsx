@@ -1,104 +1,24 @@
 "use client";
 
 import Image from "next/image";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 import styles from "./home.module.css";
 import SiteHeader from "./components/site-header";
 import { useLanguage } from "./components/language-provider";
 import { formatRuTypography } from "./lib/typography";
-
-type ClientLogo = {
-  name: string;
-  src: string;
-};
 
 export default function Home() {
   const { lang } = useLanguage();
   const isRu = lang === "ru";
   const [formState, setFormState] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [formMessage, setFormMessage] = useState("");
-  const [utcTime, setUtcTime] = useState("— — : — — : — —");
   const ru = (text: string) => formatRuTypography(text);
-  const featuredCases = isRu
-    ? [
-        {
-          id: "zemfira",
-          title: "ZEMFIRA",
-          meta: "Тбилиси · Батуми · Ереван · 2024–2025",
-          tags: [
-            "40 000 зрителей",
-            "Аншлаг",
-            "2024–2025"
-          ],
-          desc: "Подготовка и видеосъёмка серии концертов в трёх городах.",
-          visualLabel: "Серия концертов"
-        },
-        {
-          id: "eapt",
-          title: "EAPT",
-          meta: "Грузия · Армения",
-          tags: [
-            "2 страны",
-            "3 года",
-            "POVProduction"
-          ],
-          desc: "Три года сотрудничества, проекты в Грузии и Армении. Мы — эксклюзивный технический партнёр турнира. Трансляции проводим совместно с POVProduction.",
-          imageSrc: "/clients/eapt.png"
-        },
-        {
-          id: "adam-port",
-          title: "Adam Port",
-          meta: "6 500 гостей · 12 часов",
-          tags: [
-            "PTZ-камеры",
-            "Прямой эфир",
-            "6 500 гостей"
-          ],
-          desc: "12-часовая трансляция с дистанционно управляемыми PTZ-камерами.",
-          visualLabel: "PTZ-съёмка"
-        }
-      ]
-    : [
-        {
-          id: "zemfira",
-          title: "ZEMFIRA",
-          meta: "Tbilisi · Batumi · Yerevan · 2024–2025",
-          tags: ["40,000 people", "Sold out", "2024–2025"],
-          desc: "Full-cycle video production for a three-city concert series.",
-          visualLabel: "Concert Series",
-        },
-        {
-          id: "eapt",
-          title: "EAPT",
-          meta: "Georgia · Armenia",
-          tags: ["2 countries", "3 years", "POVProduction"],
-          desc: "Three years of collaboration on projects in Georgia and Armenia. We are the tournament’s exclusive technical partner, producing broadcasts with POVProduction.",
-          imageSrc: "/clients/eapt.png",
-        },
-        {
-          id: "adam-port",
-          title: "Adam Port",
-          meta: "6500 guests · 12 hours",
-          tags: ["PTZ workflow", "Live broadcast", "Large audience"],
-          desc: "Long-form broadcast with a PTZ workflow for a large-scale live event.",
-          visualLabel: "PTZ Workflow",
-        },
-      ];
-  const clientLogos: ClientLogo[] = [
-    { name: "GGATE", src: "/clients/ggate.png" },
-    { name: "GAMA", src: "/clients/gama.png" },
-    { name: "Poshlaya Molly", src: "/clients/poshlaya-molly.png" },
-    { name: "EAPT", src: "/clients/eapt.png" },
-    { name: "SEPULTURA", src: "/clients/sepultura.png" },
-    { name: "1WIN", src: "/clients/1win.png" },
+  const featuredCases = [
+    { id: "zemfira", title: "ZEMFIRA", video: "/cases/zemfira", description: isRu ? "СЕРИЯ КОНЦЕРТОВ · Тбилиси, Батуми, Ереван · 2024–2025" : "CONCERT SERIES · Tbilisi, Batumi, Yerevan · 2024–2025" },
+    { id: "zemfira", title: "ZEMFIRA", video: "/cases/zemfira", description: isRu ? "Концерты в Батуми · 2025. Съёмка с пяти камер и дрона." : "Batumi concerts · 2025. Five-camera and drone coverage." },
+    { id: "g-gate", title: "gGATE Awards", video: "/cases/ggate", description: isRu ? "Яникс и Валерий Меладзе. Ловим движение, держим ритм, показываем эмоции." : "Yanix and Valery Meladze. Live direction that captures the movement, pace and emotion." },
+    { id: "poshlaya-molly", title: isRu ? "Пошлая Молли" : "Poshlaya Molly", video: "/cases/poshlaya-molly", description: isRu ? "Два концерта в Тбилиси · 2025–2026. 3 500 зрителей, open air, съёмка с камер и дрона." : "Two concerts in Tbilisi · 2025–2026. 3,500 attendees, open air, camera and drone coverage." },
   ];
-
-  useEffect(() => {
-    const timer = window.setInterval(() => {
-      setUtcTime(new Date().toISOString().slice(11, 19));
-    }, 1000);
-    return () => window.clearInterval(timer);
-  }, []);
 
   const submitContactForm = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -152,7 +72,7 @@ export default function Home() {
             {
               title: isRu ? "Прямые трансляции" : "Live broadcast production",
               desc: isRu
-                ? "Съёмка с нескольких камер, режиссура и контроль сигнала — от подготовки до завершения эфира."
+                ? "Съёмка с нескольких камер, режиссура и контроль сигнала — от подготовки до завершения эфира. Без тупняка."
                 : "Multi-camera setup, directing, switching, monitoring — the full live control room workflow.",
             },
             {
@@ -164,7 +84,7 @@ export default function Home() {
             {
               title: isRu ? "Концерты, фестивали и киберспорт" : "Concerts, festivals, esports",
               desc: isRu
-                ? "Передаём атмосферу события и держим темп трансляции — даже на большой площадке с насыщенной программой."
+                ? "Сцена живёт своим ритмом. Ловим момент и держим зрителя в центре события."
                 : "Fast-paced live coverage built for pressure, dynamic environments, and large audiences.",
             },
             {
@@ -182,7 +102,7 @@ export default function Home() {
             {
               title: isRu ? "Запись и монтаж" : "Recording & post-deliverables",
               desc: isRu
-                ? "Сохраняем записи, монтируем лучшие моменты и передаём материалы организаторам и партнёрам."
+                ? "Эфир закончился — история остаётся. Собираем лучшие моменты в монтаж и передаём готовые материалы."
                 : "Clean recordings, highlight assets, and organized delivery for organizers and partners.",
             },
           ];
@@ -191,19 +111,19 @@ export default function Home() {
               name: isRu ? "Петр Бабицкий" : "Peter Babitsky",
               photo: "/founders/peter-babitsky.jpg",
               role: isRu ? "Продюсер · Режиссёр трансляций" : "Producer · Broadcast Director",
-              since: isRu ? "Работает с 2019 года" : "In the field since 2019",
+              since: isRu ? "В сфере с 2016 года" : "In the field since 2016",
             },
             {
-              name: isRu ? "Никита Приймак" : "Nikita Priimak",
+              name: isRu ? "Кит Приймак" : "Kit Priimak",
               photo: "/founders/nikita-priimak.jpg",
               role: isRu ? "Продюсер · Технический директор" : "Producer · Technical Director",
-              since: isRu ? "Работает с 2019 года" : "In the field since 2019",
+              since: isRu ? "В сфере с 2016 года" : "In the field since 2016",
             },
             {
               name: isRu ? "Максим Буторин" : "Maxim Butorin",
               photo: "/founders/maxim-butorin.jpg",
               role: isRu ? "Технический директор · Оператор-постановщик" : "Technical Director · DOP",
-              since: isRu ? "Работает с 2016 года" : "In the field since 2016",
+              since: isRu ? "В сфере с 2016 года" : "In the field since 2016",
             },
           ];
   const process = [
@@ -244,10 +164,6 @@ export default function Home() {
       <section className={styles.hero} aria-labelledby="home-title">
         <Image src="/cases/esports-cover.jpg" alt={isRu ? "Рабочие места эфирной команды на мероприятии" : "Production crew at a live event"} fill priority sizes="100vw" className={styles.heroImage} />
         <div className={styles.heroShade} />
-        <div className={styles.heroTop}>
-          <span className={styles.meta}><i className={styles.recDot} aria-hidden="true" /> LIVE PRODUCTION</span>
-          <span className={styles.meta}>TBILISI / WORLDWIDE</span>
-        </div>
         <div className={styles.heroTitle}>
           <p className={styles.meta}>{isRu ? "Съёмка мероприятий и прямые трансляции" : "LIVE EVENT & BROADCAST"}</p>
           <h1 id="home-title">WE MAKE<br />IT LIVE</h1>
@@ -261,20 +177,31 @@ export default function Home() {
             <a className={styles.textLink} href="#selected-work">{isRu ? "Наши проекты" : "Selected work"}<span aria-hidden="true">↓</span></a>
           </div>
         </div>
-        <div className={styles.heroCaption}><span>HEAD PRODUCTION / {isRu ? "АРХИВ СЪЁМОК" : "PRODUCTION ARCHIVE"}</span><span>UTC <time suppressHydrationWarning>{utcTime}</time></span></div>
+      </section>
+
+      <section id="selected-work" className={styles.projects} aria-labelledby="projects-title">
+        <div className={styles.sectionHead}>
+          <div><h2 id="projects-title">{isRu ? "В центре события" : "Inside the moment"}</h2></div>
+          <a href="/work" className={styles.textLink}>{isRu ? "Все проекты" : "View all case studies"}<span aria-hidden="true">↗</span></a>
+        </div>
+        <div className={styles.videoProjects}>{featuredCases.map(project => (
+          <article key={project.id} className={styles.videoProject}>
+            <video controls playsInline muted loop preload="none" poster={project.video + "/showreel.jpg"} aria-label={project.title}>
+              <source src={project.video + "/showreel.mp4"} type="video/mp4" />
+            </video>
+            <div className={styles.videoCaption}>
+              <h3><a href={"/work#" + project.id}>{project.title} ↗</a></h3>
+              <p>{project.description}</p>
+            </div>
+          </article>
+        ))}</div>
       </section>
 
       <section id="intro" className={styles.intro} aria-labelledby="intro-title">
-        <div className={styles.sectionLabel}><span className={styles.meta}>01 / {isRu ? "СТУДИЯ" : "THE STUDIO"}</span><h2 id="intro-title">{isRu ? "О нас" : "About us"}</h2></div>
+        <div className={styles.sectionLabel}><h2 id="intro-title">{isRu ? "О нас" : "About us"}</h2></div>
         <div className={styles.introBody}>
           <p className={styles.statement}>{isRu ? ru("Мы — команда съёмки и прямых трансляций. Отвечаем за технику и эфир, чтобы вы могли сосредоточиться на самом событии.") : "Head Production is a live event and broadcast production company. We handle the technical complexity so organizers can focus on the event itself — and the audience gets a smooth, high-quality live experience."}</p>
-          <p className={styles.bodyCopy}>{isRu ? ru("Планируем работу на площадке, снимаем, готовим графику и ведём трансляцию. Согласовываем каждый этап — от подготовки и застройки до передачи материалов.") : "From venue planning and signal routing to live directing, graphics, and multi-platform streaming — we deliver end-to-end production with clear communication and predictable results."}</p>
-          <ul className={styles.disciplines}>{[
-            isRu ? "Подготовка и технический план" : "Pre-production & technical design",
-            isRu ? "Многокамерная съёмка и режиссура" : "Multi-camera live directing",
-            isRu ? "Эфирная графика и материалы партнёров" : "Broadcast graphics & sponsor integration",
-            isRu ? "Трансляция, запись и монтаж" : "Streaming + recording + deliverables",
-          ].map(item => <li key={item}>{item}</li>)}</ul>
+          <p className={styles.bodyCopy}>{isRu ? ru("На площадке — по плану, в кадре — жизнь. Согласовываем каждый этап: от подготовки и застройки до передачи материалов.") : "From venue planning and signal routing to live directing, graphics, and multi-platform streaming — we deliver end-to-end production with clear communication and predictable results."}</p>
         </div>
         <dl className={styles.stats}>
           <div><dt>250+</dt><dd>{isRu ? "завершённых проектов" : "projects delivered"}</dd></div>
@@ -283,59 +210,26 @@ export default function Home() {
         </dl>
       </section>
 
-      <section id="selected-work" className={styles.projects} aria-labelledby="projects-title">
-        <div className={styles.sectionHead}>
-          <div><p className={styles.meta}>02 / {isRu ? "ПРОЕКТЫ" : "SELECTED WORK"}</p><h2 id="projects-title">{isRu ? "В центре события" : "Inside the moment"}</h2></div>
-          <a href="/work" className={styles.textLink}>{isRu ? "Все проекты" : "View all case studies"}<span aria-hidden="true">↗</span></a>
-        </div>
-        <p className={styles.projectsLead}>{isRu ? ru("Несколько примеров нашей работы. По запросу покажем фотографии, состав оборудования и подробности съёмки.") : "Highlights from recent productions. We can expand these into full case studies with photos, setup details, gear lists, and outcomes."}</p>
-        <article className={styles.mainProject}>
-          <a className={`${styles.projectPhoto} ${styles.projectFilm}`} href="/work#zemfira" aria-label={isRu ? "Проект ZEMFIRA — подробнее" : "ZEMFIRA — view details"}>
-            <video autoPlay muted loop playsInline preload="metadata" poster="/cases/zemfira/showreel.jpg" aria-label={isRu ? "Земфира — чёрно-белый шоурил, 15 секунд, без звука" : "Zemfira — 15-second black-and-white silent showreel"}><source src="/cases/zemfira/showreel.mp4" type="video/mp4" /></video>
-            <span className={styles.photoLabel}>01 / {isRu ? "КОНЦЕРТНАЯ СЕРИЯ" : "CONCERT SERIES"}</span>
-            <span className={styles.photoArrow} aria-hidden="true">↗</span>
-          </a>
-          <div className={styles.projectCaption}>
-            <h3><a href="/work#zemfira">ZEMFIRA</a></h3>
-            <div><p className={styles.meta}>{featuredCases[0].meta}</p><p>{featuredCases[0].desc}</p></div>
-            <ul className={styles.projectFacts}>{featuredCases[0].tags.map(tag=><li key={tag}>{tag}</li>)}</ul>
-          </div>
-        </article>
-        <div className={styles.projectPair}>
-          <article className={styles.pokerProject}>
-            <div className={styles.pokerIdentity}><span className={styles.meta}>02 / POKER BROADCAST</span><Image src="/clients/eapt.png" alt="EAPT" width={537} height={242} sizes="(max-width: 700px) 70vw, 30vw" /><span className={styles.meta}>EAPT × POVPRODUCTION</span></div>
-            <div className={styles.smallProjectCaption}><h3><a href="/work#eapt">EAPT <span aria-hidden="true">↗</span></a></h3><p className={styles.meta}>{featuredCases[1].meta}</p><p>{featuredCases[1].desc}</p><ul className={styles.inlineFacts}>{featuredCases[1].tags.map(tag=><li key={tag}>{tag}</li>)}</ul></div>
-          </article>
-          <article className={styles.musicProject}>
-            <p className={styles.meta}>03 / {isRu ? "МУЗЫКА / ПРЯМОЙ ЭФИР" : "MUSIC / LIVE BROADCAST"}</p>
-            <div className={styles.duration} aria-label={isRu ? "12 часов трансляции" : "12 hours live"}>12<span>H</span></div>
-            <p className={styles.meta}>PTZ / {isRu ? "6 500 ГОСТЕЙ" : "6,500 GUESTS"}</p>
-            <div className={styles.smallProjectCaption}><h3><a href="/work#adam-port">Adam Port <span aria-hidden="true">↗</span></a></h3><p>{featuredCases[2].desc}</p><ul className={styles.inlineFacts}>{featuredCases[2].tags.map(tag=><li key={tag}>{tag}</li>)}</ul></div>
-          </article>
-        </div>
-        <div className={styles.clients}><p className={styles.meta}>{isRu ? "НАМ ДОВЕРЯЮТ" : "SELECTED CLIENTS"}</p><div>{clientLogos.map(logo=><Image key={logo.name} src={logo.src} alt={isRu ? 'Логотип '+logo.name : logo.name+' logo'} width={240} height={110} sizes="(max-width: 700px) 28vw, 12vw" />)}</div></div>
-      </section>
-
       <section id="services" className={styles.services} aria-labelledby="services-title">
-        <div className={styles.sectionLabel}><p className={styles.meta}>03 / CAPABILITIES</p><h2 id="services-title">{isRu ? "Услуги" : "Capabilities"}</h2><p>{isRu ? ru("Подбираем команду и оборудование под вашу площадку и формат.") : "Full-cycle live production, scaled to your venue and format."}</p><a className={styles.textLink} href="/services">{isRu ? "Все направления" : "Explore services"}<span aria-hidden="true">↗</span></a></div>
-        <div className={styles.serviceIndex}>{capabilities.map((service,i)=><details key={service.title} className={styles.service}>
-          <summary><span className={styles.meta}>{String(i+1).padStart(2,'0')}</span><h3>{service.title}</h3><span className={styles.serviceToggle} aria-hidden="true">+</span></summary>
+        <div className={styles.sectionLabel}><h2 id="services-title">{isRu ? "Услуги" : "Capabilities"}</h2><p>{isRu ? ru("Подбираем команду и оборудование под вашу площадку и формат.") : "Full-cycle live production, scaled to your venue and format."}</p><a className={styles.textLink} href="/services">{isRu ? "Все направления" : "Explore services"}<span aria-hidden="true">↗</span></a></div>
+        <div className={styles.serviceIndex}>{capabilities.map(service=><details key={service.title} className={styles.service}>
+          <summary><h3>{service.title}</h3><span className={styles.serviceToggle} aria-hidden="true">+</span></summary>
           <div className={styles.serviceDescription}><p>{service.desc}</p></div>
         </details>)}</div>
         <p id="industries" className={styles.industries}>{isRu ? ru("Один стандарт качества для разных событий. Способ работы подбираем под вашу задачу.") : "Same standards, different formats. We adapt the workflow to the event, not the other way around."}</p>
       </section>
 
       <section id="founders" className={styles.team} aria-labelledby="team-title">
-        <div className={styles.sectionHead}><div><p className={styles.meta}>04 / {isRu ? "КОМАНДА" : "THE CREW"}</p><h2 id="team-title">{isRu ? "По ту сторону эфира" : "Behind the live"}</h2></div><a href="/about" className={styles.textLink}>{isRu ? "О нас" : "About us"}<span aria-hidden="true">↗</span></a></div>
-        <div className={styles.teamPhotos}>{team.map((person,i)=><figure key={person.name} className={styles.teamPerson}>
-          <div className={styles.teamImage}><Image src={person.photo} alt={person.name} fill sizes={i===2 ? '(max-width: 700px) 44vw, 45vw' : '(max-width: 700px) 90vw, 23vw'} /><span className={styles.photoLabel}>CREW / 0{i+1}</span></div>
-          <figcaption><h3>{person.name}</h3><p>{person.role}</p><span className={styles.meta}>{person.since}</span><a className={styles.textLink} href="#contact">{isRu ? "Резюме" : "View CV"}<span aria-hidden="true">↗</span></a></figcaption>
+        <div className={styles.sectionHead}><div><h2 id="team-title">{isRu ? "По ту сторону эфира" : "Behind the live"}</h2></div><a href="/about" className={styles.textLink}>{isRu ? "О нас" : "About us"}<span aria-hidden="true">↗</span></a></div>
+        <div className={styles.teamPhotos}>{team.map(person=><figure key={person.name} className={styles.teamPerson}>
+          <div className={styles.teamImage}><Image src={person.photo} alt={person.name} fill sizes="(max-width: 700px) 100vw, 30vw" /></div>
+          <figcaption><h3>{person.name}</h3><p>{person.role}</p><span className={styles.meta}>{person.since}</span></figcaption>
         </figure>)}</div>
       </section>
 
-      <section className={styles.process} aria-labelledby="process-title"><div className={styles.sectionLabel}><p className={styles.meta}>05 / WORKFLOW</p><h2 id="process-title">{isRu ? "Как работаем" : "How it works"}</h2><p>{isRu ? ru("Заранее согласовываем этапы, сроки и обязанности команды.") : "Clear steps, predictable delivery, and no surprises on show day."}</p></div><ol>{process.map(step=><li key={step.n}><span className={styles.meta}>{step.n}</span><h3>{step.t}</h3><p>{step.d}</p></li>)}</ol></section>
+      <section className={styles.process} aria-labelledby="process-title"><div className={styles.sectionLabel}><h2 id="process-title">{isRu ? "Как работаем" : "How it works"}</h2><p>{isRu ? ru("Заранее согласовываем этапы, сроки и обязанности команды.") : "Clear steps, predictable delivery, and no surprises on show day."}</p></div><ol>{process.map(step=><li key={step.n}><h3>{step.t}</h3><p>{step.d}</p></li>)}</ol></section>
 
-      <section id="contact" className={styles.contact} aria-labelledby="contact-title"><div className={styles.contactHeading}><p className={styles.meta}><i className={styles.recDot} aria-hidden="true" /> {isRu ? "СЛЕДУЮЩИЙ ПРОЕКТ" : "YOUR NEXT PRODUCTION"}</p><h2 id="contact-title">{isRu ? <>Обсудим<br />проект</> : <>Let’s<br />talk</>}</h2><p>{isRu ? ru("Расскажите о событии. Предложим оборудование и план работы, обозначим сроки.") : "Tell us about the event — we’ll suggest the setup, timeline, and next steps."}</p><div className={styles.contacts}><a href="mailto:hello@headprod.live">hello@headprod.live ↗</a><a href="https://t.me/Hipete_HP" target="_blank" rel="noreferrer">Telegram / @Hipete_HP ↗</a></div></div>
+      <section id="contact" className={styles.contact} aria-labelledby="contact-title"><div className={styles.contactHeading}><h2 id="contact-title">{isRu ? <>Обсудим<br />проект</> : <>Let’s<br />talk</>}</h2><p>{isRu ? ru("Расскажите о событии. Предложим оборудование и план работы, обозначим сроки.") : "Tell us about the event — we’ll suggest the setup, timeline, and next steps."}</p><div className={styles.contacts}><a href="mailto:hello@headprod.live">hello@headprod.live ↗</a><a href="https://t.me/Hipete_HP" target="_blank" rel="noreferrer">Telegram / @Hipete_HP ↗</a></div></div>
 <form onSubmit={submitContactForm} className={styles.form}>
               <div className="grid gap-4 sm:grid-cols-2">
                 <label className="space-y-2">

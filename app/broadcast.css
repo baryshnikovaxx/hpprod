@@ -160,3 +160,16 @@ header[data-broadcast] button[class*="bg-white"] { background: #4c2673; }
 .concert-gallery { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 25px; margin-top: 35px; }
 .concert-full { grid-column: 1/-1; justify-self: start; padding-bottom: 8px; border-bottom: 2px solid #4c2673; font-size: 13px; }
 @media(max-width:700px) { .concert-gallery { grid-template-columns: 1fr; gap: 20px; } .concert-lead figcaption,.concert-gallery figcaption { font-size: 9px; } }
+/* Equal portraits and unnumbered equipment, across all viewport sizes. */
+.documentary-team { grid-template-columns: repeat(3,minmax(0,1fr)); }
+.documentary-team > article:nth-child(n) { grid-column: auto; grid-row: auto; margin-top: 0; }
+.documentary-team > article:nth-child(n) > div > div { aspect-ratio: 4/5; }
+.documentary-team p.uppercase { font: 13px/1.6 var(--font-golos),sans-serif; letter-spacing: 0; text-transform: none; }
+.equipment-index > article { grid-template-columns: 1fr 1.2fr; }
+.equipment-index > article::before { content: none; }
+.work-media { padding-top: 0; }
+@media (max-width:700px) {
+ .documentary-team { grid-template-columns: 1fr; }
+ .documentary-team > article:nth-child(n) { grid-column: auto; grid-row: auto; margin-top: 0; }
+ .equipment-index > article { grid-template-columns: 1fr; }
+}

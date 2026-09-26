@@ -190,7 +190,6 @@ export default function CrewSolutionsPage() {
 
       <div className="pt-16">
         <section className="mx-auto w-full max-w-[1400px] px-4 py-16 sm:px-6 md:py-20 lg:px-8">
-          <p className="broadcast-meta">PRODUCTION / CREW</p>
           <h1 className="title-hero mt-3 max-w-4xl">
             {content.title}
           </h1>

@@ -73,7 +73,6 @@ export default function AboutPage() {
 
       <div className="pt-16">
       <section className="mx-auto w-full max-w-[1400px] px-4 py-16 sm:px-6 md:py-20 lg:px-8">
-        <p className="broadcast-meta">STUDIO / PEOPLE</p>
           <h1 className="title-hero mt-3">
           {isRu ? "Команда, на которую можно положиться в эфире" : "Reliable production for live events"}
         </h1>
@@ -103,19 +102,19 @@ export default function AboutPage() {
               name: isRu ? "Петр Бабицкий" : "Peter Babitsky",
               photo: "/founders/peter-babitsky.jpg",
               role: isRu ? "Продюсер · Режиссёр трансляций" : "Producer · Broadcast Director",
-              since: isRu ? "Работает с 2019 года" : "In the field since 2019",
+              since: isRu ? "В сфере с 2016 года" : "In the field since 2016",
             },
             {
-              name: isRu ? "Никита Приймак" : "Nikita Priimak",
+              name: isRu ? "Кит Приймак" : "Kit Priimak",
               photo: "/founders/nikita-priimak.jpg",
               role: isRu ? "Продюсер · Технический директор" : "Producer · Technical Director",
-              since: isRu ? "Работает с 2019 года" : "In the field since 2019",
+              since: isRu ? "В сфере с 2016 года" : "In the field since 2016",
             },
             {
               name: isRu ? "Максим Буторин" : "Maxim Butorin",
               photo: "/founders/maxim-butorin.jpg",
               role: isRu ? "Технический директор · Оператор-постановщик" : "Technical Director · DOP",
-              since: isRu ? "Работает с 2016 года" : "In the field since 2016",
+              since: isRu ? "В сфере с 2016 года" : "In the field since 2016",
             },
           ].map((f) => (
             <article key={f.name} className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6 text-center">

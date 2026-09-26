@@ -167,7 +167,6 @@ export default function EquipmentPage() {
 
       <div className="pt-16">
         <section className="mx-auto w-full max-w-[1400px] px-4 py-16 sm:px-6 md:py-20 lg:px-8">
-          <p className="broadcast-meta">TECHNICAL / EQUIPMENT</p>
           <h1 className="title-hero mt-3">
             {isRu ? "Оборудование для съёмки и эфира" : "Technical Capabilities"}
           </h1>

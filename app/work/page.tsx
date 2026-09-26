@@ -166,7 +166,7 @@ export default function WorkPage() {
           showreelSeconds: 15,
           title: "ZEMFIRA",
           locationYear: "Тбилиси · Батуми · Ереван · 2024–2025",
-          format: "Серия концертов с аншлагами.",
+          format: "Серия концертов",
           scale: "До 40 000 зрителей на концерте. Все билеты проданы.",
           role: "Полный цикл видеосъёмки в 2024–2025 годах.",
           responsibilities: [
@@ -296,7 +296,7 @@ export default function WorkPage() {
           showreelSeconds: 15,
           title: "ZEMFIRA",
           locationYear: "Tbilisi · Batumi · Yerevan · 2024–2025",
-          format: "Sold-out concert series",
+          format: "Concert series",
           scale: "All shows sold out, up to 40,000 people at once.",
           role: "Full-cycle video production across 2024–2025.",
           responsibilities: ["Multi-camera production", "Video and aerial coverage", "Three cities"],
@@ -322,7 +322,6 @@ export default function WorkPage() {
 
       <div className="pt-16">
         <section className="mx-auto w-full max-w-[1400px] px-4 py-16 sm:px-6 md:py-20 lg:px-8">
-          <p className="broadcast-meta">ARCHIVE / SELECTED WORK</p>
           <h1 className="title-hero mt-3">
             {isRu ? "Проекты" : "Case studies"}
           </h1>
@@ -335,15 +334,13 @@ export default function WorkPage() {
 
         <section className="mx-auto w-full max-w-[1400px] px-4 pb-16 sm:px-6 lg:px-8">
           <div className="work-index">
-            {cases.map((item, index) => (
+            {cases.filter(item => item.showreel).map((item) => (
               <article id={item.id} key={item.id} className={`work-entry ${(item.showreel || item.coverSrc && item.mediaFit !== "contain") ? "work-photo" : "work-dossier"}`}>
                 <div className="work-media">
-                  <span className="broadcast-meta work-number">{String(index + 1).padStart(2, "0")} / {item.format}</span>
                   {item.showreel ? <figure className="concert-lead">
                     <video controls playsInline muted loop preload="none" poster={item.showreel + "/showreel.jpg"} aria-label={item.title + (isRu ? ": шоурил без звука, " + (item.showreelSeconds ?? 14) + " с" : ": " + (item.showreelSeconds ?? 14) + "-second silent showreel")}>
                       <source src={item.showreel + "/showreel.mp4"} type="video/mp4" />
                     </video>
-                    <figcaption className="broadcast-meta">01 / {isRu ? "ШОУРИЛ / БЕЗ ЗВУКА" : "SHOWREEL / NO AUDIO"} · 00:{item.showreelSeconds ?? 14} · {item.id === "g-gate" ? "GGATE AWARDS / 2026" : item.id === "zemfira" ? "BATUMI / 2025" : "2025–2026"}</figcaption>
                   </figure> : item.coverSrc ? <div className={`work-image ${item.mediaFit === "contain" ? "work-logo" : ""}`}>
                     <Image src={item.coverSrc} alt={item.title} fill sizes="(max-width: 700px) 100vw, 90vw" className={item.mediaFit === "contain" ? "object-contain" : "object-cover"} />
                   </div> : <p className="work-type">{item.visualLabel || item.title}</p>}
@@ -356,7 +353,6 @@ export default function WorkPage() {
                     <div><dt>{isRu ? "Наша роль" : "Our role"}</dt><dd>{item.role}</dd></div>
                   </dl>
                   <div className="work-delivery"><p className="broadcast-meta">{isRu ? "Что сделали" : "Key responsibilities"}</p><ul>{item.responsibilities.map(point=><li key={point}>{point}</li>)}</ul></div>
-                  <div className="work-result"><p className="broadcast-meta">{isRu ? "Результат" : "Result"}</p><p>{item.result}</p></div>
                   {item.note && <p className="work-note">{item.note}</p>}
                 </div>
               </article>

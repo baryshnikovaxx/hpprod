@@ -65,9 +65,6 @@ export default function ScandiPage() {
   return (
     <main className="broadcast-page page-scandi min-h-screen bg-[#f6f6f3] text-[#161616]">
       <SiteHeader />
-      <div className="pointer-events-none fixed right-[-54px] top-20 z-10 -rotate-90 rounded-full bg-[#ff4fd8] px-5 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-white shadow-[0_8px_30px_rgba(255,79,216,0.35)]">
-        {isRu ? "Прямой эфир" : "LIVE SIGNAL ))"}
-      </div>
       <section className="mx-auto w-full max-w-[1200px] px-6 py-16 md:py-24">
         <div className="mb-10 flex items-center justify-between">
           <a href="/" className="text-sm font-medium tracking-[0.12em] text-[#6d6d6a] uppercase">

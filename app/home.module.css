@@ -306,7 +306,27 @@
 @media (prefers-reduced-motion:reduce) {
   .home *, .home *::before, .home *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
 }
-
-/* Preserve every concert framing on desktop and mobile. */
-.projectPhoto.projectFilm { aspect-ratio: 16 / 9; }
-.projectFilm > video { display: block; width: 100%; height: 100%; object-fit: contain; }
+/* Quiet layouts: video, names and useful copy take priority. */
+.videoProjects { display: grid; gap: 48px; margin-top: 32px; }
+.videoProject video { display: block; width: 100%; aspect-ratio: 16/9; background: #000; object-fit: cover; }
+.videoCaption { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; border-top: 2px solid var(--rec); padding: 22px 0; }
+.videoCaption h3 { font-size: clamp(28px,4vw,58px); }
+.videoCaption p { align-self: center; max-width: 600px; font-size: 15px; line-height: 1.7; color: var(--muted); }
+.service summary { grid-template-columns: 1fr 22px; }
+.serviceDescription { padding-left: 0; }
+.process li { grid-template-columns: 130px 1fr; }
+.teamPhotos { grid-template-columns: repeat(3,minmax(0,1fr)); align-items: stretch; }
+.teamPerson:nth-child(n) { grid-column: auto; grid-row: auto; padding: 0; }
+.teamPerson:nth-child(n) .teamImage { aspect-ratio: 4/5; }
+.teamPerson figcaption > .meta { font-family: inherit; font-size: 13px; letter-spacing: 0; text-transform: none; }
+.teamPerson figcaption > p { font-size: 14px; }
+@media (max-width: 700px) {
+ .videoCaption { grid-template-columns: 1fr; gap: 12px; padding: 18px 0; }
+ .videoCaption p { font-size: 14px; }
+ .teamPhotos { grid-template-columns: 1fr; }
+ .teamPerson:nth-child(n) { grid-column: auto; grid-row: auto; }
+ .teamPerson:nth-child(n) .teamImage { aspect-ratio: 4/5; }
+ .process li { grid-template-columns: 1fr; gap: 8px; }
+ .services .sectionLabel { display: block; }
+ .services .sectionLabel > p:not(.meta) { margin-top: 18px; }
+}

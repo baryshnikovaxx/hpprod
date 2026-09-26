@@ -65,9 +65,6 @@ export default function ScandiEditorialPage() {
   return (
     <main className="broadcast-page page-scandi-editorial min-h-screen overflow-x-clip bg-[#f5f5f2] text-[#141414]">
       <SiteHeader />
-      <div className="pointer-events-none fixed left-4 top-20 z-20 text-2xl text-[#ff3bbf] md:text-4xl">✶</div>
-      <div className="pointer-events-none fixed right-6 top-40 z-20 text-xl text-[#111] md:text-3xl">→</div>
-      <div className="pointer-events-none fixed bottom-8 right-8 z-20 text-2xl text-[#ff3bbf] md:text-4xl">✷</div>
 
       <section className="mx-auto w-full max-w-[1320px] px-5 py-12 md:px-8 md:py-16">
         <div className="flex items-center justify-between">
@@ -137,10 +134,10 @@ export default function ScandiEditorialPage() {
           <div className="mt-10 border-t border-[#111]/15 pt-6">
             <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-[#6f6f6a]">{copy.projectsTitle} →</p>
             <div className="mt-4 grid gap-3 md:grid-cols-3">
-              {copy.projects.map((project, idx) => (
+              {copy.projects.map((project) => (
                 <div key={project} className="rounded-2xl border border-[#111]/10 bg-white/80 px-4 py-3 text-sm text-[#262624]">
                   <span className="mr-1 text-[#ff3bbf]">✶</span>
-                  {idx + 1}. {project}
+                  {project}
                 </div>
               ))}
             </div>
