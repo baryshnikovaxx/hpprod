@@ -40,11 +40,12 @@ const englishMetadata: Metadata = {
   ],
   icons: {
     icon: [
-      { url: "/icon.png", type: "image/png" },
-      { url: "/favicon.ico", type: "image/x-icon" },
+      { url: "/hp-icon.svg?v=hp1", type: "image/svg+xml" },
+      { url: "/icon.png?v=hp1", type: "image/png" },
+      { url: "/favicon.ico?v=hp1", type: "image/x-icon" },
     ],
-    apple: [{ url: "/apple-icon.png", type: "image/png" }],
-    shortcut: ["/favicon.ico"],
+    apple: [{ url: "/apple-icon.png?v=hp1", type: "image/png" }],
+    shortcut: ["/favicon.ico?v=hp1"],
   },
   openGraph: {
     type: "website",

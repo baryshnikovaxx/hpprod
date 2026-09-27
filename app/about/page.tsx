@@ -105,7 +105,7 @@ export default function AboutPage() {
               since: isRu ? "В сфере с 2016 года" : "In the field since 2016",
             },
             {
-              name: isRu ? "Кит Приймак" : "Kit Priimak",
+              name: isRu ? "Никита Приймак" : "Nikita Priimak",
               photo: "/founders/nikita-priimak.jpg",
               role: isRu ? "Продюсер · Технический директор" : "Producer · Technical Director",
               since: isRu ? "В сфере с 2016 года" : "In the field since 2016",

@@ -16,7 +16,7 @@ export default function Home() {
   const featuredCases = [
     { id: "zemfira", title: "ZEMFIRA", video: "/cases/zemfira", description: isRu ? "СЕРИЯ КОНЦЕРТОВ · Тбилиси, Батуми, Ереван · 2024–2025" : "CONCERT SERIES · Tbilisi, Batumi, Yerevan · 2024–2025" },
     { id: "zemfira", title: "ZEMFIRA", video: "/cases/zemfira", description: isRu ? "Концерты в Батуми · 2025. Съёмка с пяти камер и дрона." : "Batumi concerts · 2025. Five-camera and drone coverage." },
-    { id: "g-gate", title: "gGATE Awards", video: "/cases/ggate", description: isRu ? "Яникс и Валерий Меладзе. Ловим движение, держим ритм, показываем эмоции." : "Yanix and Valery Meladze. Live direction that captures the movement, pace and emotion." },
+    { id: "g-gate", title: "GGate Awards", video: "/cases/ggate", description: isRu ? "Яникс и Валерий Меладзе. Ловим движение, держим ритм, показываем эмоции." : "Yanix and Valery Meladze. Live direction that captures the movement, pace and emotion." },
     { id: "poshlaya-molly", title: isRu ? "Пошлая Молли" : "Poshlaya Molly", video: "/cases/poshlaya-molly", description: isRu ? "Два концерта в Тбилиси · 2025–2026. 3 500 зрителей, open air, съёмка с камер и дрона." : "Two concerts in Tbilisi · 2025–2026. 3,500 attendees, open air, camera and drone coverage." },
   ];
 
@@ -114,7 +114,7 @@ export default function Home() {
               since: isRu ? "В сфере с 2016 года" : "In the field since 2016",
             },
             {
-              name: isRu ? "Кит Приймак" : "Kit Priimak",
+              name: isRu ? "Никита Приймак" : "Nikita Priimak",
               photo: "/founders/nikita-priimak.jpg",
               role: isRu ? "Продюсер · Технический директор" : "Producer · Technical Director",
               since: isRu ? "В сфере с 2016 года" : "In the field since 2016",
@@ -179,9 +179,22 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="intro" className={styles.intro} aria-labelledby="intro-title">
+        <div className={styles.sectionLabel}><h2 id="intro-title">{isRu ? "О нас" : "About us"}</h2></div>
+        <div className={styles.introBody}>
+          <p className={styles.statement}>{isRu ? ru("Мы — команда съёмки и прямых трансляций. Отвечаем за технику и эфир, чтобы вы могли сосредоточиться на самом событии.") : "Head Production is a live event and broadcast production company. We handle the technical complexity so organizers can focus on the event itself — and the audience gets a smooth, high-quality live experience."}</p>
+          <p className={styles.bodyCopy}>{isRu ? ru("На площадке — по плану, в кадре — жизнь. Согласовываем каждый этап: от подготовки и застройки до передачи материалов.") : "From venue planning and signal routing to live directing, graphics, and multi-platform streaming — we deliver end-to-end production with clear communication and predictable results."}</p>
+        </div>
+        <dl className={styles.stats}>
+          <div><dt>250+</dt><dd>{isRu ? "завершённых проектов" : "projects delivered"}</dd></div>
+          <div><dt>8</dt><dd>{isRu ? "лет опыта" : "years experience"}</dd></div>
+          <div><dt>{isRu ? "9 900+" : "9,900+"}</dt><dd>{isRu ? "часов прямого эфира" : "hours live"}</dd></div>
+        </dl>
+      </section>
+
       <section id="selected-work" className={styles.projects} aria-labelledby="projects-title">
         <div className={styles.sectionHead}>
-          <div><h2 id="projects-title">{isRu ? "В центре события" : "Inside the moment"}</h2></div>
+          <div><h2 id="projects-title">{isRu ? "Вот, что мы делаем" : "Here’s what we do"}</h2></div>
           <a href="/work" className={styles.textLink}>{isRu ? "Все проекты" : "View all case studies"}<span aria-hidden="true">↗</span></a>
         </div>
         <div className={styles.videoProjects}>{featuredCases.map(project => (
@@ -195,19 +208,6 @@ export default function Home() {
             </div>
           </article>
         ))}</div>
-      </section>
-
-      <section id="intro" className={styles.intro} aria-labelledby="intro-title">
-        <div className={styles.sectionLabel}><h2 id="intro-title">{isRu ? "О нас" : "About us"}</h2></div>
-        <div className={styles.introBody}>
-          <p className={styles.statement}>{isRu ? ru("Мы — команда съёмки и прямых трансляций. Отвечаем за технику и эфир, чтобы вы могли сосредоточиться на самом событии.") : "Head Production is a live event and broadcast production company. We handle the technical complexity so organizers can focus on the event itself — and the audience gets a smooth, high-quality live experience."}</p>
-          <p className={styles.bodyCopy}>{isRu ? ru("На площадке — по плану, в кадре — жизнь. Согласовываем каждый этап: от подготовки и застройки до передачи материалов.") : "From venue planning and signal routing to live directing, graphics, and multi-platform streaming — we deliver end-to-end production with clear communication and predictable results."}</p>
-        </div>
-        <dl className={styles.stats}>
-          <div><dt>250+</dt><dd>{isRu ? "завершённых проектов" : "projects delivered"}</dd></div>
-          <div><dt>8</dt><dd>{isRu ? "лет опыта" : "years experience"}</dd></div>
-          <div><dt>{isRu ? "9 900+" : "9,900+"}</dt><dd>{isRu ? "часов прямого эфира" : "hours live"}</dd></div>
-        </dl>
       </section>
 
       <section id="services" className={styles.services} aria-labelledby="services-title">
