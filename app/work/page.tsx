@@ -338,7 +338,7 @@ export default function WorkPage() {
               <article id={item.id} key={item.id} className={`work-entry ${(item.showreel || item.coverSrc && item.mediaFit !== "contain") ? "work-photo" : "work-dossier"}`}>
                 <div className="work-media">
                   {item.showreel ? <figure className="concert-lead">
-                    <video controls playsInline muted loop preload="none" poster={item.showreel + "/showreel.jpg"} aria-label={item.title + (isRu ? ": шоурил без звука, " + (item.showreelSeconds ?? 14) + " с" : ": " + (item.showreelSeconds ?? 14) + "-second silent showreel")}>
+                    <video autoPlay controls playsInline muted loop preload="metadata" poster={item.showreel + "/showreel.jpg"} aria-label={item.title + (isRu ? ": шоурил без звука, " + (item.showreelSeconds ?? 14) + " с" : ": " + (item.showreelSeconds ?? 14) + "-second silent showreel")}>
                       <source src={item.showreel + "/showreel.mp4"} type="video/mp4" />
                     </video>
                   </figure> : item.coverSrc ? <div className={`work-image ${item.mediaFit === "contain" ? "work-logo" : ""}`}>

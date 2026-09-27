@@ -198,7 +198,7 @@ export default function Home() {
         </div>
         <div className={styles.videoProjects}>{featuredCases.map(project => (
           <article key={project.id} className={styles.videoProject}>
-            <video controls playsInline muted loop preload="none" poster={project.video + "/showreel.jpg"} aria-label={project.title}>
+            <video autoPlay controls playsInline muted loop preload="metadata" poster={project.video + "/showreel.jpg"} aria-label={project.title}>
               <source src={project.video + "/showreel.mp4"} type="video/mp4" />
             </video>
             <div className={styles.videoCaption}>
