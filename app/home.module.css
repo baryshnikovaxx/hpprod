@@ -307,10 +307,12 @@
   .home *, .home *::before, .home *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
 }
 /* Quiet layouts: video, names and useful copy take priority. */
-.videoProjects { display: grid; gap: 48px; margin-top: 32px; }
+.videoProjects { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 36px 28px; max-width: 1120px; margin: 32px auto 0; }
+.videoProject { min-width: 0; }
+.videoProject:first-child { grid-column: 1/-1; width: min(100%,820px); justify-self: center; }
 .videoProject video { display: block; width: 100%; aspect-ratio: 16/9; background: #000; object-fit: cover; }
-.videoCaption { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; border-top: 2px solid var(--rec); padding: 22px 0; }
-.videoCaption h3 { font-size: clamp(28px,4vw,58px); }
+.videoCaption { display: grid; grid-template-columns: 1fr; gap: 12px; border-top: 2px solid var(--rec); padding: 18px 0; }
+.videoCaption h3 { font-size: clamp(26px,2.8vw,42px); }
 .videoCaption p { align-self: center; max-width: 600px; font-size: 15px; line-height: 1.7; color: var(--muted); }
 .service summary { grid-template-columns: 1fr 22px; }
 .serviceDescription { padding-left: 0; }
@@ -329,4 +331,9 @@
  .process li { grid-template-columns: 1fr; gap: 8px; }
  .services .sectionLabel { display: block; }
  .services .sectionLabel > p:not(.meta) { margin-top: 18px; }
+}
+
+@media (max-width: 640px) {
+ .videoProjects { grid-template-columns: 1fr; gap: 26px; }
+ .videoProject:first-child { grid-column: auto; }
 }

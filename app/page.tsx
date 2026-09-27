@@ -15,7 +15,6 @@ export default function Home() {
   const ru = (text: string) => formatRuTypography(text);
   const featuredCases = [
     { id: "zemfira", title: "ZEMFIRA", video: "/cases/zemfira", description: isRu ? "СЕРИЯ КОНЦЕРТОВ · Тбилиси, Батуми, Ереван · 2024–2025" : "CONCERT SERIES · Tbilisi, Batumi, Yerevan · 2024–2025" },
-    { id: "zemfira", title: "ZEMFIRA", video: "/cases/zemfira", description: isRu ? "Концерты в Батуми · 2025. Съёмка с пяти камер и дрона." : "Batumi concerts · 2025. Five-camera and drone coverage." },
     { id: "g-gate", title: "GGate Awards", video: "/cases/ggate", description: isRu ? "Яникс и Валерий Меладзе. Ловим движение, держим ритм, показываем эмоции." : "Yanix and Valery Meladze. Live direction that captures the movement, pace and emotion." },
     { id: "poshlaya-molly", title: isRu ? "Пошлая Молли" : "Poshlaya Molly", video: "/cases/poshlaya-molly", description: isRu ? "Два концерта в Тбилиси · 2025–2026. 3 500 зрителей, open air, съёмка с камер и дрона." : "Two concerts in Tbilisi · 2025–2026. 3,500 attendees, open air, camera and drone coverage." },
   ];
