@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { cookies } from "next/headers";
-import { Geist_Mono, Golos_Text, IBM_Plex_Mono, Manrope, Unbounded } from "next/font/google";
+import { Geist_Mono, Golos_Text } from "next/font/google";
 import "./globals.css";
 import GoogleAnalytics from "./components/google-analytics";
 import "./broadcast.css";
@@ -9,23 +9,6 @@ import { LanguageProvider } from "./components/language-provider";
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
-});
-
-const manrope = Manrope({
-  variable: "--font-manrope",
-  subsets: ["latin", "cyrillic"],
-});
-
-const unbounded = Unbounded({
-  variable: "--font-unbounded",
-  subsets: ["latin", "cyrillic"],
-  weight: ["500", "600", "700"],
-});
-
-const plexMono = IBM_Plex_Mono({
-  variable: "--font-plex-mono",
-  subsets: ["latin", "cyrillic"],
-  weight: ["400", "500"],
 });
 
 const golos = Golos_Text({
@@ -120,7 +103,7 @@ export default async function RootLayout({
   return (
     <html lang={initialLang}>
       <body
-        className={`${golos.variable} ${geistMono.variable} ${manrope.variable} ${unbounded.variable} ${plexMono.variable} antialiased`}
+        className={`${golos.variable} ${geistMono.variable} antialiased`}
       >
         <LanguageProvider initialLang={initialLang}>{children}</LanguageProvider>
         <GoogleAnalytics />

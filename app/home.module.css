@@ -409,3 +409,32 @@
   .footer nav a { display: inline-block; padding: 10px 0; }
   .footer > a:last-child { font-size: 12px; padding: 12px 0; }
 }
+
+/* Shared mobile spacing and the original Golos display typography. */
+.heroTitle h1 { letter-spacing: -.08em; }
+@media (max-width: 700px) {
+  .home { --gutter: 20px; --section-space: 48px; }
+  .intro,.projects,.services,.team,.process,.contact { padding: var(--section-space) var(--gutter); }
+  .heroTitle h1 { font-size: clamp(58px,16vw,110px); letter-spacing: -.07em; }
+  .sectionLabel,.sectionHead,.teamPerson figcaption { min-width: 0; }
+  .home h2 { font-size: 32px; line-height: 1.1; }
+  .contactHeading h2 { font-size: clamp(44px,12vw,56px); }
+  .stats > div,.stats > div+div { display: grid; grid-template-columns: minmax(104px,.8fr) minmax(0,1fr); }
+  .stats dt { min-width: 0; font-size: clamp(32px,10vw,40px); }
+  .teamPerson:nth-child(n) { grid-template-columns: 80px minmax(0,1fr); gap: 16px; }
+  .teamPerson:nth-child(n) .teamImage { width: 80px; }
+  .teamPerson h3 { overflow-wrap: anywhere; }
+  .footer nav { flex-wrap: wrap; gap: 8px 24px; }
+}
+
+.heroActions .action { background: transparent; color: white !important; border: 1px solid #ffffffa6; }
+.heroActions .action:hover { background: #ffffff14; }
+.heroActions .action svg { flex-shrink: 0; }
+@media (max-width: 767px) {
+  .home :global(header[data-broadcast]) { background: transparent; border: 0; pointer-events: none; }
+  .home :global(header[data-broadcast]) > div { justify-content: flex-end; }
+  .home :global(header[data-broadcast]) > div > a,
+  .home :global(header[data-broadcast]) > div > div:last-child > div { display: none; }
+  .home :global(header[data-broadcast]) :global([data-menu-toggle]) { pointer-events: auto; background: #0003; border: 0; width: 44px; height: 44px; color: white; }
+  .heroFilmToggle { top: 76px; }
+}

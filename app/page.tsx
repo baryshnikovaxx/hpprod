@@ -166,7 +166,6 @@ export default function Home() {
         <HeroFilm isRu={isRu} />
         <div className={styles.heroShade} />
         <div className={styles.heroTitle}>
-          <p className={styles.meta}>{isRu ? "Съёмка мероприятий и прямые трансляции" : "LIVE EVENT & BROADCAST"}</p>
           <h1 id="home-title">WE MAKE<br />IT LIVE</h1>
         </div>
         <div className={styles.heroBottom}>
@@ -174,8 +173,7 @@ export default function Home() {
             ? ru("Концерты, конференции, фестивали, спорт и киберспорт. Берём на себя подготовку, съёмку и эфир. Работаем в Европе, СНГ и по всему миру.")
             : "Conferences, concerts & festivals, esports and large-scale events. Full-cycle delivery from technical design to final output across the EU, CIS, and worldwide."}</p>
           <div className={styles.heroActions}>
-            <a className={styles.action} href="#contact">{isRu ? "Обсудить проект" : "Discuss your event"}<span aria-hidden="true">↗</span></a>
-            <a className={styles.textLink} href="#selected-work">{isRu ? "Наши проекты" : "Selected work"}<span aria-hidden="true">↓</span></a>
+            <a className={styles.action} href="#contact">{isRu ? "Обсудить проект" : "Discuss your event"}<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M5 19 19 5M5 5h14v14" /></svg></a>
           </div>
         </div>
       </section>

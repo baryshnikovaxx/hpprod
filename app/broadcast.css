@@ -187,11 +187,6 @@ header[data-broadcast] button[class*="bg-white"] { background: #4c2673; }
 /* Case archive entries without visuals yet. */
 .work-text .work-copy { margin-top: 0; }
 
-/* Russian version: Cyrillic display, text and mono faces. */
-html:lang(ru) body { --font-golos: var(--font-manrope); --font-geist-mono: var(--font-plex-mono); }
-html:lang(ru) :is(h1,h2) { font-family: var(--font-unbounded), var(--font-manrope), sans-serif; font-weight: 600; letter-spacing: -.035em; }
-html:lang(ru) #home-title { font-size: clamp(48px,14vw,180px); letter-spacing: -.05em; line-height: .95; }
-
 /* Mobile readability for inner pages. */
 @media (max-width:700px) {
  .broadcast-meta,.work-facts dt { font-size: 12px; letter-spacing: .05em; }

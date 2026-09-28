@@ -110,6 +110,9 @@ export default function SiteHeader({ variant = "broadcast" }: { variant?: "defau
 
             <button
               type="button"
+              data-menu-toggle
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-navigation"
               aria-label={isRu ? "Открыть меню" : "Open menu"}
               className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/15 bg-white/5 text-zinc-200 transition-colors duration-200 hover:border-white/30 hover:text-indigo-200 md:hidden"
               onClick={() => setMobileMenuOpen(true)}
@@ -124,6 +127,7 @@ export default function SiteHeader({ variant = "broadcast" }: { variant?: "defau
 
       {mobileMenuOpen && (
         <div
+          id="mobile-navigation"
           data-broadcast-menu={variant === "broadcast" ? "true" : undefined}
           className="fixed inset-0 z-[60] bg-black/60 md:hidden"
           onMouseDown={(event) => {
@@ -143,6 +147,10 @@ export default function SiteHeader({ variant = "broadcast" }: { variant?: "defau
                   <path d="M6 6l12 12M18 6L6 18" strokeLinecap="round" />
                 </svg>
               </button>
+            </div>
+            <div className="mt-6 flex gap-4" aria-label={isRu ? "Язык" : "Language"}>
+              <button type="button" aria-pressed={!isRu} onClick={() => setLang("en")} className="min-h-11 px-3 text-white">EN</button>
+              <button type="button" aria-pressed={isRu} onClick={() => setLang("ru")} className="min-h-11 px-3 text-white">RU</button>
             </div>
             <nav className="mt-8 grid gap-2">
               {navItems.map((item) => (

@@ -16,7 +16,7 @@ export default function HeroFilm({ isRu }: { isRu: boolean }) {
     <video ref={video} className={styles.heroFilm} autoPlay muted loop playsInline
       preload="metadata" poster="/showreel/hero-bw-grain-v3.jpg" aria-hidden="true"
       onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)}>
-      <source src="/showreel/hero-bw-grain-v3.mp4" type="video/mp4" />
+      <source src="/showreel/hero-bw-grain-v4.mp4" type="video/mp4" />
     </video>
     <button type="button" className={styles.heroFilmToggle}
       aria-label={playing ? (isRu ? "Приостановить фоновое видео" : "Pause background video") : (isRu ? "Воспроизвести фоновое видео" : "Play background video")}
