@@ -31,6 +31,8 @@ export default function WorkPage() {
     ? [
         {
           id: "eapt",
+          showreel: "/cases/eapt",
+          showreelSeconds: 15,
           title: "EAPT",
           locationYear: "Грузия · Армения",
           format: "Трансляции покерной серии.",
@@ -196,6 +198,8 @@ export default function WorkPage() {
     : [
         {
           id: "eapt",
+          showreel: "/cases/eapt",
+          showreelSeconds: 15,
           title: "EAPT",
           locationYear: "Georgia · Armenia",
           format: "Poker broadcast series",
@@ -381,3 +385,4 @@ export default function WorkPage() {
     </main>
   );
 }
+
