@@ -207,7 +207,7 @@ export default function Home() {
         ))}</div>
       </section>
 
-      <section id="services" className={styles.services} aria-labelledby="services-title">
+      <section id="services" data-header-light className={styles.services} aria-labelledby="services-title">
         <div className={styles.sectionLabel}><h2 id="services-title">{isRu ? "Услуги" : "Capabilities"}</h2><p>{isRu ? ru("Подбираем команду и оборудование под вашу площадку и формат.") : "Full-cycle live production, scaled to your venue and format."}</p><a className={styles.textLink} href="/services">{isRu ? "Все направления" : "Explore services"}<span aria-hidden="true">↗</span></a></div>
         <div className={styles.serviceIndex}>{capabilities.map(service=><details key={service.title} className={styles.service}>
           <summary><h3>{service.title}</h3><span className={styles.serviceToggle} aria-hidden="true">+</span></summary>
@@ -226,7 +226,7 @@ export default function Home() {
 
       <section className={styles.process} aria-labelledby="process-title"><div className={styles.sectionLabel}><h2 id="process-title">{isRu ? "Как работаем" : "How it works"}</h2><p>{isRu ? ru("Заранее согласовываем этапы, сроки и обязанности команды.") : "Clear steps, predictable delivery, and no surprises on show day."}</p></div><ol>{process.map(step=><li key={step.n}><h3>{step.t}</h3><p>{step.d}</p></li>)}</ol></section>
 
-      <section id="contact" className={styles.contact} aria-labelledby="contact-title"><div className={styles.contactHeading}><h2 id="contact-title">{isRu ? <>Обсудим<br />проект</> : <>Let’s<br />talk</>}</h2><p>{isRu ? ru("Расскажите о событии. Предложим оборудование и план работы, обозначим сроки.") : "Tell us about the event — we’ll suggest the setup, timeline, and next steps."}</p><div className={styles.contacts}><a href="mailto:hello@headprod.live">hello@headprod.live ↗</a><a href="https://t.me/Hipete_HP" target="_blank" rel="noreferrer">Telegram / @Hipete_HP ↗</a></div></div>
+      <section id="contact" data-header-light className={styles.contact} aria-labelledby="contact-title"><div className={styles.contactHeading}><h2 id="contact-title">{isRu ? <>Обсудим<br />проект</> : <>Let’s<br />talk</>}</h2><p>{isRu ? ru("Расскажите о событии. Предложим оборудование и план работы, обозначим сроки.") : "Tell us about the event — we’ll suggest the setup, timeline, and next steps."}</p><div className={styles.contacts}><a href="mailto:hello@headprod.live">hello@headprod.live ↗</a><a href="https://t.me/Hipete_HP" target="_blank" rel="noreferrer">Telegram / @Hipete_HP ↗</a></div></div>
 <form onSubmit={submitContactForm} className={styles.form}>
               <div className="grid gap-4 sm:grid-cols-2">
                 <label className="space-y-2">

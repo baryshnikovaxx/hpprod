@@ -444,4 +444,25 @@
   .mobileHeroLead { display: inline; }
   .home :global(header[data-broadcast]) > div { justify-content: space-between; padding: 0 20px; }
   .home :global(header[data-broadcast]) :global([data-mobile-wordmark]) { display: block; pointer-events: auto; color: #fff; font: 600 22px/.95 var(--font-golos),sans-serif; letter-spacing: -.065em; text-decoration: none; }
+  .home :global(header[data-on-light]) :global([data-mobile-wordmark]),
+  .home :global(header[data-on-light]) :global([data-menu-toggle]) { color: var(--ink); }
+}
+
+/* Desktop header: transparent, wordmark like the footer, plain white links. */
+@media (min-width: 768px) {
+  .home :global(header[data-broadcast]) { background: transparent; border: 0; color: var(--paper); transition: color .2s; }
+  .home :global(header[data-broadcast]) > div > a { gap: 12px; color: inherit; }
+  .home :global(header[data-broadcast]) > div > a > div > div:first-child { width: min-content; color: inherit; font: 600 18px/.95 var(--font-golos),sans-serif; letter-spacing: -.065em; text-transform: uppercase; }
+  .home :global(header[data-broadcast]) > div > a > div > div:last-child { display: none; }
+  .home :global(header[data-broadcast]) nav { color: inherit; font-size: 14px; }
+  .home :global(header[data-broadcast]) nav a { color: inherit; }
+  .home :global(header[data-broadcast]) > div > div:last-child > div { gap: 4px; }
+  .home :global(header[data-broadcast]) > div > div:last-child > div button { background: none; color: inherit; opacity: .55; padding: 6px; font: 500 13px var(--font-golos),sans-serif; }
+  .home :global(header[data-broadcast]) > div > div:last-child > div button:hover { opacity: 1; }
+  .home :global(header[data-broadcast]) > div > div:last-child > div button[aria-pressed="true"] { opacity: 1; }
+  .home :global(header[data-broadcast]) > div > div:last-child > a { background: transparent; color: inherit; border: 1px solid currentColor; height: 40px; padding: 0 20px; font-size: 13px; }
+  .home :global(header[data-broadcast]) > div > div:last-child > a:hover { background: var(--paper); color: var(--ink); text-decoration: none; }
+  .home :global(header[data-on-light]) { color: var(--ink); }
+  .home :global(header[data-on-light]) > div > a img { filter: grayscale(1) invert(1); }
+  .home :global(header[data-on-light]) > div > div:last-child > a:hover { background: var(--ink); color: var(--paper); }
 }

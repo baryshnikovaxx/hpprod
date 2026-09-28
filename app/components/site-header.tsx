@@ -16,6 +16,7 @@ const navItems: ReadonlyArray<{ key: NavKey; href: string }> = [
 
 export default function SiteHeader({ variant = "broadcast" }: { variant?: "default" | "broadcast" }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [onLight, setOnLight] = useState(false);
   const { lang, setLang } = useLanguage();
   const isRu = lang === "ru";
 
@@ -45,11 +46,38 @@ export default function SiteHeader({ variant = "broadcast" }: { variant?: "defau
     };
   }, [mobileMenuOpen]);
 
+  useEffect(() => {
+    const lightSections = document.querySelectorAll<HTMLElement>("[data-header-light]");
+    if (!lightSections.length) return;
+
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const headerMiddle = 36;
+      setOnLight(Array.from(lightSections).some((section) => {
+        const rect = section.getBoundingClientRect();
+        return rect.top <= headerMiddle && rect.bottom >= headerMiddle;
+      }));
+    };
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+    };
+  }, []);
+
   const closeMobileMenu = () => setMobileMenuOpen(false);
 
   return (
     <>
-      <header data-broadcast={variant === "broadcast" ? "true" : undefined} className="fixed inset-x-0 top-0 z-50 isolate border-b border-white/10 bg-zinc-950">
+      <header data-broadcast={variant === "broadcast" ? "true" : undefined} data-on-light={onLight ? "true" : undefined} className="fixed inset-x-0 top-0 z-50 isolate border-b border-white/10 bg-zinc-950">
         <div className="mx-auto flex h-16 w-full max-w-[1400px] items-center justify-between px-4 sm:px-6 lg:px-8">
           <a href="/" className="flex items-center gap-3">
             <Image
@@ -85,6 +113,7 @@ export default function SiteHeader({ variant = "broadcast" }: { variant?: "defau
             <div className="flex shrink-0 items-center gap-1 rounded-lg border border-white/10 bg-white/5 p-1">
               <button
                 type="button"
+                aria-pressed={!isRu}
                 onClick={() => setLang("en")}
                 className={`rounded px-2 py-1 text-xs transition-colors ${
                   !isRu ? "bg-white/15 text-white" : "text-zinc-300 hover:text-white"
@@ -94,6 +123,7 @@ export default function SiteHeader({ variant = "broadcast" }: { variant?: "defau
               </button>
               <button
                 type="button"
+                aria-pressed={isRu}
                 onClick={() => setLang("ru")}
                 className={`rounded px-2 py-1 text-xs transition-colors ${
                   isRu ? "bg-white/15 text-white" : "text-zinc-300 hover:text-white"
