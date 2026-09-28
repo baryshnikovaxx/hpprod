@@ -4,6 +4,7 @@ import Image from "next/image";
 import { FormEvent, useState } from "react";
 import styles from "./home.module.css";
 import SiteHeader from "./components/site-header";
+import HeroFilm from "./components/hero-film";
 import { useLanguage } from "./components/language-provider";
 import { formatRuTypography } from "./lib/typography";
 
@@ -161,7 +162,7 @@ export default function Home() {
       <SiteHeader variant="broadcast" />
 
       <section className={styles.hero} aria-labelledby="home-title">
-        <Image src="/cases/esports-cover.jpg" alt={isRu ? "Рабочие места эфирной команды на мероприятии" : "Production crew at a live event"} fill priority sizes="100vw" className={styles.heroImage} />
+        <HeroFilm isRu={isRu} />
         <div className={styles.heroShade} />
         <div className={styles.heroTitle}>
           <p className={styles.meta}>{isRu ? "Съёмка мероприятий и прямые трансляции" : "LIVE EVENT & BROADCAST"}</p>
