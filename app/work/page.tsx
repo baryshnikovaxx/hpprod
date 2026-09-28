@@ -31,7 +31,7 @@ export default function WorkPage() {
     ? [
         {
           id: "eapt",
-          showreel: "/cases/eapt",
+          showreel: "/cases/eapt-game",
           showreelSeconds: 15,
           title: "EAPT",
           locationYear: "Грузия · Армения",
@@ -198,7 +198,7 @@ export default function WorkPage() {
     : [
         {
           id: "eapt",
-          showreel: "/cases/eapt",
+          showreel: "/cases/eapt-game",
           showreelSeconds: 15,
           title: "EAPT",
           locationYear: "Georgia · Armenia",
