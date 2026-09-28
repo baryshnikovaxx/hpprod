@@ -67,6 +67,8 @@ export default function SiteHeader({ variant = "broadcast" }: { variant?: "defau
             </div>
           </a>
 
+          <a data-mobile-wordmark href="/" aria-label="Head Production">HEAD<br />PRODUCTION</a>
+
           <nav className="hidden items-center gap-7 text-sm text-zinc-300 md:flex">
             {navItems.map((item) => (
               <a

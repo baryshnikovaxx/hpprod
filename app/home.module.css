@@ -438,3 +438,10 @@
   .home :global(header[data-broadcast]) :global([data-menu-toggle]) { pointer-events: auto; background: #0003; border: 0; width: 44px; height: 44px; color: white; }
   .heroFilmToggle { top: 76px; }
 }
+
+.mobileHeroLead { display: none; }
+@media (max-width: 767px) {
+  .mobileHeroLead { display: inline; }
+  .home :global(header[data-broadcast]) > div { justify-content: space-between; padding: 0 20px; }
+  .home :global(header[data-broadcast]) :global([data-mobile-wordmark]) { display: block; pointer-events: auto; color: #fff; font: 600 22px/.95 var(--font-golos),sans-serif; letter-spacing: -.065em; text-decoration: none; }
+}

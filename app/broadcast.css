@@ -199,3 +199,5 @@ header[data-broadcast] button[class*="bg-white"] { background: #4c2673; }
  .work-index .showreel { margin: 0 -16px; }
  header[data-broadcast] > div > a > div > div:last-child { font-size: 10px; }
 }
+
+header[data-broadcast] [data-mobile-wordmark] { display: none; }

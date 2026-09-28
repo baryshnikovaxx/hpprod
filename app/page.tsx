@@ -17,7 +17,7 @@ export default function Home() {
   const ru = (text: string) => formatRuTypography(text);
   const featuredCases = [
     { id: "zemfira", title: "ZEMFIRA", video: "/cases/zemfira", description: isRu ? "СЕРИЯ КОНЦЕРТОВ · Тбилиси, Батуми, Ереван · 2024–2025" : "CONCERT SERIES · Tbilisi, Batumi, Yerevan · 2024–2025" },
-    { id: "g-gate", title: "GGate Awards", video: "/cases/ggate", description: isRu ? "Яникс и Валерий Меладзе. Ловим движение, держим ритм, показываем эмоции." : "Yanix and Valery Meladze. Live direction that captures the movement, pace and emotion." },
+    { id: "g-gate", title: "GGate Awards", video: "/cases/ggate", description: isRu ? "Церемония награждения и афтепати с концертами Яникса и Валерия Меладзе." : "Awards ceremony and afterparty with concerts by Yanix and Valery Meladze." },
     { id: "poshlaya-molly", title: isRu ? "Пошлая Молли" : "Poshlaya Molly", video: "/cases/poshlaya-molly", description: isRu ? "Два концерта в Тбилиси · 2025–2026. 3 500 зрителей, open air, съёмка с камер и дрона." : "Two concerts in Tbilisi · 2025–2026. 3,500 attendees, open air, camera and drone coverage." },
   ];
 
@@ -73,7 +73,7 @@ export default function Home() {
             {
               title: isRu ? "Прямые трансляции" : "Live broadcast production",
               desc: isRu
-                ? "Съёмка с нескольких камер, режиссура и контроль сигнала — от подготовки до завершения эфира. Без тупняка."
+                ? "Съёмка с нескольких камер, режиссура и контроль сигнала — от подготовки до завершения эфира. Чётко и спокойно, без тупняка."
                 : "Multi-camera setup, directing, switching, monitoring — the full live control room workflow.",
             },
             {
@@ -89,10 +89,10 @@ export default function Home() {
                 : "Fast-paced live coverage built for pressure, dynamic environments, and large audiences.",
             },
             {
-              title: isRu ? "Эфирная графика" : "Broadcast graphics",
+              title: isRu ? "Эфирная графика и удалённые трансляции" : "Broadcast graphics & remote production",
               desc: isRu
-                ? "Титры, табло и материалы партнёров в едином оформлении события."
-                : "Lower thirds, overlays, scoreboards, sponsor placements, branded visual packages.",
+                ? "Титры, табло и материалы партнёров в едином оформлении события. Подключаем удалённых участников и ведём эфир из любой точки."
+                : "Lower thirds, scoreboards and sponsor graphics. Remote guests and live production from any location.",
             },
             {
               title: isRu ? "Трансляции на разные платформы" : "Streaming to any platform",
@@ -163,13 +163,13 @@ export default function Home() {
       <SiteHeader variant="broadcast" />
 
       <section className={styles.hero} aria-labelledby="home-title">
-        <HeroFilm isRu={isRu} />
+        <HeroFilm />
         <div className={styles.heroShade} />
         <div className={styles.heroTitle}>
           <h1 id="home-title">WE MAKE<br />IT LIVE</h1>
         </div>
         <div className={styles.heroBottom}>
-          <p>{isRu
+          <p><span className={styles.mobileHeroLead}>{isRu ? "Съёмка мероприятий и прямые трансляции. " : "Live event filming and broadcasts. "}</span>{isRu
             ? ru("Концерты, конференции, фестивали, спорт и киберспорт. Берём на себя подготовку, съёмку и эфир. Работаем в Европе, СНГ и по всему миру.")
             : "Conferences, concerts & festivals, esports and large-scale events. Full-cycle delivery from technical design to final output across the EU, CIS, and worldwide."}</p>
           <div className={styles.heroActions}>
