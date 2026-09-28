@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import SiteHeader from "../components/site-header";
+import ShowreelVideo from "../components/showreel-video";
 import { useLanguage } from "../components/language-provider";
 import { formatRuTypography } from "../lib/typography";
 
@@ -334,17 +334,16 @@ export default function WorkPage() {
 
         <section className="mx-auto w-full max-w-[1400px] px-4 pb-16 sm:px-6 lg:px-8">
           <div className="work-index">
-            {cases.filter(item => item.showreel).map((item) => (
-              <article id={item.id} key={item.id} className={`work-entry ${(item.showreel || item.coverSrc && item.mediaFit !== "contain") ? "work-photo" : "work-dossier"}`}>
-                <div className="work-media">
-                  {item.showreel ? <figure className="concert-lead">
-                    <video autoPlay controls playsInline muted loop preload="metadata" poster={item.showreel + "/showreel.jpg"} aria-label={item.title + (isRu ? ": шоурил без звука, " + (item.showreelSeconds ?? 14) + " с" : ": " + (item.showreelSeconds ?? 14) + "-second silent showreel")}>
-                      <source src={item.showreel + "/showreel.mp4"} type="video/mp4" />
-                    </video>
-                  </figure> : item.coverSrc ? <div className={`work-image ${item.mediaFit === "contain" ? "work-logo" : ""}`}>
-                    <Image src={item.coverSrc} alt={item.title} fill sizes="(max-width: 700px) 100vw, 90vw" className={item.mediaFit === "contain" ? "object-contain" : "object-cover"} />
-                  </div> : <p className="work-type">{item.visualLabel || item.title}</p>}
-                </div>
+            {[...cases.filter(item => item.showreel), ...cases.filter(item => !item.showreel)].map((item) => (
+              <article id={item.id} key={item.id} className={`work-entry ${item.showreel ? "work-photo" : "work-text"}`}>
+                {item.showreel && <div className="work-media">
+                  <ShowreelVideo
+                    src={item.showreel + "/showreel.mp4"}
+                    poster={item.showreel + "/showreel.jpg"}
+                    label={item.title + (isRu ? ": шоурил без звука, " + (item.showreelSeconds ?? 14) + " с" : ": " + (item.showreelSeconds ?? 14) + "-second silent showreel")}
+                    isRu={isRu}
+                  />
+                </div>}
                 <div className="work-copy">
                   <div className="work-heading"><h2>{item.title}</h2><p className="broadcast-meta">{item.locationYear}</p></div>
                   <dl className="work-facts">

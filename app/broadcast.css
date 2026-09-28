@@ -173,3 +173,34 @@ header[data-broadcast] button[class*="bg-white"] { background: #4c2673; }
  .documentary-team > article:nth-child(n) { grid-column: auto; grid-row: auto; margin-top: 0; }
  .equipment-index > article { grid-template-columns: 1fr; }
 }
+
+/* Showreel player: plays silently while in view, large touch controls. */
+.showreel { position: relative; margin: 0; min-width: 0; background: #000; }
+.showreel video { display: block; width: 100%; aspect-ratio: 16/9; object-fit: cover; background: #000; cursor: pointer; }
+.showreel button { display: grid; place-items: center; color: #fff; background: #000a; border: 1px solid #ffffff80; border-radius: 50%; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.showreel button:hover { background: #4c2673; border-color: #4c2673; }
+.showreel-play { position: absolute; left: 50%; top: 50%; width: 72px; height: 72px; transform: translate(-50%,-50%); font-size: 24px; padding-left: 4px; transition: opacity .2s; }
+.showreel.is-playing .showreel-play { opacity: 0; pointer-events: none; }
+.showreel-controls { position: absolute; right: 12px; bottom: 12px; display: flex; gap: 8px; }
+.showreel-controls button { width: 44px; height: 44px; font-size: 15px; }
+
+/* Case archive entries without visuals yet. */
+.work-text .work-copy { margin-top: 0; }
+
+/* Russian version: Cyrillic display, text and mono faces. */
+html:lang(ru) body { --font-golos: var(--font-manrope); --font-geist-mono: var(--font-plex-mono); }
+html:lang(ru) :is(h1,h2) { font-family: var(--font-unbounded), var(--font-manrope), sans-serif; font-weight: 600; letter-spacing: -.035em; }
+html:lang(ru) #home-title { font-size: clamp(48px,14vw,180px); letter-spacing: -.05em; line-height: .95; }
+
+/* Mobile readability for inner pages. */
+@media (max-width:700px) {
+ .broadcast-meta,.work-facts dt { font-size: 12px; letter-spacing: .05em; }
+ .broadcast-page section:first-child > .broadcast-meta { font-size: 12px; }
+ .broadcast-page .reading-copy-muted { font-size: 16px; line-height: 1.65; }
+ .work-heading h2 { font-size: 36px; }
+ .work-facts > div { grid-template-columns: 1fr; gap: 4px; }
+ .work-facts dd,.work-delivery li,.work-result > p:last-child,.work-note { font-size: 16px; line-height: 1.65; }
+ .work-delivery ul { flex-direction: column; gap: 8px; }
+ .work-index .showreel { margin: 0 -16px; }
+ header[data-broadcast] > div > a > div > div:last-child { font-size: 10px; }
+}

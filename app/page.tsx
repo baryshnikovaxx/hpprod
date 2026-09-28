@@ -5,6 +5,7 @@ import { FormEvent, useState } from "react";
 import styles from "./home.module.css";
 import SiteHeader from "./components/site-header";
 import HeroFilm from "./components/hero-film";
+import ShowreelVideo from "./components/showreel-video";
 import { useLanguage } from "./components/language-provider";
 import { formatRuTypography } from "./lib/typography";
 
@@ -199,9 +200,7 @@ export default function Home() {
         </div>
         <div className={styles.videoProjects}>{featuredCases.map(project => (
           <article key={project.id} className={styles.videoProject}>
-            <video autoPlay controls playsInline muted loop preload="metadata" poster={project.video + "/showreel.jpg"} aria-label={project.title}>
-              <source src={project.video + "/showreel.mp4"} type="video/mp4" />
-            </video>
+            <ShowreelVideo src={project.video + "/showreel.mp4"} poster={project.video + "/showreel.jpg"} label={project.title} isRu={isRu} />
             <div className={styles.videoCaption}>
               <h3><a href={"/work#" + project.id}>{project.title} ↗</a></h3>
               <p>{project.description}</p>
@@ -222,7 +221,7 @@ export default function Home() {
       <section id="founders" className={styles.team} aria-labelledby="team-title">
         <div className={styles.sectionHead}><div><h2 id="team-title">{isRu ? "По ту сторону эфира" : "Behind the live"}</h2></div><a href="/about" className={styles.textLink}>{isRu ? "О нас" : "About us"}<span aria-hidden="true">↗</span></a></div>
         <div className={styles.teamPhotos}>{team.map(person=><figure key={person.name} className={styles.teamPerson}>
-          <div className={styles.teamImage}><Image src={person.photo} alt={person.name} fill sizes="(max-width: 700px) 100vw, 30vw" /></div>
+          <div className={styles.teamImage}><Image src={person.photo} alt={person.name} fill sizes="(max-width: 700px) 96px, 176px" /></div>
           <figcaption><h3>{person.name}</h3><p>{person.role}</p><span className={styles.meta}>{person.since}</span></figcaption>
         </figure>)}</div>
       </section>

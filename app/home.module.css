@@ -344,3 +344,68 @@
 .heroFilmToggle { position: absolute; right: var(--gutter); top: 100px; z-index: 2; width: 36px; height: 36px; border: 1px solid #ffffff70; border-radius: 50%; color: white; background: #0006; cursor: pointer; font-size: 18px; display: grid; place-items: center; }
 .heroFilmToggle:hover { background: #000b; }
 @media (max-width: 700px) { .heroFilm { object-position: 50% 50%; } .heroFilmToggle { top: 88px; } }
+
+/* Founders: small round portraits. */
+.teamPhotos { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 40px 28px; max-width: 1040px; margin: 48px auto 0; }
+.teamPerson:nth-child(n) { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.teamPerson:nth-child(n) .teamImage { width: 176px; aspect-ratio: 1; border-radius: 50%; }
+.teamPerson:nth-child(n) .teamImage img { object-position: 50% 28%; }
+.teamPerson figcaption { border-top: 0; margin-top: 20px; padding-top: 0; }
+
+@media (max-width: 700px) {
+  .meta { font-size: 11px; letter-spacing: .05em; }
+  .home h2 { letter-spacing: -.04em; }
+  .home :global(header[data-broadcast]) > div > a > div > div:last-child { font-size: 10px; }
+  .heroFilmToggle { width: 44px; height: 44px; }
+  .heroTitle > .meta { font-size: 12px; max-width: 320px; }
+  .heroBottom > p { font-size: 16px; line-height: 1.6; }
+  .heroActions { flex-direction: column; align-items: stretch; gap: 8px; }
+  .action { min-height: 52px; padding: 0 18px; font-size: 16px; }
+  .heroActions .textLink { min-height: 48px; font-size: 16px; }
+  .statement { font-size: 24px; line-height: 1.35; }
+  .bodyCopy { font-size: 16px; line-height: 1.65; }
+  .stats { grid-template-columns: 1fr; margin-top: 32px !important; }
+  .stats > div,.stats > div+div { flex-direction: row; align-items: baseline; gap: 16px; padding: 16px 0; border-left: 0; border-top: 1px solid var(--rule); }
+  .stats > div:first-child { border-top: 0; }
+  .stats dt { font-size: 40px; min-width: 132px; }
+  .stats dd { font-family: inherit; font-size: 16px; color: var(--muted); }
+  .sectionHead { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .sectionHead > a { max-width: none; min-height: 44px; font-size: 16px; }
+  .videoProjects { gap: 36px; margin-top: 20px; }
+  .videoProject > :first-child { margin: 0 calc(-1 * var(--gutter)); }
+  .videoCaption { padding: 16px 0 0; gap: 8px; }
+  .videoCaption h3 { font-size: 26px; }
+  .videoCaption h3 a { display: inline-block; padding: 6px 0; }
+  .videoCaption p { font-size: 16px; line-height: 1.6; }
+  .services .sectionLabel > p:not(.meta) { font-size: 16px; }
+  .services .sectionLabel > a { min-height: 44px; font-size: 16px; }
+  .service summary { min-height: 64px; align-items: center; padding: 16px 0; }
+  .service h3 { font-size: 21px; }
+  .serviceDescription p { font-size: 16px; line-height: 1.65; }
+  .industries { font-size: 16px; }
+  .teamPhotos { grid-template-columns: 1fr; gap: 0; margin-top: 24px; }
+  .teamPerson:nth-child(n) { display: grid; grid-template-columns: 96px 1fr; align-items: center; gap: 18px; text-align: left; padding: 16px 0; border-top: 1px solid var(--rule); }
+  .teamPerson:nth-child(n) .teamImage { width: 96px; }
+  .teamPerson figcaption { margin: 0; }
+  .teamPerson h3 { font-size: 20px; }
+  .teamPerson figcaption > p { font-size: 15px; line-height: 1.5; margin: 4px 0; }
+  .teamPerson figcaption > .meta { font-size: 14px; }
+  .process .sectionLabel > p:not(.meta) { font-size: 16px; }
+  .process li { padding: 18px 0; gap: 6px; }
+  .process h3 { font-size: 20px; }
+  .process li > p { font-size: 16px; line-height: 1.6; }
+  .contactHeading h2 { font-size: 56px; }
+  .contactHeading > p:not(.meta) { font-size: 16px; line-height: 1.65; }
+  .contacts { font-size: 16px; gap: 4px; }
+  .contacts a { padding: 10px 0 6px; }
+  .form label > div { font-size: 14px; }
+  .form :is(input,textarea)::placeholder { font-size: 16px; }
+  .form label > span { font-size: 14px; line-height: 1.5; }
+  .form input[type=checkbox] { width: 20px; height: 20px; margin-top: 1px; }
+  .form button[type=submit] { min-height: 52px; font-size: 16px; }
+  .form [aria-live] > p { font-size: 13px; }
+  .footer > div > .meta { font-size: 11px; }
+  .footer nav { font-size: 16px; gap: 24px; margin-top: 8px; }
+  .footer nav a { display: inline-block; padding: 10px 0; }
+  .footer > a:last-child { font-size: 12px; padding: 12px 0; }
+}
