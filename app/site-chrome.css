@@ -1,0 +1,53 @@
+
+@media (min-width: 768px) {
+  header[data-broadcast] { background: transparent; border: 0; color: #fff; transition: color .2s; }
+  header[data-broadcast] > div > a { gap: 12px; color: inherit; }
+  header[data-broadcast] > div > a > div > div:first-child { width: min-content; color: inherit; font: 600 18px/.95 var(--font-golos),sans-serif; letter-spacing: -.065em; text-transform: uppercase; }
+  header[data-broadcast] > div > a > div > div:last-child { display: none; }
+  header[data-broadcast] nav { color: inherit; font-size: 14px; }
+  header[data-broadcast] nav a { color: inherit; }
+  header[data-broadcast] > div > div:last-child > div { gap: 4px; }
+  header[data-broadcast] > div > div:last-child > div button { background: none; color: inherit; opacity: .55; padding: 6px; font: 500 13px var(--font-golos),sans-serif; }
+  header[data-broadcast] > div > div:last-child > div button:hover { opacity: 1; }
+  header[data-broadcast] > div > div:last-child > div button[aria-pressed="true"] { opacity: 1; }
+  header[data-broadcast] > div > div:last-child > a { background: transparent; color: inherit; border: 1px solid currentColor; height: 40px; padding: 0 20px; font-size: 13px; }
+  header[data-broadcast] > div > div:last-child > a:hover { background: #fff; color: #000; text-decoration: none; }
+  header[data-on-light] { color: #000; }
+  header[data-on-light] > div > a img { filter: grayscale(1) invert(1); }
+  header[data-on-light] > div > div:last-child > a:hover { background: #000; color: #fff; }
+}
+
+.broadcast-page header[data-broadcast],.page-scandi header[data-broadcast],.page-scandi-editorial header[data-broadcast] { background:#000; border-bottom:1px solid #ffffff30; }
+
+.site-footer { background:#000; color:#fff; padding:40px clamp(20px,4vw,80px); display:flex; align-items:flex-end; justify-content:space-between; gap:35px; border-top:1px solid #ffffff30; font-family:var(--font-golos),Arial,sans-serif; }
+.site-footer a { color:inherit; text-decoration:none; }
+.site-footer a:hover { text-decoration:underline; text-underline-offset:5px; text-decoration-color:#4c2673; }
+.site-wordmark { font-size:clamp(24px,2.6vw,40px); font-weight:600; line-height:.95; letter-spacing:-.065em; }
+.site-footer > div { margin-left:auto; }
+.site-copyright,.site-back-top { font:11px/1.6 var(--font-geist-mono),monospace; color:#ffffffb3; }
+.site-footer nav { display:flex; flex-wrap:wrap; gap:12px 24px; font-size:13px; margin-top:16px; }
+.site-footer a:focus-visible { outline:2px solid #fff; outline-offset:6px; }
+.broadcast-page { font-family:var(--font-golos),Arial,sans-serif; }
+.broadcast-page .title-hero { font-size:clamp(42px,6.5vw,96px); font-weight:600; line-height:1.04; letter-spacing:-.055em; }
+.broadcast-page :is(.reading-copy,.reading-copy-muted) { font-size:18px; line-height:1.65; }
+.broadcast-page .title-section,.broadcast-page .title-section-inverse { font-size:clamp(32px,4.7vw,64px); font-weight:600; line-height:1.08; }
+.broadcast-page section[id],.broadcast-page article[id] { scroll-margin-top:96px; }
+.broadcast-page .capability-index > article { padding:36px 0; }
+.broadcast-page .capability-index .title-card { font-size:clamp(26px,3vw,42px); }
+.broadcast-page .capability-index p.uppercase { font:500 13px var(--font-golos),sans-serif; letter-spacing:0; text-transform:none; }
+.broadcast-page .capability-index ul { font-size:16px; line-height:1.6; }
+@media(max-width:767px) {
+ header[data-broadcast] { height:64px; }
+ header[data-broadcast] > div { height:64px; padding:0 20px; justify-content:space-between; }
+ header[data-broadcast] > div > a:first-child { display:none; }
+ header[data-broadcast] [data-mobile-wordmark] { display:block; color:#fff; font:600 22px/.95 var(--font-golos),sans-serif; letter-spacing:-.065em; }
+ header[data-broadcast] > div > div:last-child > div { display:none; }
+ header[data-broadcast] [data-menu-toggle] { width:44px; height:44px; background:transparent; border:0; color:#fff; }
+ .broadcast-page section { padding-left:20px; padding-right:20px; }
+ .broadcast-page .title-hero { font-size:42px; }
+ .broadcast-page :is(.reading-copy,.reading-copy-muted) { font-size:16px; }
+ .site-footer { flex-wrap:wrap; align-items:flex-start; gap:28px; padding:32px 20px; }
+ .site-footer > div { order:3; width:100%; margin:0; }
+ .site-back-top { margin-left:auto; }
+ .site-footer nav { gap:14px 22px; font-size:14px; }
+}

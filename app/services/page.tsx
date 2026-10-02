@@ -227,7 +227,7 @@ export default function ServicesPage() {
       };
 
   return (
-    <main className="broadcast-page page-services relative min-h-screen overflow-x-clip bg-zinc-950 text-zinc-50">
+    <main id="page-top" className="broadcast-page page-services relative min-h-screen overflow-x-clip bg-zinc-950 text-zinc-50">
       <SiteHeader />
 
       <div className="pt-16">
@@ -259,7 +259,7 @@ export default function ServicesPage() {
                 key={service.id}
                 className="accent-border rounded-3xl border border-white/10 bg-white/5 p-6 md:p-7"
               >
-                <h2 className="title-card text-zinc-100">{service.title}</h2>
+                <h2 className="title-card text-zinc-100">{service.title.replace(/^\d+\.\s*/, "")}</h2>
                 <p className="reading-copy mt-3 text-sm md:text-base">{service.lead}</p>
                 <p className="mt-5 text-xs uppercase tracking-[0.16em] text-zinc-400">{service.includedTitle}</p>
                 <ul className="mt-3 grid gap-2 text-sm text-zinc-200 md:grid-cols-2">

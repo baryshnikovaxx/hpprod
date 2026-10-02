@@ -162,7 +162,7 @@ export default function EquipmentPage() {
       ];
 
   return (
-    <main className="broadcast-page page-equipment relative min-h-screen overflow-x-clip bg-zinc-950 text-zinc-50">
+    <main id="page-top" className="broadcast-page page-equipment relative min-h-screen overflow-x-clip bg-zinc-950 text-zinc-50">
       <SiteHeader />
 
       <div className="pt-16">

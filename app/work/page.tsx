@@ -323,7 +323,7 @@ export default function WorkPage() {
       ];
 
   return (
-    <main className="broadcast-page page-work relative min-h-screen overflow-x-clip bg-zinc-950 text-zinc-50">
+    <main id="page-top" className="broadcast-page page-work relative min-h-screen overflow-x-clip bg-zinc-950 text-zinc-50">
       <SiteHeader />
 
       <div className="pt-16">

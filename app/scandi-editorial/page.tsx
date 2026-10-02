@@ -63,7 +63,7 @@ export default function ScandiEditorialPage() {
       };
 
   return (
-    <main className="broadcast-page page-scandi-editorial min-h-screen overflow-x-clip bg-[#f5f5f2] text-[#141414]">
+    <main id="page-top" className="broadcast-page page-scandi-editorial min-h-screen overflow-x-clip bg-[#f5f5f2] text-[#141414]">
       <SiteHeader />
 
       <section className="mx-auto w-full max-w-[1320px] px-5 py-12 md:px-8 md:py-16">

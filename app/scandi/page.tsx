@@ -63,7 +63,7 @@ export default function ScandiPage() {
       };
 
   return (
-    <main className="broadcast-page page-scandi min-h-screen bg-[#f6f6f3] text-[#161616]">
+    <main id="page-top" className="broadcast-page page-scandi min-h-screen bg-[#f6f6f3] text-[#161616]">
       <SiteHeader />
       <section className="mx-auto w-full max-w-[1200px] px-6 py-16 md:py-24">
         <div className="mb-10 flex items-center justify-between">

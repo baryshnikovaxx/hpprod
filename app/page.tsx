@@ -158,7 +158,7 @@ export default function Home() {
           ];
 
   return (
-    <main className={styles.home}>
+    <main id="page-top" className={styles.home}>
       <a className={styles.skipLink} href="#intro">{isRu ? "К содержанию" : "Skip to content"}</a>
       <SiteHeader variant="broadcast" />
 
@@ -305,7 +305,7 @@ export default function Home() {
               </div>
             </form>
       </section>
-      <footer className={styles.footer}><a href="#home-title" className={styles.wordmark}>HEAD<br />PRODUCTION</a><div><span className={styles.meta}>© {new Date().getFullYear()} HEAD PRODUCTION</span><nav aria-label={isRu ? "Навигация внизу страницы" : "Footer navigation"}><a href="/services">{isRu ? "Услуги" : "Services"}</a><a href="/work">{isRu ? "Проекты" : "Work"}</a><a href="/about">{isRu ? "О нас" : "About"}</a></nav></div><a href="#home-title" className={styles.meta}>{isRu ? "НАВЕРХ" : "BACK TO TOP"} ↑</a></footer>
+      
     </main>
   );
 }

@@ -5,6 +5,8 @@ import "./globals.css";
 import { Suspense } from "react";
 import MetrikaNavigation from "./components/metrika-navigation";
 import "./broadcast.css";
+import "./site-chrome.css";
+import SiteFooter from "./components/site-footer";
 import { LanguageProvider } from "./components/language-provider";
 
 const geistMono = Geist_Mono({
@@ -119,7 +121,7 @@ export default async function RootLayout({
           <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MSN888WF" height="0" width="0" style={{ display: "none", visibility: "hidden" }} title="Google Tag Manager" /></noscript>
           <noscript><div><img src="https://mc.yandex.ru/watch/113227786" style={{ position: "absolute", left: "-9999px" }} alt="" /></div></noscript>
         </>}
-        <LanguageProvider initialLang={initialLang}>{children}</LanguageProvider>
+        <LanguageProvider initialLang={initialLang}>{children}<SiteFooter /></LanguageProvider>
         {analyticsEnabled && <Suspense fallback={null}><MetrikaNavigation /></Suspense>}
       </body>
     </html>

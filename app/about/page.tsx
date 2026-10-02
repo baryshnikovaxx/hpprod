@@ -67,7 +67,7 @@ export default function AboutPage() {
   };
 
   return (
-    <main className="broadcast-page page-about relative min-h-screen overflow-x-clip bg-zinc-950 text-zinc-50">
+    <main id="page-top" className="broadcast-page page-about relative min-h-screen overflow-x-clip bg-zinc-950 text-zinc-50">
       <div className="pointer-events-none absolute inset-0 opacity-[0.06] mix-blend-overlay" />
       <SiteHeader />
 
@@ -227,14 +227,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <footer className="border-t border-white/10">
-        <div className="mx-auto flex w-full max-w-[1400px] flex-col gap-3 px-4 py-10 text-sm text-zinc-400 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
-          <div>Head Production 2026 · Georgia · Tbilisi</div>
-          <Link href="/privacy" className="transition-colors hover:text-white">
-            {isRu ? "Политика конфиденциальности" : "Privacy Policy"}
-          </Link>
-        </div>
-      </footer>
+      
       </div>
     </main>
   );

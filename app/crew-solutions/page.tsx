@@ -185,7 +185,7 @@ export default function CrewSolutionsPage() {
     content.roleGroups.find((group) => group.id === activeGroupId) ?? content.roleGroups[0];
 
   return (
-    <main className="broadcast-page page-crew-solutions relative min-h-screen overflow-x-clip bg-zinc-950 text-zinc-50">
+    <main id="page-top" className="broadcast-page page-crew-solutions relative min-h-screen overflow-x-clip bg-zinc-950 text-zinc-50">
       <SiteHeader />
 
       <div className="pt-16">
