@@ -17,7 +17,7 @@ export default function EstimateForm({service, region, variant}: {service: Landi
     const values = new FormData(form);
     const contact = validateContact(values.get("contact"), values.get("contactMethod"));
     if (!validContactName(String(values.get("name") || "")) || !contact.ok) {
-      setError(!contact.ok ? contact.error : "Укажите имя: минимум две буквы."); setStatus("error");
+      setError(!contact.ok ? contact.error : "Укажите имя: минимум два символа, включая буквы."); setStatus("error");
       (form.elements.namedItem(!contact.ok ? "contact" : "name") as HTMLInputElement)?.focus();
       return;
     }

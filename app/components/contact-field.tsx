@@ -1,5 +1,5 @@
 "use client";
-import { useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { validateContact, type ContactMethod } from "../lib/contact-validation";
 import s from "./contact-field.module.css";
 
@@ -8,10 +8,17 @@ export default function ContactField({ lang = "ru" }: { lang?: "ru" | "en" }) {
   const [method, setMethod] = useState<ContactMethod>("phone");
   const [values, setValues] = useState({phone: "", email: "", telegram: ""});
   const [error, setError] = useState("");
+  const field = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const form = field.current?.closest("form");
+    const reset = () => { setValues({phone: "", email: "", telegram: ""}); setError(""); setMethod("phone"); };
+    form?.addEventListener("reset", reset);
+    return () => form?.removeEventListener("reset", reset);
+  }, []);
   const ru = lang === "ru";
   const label = method === "phone" ? (ru ? "Номер телефона" : "Phone number") : method === "email" ? (ru ? "Электронная почта" : "Email") : "Telegram";
   const hint = method === "phone" ? (ru ? "С кодом страны: +7, +90, +995 или другим" : "Include country code: +7, +90, +995 or another") : method === "email" ? (ru ? "Рабочая или личная почта для ответа" : "An email address where we can reach you") : (ru ? "Имя пользователя из настроек Telegram, не имя профиля" : "Your Telegram username, not your display name");
-  return <div className={s.field}>
+  return <div className={s.field} ref={field}>
     <label htmlFor={`${id}-method`}>{ru ? "Как удобнее связаться?" : "How should we contact you?"}</label>
     <select id={`${id}-method`} name="contactMethod" value={method} onChange={e => {setMethod(e.target.value as ContactMethod); setError("");}}>
       <option value="phone">{ru ? "По телефону" : "Phone"}</option><option value="email">{ru ? "По почте" : "Email"}</option><option value="telegram">Telegram</option>

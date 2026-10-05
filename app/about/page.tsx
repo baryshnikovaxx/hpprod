@@ -162,7 +162,7 @@ export default function AboutPage() {
             </div>
 
             <form onSubmit={submitContactForm} className="grid gap-3 md:col-span-7">
-              <div className="grid gap-3 sm:grid-cols-2">
+              <div className="grid gap-3">
                 <input
                   name="name"
                   required

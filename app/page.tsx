@@ -242,7 +242,7 @@ export default function Home() {
 
       <section id="contact" data-header-light className={styles.contact} aria-labelledby="contact-title"><div className={styles.contactHeading}><h2 id="contact-title">{isRu ? <>Обсудим<br />проект</> : <>Let’s<br />talk</>}</h2><p>{isRu ? ru("Расскажите о событии. Предложим оборудование и план работы, обозначим сроки.") : "Tell us about the event — we’ll suggest the setup, timeline, and next steps."}</p><div className={styles.contacts}><a href="mailto:hello@headprod.live">hello@headprod.live ↗</a><a href="https://t.me/Hipete_HP" target="_blank" rel="noreferrer">Telegram / @Hipete_HP ↗</a></div></div>
 <form onSubmit={submitContactForm} className={styles.form}>
-              <div className="grid gap-4 sm:grid-cols-2">
+              <div className="grid gap-4">
                 <label className="space-y-2">
                   <div className="text-xs text-zinc-400">{isRu ? "Ваше имя" : "Name"}</div>
                   <input
