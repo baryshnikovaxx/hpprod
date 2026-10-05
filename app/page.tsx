@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { FormEvent, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
 import styles from "./home.module.css";
 import SiteHeader from "./components/site-header";
 import HeroFilm from "./components/hero-film";
@@ -9,10 +9,14 @@ import ShowreelVideo from "./components/showreel-video";
 import { useLanguage } from "./components/language-provider";
 import { formatRuTypography } from "./lib/typography";
 
+import ContactField from "./components/contact-field";
+import { validateContact, validContactName } from "./lib/contact-validation";
+
 export default function Home() {
   const { lang } = useLanguage();
   const isRu = lang === "ru";
   const [formState, setFormState] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const sending = useRef(false);
   const [formMessage, setFormMessage] = useState("");
   const ru = (text: string) => formatRuTypography(text);
   const featuredCases = [
@@ -23,16 +27,26 @@ export default function Home() {
 
   const submitContactForm = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (sending.current) return;
     setFormState("loading");
     setFormMessage("");
 
     const form = event.currentTarget;
     const formData = new FormData(form);
+    const contact = validateContact(formData.get("contact"), formData.get("contactMethod"), lang);
+    if (!contact.ok || !validContactName(String(formData.get("name") || ""))) {
+      setFormState("error");
+      setFormMessage(!contact.ok ? contact.error : (isRu ? "Укажите имя: минимум два символа, включая буквы." : "Please enter your name."));
+      (form.elements.namedItem(!contact.ok ? "contact" : "name") as HTMLInputElement)?.focus();
+      return;
+    }
+    sending.current = true;
     const payload = {
       source: "home",
       lang,
       name: String(formData.get("name") ?? ""),
-      contact: String(formData.get("contact") ?? ""),
+      contact: contact.value,
+      contactMethod: contact.method,
       message: String(formData.get("message") ?? ""),
       consent: String(formData.get("consent") ?? "") === "on",
       website: String(formData.get("website") ?? ""),
@@ -45,8 +59,8 @@ export default function Home() {
         body: JSON.stringify(payload),
       });
 
-      const data = (await res.json().catch(() => null)) as null | { ok?: boolean; error?: string; message?: string };
-      if (!res.ok) {
+      const data = (await res.json().catch(() => null)) as null | { ok?: boolean; delivered?: boolean; error?: string; message?: string };
+      if (!res.ok || !data?.ok || !data.delivered) {
         throw new Error(
           data?.error ||
             (isRu ? "Не удалось отправить заявку. Попробуйте ещё раз." : "Failed to submit request. Please try again."),
@@ -65,7 +79,7 @@ export default function Home() {
             ? "Не удалось отправить заявку. Попробуйте ещё раз."
             : "Failed to submit request. Please try again.",
       );
-    }
+    } finally { sending.current = false; }
   };
 
 
@@ -238,15 +252,7 @@ export default function Home() {
                     placeholder={isRu ? "Ваше имя" : "Your name"}
                   />
                 </label>
-                <label className="space-y-2">
-                  <div className="text-xs text-zinc-400">{isRu ? "Как с вами связаться" : "Preferred contact"}</div>
-                  <input
-                    name="contact"
-                    required
-                    className="w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none placeholder:text-zinc-600 focus:border-indigo-400/40"
-                    placeholder={isRu ? "Почта, телефон или имя в Telegram" : "WhatsApp / Telegram / Email + your handle"}
-                  />
-                </label>
+                <ContactField lang={lang} />
                 <label className="space-y-2 sm:col-span-2">
                   <div className="text-xs text-zinc-400">{isRu ? "О проекте" : "Message"}</div>
                   <textarea

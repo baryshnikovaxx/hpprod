@@ -1,10 +1,12 @@
 import { NextResponse } from "next/server";
+import { validateContact, validContactName } from "../../lib/contact-validation";
 
 type ContactPayload = {
   source?: string;
   lang?: "ru" | "en";
   name?: string;
   contact?: string;
+  contactMethod?: string;
   message?: string;
   consent?: boolean | string;
   website?: string; // honeypot
@@ -112,6 +114,7 @@ export async function POST(req: Request) {
       lang: resolvedLang,
       name: clean(body.name),
       contact: clean(body.contact),
+      contactMethod: clean(body.contactMethod),
       consent: resolveConsent(body.consent),
       message: clean(body.message),
       attribution,
@@ -133,6 +136,13 @@ export async function POST(req: Request) {
     if (payload.name.length > 100 || payload.contact.length > 200 || payload.message.length > 3000) {
       return NextResponse.json({ ok: false, error: resolvedLang === "ru" ? "Сократите текст заявки." : "Please shorten the request." }, { status: 400 });
     }
+
+    const contact = validateContact(payload.contact, payload.contactMethod, resolvedLang);
+    if (!contact.ok || !validContactName(payload.name)) {
+      return NextResponse.json({ ok: false, field: !contact.ok ? "contact" : "name", error: !contact.ok ? contact.error : (resolvedLang === "ru" ? "Укажите имя: минимум два символа, включая буквы." : "Enter your name, at least two characters including letters.") }, { status: 400 });
+    }
+    payload.contact = contact.value;
+    payload.contactMethod = contact.method;
 
     const text = formatText(payload);
     const results = await Promise.allSettled([

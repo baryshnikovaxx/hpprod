@@ -2,6 +2,8 @@
 import { useRef, useState, type FormEvent } from "react";
 import type { LandingRegion, LandingService, LandingVariant } from "../lib/landing";
 import s from "./service-landing.module.css";
+import ContactField from "./contact-field";
+import { validateContact, validContactName } from "../lib/contact-validation";
 
 type AnalyticsWindow = Window & { dataLayer?: Record<string, unknown>[]; ym?: (...args: unknown[]) => void };
 export default function EstimateForm({service, region, variant}: {service: LandingService; region: LandingRegion; variant: LandingVariant}) {
@@ -13,12 +15,18 @@ export default function EstimateForm({service, region, variant}: {service: Landi
     if (pending.current) return;
     const form = event.currentTarget;
     const values = new FormData(form);
+    const contact = validateContact(values.get("contact"), values.get("contactMethod"));
+    if (!validContactName(String(values.get("name") || "")) || !contact.ok) {
+      setError(!contact.ok ? contact.error : "Укажите имя: минимум две буквы."); setStatus("error");
+      (form.elements.namedItem(!contact.ok ? "contact" : "name") as HTMLInputElement)?.focus();
+      return;
+    }
     pending.current = true; setStatus("sending"); setError("");
     const params = new URLSearchParams(window.location.search);
     const attribution = Object.fromEntries(["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "yclid"].map(key=>[key, (params.get(key)||"").slice(0,200)]));
     try {
       const response = await fetch("/api/contact", {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({
-        source: `landing:${service}:${region}:${variant}`, lang:"ru", name: values.get("name"), contact: values.get("contact"), consent: values.get("consent") === "on", website: values.get("website"),
+        source: `landing:${service}:${region}:${variant}`, lang:"ru", name: String(values.get("name")).trim(), contact: contact.value, contactMethod: contact.method, consent: values.get("consent") === "on", website: values.get("website"),
         message: [`Запрос расчёта: ${service === "webinar" ? "вебинар" : "конференция"}`, `Дата: ${values.get("date") || "не определена"}`, `Город / формат: ${values.get("location") || "обсудим"}`, String(values.get("message") || "Детали обсудим при связи.")].join("\n"),
         attribution,
       })});
@@ -41,7 +49,7 @@ export default function EstimateForm({service, region, variant}: {service: Landi
   if(status === "success") return <div className={s.success} role="status"><h3>Заявка отправлена</h3><p>Спасибо! Свяжемся с вами и уточним детали для расчёта.</p></div>;
   return <form onSubmit={submit} className={`${s.form} ym-hide-content`} aria-label="Заявка на расчёт">
     <label>Ваше имя<input name="name" autoComplete="name" required minLength={2} maxLength={100} placeholder="Как к вам обращаться" /></label>
-    <label>Телефон, почта или Telegram<input name="contact" required minLength={3} maxLength={200} placeholder="Куда вам ответить" /></label>
+    <ContactField />
     <div className={s.formRow}><label>Дата, если известна<input name="date" type="date" /></label><label>Город или онлайн<input name="location" maxLength={150} defaultValue={region === "moscow" ? "Москва" : region === "spb" ? "Санкт-Петербург" : region === "turkey" ? "Турция" : ""} placeholder="Где планируется событие" /></label></div>
     <label>Пару слов о проекте <span>(необязательно)</span><textarea name="message" rows={3} maxLength={2000} placeholder="Сколько спикеров, нужен ли прямой эфир, что важно учесть" /></label>
     <div className={s.trap} aria-hidden="true"><label>Ваш сайт<input name="website" tabIndex={-1} autoComplete="off" /></label></div>

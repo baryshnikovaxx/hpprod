@@ -2,16 +2,20 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { FormEvent, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
 import SiteHeader from "../components/site-header";
 import { useLanguage } from "../components/language-provider";
 import { formatRuTypography } from "../lib/typography";
+
+import ContactField from "../components/contact-field";
+import { validateContact, validContactName } from "../lib/contact-validation";
 
 export default function AboutPage() {
   const { lang } = useLanguage();
   const isRu = lang === "ru";
   const ru = (text: string) => formatRuTypography(text);
   const [formState, setFormState] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const sending = useRef(false);
   const [formMessage, setFormMessage] = useState("");
   const metrics = [
     { k: isRu ? "8 лет" : "8 years", v: isRu ? ru("снимаем и транслируем события") : "experience in live production" },
@@ -21,16 +25,26 @@ export default function AboutPage() {
 
   const submitContactForm = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (sending.current) return;
     setFormState("loading");
     setFormMessage("");
 
     const form = event.currentTarget;
     const formData = new FormData(form);
+    const contact = validateContact(formData.get("contact"), formData.get("contactMethod"), lang);
+    if (!contact.ok || !validContactName(String(formData.get("name") || ""))) {
+      setFormState("error");
+      setFormMessage(!contact.ok ? contact.error : (isRu ? "Укажите имя: минимум два символа, включая буквы." : "Please enter your name."));
+      (form.elements.namedItem(!contact.ok ? "contact" : "name") as HTMLInputElement)?.focus();
+      return;
+    }
+    sending.current = true;
     const payload = {
       source: "about-contact",
       lang,
       name: String(formData.get("name") ?? ""),
-      contact: String(formData.get("contact") ?? ""),
+      contact: contact.value,
+      contactMethod: contact.method,
       message: String(formData.get("message") ?? ""),
       consent: String(formData.get("consent") ?? "") === "on",
       website: String(formData.get("website") ?? ""),
@@ -43,8 +57,8 @@ export default function AboutPage() {
         body: JSON.stringify(payload),
       });
 
-      const data = (await res.json().catch(() => null)) as null | { ok?: boolean; error?: string; message?: string };
-      if (!res.ok) {
+      const data = (await res.json().catch(() => null)) as null | { ok?: boolean; delivered?: boolean; error?: string; message?: string };
+      if (!res.ok || !data?.ok || !data.delivered) {
         throw new Error(
           data?.error ||
             (isRu ? "Не удалось отправить заявку. Попробуйте ещё раз." : "Failed to submit request. Please try again."),
@@ -63,7 +77,7 @@ export default function AboutPage() {
             ? "Не удалось отправить заявку. Попробуйте ещё раз."
             : "Failed to submit request. Please try again.",
       );
-    }
+    } finally { sending.current = false; }
   };
 
   return (
@@ -155,12 +169,7 @@ export default function AboutPage() {
                   className="w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none focus:border-indigo-400/40"
                   placeholder={isRu ? "Ваше имя" : "Name"}
                 />
-                <input
-                  name="contact"
-                  required
-                  className="w-full rounded-2xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm outline-none focus:border-indigo-400/40"
-                  placeholder={isRu ? "Почта, телефон или имя в Telegram" : "WhatsApp / Telegram / Email"}
-                />
+                <ContactField lang={lang} />
               </div>
               <textarea
                 name="message"
