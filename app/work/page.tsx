@@ -67,7 +67,7 @@ export default function WorkPage() {
         },
         {
           id: "godovaya-petr-osipov",
-          title: "GODOVAYA Petr Osipov",
+          title: "Годовая программа, Пётр Осипов",
           locationYear: "2 года · 550 студентов",
           format: "Образовательное событие.",
           scale: "550 студентов, 360 м² полностью затемнённого пространства.",

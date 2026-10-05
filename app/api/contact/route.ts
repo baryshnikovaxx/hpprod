@@ -8,6 +8,7 @@ type ContactPayload = {
   message?: string;
   consent?: boolean | string;
   website?: string; // honeypot
+  attribution?: Record<string, string>;
 };
 
 function clean(value: unknown): string {
@@ -18,7 +19,8 @@ function resolveConsent(value: unknown): boolean {
   return value === true || value === "true" || value === "on" || value === "1";
 }
 
-function formatText(data: Required<Omit<ContactPayload, "website">>): string {
+type CleanPayload = Required<Omit<ContactPayload, "website" | "attribution">> & { attribution: Record<string, string> };
+function formatText(data: CleanPayload): string {
   return [
     `New contact request`,
     ``,
@@ -29,15 +31,17 @@ function formatText(data: Required<Omit<ContactPayload, "website">>): string {
     `Consent: ${data.consent ? "yes" : "no"}`,
     `Message:`,
     data.message,
+    "",
+    ...Object.entries(data.attribution).map(([key, value]) => `${key}: ${value}`),
   ].join("\n");
 }
 
 async function sendToTelegram(text: string) {
   const token = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
-  if (!token || !chatId) return;
+  if (!token || !chatId) return false;
 
-  await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+  const response = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify({
@@ -45,24 +49,36 @@ async function sendToTelegram(text: string) {
       text,
       disable_web_page_preview: true,
     }),
+    signal: AbortSignal.timeout(10000),
   });
+  if (!response.ok) return false;
+  const result = await response.json();
+  return result.ok === true;
 }
 
 async function sendToWebhook(payload: object) {
   const url = process.env.CONTACT_WEBHOOK_URL;
-  if (!url) return;
+  if (!url) return false;
 
-  await fetch(url, {
+  const response = await fetch(url, {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify(payload),
+    signal: AbortSignal.timeout(10000),
   });
+  return response.ok;
 }
 
 export async function POST(req: Request) {
   let responseLang: "ru" | "en" = "en";
   try {
-    const body = (await req.json()) as ContactPayload;
+    const raw = await req.text();
+    if (raw.length > 16000) return NextResponse.json({ ok: false, error: "Заявка слишком длинная." }, { status: 413 });
+    let body: ContactPayload;
+    try {
+      body = JSON.parse(raw);
+      if (!body || typeof body !== "object" || Array.isArray(body)) throw new Error("Invalid payload");
+    } catch { return NextResponse.json({ ok: false, error: "Некорректная заявка." }, { status: 400 }); }
 
     // Silent bot trap
     if (clean(body.website)) {
@@ -83,20 +99,22 @@ export async function POST(req: Request) {
       success:
         resolvedLang === "ru"
           ? "Спасибо! Ответим шустро."
-          : "Sent. We’ll reply within 24 hours.",
+          : "Sent. We’ll get back to you soon.",
       failed:
         resolvedLang === "ru"
           ? "Не удалось отправить заявку. Попробуйте ещё раз."
           : "Failed to submit request. Please try again.",
     };
 
-    const payload: Required<Omit<ContactPayload, "website">> = {
-      source: clean(body.source) || "website",
+    const attribution = Object.fromEntries(["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "yclid"].map(key => [key, clean(body.attribution?.[key]).slice(0, 200)]).filter(([,value])=>value));
+    const payload: CleanPayload = {
+      source: clean(body.source).slice(0, 150) || "website",
       lang: resolvedLang,
       name: clean(body.name),
       contact: clean(body.contact),
       consent: resolveConsent(body.consent),
       message: clean(body.message),
+      attribution,
     };
 
     if (!payload.consent) {
@@ -112,11 +130,12 @@ export async function POST(req: Request) {
         { status: 400 },
       );
     }
+    if (payload.name.length > 100 || payload.contact.length > 200 || payload.message.length > 3000) {
+      return NextResponse.json({ ok: false, error: resolvedLang === "ru" ? "Сократите текст заявки." : "Please shorten the request." }, { status: 400 });
+    }
 
     const text = formatText(payload);
-    console.log("[contact] request\n" + text);
-
-    await Promise.allSettled([
+    const results = await Promise.allSettled([
       sendToTelegram(text),
       sendToWebhook({
         type: "contact_request",
@@ -124,10 +143,14 @@ export async function POST(req: Request) {
         ...payload,
       }),
     ]);
-
-    return NextResponse.json({ ok: true, message: t.success });
+    const delivered = results.some(result => result.status === "fulfilled" && result.value === true);
+    if (!delivered) {
+      console.error("[contact] no delivery channel accepted the request");
+      return NextResponse.json({ ok: false, error: t.failed }, { status: 503 });
+    }
+    return NextResponse.json({ ok: true, delivered: true, message: t.success });
   } catch (error) {
-    console.error("[contact] submission error:", error);
+    console.error("[contact] submission error", error instanceof SyntaxError ? "invalid JSON" : "request failed");
     return NextResponse.json({ ok: false, error: responseLang === "ru" ? "Не удалось отправить заявку. Попробуйте ещё раз." : "Failed to submit request." }, { status: 500 });
   }
 }
