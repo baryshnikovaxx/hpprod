@@ -68,13 +68,13 @@ export default function ServiceLanding({service, region, variant}: {service: Lan
         </article>
         <article>
           <Image className={s.caseImage} src="/landing/insforum.jpg" alt="Общий план сцены INSFORUM во время дискуссии" width={960} height={540} sizes="(max-width: 760px) 100vw, 45vw" />
-          <p className={s.projectFact}>Деловая конференция · 2024</p>
+          <p className={s.projectFact}>1 300 участников · 2 дня · 7 камер</p>
           <h3>INSFORUM<br />Выступления и дискуссии</h3>
-          <dl className={s.caseDetails}><div><dt>Задача</dt><dd>Снять деловую программу: выступления и разговоры на сцене.</dd></div><div><dt>Наша работа</dt><dd>Съёмка и режиссура: общие планы сцены, крупные планы спикеров и переключения по ходу разговора.</dd></div><div><dt>Материалы</dt><dd>Запись программы и съёмка с камер. Кадры проекта — в шоуриле выше.</dd></div></dl>
+          <dl className={s.caseDetails}><div><dt>Задача</dt><dd>Снять два дня конференции и работу YouTube-студии.</dd></div><div><dt>Наша работа</dt><dd>Семь камер: четыре на сцене, три в YouTube-студии. Съёмка выступлений и режиссура программы.</dd></div><div><dt>Материалы</dt><dd>Запись программы и съёмка с камер. Начали сотрудничать в 2024 году. Кадры проекта — в шоуриле выше.</dd></div></dl>
         </article>
       </div>
       <a className={s.caseCta} href="#estimate">Рассчитать похожий проект <span aria-hidden>↗</span></a>
-      <div className={s.clientStrip}><p>Другие проекты команды</p><ul aria-label="Проекты Head Production">{[["ggate", "GGate Awards"], ["gama", "GAMA"], ["eapt", "EAPT"], ["poshlaya-molly", "Пошлая Молли"]].map(([file,name]) => <li key={file}><Image src={"/clients/" + file + ".png"} alt={name} width={150} height={64} /></li>)}</ul></div>
+      <div className={s.clientStrip}><p>Среди наших проектов</p><ul aria-label="Проекты Head Production">{[["insforum", "ИНСФОРУМ"], ["ggate", "GGate Awards"], ["gama", "GAMA"], ["eapt", "EAPT"], ["poshlaya-molly", "Пошлая Молли"]].map(([file,name]) => <li key={file}><Image src={"/clients/" + file + ".png"} alt={name} width={150} height={64} /></li>)}</ul></div>
     </section>
     <section className={s.statement}>
       <div><h2>{c.promise}</h2><p>{c.promiseText}</p></div>
