@@ -31,7 +31,8 @@ export default function LandingHeroVideo() {
   }
   return <>
     <div className={s.heroMedia} aria-hidden="true"><video ref={ref} muted loop playsInline preload="metadata" poster="/landing/conference-webinar-reel-v5.jpg" onPlay={()=>setPlaying(true)} onPause={()=>setPlaying(false)}><source src="/landing/conference-webinar-reel-v5.mp4" type="video/mp4" /></video></div>
-    <div className={s.heroVideoCaption}>Конференции и онлайн-эфиры · Head Production</div>
+
     <button type="button" className={s.videoToggle} onClick={toggle} aria-label={playing ? "Приостановить фоновое видео" : "Воспроизвести фоновое видео"}>{playing ? "Пауза ❚❚" : "Смотреть ▶"}</button>
   </>;
 }
+
