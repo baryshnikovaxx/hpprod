@@ -38,7 +38,7 @@ const content = {
   },
 };
 
-export default function ServiceLanding({service, region, variant}: {service: LandingService; region: LandingRegion; variant: LandingVariant}) {
+export default function ServiceLanding({service, region, variant}: {service: Exclude<LandingService, "concert">; region: LandingRegion; variant: LandingVariant}) {
   const c = content[service];
   return <main id="page-top" lang="ru" className={s.page}>
     <header className={s.header}>

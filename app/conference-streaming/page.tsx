@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ServiceLanding from "../components/service-landing";
+import CompactLanding from "../components/compact-landing";
 import { landingOptions } from "../lib/landing";
 export const metadata: Metadata = {
   title: "Видеосъёмка и трансляция конференций",
@@ -8,5 +9,8 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
 };
 export default async function Page({searchParams}: {searchParams: Promise<Record<string, string | string[] | undefined>>}) {
-  return <ServiceLanding service="conference" {...landingOptions(await searchParams)} />;
+  const params = await searchParams;
+  const options = landingOptions(params);
+  if (params.layout === "short") return <CompactLanding kind="conference" {...options} />;
+  return <ServiceLanding service="conference" {...options} />;
 }

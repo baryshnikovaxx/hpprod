@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import s from "./service-landing.module.css";
 
-export default function LandingHeroVideo() {
+export default function LandingHeroVideo({src = "/landing/conference-webinar-reel-v5.mp4", poster = "/landing/conference-webinar-reel-v5.jpg"}: {src?: string; poster?: string}) {
   const ref = useRef<HTMLVideoElement>(null);
   const userPaused = useRef(false);
   const [playing, setPlaying] = useState(false);
@@ -30,9 +30,8 @@ export default function LandingHeroVideo() {
     else {userPaused.current = true;video.pause();}
   }
   return <>
-    <div className={s.heroMedia} aria-hidden="true"><video ref={ref} muted loop playsInline preload="metadata" poster="/landing/conference-webinar-reel-v5.jpg" onPlay={()=>setPlaying(true)} onPause={()=>setPlaying(false)}><source src="/landing/conference-webinar-reel-v5.mp4" type="video/mp4" /></video></div>
+    <div className={s.heroMedia} aria-hidden="true"><video ref={ref} muted loop playsInline preload="metadata" poster={poster} onPlay={()=>setPlaying(true)} onPause={()=>setPlaying(false)}><source src={src} type="video/mp4" /></video></div>
 
     <button type="button" className={s.videoToggle} onClick={toggle} aria-label={playing ? "Приостановить фоновое видео" : "Воспроизвести фоновое видео"}>{playing ? "Пауза ❚❚" : "Смотреть ▶"}</button>
   </>;
 }
-
