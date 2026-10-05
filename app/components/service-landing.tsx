@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import LandingHeroVideo from "./landing-hero-video";
 import EstimateForm from "./estimate-form";
 import { landingRegions, type LandingRegion, type LandingService, type LandingVariant } from "../lib/landing";
@@ -6,8 +7,8 @@ import s from "./service-landing.module.css";
 
 const content = {
   webinar: {
-    title: <>Вебинар<br />под ключ</>,
-    intro: "Вы — о главном. Мы — об эфире. Подготовим спикеров, настроим звук и презентации, проведём трансляцию и передадим запись.",
+    title: <>Съёмка и трансляция<br />вашего вебинара</>,
+    intro: "Подготовим спикеров, проверим звук и презентации, проведём эфир и передадим запись. Удалённо или с выездом на площадку.",
     promise: "Говорите с аудиторией. Технику берём на себя",
     promiseText: "Обучение сотрудников, презентация продукта или встреча с клиентами — поможем выбрать формат и соберём всё, что нужно для эфира.",
     capabilities: [
@@ -29,7 +30,7 @@ const content = {
       ["Съёмка с нескольких камер", "Снимем спикеров, дискуссии и зал. Количество камер подберём под программу и площадку."],
       ["Режиссура трансляции", "Переключаем планы, выводим слайды и имена выступающих. Держим темп и следим за происходящим на сцене."],
       ["Звук и подключение к эфиру", "Заранее проверим звук, интернет и передачу изображения. Обсудим резервные решения под условия площадки."],
-      ["Записи выступлений", "Передадим запись события. По задаче разделим её на доклады и подготовим короткие фрагменты."],
+      ["Записи выступлений", "Передадим запись события. Разделение на доклады и короткие фрагменты при необходимости включим в смету отдельно."],
     ],
     formats: [["Только видеосъёмка", "Запишем доклады и дискуссии для публикации после события."], ["Съёмка и прямой эфир", "Покажем конференцию зрителям, которые не приехали в зал."], ["Гибридная конференция", "Подключим удалённых спикеров к выступающим на площадке."]],
     faq: [["Можно заказать съёмку без трансляции?", "Да. Снимем событие и передадим запись. Если нужны отдельные доклады или монтаж итогового ролика, предусмотрим это в смете."], ["Работаете с оборудованием площадки?", "Да. Уточним, какие звук, экраны и интернет уже есть, проверим совместимость и предложим недостающее."], ["Что делать, если интернет на площадке слабый?", "Проверим подключение заранее и предложим доступные резервные варианты. Возможность прямого эфира зависит от условий площадки — обсудим это до подтверждения проекта."], ["Как рассчитать стоимость?", "Пришлите дату, город и программу, если она уже есть. Уточним длительность, число залов, спикеров и формат записи. Подготовим смету с составом работ."]],
@@ -51,8 +52,29 @@ export default function ServiceLanding({service, region, variant}: {service: Lan
         <h1>{c.title}</h1>
         <p className={s.intro}>{c.intro}</p>
         <a href="#estimate" className={s.button}>Получить расчёт <span aria-hidden>↗</span></a>
-        <div className={s.priceSlot}>{variant === "from_price" && <><strong>Проекты от {c.price} €</strong><p>Итоговая стоимость зависит от формата и состава работ. Подготовим смету под вашу задачу.</p></>}</div>
+        <p className={s.ctaNote}>Уточним задачу и подготовим смету с составом работ.</p>
+        {variant === "from_price" && <div className={s.priceSlot}><strong>Проекты от {c.price} €</strong><p>Итоговая стоимость зависит от формата и состава работ. Подготовим смету под вашу задачу.</p></div>}
       </div>
+    </section>
+    <section className={s.proof} aria-labelledby="cases-title">
+      <h2 id="cases-title">Наши проекты</h2>
+      <p className={s.proofIntro}>Образовательная программа и деловой форум — два примера работы нашей команды.</p>
+      <div className={s.projects}>
+        <article>
+          <Image className={s.caseImage} src="/landing/petr-osipov.jpg" alt="Пётр Осипов выступает с микрофоном" width={960} height={540} sizes="(max-width: 760px) 100vw, 45vw" />
+          <p className={s.projectFact}>Образовательные события · 2 года сотрудничества</p>
+          <h3>Пётр Осипов<br />Годовая программа</h3>
+          <dl className={s.caseDetails}><div><dt>Задача</dt><dd>Организовать съёмку регулярных образовательных событий.</dd></div><div><dt>Наша работа</dt><dd>Подготовка пространства, съёмка и передача изображения, координация технической команды.</dd></div><div><dt>Результат</dt><dd>Техническая схема для серии событий, которую используем в совместной работе.</dd></div></dl>
+        </article>
+        <article>
+          <Image className={s.caseImage} src="/landing/insforum.jpg" alt="Общий план сцены INSFORUM во время дискуссии" width={960} height={540} sizes="(max-width: 760px) 100vw, 45vw" />
+          <p className={s.projectFact}>Деловая конференция · 2024</p>
+          <h3>INSFORUM<br />Выступления и дискуссии</h3>
+          <dl className={s.caseDetails}><div><dt>Задача</dt><dd>Снять деловую программу: выступления и разговоры на сцене.</dd></div><div><dt>Наша работа</dt><dd>Съёмка и режиссура: общие планы сцены, крупные планы спикеров и переключения по ходу разговора.</dd></div><div><dt>Материалы</dt><dd>Запись программы и съёмка с камер. Кадры проекта — в шоуриле выше.</dd></div></dl>
+        </article>
+      </div>
+      <a className={s.caseCta} href="#estimate">Рассчитать похожий проект <span aria-hidden>↗</span></a>
+      <div className={s.clientStrip}><p>Другие проекты команды</p><ul aria-label="Проекты Head Production">{[["ggate", "GGate Awards"], ["gama", "GAMA"], ["eapt", "EAPT"], ["poshlaya-molly", "Пошлая Молли"]].map(([file,name]) => <li key={file}><Image src={"/clients/" + file + ".png"} alt={name} width={150} height={64} /></li>)}</ul></div>
     </section>
     <section className={s.statement}>
       <div><h2>{c.promise}</h2><p>{c.promiseText}</p></div>
@@ -66,18 +88,12 @@ export default function ServiceLanding({service, region, variant}: {service: Lan
       <h2>Под ваш формат</h2><div>{c.formats.map(([title,text])=><article key={title}><h3>{title}</h3><p>{text}</p></article>)}</div>
       {region === "turkey" && <p className={s.geoNote}>Организуете событие в Турции из другой страны? Обсудим задачу на русском, согласуем работу местной команды и подключение удалённых участников.</p>}
     </section>
-    <section className={s.proof}>
-      <p className={s.eyebrow}>Опыт команды</p><h2>Нам доверяет<br />Саша Митрошина</h2>
-      <div className={s.projects}>
-        <article><h3>Годовая программа<br />Пётр Осипов</h3><p className={s.projectFact}>Образовательные события · 2 года</p><p>Видеосъёмка и техническое обеспечение. Подготовка пространства, передача изображения и координация команды.</p><a href="/work#godovaya-petr-osipov">О проекте ↗</a></article>
-        <article><h3>GGate<br />Awards</h3><p className={s.projectFact}>Форум и концертная программа · 2025–2026</p><p>Техническое обеспечение и съёмка события. Координация сцены и эфира, работа с деловой и концертной программами.</p><a href="/work#g-gate">О проекте ↗</a></article>
-      </div>
-    </section>
-    <section className={s.process}><h2>От задачи<br />до готовой записи</h2><div><p><strong>Сначала — план и смета</strong>Уточняем формат, сроки и площадку. Предлагаем состав команды и оборудование.</p><p><strong>До старта — проверка</strong>Согласуем ход эфира, проверяем подключения и репетируем ключевые моменты.</p><p><strong>В день события — на связи</strong>Ведём съёмку и трансляцию. После передаём материалы в согласованном формате.</p></div></section>
+    <section className={s.process}><h2>От задачи<br />до готовой записи</h2><div><p><strong>Сначала — план и смета</strong>Уточняем формат, сроки и площадку. Предлагаем состав команды и оборудование.</p><p><strong>До старта — проверка</strong>Согласуем ход эфира, проверяем звук, презентации и подключения. Репетируем ключевые моменты, обсуждаем резервные решения под площадку и бюджет.</p><p><strong>В день события — на связи</strong>Ведём съёмку и трансляцию. После передаём материалы в согласованном формате.</p></div></section>
     <section className={s.faq}><h2>Коротко о важном</h2><div>{c.faq.map(([q,a])=><details key={q}><summary>{q}</summary><p>{a}</p></details>)}</div></section>
     <section id="estimate" className={s.contact}>
-      <div><h2>{c.formTitle}</h2><p>Оставьте контакт и пару слов о задаче. Если программа ещё не готова — ничего страшного. Поможем разобраться с форматом.</p><p className={s.reply}>Ответим шустро</p><a href="https://t.me/Hipete_HP" target="_blank" rel="noreferrer">Написать в Telegram ↗</a><a href="mailto:hello@headprod.live">hello@headprod.live ↗</a></div>
+      <div><h2>{c.formTitle}</h2><p>Оставьте контакт — уточним задачу и подготовим смету с составом работ. Дату, площадку и программу можно обсудить позже.</p><p className={s.reply}>Ответим шустро</p><a href="https://t.me/Hipete_HP" target="_blank" rel="noreferrer">Написать в Telegram ↗</a><a href="mailto:hello@headprod.live">hello@headprod.live ↗</a></div>
       <EstimateForm service={service} region={region} variant={variant} />
     </section>
   </main>;
 }
+

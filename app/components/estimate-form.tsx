@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import type { LandingRegion, LandingService, LandingVariant } from "../lib/landing";
 import s from "./service-landing.module.css";
 import ContactField from "./contact-field";
@@ -10,6 +10,35 @@ export default function EstimateForm({service, region, variant}: {service: Landi
   const [status,setStatus] = useState<"idle"|"sending"|"success"|"error">("idle");
   const [error,setError] = useState("");
   const pending = useRef(false);
+  const formRef = useRef<HTMLFormElement>(null);
+  const started = useRef(false);
+  function track(event: string, extra: Record<string, string> = {}) {
+    try {
+      if (/^(localhost|127\.0\.0\.1)$/.test(window.location.hostname)) return;
+      const w = window as AnalyticsWindow;
+      w.dataLayer = w.dataLayer || [];
+      w.dataLayer.push({event, lead_type: service, landing_region: region, price_variant: variant, ...extra});
+      w.ym?.(113227786, "reachGoal", event, {service, region, variant, ...extra});
+    } catch { /* Tracking must not interrupt the form. */ }
+  }
+  useEffect(() => {
+    const form = formRef.current;
+    if (!form) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      try {
+        if (!/^(localhost|127\.0\.0\.1)$/.test(window.location.hostname)) {
+          const w = window as AnalyticsWindow;
+          w.dataLayer = w.dataLayer || [];
+          w.dataLayer.push({event: "estimate_form_view", lead_type: service, landing_region: region, price_variant: variant});
+          w.ym?.(113227786, "reachGoal", "estimate_form_view", {service, region, variant});
+        }
+      } catch { /* Best effort analytics. */ }
+      observer.disconnect();
+    }, {threshold: 0.1});
+    observer.observe(form);
+    return () => observer.disconnect();
+  }, [service, region, variant]);
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (pending.current) return;
@@ -17,6 +46,7 @@ export default function EstimateForm({service, region, variant}: {service: Landi
     const values = new FormData(form);
     const contact = validateContact(values.get("contact"), values.get("contactMethod"));
     if (!validContactName(String(values.get("name") || "")) || !contact.ok) {
+      track("estimate_validation_error", {field: !contact.ok ? "contact" : "name"});
       setError(!contact.ok ? contact.error : "Укажите имя: минимум два символа, включая буквы."); setStatus("error");
       (form.elements.namedItem(!contact.ok ? "contact" : "name") as HTMLInputElement)?.focus();
       return;
@@ -27,7 +57,7 @@ export default function EstimateForm({service, region, variant}: {service: Landi
     try {
       const response = await fetch("/api/contact", {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({
         source: `landing:${service}:${region}:${variant}`, lang:"ru", name: String(values.get("name")).trim(), contact: contact.value, contactMethod: contact.method, consent: values.get("consent") === "on", website: values.get("website"),
-        message: [`Запрос расчёта: ${service === "webinar" ? "вебинар" : "конференция"}`, `Дата: ${values.get("date") || "не определена"}`, `Город / формат: ${values.get("location") || "обсудим"}`, String(values.get("message") || "Детали обсудим при связи.")].join("\n"),
+        message: [`Запрос расчёта: ${service === "webinar" ? "вебинар" : "конференция"}`, String(values.get("message") || "Детали обсудим при связи.")].join("\n"),
         attribution,
       })});
       const result = await response.json();
@@ -43,14 +73,13 @@ export default function EstimateForm({service, region, variant}: {service: Landi
         }
       } catch { /* Analytics must never turn a delivered lead into a form error. */ }
       form.reset();
-    } catch (err) {setError(err instanceof Error ? err.message : "Не удалось отправить заявку."); setStatus("error");}
+    } catch (err) {track("estimate_delivery_error"); setError(err instanceof Error ? err.message : "Не удалось отправить заявку."); setStatus("error");}
     finally {pending.current = false;}
   }
-  if(status === "success") return <div className={s.success} role="status"><h3>Заявка отправлена</h3><p>Спасибо! Свяжемся с вами и уточним детали для расчёта.</p></div>;
-  return <form onSubmit={submit} className={`${s.form} ym-hide-content`} aria-label="Заявка на расчёт">
+  if(status === "success") return <div className={s.success} role="status"><h3>Заявка получена</h3><p>Свяжемся выбранным способом, уточним задачу и подготовим смету.</p></div>;
+  return <form ref={formRef} onInput={() => {if (!started.current) {started.current = true; track("estimate_form_start");}}} onInvalid={(event) => {const field = (event.target as HTMLInputElement).name; if (["name", "contact", "consent"].includes(field)) track("estimate_validation_error", {field});}} onSubmit={submit} className={`${s.form} ym-hide-content`} aria-label="Заявка на расчёт">
     <label>Ваше имя<input name="name" autoComplete="name" required minLength={2} maxLength={100} placeholder="Как к вам обращаться" /></label>
     <ContactField />
-    <div className={s.formRow}><label>Дата, если известна<input name="date" type="date" /></label><label>Город или онлайн<input name="location" maxLength={150} defaultValue={region === "moscow" ? "Москва" : region === "spb" ? "Санкт-Петербург" : region === "turkey" ? "Турция" : ""} placeholder="Где планируется событие" /></label></div>
     <label>Пару слов о проекте <span>(необязательно)</span><textarea name="message" rows={3} maxLength={2000} placeholder="Сколько спикеров, нужен ли прямой эфир, что важно учесть" /></label>
     <div className={s.trap} aria-hidden="true"><label>Ваш сайт<input name="website" tabIndex={-1} autoComplete="off" /></label></div>
     <label className={s.consent}><input type="checkbox" name="consent" required /><span>Согласен на обработку данных для ответа на заявку. <a href="/privacy" target="_blank" rel="noreferrer">Политика конфиденциальности</a></span></label>
