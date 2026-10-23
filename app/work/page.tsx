@@ -362,7 +362,7 @@ export default function WorkPage() {
 
         <section className="mx-auto w-full max-w-[1400px] px-4 pb-16 sm:px-6 lg:px-8">
           <div className="work-index">
-            {[...cases.filter(item => item.showreel || item.still), ...cases.filter(item => !item.showreel && !item.still)].map((item) => (
+            {[...cases.filter(item => item.id === "zemfira"), ...cases.filter(item => item.id === "g-gate"), ...cases.filter(item => item.id === "poshlaya-molly"), ...cases.filter(item => !["zemfira", "g-gate", "poshlaya-molly"].includes(item.id))].map((item) => (
               <article id={item.id} key={item.id} className={`work-entry ${(item.showreel || item.still) ? "work-photo" : "work-text"}`}>
                 {item.still && <div className="work-media"><Image src={item.still} alt={isRu ? "Покерные фишки на столе турнира EAPT" : "Poker chips on an EAPT tournament table"} width={1280} height={720} sizes="(max-width: 700px) 100vw, 90vw" style={{ width: "100%", height: "auto", display: "block" }} /></div>}
                 {item.showreel && <div className="work-media">
