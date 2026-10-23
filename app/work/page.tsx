@@ -131,6 +131,17 @@ export default function WorkPage() {
           visualLabel: "Трансляция с арены"
         },
         {
+          id: "eastvswest-armwrestling",
+          title: "EASTVSWEST ARMWRESTLING",
+          locationYear: "Batumi Sport Palace · Батуми",
+          format: "Трансляция турнира по армрестлингу.",
+          scale: "3 000+ онлайн-зрителей.",
+          role: "Полный цикл подготовки и проведения трансляции.",
+          responsibilities: ["Многокамерная трансляция", "Оформление сцены", "Техническое оснащение"],
+          result: "Подготовили сцену и технику, организовали многокамерную трансляцию турнира.",
+          note: "Заказчик — компания из США.",
+        },
+        {
           id: "sepultura",
           title: "Sepultura",
           locationYear: "1 000 зрителей",
@@ -272,6 +283,17 @@ export default function WorkPage() {
           visualLabel: "Arena Production",
         },
         {
+          id: "eastvswest-armwrestling",
+          title: "EASTVSWEST ARMWRESTLING",
+          locationYear: "Batumi Sport Palace · Batumi",
+          format: "Sports event broadcast · Armwrestling",
+          scale: "3,000+ online viewers.",
+          role: "Full-cycle broadcast production.",
+          responsibilities: ["Multicam broadcast", "Stage design", "Technical equipment"],
+          result: "Delivered stage design, technical equipment and multi-camera coverage for the event.",
+          note: "Client: a US-based company.",
+        },
+        {
           id: "sepultura",
           title: "Sepultura",
           locationYear: "1000 attendees",
@@ -388,4 +410,3 @@ export default function WorkPage() {
     </main>
   );
 }
-
