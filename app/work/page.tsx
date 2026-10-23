@@ -262,7 +262,7 @@ export default function WorkPage() {
         <section className="mx-auto w-full max-w-[1400px] px-4 pb-16 sm:px-6 lg:px-8">
           <div className={styles.grid}>
             {projects.map((item, index) => (
-              <article id={item.id} key={item.id} className={`${styles.project} ${index === 0 ? styles.lead : ""}`}>
+              <article id={item.id} key={item.id} className={`${styles.project} ${index < 2 ? styles.lead : ""}`}>
                 {item.showreel && <ShowreelVideo
                   src={item.showreel + "/showreel.mp4"}
                   poster={item.showreel + "/showreel.jpg"}
