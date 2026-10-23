@@ -374,7 +374,7 @@ export default function WorkPage() {
                   />
                 </div>}
                 <div className="work-copy">
-                  <div className="work-heading"><h2>{item.title}</h2><p className="broadcast-meta">{item.locationYear}</p></div>
+                  <div className="work-heading"><h2 style={item.id === "eastvswest-armwrestling" ? { fontSize: "clamp(28px, 4vw, 52px)" } : undefined}>{item.title}</h2><p className="broadcast-meta">{item.locationYear}</p></div>
                   <dl className="work-facts">
                     <div><dt>{isRu ? "Формат" : "Format"}</dt><dd>{item.format}</dd></div>
                     <div><dt>{isRu ? "Масштаб" : "Scale"}</dt><dd>{item.scale}</dd></div>
