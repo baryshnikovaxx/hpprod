@@ -1,6 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
+import { useEffect } from "react";
+import styles from "./work.module.css";
 import SiteHeader from "../components/site-header";
 import ShowreelVideo from "../components/showreel-video";
 import { useLanguage } from "../components/language-provider";
@@ -344,6 +347,37 @@ export default function WorkPage() {
         },
       ];
 
+  useEffect(() => {
+    const revealHash = () => {
+      const id = window.location.hash.slice(1);
+      const target = document.getElementById(id);
+      if (!target) return;
+      const details = target.querySelector("details");
+      if (details) details.open = true;
+      requestAnimationFrame(() => target.scrollIntoView({ block: "start" }));
+    };
+    revealHash();
+    window.addEventListener("hashchange", revealHash);
+    return () => window.removeEventListener("hashchange", revealHash);
+  }, []);
+
+  const featuredIds = ["zemfira", "g-gate", "poshlaya-molly"];
+  const featured = featuredIds.flatMap(id => cases.filter(item => item.id === id));
+  const archive = cases.filter(item => !featuredIds.includes(item.id));
+  const facts = (item: CaseStudy) => (
+    <div className={styles.facts}>
+      <dl>
+        <div><dt>{isRu ? "Формат" : "Format"}</dt><dd>{item.format}</dd></div>
+        <div><dt>{isRu ? "Масштаб" : "Scale"}</dt><dd>{item.scale}</dd></div>
+        <div><dt>{isRu ? "Наша роль" : "Our role"}</dt><dd>{item.role}</dd></div>
+      </dl>
+      <div><h3>{isRu ? "Что сделали" : "Key responsibilities"}</h3>
+        <ul>{item.responsibilities.map(point => <li key={point}>{point}</li>)}</ul>
+        {item.note && <p className={styles.note}>{item.note}</p>}
+      </div>
+    </div>
+  );
+
   return (
     <main id="page-top" className="broadcast-page page-work relative min-h-screen overflow-x-clip bg-zinc-950 text-zinc-50">
       <SiteHeader />
@@ -355,41 +389,54 @@ export default function WorkPage() {
           </h1>
           <p className="reading-copy-muted mt-5 text-sm md:text-base">
             {isRu
-              ? ru("Что снимали, за что отвечали и какого результата достигли. Подробности каждого проекта — по запросу.")
-              : "About scale, format, responsibility, and result. Full project details are available on request."}
+              ? ru("Концерты, форумы и спортивные события. В кадре — масштаб, за кадром — наша работа.")
+              : "Concerts, conferences and sports. The scale on screen. Our work behind it."}
           </p>
         </section>
 
         <section className="mx-auto w-full max-w-[1400px] px-4 pb-16 sm:px-6 lg:px-8">
-          <div className="work-index">
-            {[...cases.filter(item => item.id === "zemfira"), ...cases.filter(item => item.id === "g-gate"), ...cases.filter(item => item.id === "poshlaya-molly"), ...cases.filter(item => !["zemfira", "g-gate", "poshlaya-molly"].includes(item.id))].map((item) => (
-              <article id={item.id} key={item.id} className={`work-entry ${(item.showreel || item.still) ? "work-photo" : "work-text"}`}>
-                {item.still && <div className="work-media"><Image src={item.still} alt={isRu ? "Покерные фишки на столе турнира EAPT" : "Poker chips on an EAPT tournament table"} width={1280} height={720} sizes="(max-width: 700px) 100vw, 90vw" style={{ width: "100%", height: "auto", display: "block" }} /></div>}
-                {item.showreel && <div className="work-media">
-                  <ShowreelVideo
-                    src={item.showreel + "/showreel.mp4"}
-                    poster={item.showreel + "/showreel.jpg"}
-                    label={item.title + (isRu ? ": шоурил без звука, " + (item.showreelSeconds ?? 14) + " с" : ": " + (item.showreelSeconds ?? 14) + "-second silent showreel")}
-                    isRu={isRu}
-                  />
-                </div>}
-                <div className="work-copy">
-                  <div className="work-heading"><h2 style={item.id === "eastvswest-armwrestling" ? { fontSize: "clamp(28px, 4vw, 52px)" } : undefined}>{item.title}</h2><p className="broadcast-meta">{item.locationYear}</p></div>
-                  <dl className="work-facts">
-                    <div><dt>{isRu ? "Формат" : "Format"}</dt><dd>{item.format}</dd></div>
-                    <div><dt>{isRu ? "Масштаб" : "Scale"}</dt><dd>{item.scale}</dd></div>
-                    <div><dt>{isRu ? "Наша роль" : "Our role"}</dt><dd>{item.role}</dd></div>
-                  </dl>
-                  <div className="work-delivery"><p className="broadcast-meta">{isRu ? "Что сделали" : "Key responsibilities"}</p><ul>{item.responsibilities.map(point=><li key={point}>{point}</li>)}</ul></div>
-                  {item.note && <p className="work-note">{item.note}</p>}
+          <div className={styles.featured}>
+            {featured.map((item, index) => (
+              <article id={item.id} key={item.id} className={`${styles.project} ${index === 0 ? styles.lead : ""}`}>
+                <ShowreelVideo
+                  src={item.showreel + "/showreel.mp4"}
+                  poster={item.showreel + "/showreel.jpg"}
+                  label={item.title + (isRu ? ": шоурил без звука" : ": silent showreel")}
+                  isRu={isRu}
+                />
+                <div className={styles.caption}>
+                  <div><h2>{item.title}</h2><p className={styles.location}>{item.locationYear}</p></div>
+                  <p className={styles.description}>{item.role}</p>
                 </div>
+                <details className={styles.featureDetails}>
+                  <summary>{isRu ? "О проекте" : "About the project"}<span aria-hidden="true" className={styles.plus}>+</span></summary>
+                  {facts(item)}
+                </details>
+              </article>
+            ))}
+          </div>
+          <div className={styles.archive}>
+            <h2 className={styles.archiveTitle}>{isRu ? "Другие проекты" : "More projects"}</h2>
+            {archive.map(item => (
+              <article id={item.id} key={item.id} className={styles.archiveItem}>
+                <details>
+                  <summary>
+                    <h3>{item.title}</h3>
+                    <span className={styles.archiveLocation}>{item.locationYear}</span>
+                    <span className={styles.plus} aria-hidden="true">+</span>
+                  </summary>
+                  <div className={styles.archiveBody}>
+                    {item.still && <Image src={item.still} alt={isRu ? "Покерные фишки на турнире EAPT" : "Poker chips at EAPT"} width={1280} height={720} sizes="(max-width: 700px) 100vw, 560px" className={styles.still} />}
+                    {facts(item)}
+                  </div>
+                </details>
               </article>
             ))}
           </div>
         </section>
 
         <section className="mx-auto w-full max-w-[1400px] px-4 pb-16 sm:px-6 lg:px-8">
-          <div className="rounded-3xl border border-indigo-300/25 bg-gradient-to-r from-indigo-400/15 to-violet-400/15 p-6 md:p-8">
+          <div className={styles.contact}>
             <h2 className="title-section-inverse">
               {isRu ? "Обсудить проект" : "Discuss a Project"}
             </h2>
@@ -398,12 +445,12 @@ export default function WorkPage() {
                 ? ru("Расскажите о задаче. Предложим план съёмки и трансляции с учётом площадки, формата и сроков.")
                 : "Share your brief and we will propose a production setup aligned with your format, venue, and timeline."}
             </p>
-            <a
+            <Link
               href="/#contact"
               className="mt-5 inline-flex h-10 items-center justify-center rounded-xl bg-white px-4 text-sm font-semibold text-zinc-950 transition-colors hover:bg-zinc-200"
             >
               {isRu ? "Связаться" : "Get in touch"}
-            </a>
+            </Link>
           </div>
         </section>
       </div>
